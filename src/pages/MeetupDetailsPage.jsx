@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
@@ -38,6 +38,7 @@ function MeetupCard() {
                 <p>{meetupSelected.eventDateAndTime}</p>
                 {/* add mapping over the array of attendees once atendees are added to the data  */}
                 <p>{meetupSelected.attendees}</p>
+                <Link to={`/meetup/edit/${meetupSelected._id}`}><button>Edit Meetup</button></Link>
 
             </div>
         );

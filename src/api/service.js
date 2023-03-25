@@ -46,10 +46,22 @@ const createMeetup = (newMeetup) => {
     .catch(errorHandler);
 };
 
+const updateMeetup = (updatedMeetup) => {
+  const storedToken = localStorage.getItem("authToken");
+
+  return api
+    .put("/meetup/edit/:meetupId", updatedMeetup, {
+      headers: { Authorization: `Bearer ${storedToken}` },
+    })
+    .then((res) => res.data)
+    .catch(errorHandler);
+};
+
 const meetupService = {
   getAllMeetup,
   uploadEventImage,
   createMeetup,
+  updateMeetup
 };
 
 export default meetupService;

@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage"
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import MeetupCard from "./pages/MeetupDetailsPage";
+import EditMeetUpPage from "./pages/EditMeetupPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/auth/login" element={<LoginPage />} />
         <Route path="/auth/signup" element={<SignUpPage />} />
         <Route path="/meetup/:meetupId" element={<MeetupCard />} />
+        <Route path="/meetup/edit/:meetupId" element={<EditMeetUpPage />} />
       </Routes>
     </div>
   );
