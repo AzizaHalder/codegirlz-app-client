@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage"
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
+import MeetupCard from "./pages/MeetupDetailsPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/meetup/create" element={<AddMeetup />} />
         <Route path="/auth/login" element={<LoginPage />} />
         <Route path="/auth/signup" element={<SignUpPage />} />
+        <Route path="/meetup/:meetupId" element={<MeetupCard />} />
       </Routes>
     </div>
   );

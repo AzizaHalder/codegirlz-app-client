@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import service from "../api/service";
+import { Link } from 'react-router-dom';
 
 function MeetupList() {
   const [meetup, setMeetup] = useState([]);
@@ -27,6 +28,7 @@ function MeetupList() {
               />
               <p>{singleMeetup.eventType}</p>
               <p>{singleMeetup.eventDateAndTime}</p>
+              <Link to={`/meetup/${singleMeetup._id}`}><button>See More Details</button></Link>
             </div>
           );
         })}

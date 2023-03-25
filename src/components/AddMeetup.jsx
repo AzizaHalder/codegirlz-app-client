@@ -105,7 +105,7 @@ const AddEvent = () => {
           onChange={(e) => setEventCity(e.target.value)}
         />
 
-        <label htmlFor="">Location</label>
+        <label htmlFor="">Address</label>
         <input
           type="text"
           value={eventAddress}
