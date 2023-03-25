@@ -28,7 +28,7 @@ const AddEvent = () => {
       .then((response) => {
         // console.log("response is: ", response);
         // response carries "fileUrl" which we can use to update the state
-        setEventNewImage(response.imageUrl);
+        setEventNewImage(response.eventImage);
       })
       .catch((err) => console.log("Error while uploading the image: ", err));
   };
@@ -76,13 +76,11 @@ const AddEvent = () => {
           onChange={(e) => setEventName(e.target.value)}
         />
 
-        {/* ENUM values --> Digital, In-Person */}
         <label htmlFor="">Type of Event</label>
-        <input
-          type="text"
-          value={eventType}
-          onChange={(e) => setEventType(e.target.value)}
-        />
+        <select id="eventTypes" name={eventType} onChange={(e) => setEventType(e.target.value)}>
+          <option value="digital">Digital</option>
+          <option value="in-person">In-Person</option>
+        </select>
 
         {/* Need to get data from JSON file */}
         <label htmlFor="">Country</label>
@@ -108,7 +106,7 @@ const AddEvent = () => {
 
         <label htmlFor="">Link to Meetup</label>
         <input
-          type="text"
+          type="url"
           value={eventLink}
           onChange={(e) => setEventLink(e.target.value)}
         />
@@ -122,10 +120,9 @@ const AddEvent = () => {
           onChange={(e) => setEventDescription(e.target.value)}
         />
 
-        {/* Update this to show the calender with time and date */}
         <label htmlFor="">Select Time and Date</label>
         <input
-          type="text"
+          type="datetime-local"
           value={eventDateAndTime}
           onChange={(e) => setEventDateAndTime(e.target.value)}
         />
