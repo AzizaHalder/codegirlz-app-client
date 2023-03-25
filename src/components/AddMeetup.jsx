@@ -21,14 +21,14 @@ const AddEvent = () => {
 
     // eventImage => this name has to be the same as in the model since we pass
     // req.body to .create() method when creating a new movie in '/api/movies' POST route
-    uploadData.append("eventImage", e.target.files[0]);
+    uploadData.append("imageUrl", e.target.files[0]);
 
     service
       .uploadEventImage(uploadData)
       .then((response) => {
-        // console.log("response is: ", response);
+        console.log("response is: ", response.fileUrl);
         // response carries "fileUrl" which we can use to update the state
-        setEventNewImage(response.eventImage);
+        setEventNewImage(response.fileUrl);
       })
       .catch((err) => console.log("Error while uploading the image: ", err));
   };
@@ -43,7 +43,7 @@ const AddEvent = () => {
       eventAddress,
       eventLink,
       eventDescription,
-      eventNewImage,
+      eventImage: eventNewImage,
       eventDateAndTime,
     };
 
@@ -59,6 +59,7 @@ const AddEvent = () => {
         setEventDescription("");
         setEventNewImage("");
         setEventDateAndTime("");
+        console.log("RES", res);
 
         navigate("/meetup");
       })
@@ -77,9 +78,13 @@ const AddEvent = () => {
         />
 
         <label htmlFor="">Type of Event</label>
-        <select id="eventTypes" name={eventType} onChange={(e) => setEventType(e.target.value)}>
-          <option value="digital">Digital</option>
-          <option value="in-person">In-Person</option>
+        <select
+          id="eventTypes"
+          name={eventType}
+          onChange={(e) => setEventType(e.target.value)}
+        >
+          <option value="Digital">Digital</option>
+          <option value="In-Person">In-Person</option>
         </select>
 
         {/* Need to get data from JSON file */}

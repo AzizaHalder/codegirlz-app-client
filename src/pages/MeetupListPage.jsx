@@ -20,11 +20,15 @@ function MeetupList() {
           return (
             <div key={singleMeetup._id}>
               <h3>{singleMeetup.eventName}</h3>
-              <img src={singleMeetup.eventImage} alt={singleMeetup.eventName} width="200" />
+              <img
+                src={singleMeetup.eventImage}
+                alt={singleMeetup.eventName}
+                width="200"
+              />
               <p>{singleMeetup.eventType}</p>
               <p>{singleMeetup.eventDateAndTime}</p>
             </div>
-          )
+          );
         })}
     </div>
   );

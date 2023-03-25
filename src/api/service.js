@@ -6,7 +6,7 @@ const api = axios.create({
   // make sure you use PORT = 5005 (the port where our server is running)
   //   used to be : baseURL: "http://localhost:5005/api", but changed it since we don't have /api in our route
   baseURL: "http://localhost:5005",
-  withCredentials: true // => you might need this option if using cookies and sessions
+  withCredentials: true, // => you might need this option if using cookies and sessions
 });
 
 const errorHandler = (err) => {
@@ -14,32 +14,42 @@ const errorHandler = (err) => {
 };
 
 const getAllMeetup = () => {
+  const storedToken = localStorage.getItem("authToken");
+
   return api
-    .get("/meetup")
+
+    .get("/meetup", {
+      headers: { Authorization: `Bearer ${storedToken}` },
+    })
     .then((res) => res.data)
     .catch(errorHandler);
 };
 
 const uploadEventImage = (file) => {
+  const storedToken = localStorage.getItem("authToken");
   return api
-    .post("/upload", file)
-    .then(res => res.data)
+    .post("/meetup/upload", file, {
+      headers: { Authorization: `Bearer ${storedToken}` },
+    })
+    .then((res) => res.data)
     .catch(errorHandler);
 };
 
 const createMeetup = (newMeetup) => {
+  const storedToken = localStorage.getItem("authToken");
+
   return api
-    .post("/meetup", newMeetup)
-    .then(res => res.data)
+    .post("/meetup/create", newMeetup, {
+      headers: { Authorization: `Bearer ${storedToken}` },
+    })
+    .then((res) => res.data)
     .catch(errorHandler);
 };
 
 const meetupService = {
   getAllMeetup,
   uploadEventImage,
-  createMeetup
+  createMeetup,
 };
 
 export default meetupService;
-
-
