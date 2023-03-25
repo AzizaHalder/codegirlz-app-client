@@ -83,6 +83,9 @@ const AddEvent = () => {
           name={eventType}
           onChange={(e) => setEventType(e.target.value)}
         >
+          <option value="" disabled selected>
+            Select Event Type
+          </option>
           <option value="Digital">Digital</option>
           <option value="In-Person">In-Person</option>
         </select>
