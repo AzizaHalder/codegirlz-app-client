@@ -26,15 +26,14 @@ function Navbar() {
           </Link>
 
           <button onClick={logOutUser}>Logout</button>
-                  <span>Welcome { user && user.name}</span>
+          <span>Welcome {user && user.name}</span>
         </>
       )}
 
       {!isLoggedIn && (
         <>
           <Link to="/auth/login">
-            {" "}
-            <button>Login</button>{" "}
+            <button>Login</button>
           </Link>
         </>
       )}

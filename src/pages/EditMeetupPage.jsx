@@ -3,11 +3,10 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import service from "../api/service";
 
-// Changed this from API_ORIGIN to API_URL for consistency; in the rest of our app we were using API_URL
 const API_URL = "http://localhost:5005";
 
 // do we need props in the the below function...?
-function EditMeetUpPage(props) {
+function EditMeetUpPage() {
   const [eventName, setEventName] = useState("");
   const [eventType, setEventType] = useState("");
   const [eventCountry, setEventCountry] = useState("");
@@ -20,7 +19,7 @@ function EditMeetUpPage(props) {
 
   const navigate = useNavigate();
   const { meetupId } = useParams();
-  console.log("NewImage", eventNewImage);
+  console.log("NewImage State", eventNewImage);
 
   // debugging error message: https://react.dev/reference/react-dom/components/input#controlling-an-input-with-a-state-variable
 
@@ -43,7 +42,7 @@ function EditMeetUpPage(props) {
         // changed name to eventImage vs eventNewImage
         // When I got the updated changes to save for the rest of the form,
         // updating the image was throwing an error, hence the change
-        setEventNewImage(oneMeetup.eventImage);
+        setEventNewImage(oneMeetup.eventNewImage);
         setEventDateAndTime(oneMeetup.eventDateAndTime);
         console.log("Axios GET one Meetup", response.data);
       })
@@ -53,7 +52,7 @@ function EditMeetUpPage(props) {
   // handle file/image upload
   const handleImageUpload = (e) => {
     const uploadData = new FormData();
-    uploadData.append("imageUrl", e.target.files[0]);
+    uploadData.append("eventImage", e.target.files[0]);
 
     service
       .uploadEventImage(uploadData)
@@ -78,14 +77,20 @@ function EditMeetUpPage(props) {
       eventDateAndTime,
     };
 
+    const storedToken = localStorage.getItem("authToken");
+
     // Submitting edited changes isn't working (I don't remember if we tested this together or not,
     // was so focused on having the form pre populated!)
     // If, I change this from Service to Axios it works..
     // But I guess this won't delete the image from CLoudinary?
-    service
-      // Do we need dynamic URL here, as a second parameter to updateMeetup?
-      // `${API_URL}/meetup/edit/${meetupId}`,
-      .updateMeetup(updatedMeetupDetails)
+    // service
+    // Do we need dynamic URL here, as a second parameter to updateMeetup?
+    // `${API_URL}/meetup/edit/${meetupId}`,
+    // .updateMeetup(`${API_URL}/meetup/edit/${meetupId}`, updatedMeetupDetails)
+    axios
+      .put(`${API_URL}/meetup/edit/${meetupId}`, updatedMeetupDetails, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
       .then((response) => {
         setEventName("");
         setEventType("");
@@ -98,15 +103,19 @@ function EditMeetUpPage(props) {
         setEventDateAndTime("");
         console.log("THIS IS THE RESPONSE", response.data);
 
-        navigate(`/meetup/${meetupId}`);
+        navigate("/meetup");
       })
       .catch((err) => console.log("Error editing meetup: ", err));
   };
 
   const handleDelete = () => {
-    service
-      .deleteMeetup(`${API_URL}/meetup/edit/delete/${meetupId}`)
+    const storedToken = localStorage.getItem("authToken");
+    axios
+      .delete(`${API_URL}/meetup/edit/${meetupId}`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
       .then(() => {
+        alert("Your meetup has been deleted! ");
         navigate("/meetup");
       })
       .catch((err) => console.log("Error deleting meetup: ", err));
