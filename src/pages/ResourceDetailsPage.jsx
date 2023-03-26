@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 
-const ResourceDetailsPage = () => {
+const ResourceDetails = () => {
   const [resourceDetails, setResourceDetails] = useState("");
   const { resourceId } = useParams();
 
@@ -16,7 +16,9 @@ const ResourceDetailsPage = () => {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((res) => setResourceDetails(res.data))
-      .catch((err) => console.log("Error retrieving resource details:", err));
+      .catch((err) =>
+        console.log("Error while retrieving resource details:", err)
+      );
   }, [resourceId]);
 
   if (resourceDetails) {
@@ -38,4 +40,4 @@ const ResourceDetailsPage = () => {
   }
 };
 
-export default ResourceDetailsPage;
+export default ResourceDetails;

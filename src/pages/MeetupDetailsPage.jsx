@@ -2,7 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-function MeetupCard() {
+function MeetupDetails() {
   const [meetupSelected, setMeetup] = useState("");
   const { meetupId } = useParams();
 
@@ -45,4 +45,4 @@ function MeetupCard() {
   }
 }
 
-export default MeetupCard;
+export default MeetupDetails;

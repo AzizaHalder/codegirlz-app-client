@@ -6,12 +6,12 @@ import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
-import MeetupCard from "./pages/MeetupDetailsPage";
-import EditMeetUpPage from "./pages/EditMeetupPage";
-import ResourceListPage from "./pages/ResourceListPage";
+import MeetupDetails from "./pages/MeetupDetailsPage";
+import EditMeetUp from "./pages/EditMeetupPage";
+import ResourceList from "./pages/ResourceListPage";
 import AddResource from "./components/AddResource";
-import ResourceDetailsPage from "./pages/ResourceDetailsPage";
-import EditResourcePage from "./pages/EditResourcePage";
+import ResourceDetails from "./pages/ResourceDetailsPage";
+import EditResource from "./pages/EditResourcePage";
 
 function App() {
   return (
@@ -24,15 +24,14 @@ function App() {
         <Route path="/auth/signup" element={<SignUpPage />} />
         <Route path="/meetup" element={<MeetupList />} />
         <Route path="/meetup/create" element={<AddMeetup />} />
-        <Route path="/meetup/:meetupId" element={<MeetupCard />} />
-        <Route path="/meetup/edit/:meetupId" element={<EditMeetUpPage />} />
-        <Route path="/resource" element={<ResourceListPage />} />
+        <Route path="/meetup/:meetupId" element={<MeetupDetails />} />
+        <Route path="/meetup/edit/:meetupId" element={<EditMeetUp />} />
+
+        <Route path="/resource" element={<ResourceList />} />
+
         <Route path="/resource/create" element={<AddResource />} />
-        <Route path="/resource/:resourceId" element={<ResourceDetailsPage />} />
-        <Route
-          path="/resource/edit/:resourceId"
-          element={<EditResourcePage />}
-        />
+        <Route path="/resource/:resourceId" element={<ResourceDetails />} />
+        <Route path="/resource/edit/:resourceId" element={<EditResource />} />
       </Routes>
     </div>
   );

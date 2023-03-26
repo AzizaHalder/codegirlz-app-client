@@ -49,7 +49,7 @@ const AddResource = () => {
         navigate("/resource");
         console.log("RES from service", res);
       })
-      .catch((err) => console.log("Error creating new resource:", err));
+      .catch((err) => console.log("Error while creating new resource:", err));
   };
 
   return (

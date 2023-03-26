@@ -5,7 +5,7 @@ import service from "../api/service";
 
 const API_URL = "http://localhost:5005";
 
-const EditResourcePage = () => {
+const EditResource = () => {
   const [resourceTitle, setResourceTitle] = useState("");
   const [resourceNewImage, setResourceNewImage] = useState("");
   const [resourceURL, setResourceURL] = useState("");
@@ -74,7 +74,7 @@ const EditResourcePage = () => {
         setResourceContent("");
         navigate("/resource");
       })
-      .catch((err) => console.log("Error while updating resource", err));
+      .catch((err) => console.log("Error while updating resource:", err));
   };
 
   const handleDelete = () => {
@@ -138,4 +138,4 @@ const EditResourcePage = () => {
   );
 };
 
-export default EditResourcePage;
+export default EditResource;

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import service from "../api/service";
 
-function ResourceListPage() {
+function ResourceList() {
   const [resourceList, setResourceList] = useState([]);
 
   useEffect(() => {
@@ -11,7 +11,9 @@ function ResourceListPage() {
       .then((data) => {
         setResourceList(data);
       })
-      .catch((err) => console.log("Error retrieving resource list", err));
+      .catch((err) =>
+        console.log("Error while retrieving resource list:", err)
+      );
   }, []);
 
   return (
@@ -38,4 +40,4 @@ function ResourceListPage() {
   );
 }
 
-export default ResourceListPage;
+export default ResourceList;

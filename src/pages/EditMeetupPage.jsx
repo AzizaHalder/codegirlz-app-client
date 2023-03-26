@@ -5,7 +5,7 @@ import service from "../api/service";
 
 const API_URL = "http://localhost:5005";
 
-function EditMeetUpPage() {
+function EditMeetUp() {
   const [eventName, setEventName] = useState("");
   const [eventType, setEventType] = useState("");
   const [eventCountry, setEventCountry] = useState("");
@@ -86,7 +86,7 @@ function EditMeetUpPage() {
         setEventDateAndTime("");
         navigate("/meetup");
       })
-      .catch((err) => console.log("Error editing meetup: ", err));
+      .catch((err) => console.log("Error while editing meetup: ", err));
   };
 
   const handleDelete = () => {
@@ -164,7 +164,7 @@ function EditMeetUpPage() {
 
           <label
             htmlFor=""
-            placeholder="Give a brief description of the meetup"
+            placeholder="Please Give a brief description of the meetup."
           >
             Description
           </label>
@@ -200,4 +200,4 @@ function EditMeetUpPage() {
   );
 }
 
-export default EditMeetUpPage;
+export default EditMeetUp;
