@@ -5,7 +5,6 @@ import service from "../api/service";
 
 const API_URL = "http://localhost:5005";
 
-// do we need props in the the below function...?
 function EditMeetUpPage() {
   const [eventName, setEventName] = useState("");
   const [eventType, setEventType] = useState("");
@@ -19,9 +18,6 @@ function EditMeetUpPage() {
 
   const navigate = useNavigate();
   const { meetupId } = useParams();
-  console.log("NewImage State", eventNewImage);
-
-  // debugging error message: https://react.dev/reference/react-dom/components/input#controlling-an-input-with-a-state-variable
 
   useEffect(() => {
     const storedToken = localStorage.getItem("authToken");
@@ -39,17 +35,12 @@ function EditMeetUpPage() {
         setEventAddress(oneMeetup.eventAddress);
         setEventLink(oneMeetup.eventLink);
         setEventDescription(oneMeetup.eventDescription);
-        // changed name to eventImage vs eventNewImage
-        // When I got the updated changes to save for the rest of the form,
-        // updating the image was throwing an error, hence the change
         setEventNewImage(oneMeetup.eventNewImage);
         setEventDateAndTime(oneMeetup.eventDateAndTime);
-        console.log("Axios GET one Meetup", response.data);
       })
       .catch((error) => console.log(error));
   }, [meetupId]);
 
-  // handle file/image upload
   const handleImageUpload = (e) => {
     const uploadData = new FormData();
     uploadData.append("eventImage", e.target.files[0]);
@@ -79,19 +70,11 @@ function EditMeetUpPage() {
 
     const storedToken = localStorage.getItem("authToken");
 
-    // Submitting edited changes isn't working (I don't remember if we tested this together or not,
-    // was so focused on having the form pre populated!)
-    // If, I change this from Service to Axios it works..
-    // But I guess this won't delete the image from CLoudinary?
-    // service
-    // Do we need dynamic URL here, as a second parameter to updateMeetup?
-    // `${API_URL}/meetup/edit/${meetupId}`,
-    // .updateMeetup(`${API_URL}/meetup/edit/${meetupId}`, updatedMeetupDetails)
     axios
       .put(`${API_URL}/meetup/edit/${meetupId}`, updatedMeetupDetails, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
-      .then((response) => {
+      .then(() => {
         setEventName("");
         setEventType("");
         setEventCountry("");
@@ -101,8 +84,6 @@ function EditMeetUpPage() {
         setEventDescription("");
         setEventNewImage("");
         setEventDateAndTime("");
-        console.log("THIS IS THE RESPONSE", response.data);
-
         navigate("/meetup");
       })
       .catch((err) => console.log("Error editing meetup: ", err));
@@ -204,13 +185,11 @@ function EditMeetUpPage() {
             onChange={(e) => setEventDateAndTime(e.target.value)}
           />
 
-          {/* Should we add a spinner here so that people know that the image is still loading, seems to take a while sometimes */}
+          {/* Should we add a spinner here so that people know that the image is still loading, seems to take a while sometimes, can be this be solved by async await server side */}
           <input
             type="file"
             name="eventNewImage"
-            // was wondering if we could set the value of the image,
-            // but when I tried that didn't work and it gave me an error
-            // value={eventNewImage}
+            // How do we prepopulate the image field
             onChange={(e) => handleImageUpload(e)}
           />
           <button type="submit">Submit Changes</button>
