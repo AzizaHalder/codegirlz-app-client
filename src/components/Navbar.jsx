@@ -3,11 +3,7 @@ import { useContext } from "react";
 import { AuthContext } from "./../context/auth.context";
 
 function Navbar() {
-  // Subscribe to the AuthContext to gain access to
-  // the values from AuthContext.Provider `value` prop
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
-
-  // move meetups to the isLiggedIn once log in is functioning
 
   return (
     <nav>
