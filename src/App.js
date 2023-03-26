@@ -11,6 +11,7 @@ import EditMeetUpPage from "./pages/EditMeetupPage";
 import ResourceListPage from "./pages/ResourceListPage";
 import AddResource from "./components/AddResource";
 import ResourceDetailsPage from "./pages/ResourceDetailsPage";
+import EditResourcePage from "./pages/EditResourcePage";
 
 function App() {
   return (
@@ -28,6 +29,10 @@ function App() {
         <Route path="/resource" element={<ResourceListPage />} />
         <Route path="/resource/create" element={<AddResource />} />
         <Route path="/resource/:resourceId" element={<ResourceDetailsPage />} />
+        <Route
+          path="/resource/edit/:resourceId"
+          element={<EditResourcePage />}
+        />
       </Routes>
     </div>
   );
