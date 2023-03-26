@@ -63,7 +63,7 @@ const AddEvent = () => {
 
         navigate("/meetup");
       })
-      .catch((err) => console.log("Error while adding the new meetup: ", err));
+      .catch((err) => console.log("Error while adding new meetup: ", err));
   };
 
   return (
@@ -114,7 +114,7 @@ const AddEvent = () => {
 
         <label htmlFor="">Link to Meetup</label>
         <input
-          type="url"
+          type="text"
           value={eventLink}
           onChange={(e) => setEventLink(e.target.value)}
         />
@@ -122,6 +122,15 @@ const AddEvent = () => {
         <label htmlFor="" placeholder="Give a brief description of the meetup">
           Description
         </label>
+        {/* Made this into a textarea but then in the edit mode, it doesn't show prepopulated */}
+        {/* <textarea
+          name="eventDescription"
+          id=""
+          // placeholder="Give a brief description of event "
+          cols="20"
+          rows="10"
+          onChange={(e) => setEventDescription(e.target.value)}
+        /> */}
         <input
           type="text"
           value={eventDescription}
@@ -135,7 +144,12 @@ const AddEvent = () => {
           onChange={(e) => setEventDateAndTime(e.target.value)}
         />
 
-        <input type="file" onChange={(e) => handleImageUpload(e)} />
+        {/* Can we add a spinner here so that people know that the image is still loading, seems to take a while sometimes */}
+        <input
+          type="file"
+          // value={eventNewImage}
+          onChange={(e) => handleImageUpload(e)}
+        />
         <button type="submit">Submit New Meetup</button>
       </form>
     </div>

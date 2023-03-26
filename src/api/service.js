@@ -1,6 +1,7 @@
 // src/api/service.js
 
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const api = axios.create({
   // make sure you use PORT = 5005 (the port where our server is running)
@@ -46,6 +47,10 @@ const createMeetup = (newMeetup) => {
     .catch(errorHandler);
 };
 
+// How do we make the routes dynamic (`${API_URL}/meetup/edit/${meetupId}`)
+// Played around with useParams, only got major errors...
+// Atm when I try to delete something, in the server side console this it the URL / error
+//  --> DELETE /meetup/edit/:meetupId 400, no dynamic route :'(
 const updateMeetup = (updatedMeetup) => {
   const storedToken = localStorage.getItem("authToken");
 
@@ -56,12 +61,23 @@ const updateMeetup = (updatedMeetup) => {
     .then((res) => res.data)
     .catch(errorHandler);
 };
+const deleteMeetup = (deleteMeetup) => {
+  const storedToken = localStorage.getItem("authToken");
+
+  return api
+    .delete("/meetup/edit/:meetupId", deleteMeetup, {
+      headers: { Authorization: `Bearer ${storedToken}` },
+    })
+    .then((res) => res.data)
+    .catch(errorHandler);
+};
 
 const meetupService = {
   getAllMeetup,
   uploadEventImage,
   createMeetup,
-  updateMeetup
+  deleteMeetup,
+  updateMeetup,
 };
 
 export default meetupService;
