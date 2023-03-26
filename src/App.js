@@ -10,6 +10,7 @@ import MeetupCard from "./pages/MeetupDetailsPage";
 import EditMeetUpPage from "./pages/EditMeetupPage";
 import ResourceListPage from "./pages/ResourceListPage";
 import AddResource from "./components/AddResource";
+import ResourceDetailsPage from "./pages/ResourceDetailsPage";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/meetup/edit/:meetupId" element={<EditMeetUpPage />} />
         <Route path="/resource" element={<ResourceListPage />} />
         <Route path="/resource/create" element={<AddResource />} />
+        <Route path="/resource/:resourceId" element={<ResourceDetailsPage />} />
       </Routes>
     </div>
   );
