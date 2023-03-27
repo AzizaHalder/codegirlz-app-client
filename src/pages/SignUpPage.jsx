@@ -9,7 +9,7 @@ function SignupPage(props) {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [city, setCity] = useState("");
-  const [level, setLevel] = useState("Junior");
+  const [level, setLevel] = useState("");
   const [linkedin, setLinkedin] = useState("");
   const [github, setGithub] = useState("");
   const [newOpp, setNewOpp] = useState(false);
@@ -24,7 +24,9 @@ function SignupPage(props) {
   const handleLevel = (e) => setLevel(e.target.value);
   const handleLinkedin = (e) => setLinkedin(e.target.value);
   const handleGithub = (e) => setGithub(e.target.value);
-  const handleNewOpp = (e) => setNewOpp(e.target.value);
+  const handleNewOpp = () => {
+    setNewOpp((current) => !current);
+  };
 
   const handleSignupSubmit = (e) => {
     e.preventDefault();
@@ -59,49 +61,78 @@ function SignupPage(props) {
       <h1>Sign Up</h1>
 
       <form onSubmit={handleSignupSubmit}>
-        <label>Email:</label>
-        <input type="email" name="email" value={email} onChange={handleEmail} />
 
-        <label>Password:</label>
+        <fieldset>
+          <legend>Personal Details</legend>
+
+          <label>Name:</label>
+          <input type="text" name="name" value={name} onChange={handleName} />
+
+          <label>Email:</label>
+          <input type="email" name="email" value={email} onChange={handleEmail} />
+
+          <label>Password:</label>
+          <input
+            type="password"
+            name="password"
+            value={password}
+            onChange={handlePassword}
+          />
+
+          <label>City:</label>
+          <input type="text" name="city" value={city} onChange={handleCity} />
+
+        </fieldset>
+
+        <fieldset>
+          <legend>Social Media</legend>
+          <label>Linkedin:</label>
+          <input
+            type="text"
+            name="linkedin"
+            value={linkedin}
+            onChange={handleLinkedin}
+          />
+          <label>Github:</label>
+          <input
+            type="text"
+            name="github"
+            value={github}
+            onChange={handleGithub}
+          />
+        </fieldset>
+
+        {/* <label>Open to new opportunities?</label>
         <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePassword}
-        />
-
-        <label>Name:</label>
-        <input type="text" name="name" value={name} onChange={handleName} />
-
-        <label>City:</label>
-        <input type="text" name="city" value={city} onChange={handleCity} />
-
-        <label>Level:</label>
-        <input type="text" name="level" value={level} onChange={handleLevel} />
-
-        <label>Linkedin:</label>
-        <input
-          type="text"
-          name="linkedin"
-          value={linkedin}
-          onChange={handleLinkedin}
-        />
-
-        <label>Github:</label>
-        <input
-          type="text"
-          name="github"
-          value={github}
-          onChange={handleGithub}
-        />
-
-        <label>Open to new opportunities?</label>
-        <input
-          type="text"
+          type="radio"
           name="newOpp"
           value={newOpp}
           onChange={handleNewOpp}
-        />
+        /> */}
+
+        <fieldset>
+
+          <input type="checkbox" name={newOpp} id="newOpp" value={newOpp}
+            onClick={handleNewOpp} />
+          <label htmlFor="">Open to new opportunities?</label>
+
+
+          <label htmlFor="">Level:</label>
+          <select
+            id="level"
+            name={level}
+            onChange={handleLevel}
+          >
+            <option value="" disabled selected>
+              Select Level
+            </option>
+            <option value="Entry Level">Entry Level</option>
+            <option value="Junior">Junior</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Senior">Senior</option>
+            <option value="Lead">Lead</option>
+          </select>
+        </fieldset>
 
         <button type="submit">Sign Up</button>
       </form>
