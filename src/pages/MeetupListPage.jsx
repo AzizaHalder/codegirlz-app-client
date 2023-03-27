@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import service from "../api/service";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 function MeetupList() {
   const [meetup, setMeetup] = useState([]);
@@ -11,7 +11,9 @@ function MeetupList() {
       .then((data) => {
         setMeetup(data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) =>
+        console.log("Error while retrieving resource list:", err)
+      );
   }, []); //effect runs once after initial render
   return (
     <div className="MeetupList">
@@ -28,7 +30,9 @@ function MeetupList() {
               />
               <p>{singleMeetup.eventType}</p>
               <p>{singleMeetup.eventDateAndTime}</p>
-              <Link to={`/meetup/${singleMeetup._id}`}><button>See More Details</button></Link>
+              <Link to={`/meetup/${singleMeetup._id}`}>
+                <button>See More Details</button>
+              </Link>
             </div>
           );
         })}

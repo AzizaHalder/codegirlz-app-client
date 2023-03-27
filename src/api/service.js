@@ -15,7 +15,6 @@ const getAllMeetup = () => {
   const storedToken = localStorage.getItem("authToken");
 
   return api
-
     .get("/meetup", {
       headers: { Authorization: `Bearer ${storedToken}` },
     })
@@ -44,10 +43,44 @@ const createMeetup = (newMeetup) => {
     .catch(errorHandler);
 };
 
+const getAllResource = () => {
+  const storedToken = localStorage.getItem("authToken");
+
+  return api
+    .get("/resource", {
+      headers: { Authorization: `Bearer ${storedToken}` },
+    })
+    .then((res) => res.data)
+    .catch(errorHandler);
+};
+
+const uploadResourceImage = (file) => {
+  const storedToken = localStorage.getItem("authToken");
+  return api
+    .post("/resource/upload", file, {
+      headers: { Authorization: `Bearer ${storedToken}` },
+    })
+    .then((res) => res.data)
+    .catch(errorHandler);
+};
+
+const createResource = (newResource) => {
+  const storedToken = localStorage.getItem("authToken");
+  return api
+    .post("/resource/create", newResource, {
+      headers: { Authorization: `Bearer ${storedToken}` },
+    })
+    .then((res) => res.data)
+    .catch(errorHandler);
+};
+
 const meetupService = {
   getAllMeetup,
   uploadEventImage,
   createMeetup,
+  getAllResource,
+  uploadResourceImage,
+  createResource,
 };
 
 export default meetupService;

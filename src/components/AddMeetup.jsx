@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import service from "../api/service";
 
-const AddEvent = () => {
+const AddMeetup = () => {
   const [eventName, setEventName] = useState("");
   const [eventType, setEventType] = useState("");
   const [eventCountry, setEventCountry] = useState("");
@@ -119,7 +119,10 @@ const AddEvent = () => {
           onChange={(e) => setEventLink(e.target.value)}
         />
 
-        <label htmlFor="" placeholder="Give a brief description of the meetup">
+        <label
+          htmlFor=""
+          placeholder="Please give a brief description of the meetup."
+        >
           Description
         </label>
         {/* Made this into a textarea but then in the edit mode, it doesn't show prepopulated */}
@@ -156,4 +159,4 @@ const AddEvent = () => {
   );
 };
 
-export default AddEvent;
+export default AddMeetup;

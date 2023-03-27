@@ -5,7 +5,7 @@ import service from "../api/service";
 
 const API_URL = "http://localhost:5005";
 
-function EditMeetUpPage() {
+function EditMeetUp() {
   const [eventName, setEventName] = useState("");
   const [eventType, setEventType] = useState("");
   const [eventCountry, setEventCountry] = useState("");
@@ -16,8 +16,8 @@ function EditMeetUpPage() {
   const [eventNewImage, setEventNewImage] = useState("");
   const [eventDateAndTime, setEventDateAndTime] = useState("");
 
-  const navigate = useNavigate();
   const { meetupId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const storedToken = localStorage.getItem("authToken");
@@ -38,7 +38,7 @@ function EditMeetUpPage() {
         setEventNewImage(oneMeetup.eventNewImage);
         setEventDateAndTime(oneMeetup.eventDateAndTime);
       })
-      .catch((error) => console.log(error));
+      .catch((err) => console.log("Error while retrieving resource:", err));
   }, [meetupId]);
 
   const handleImageUpload = (e) => {
@@ -56,7 +56,9 @@ function EditMeetUpPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const updatedMeetupDetails = {
+
+    const storedToken = localStorage.getItem("authToken");
+    const updatedMeetup = {
       eventName,
       eventType,
       eventCountry,
@@ -68,10 +70,8 @@ function EditMeetUpPage() {
       eventDateAndTime,
     };
 
-    const storedToken = localStorage.getItem("authToken");
-
     axios
-      .put(`${API_URL}/meetup/edit/${meetupId}`, updatedMeetupDetails, {
+      .put(`${API_URL}/meetup/edit/${meetupId}`, updatedMeetup, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then(() => {
@@ -86,7 +86,7 @@ function EditMeetUpPage() {
         setEventDateAndTime("");
         navigate("/meetup");
       })
-      .catch((err) => console.log("Error editing meetup: ", err));
+      .catch((err) => console.log("Error while editing meetup: ", err));
   };
 
   const handleDelete = () => {
@@ -96,10 +96,10 @@ function EditMeetUpPage() {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then(() => {
-        alert("Your meetup has been deleted! ");
+        alert("Your meetup has successfully been deleted! ");
         navigate("/meetup");
       })
-      .catch((err) => console.log("Error deleting meetup: ", err));
+      .catch((err) => console.log("Error while deleting meetup: ", err));
   };
 
   return (
@@ -164,7 +164,7 @@ function EditMeetUpPage() {
 
           <label
             htmlFor=""
-            placeholder="Give a brief description of the meetup"
+            placeholder="Please Give a brief description of the meetup."
           >
             Description
           </label>
@@ -200,4 +200,4 @@ function EditMeetUpPage() {
   );
 }
 
-export default EditMeetUpPage;
+export default EditMeetUp;
