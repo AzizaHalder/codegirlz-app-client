@@ -129,23 +129,10 @@ const AddMeetup = () => {
           </div>
         }
 
-        <label
-          htmlFor=""
-          placeholder="Please give a brief description of the meetup."
-        >
-          Description
-        </label>
-        {/* Made this into a textarea but then in the edit mode, it doesn't show prepopulated */}
-        {/* <textarea
-          name="eventDescription"
-          id=""
-          // placeholder="Give a brief description of event "
-          cols="20"
-          rows="10"
-          onChange={(e) => setEventDescription(e.target.value)}
-        /> */}
-        <input
-          type="text"
+        <label htmlFor="" placeholder="Please Give a brief description of the meetup.">Description</label>
+        <textarea
+          rows="5"
+          cols="30"
           value={eventDescription}
           onChange={(e) => setEventDescription(e.target.value)}
         />

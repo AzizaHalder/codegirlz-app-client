@@ -84,8 +84,9 @@ const AddResource = () => {
         />
 
         <label htmlFor="">Description</label>
-        <input
-          type="text"
+        <textarea
+          rows="5"
+          cols="30"
           value={resourceContent}
           onChange={(e) => setResourceContent(e.target.value)}
         />

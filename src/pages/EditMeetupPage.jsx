@@ -128,51 +128,52 @@ function EditMeetUp() {
             <option value="Digital">Digital</option>
             <option value="In-Person">In-Person</option>
           </select>
+          {eventType === "In-Person" &&
+            <div>
+              {/* Need to get data from JSON file */}
+              <label htmlFor="">Country</label>
+              <input
+                type="text"
+                name="eventCountry"
+                value={eventCountry}
+                onChange={(e) => setEventCountry(e.target.value)}
+              />
+              {/* Need to get data from JSON file */}
+              <label htmlFor="">City</label>
+              <input
+                type="text"
+                name="eventCity"
+                value={eventCity}
+                onChange={(e) => setEventCity(e.target.value)}
+              />
 
-          {/* Need to get data from JSON file */}
-          <label htmlFor="">Country</label>
-          <input
-            type="text"
-            name="eventCountry"
-            value={eventCountry}
-            onChange={(e) => setEventCountry(e.target.value)}
-          />
-          {/* Need to get data from JSON file */}
-          <label htmlFor="">City</label>
-          <input
-            type="text"
-            name="eventCity"
-            value={eventCity}
-            onChange={(e) => setEventCity(e.target.value)}
-          />
+              <label htmlFor="">Address</label>
+              <input
+                type="text"
+                name="eventAddress"
+                value={eventAddress}
+                onChange={(e) => setEventAddress(e.target.value)}
+              />
+            </div>
+          }
 
-          <label htmlFor="">Address</label>
-          <input
-            type="text"
-            name="eventAddress"
-            value={eventAddress}
-            onChange={(e) => setEventAddress(e.target.value)}
-          />
+          {eventType === "Digital" &&
+            <div>
+              <label htmlFor="">Link to Meetup</label>
+              <input
+                type="text"
+                name="eventLink"
+                value={eventLink}
+                onChange={(e) => setEventLink(e.target.value)}
+              />
+            </div>
+          }
 
-          <label htmlFor="">Link to Meetup</label>
-          <input
-            type="text"
-            name="eventLink"
-            value={eventLink}
-            onChange={(e) => setEventLink(e.target.value)}
-          />
 
-          <label
-            htmlFor=""
-            placeholder="Please Give a brief description of the meetup."
-          >
-            Description
-          </label>
-
-          {/* Made this into a textarea but then in the edit mode, it doesn't show prepopulated */}
-          <input
-            type="text"
-            name="eventDescription"
+          <label htmlFor="" placeholder="Please Give a brief description of the meetup.">Description</label>
+          <textarea
+            rows="5"
+            cols="30"
             value={eventDescription}
             onChange={(e) => setEventDescription(e.target.value)}
           />
