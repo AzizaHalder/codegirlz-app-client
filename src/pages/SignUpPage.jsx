@@ -1,19 +1,34 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import countries from '../countries.json';
 
 const API_URL = "http://localhost:5005";
 
 function SignupPage() {
+
+  // the list of country names, an Array of 116 countries 
+  const countryKeys = Object.keys(countries);
+  // list of arrays of cities
+  const cityArrayList = Object.values(countries)
+
+  // how to access the index of the country array 
+  // const array = Object.keys(cityArrayList)
+  // console.log(array[0])
+
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [city, setCity] = useState("");
   const [level, setLevel] = useState("");
   const [linkedin, setLinkedin] = useState("");
   const [github, setGithub] = useState("");
   const [newOpp, setNewOpp] = useState(false);
   const [errorMessage, setErrorMessage] = useState(undefined);
+  const [country, setCountry] = useState(countryKeys);
+  const [city, setCity] = useState("");
+  const [cityIndex, setCityIndex] = useState(0);
+
 
   const navigate = useNavigate();
 
@@ -27,6 +42,12 @@ function SignupPage() {
   const handleNewOpp = () => {
     setNewOpp((current) => !current);
   };
+  const handleCountry = (e) => setCountry(e.target.value);
+  const handleCityIndex = (e) => {
+    setCityIndex(+e.target.value);
+    console.log(cityIndex)
+  }
+
 
   const handleSignupSubmit = (e) => {
     e.preventDefault();
@@ -34,6 +55,7 @@ function SignupPage() {
       email,
       password,
       name,
+      country,
       city,
       level,
       linkedin,
@@ -53,8 +75,11 @@ function SignupPage() {
       });
   };
 
+
+
   return (
     <div className="SignupPage">
+
       <h1>Sign Up</h1>
 
       <form onSubmit={handleSignupSubmit}>
@@ -76,8 +101,23 @@ function SignupPage() {
             onChange={handlePassword}
           />
 
-          <label>City:</label>
-          <input type="text" name="city" value={city} onChange={handleCity} />
+{/* how do I access the index of the country.map in order to set that index as the cityIndex?
+Currently the dropdown only shows the state of 0, which is the default. 
+How do I get the state to update based off the index of the input from the user of the country?  */}
+          <select >
+            <option name="country" id="country" value={country} onChange={handleCountry}>Select Country </option>
+            {
+              country.map((result, index) => (<option value={index} onChange={handleCityIndex}>{result}</option>))
+            }
+
+          </select>
+          <select>
+            <option name="city" value={city} onChange={handleCity}>Select City</option>
+            {
+              cityArrayList[cityIndex].map((result, index) => (<option value={result} onChange={handleCountry}>{result}</option>))
+
+            }
+          </select>
 
         </fieldset>
 
@@ -112,7 +152,7 @@ function SignupPage() {
             name={level}
             onChange={handleLevel}
           >
-            <option value="" disabled selected>
+            <option value="" >
               Select Level
             </option>
             <option value="Entry Level">Entry Level</option>
