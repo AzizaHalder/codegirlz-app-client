@@ -4,7 +4,7 @@ import axios from "axios";
 
 const API_URL = "http://localhost:5005";
 
-function SignupPage(props) {
+function SignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -30,7 +30,6 @@ function SignupPage(props) {
 
   const handleSignupSubmit = (e) => {
     e.preventDefault();
-    // Create an object representing the request body
     const requestBody = {
       email,
       password,
@@ -42,9 +41,7 @@ function SignupPage(props) {
       newOpp,
     };
 
-    // Make an axios request to the API
-    // If POST request is successful redirect to login page
-    // If the request resolves with an error, set the error message in the state
+
     axios
       .post(`${API_URL}/auth/signup`, requestBody)
       .then((response) => {
@@ -102,14 +99,6 @@ function SignupPage(props) {
           />
         </fieldset>
 
-        {/* <label>Open to new opportunities?</label>
-        <input
-          type="radio"
-          name="newOpp"
-          value={newOpp}
-          onChange={handleNewOpp}
-        /> */}
-
         <fieldset>
 
           <input type="checkbox" name={newOpp} id="newOpp" value={newOpp}
@@ -146,5 +135,3 @@ function SignupPage(props) {
 }
 
 export default SignupPage;
-
-// JWT token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDFjNjZjYTJjMGRmYzA0M2YwMjA3NDYiLCJlbWFpbCI6ImhpQGVtYWlsLmNvbSIsIm5hbWUiOiJIaSIsImlhdCI6MTY3OTczOTc3NCwiZXhwIjoxNjc5NzYxMzc0fQ.7dTPdD52ce_wae-j7GHtVE3WgAupUs2Kzn-i8UbhpnU

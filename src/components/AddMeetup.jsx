@@ -90,34 +90,44 @@ const AddMeetup = () => {
           <option value="In-Person">In-Person</option>
         </select>
 
-        {/* Need to get data from JSON file */}
-        <label htmlFor="">Country</label>
-        <input
-          type="text"
-          value={eventCountry}
-          onChange={(e) => setEventCountry(e.target.value)}
-        />
-        {/* Need to get data from JSON file */}
-        <label htmlFor="">City</label>
-        <input
-          type="text"
-          value={eventCity}
-          onChange={(e) => setEventCity(e.target.value)}
-        />
+        {eventType === "In-Person" &&
 
-        <label htmlFor="">Address</label>
-        <input
-          type="text"
-          value={eventAddress}
-          onChange={(e) => setEventAddress(e.target.value)}
-        />
+          <div>
+            <label htmlFor="">Country</label>
+            <input
+              type="text"
+              value={eventCountry}
+              onChange={(e) => setEventCountry(e.target.value)}
+            />
 
-        <label htmlFor="">Link to Meetup</label>
-        <input
-          type="text"
-          value={eventLink}
-          onChange={(e) => setEventLink(e.target.value)}
-        />
+            <label htmlFor="">City</label>
+            <input
+              type="text"
+              value={eventCity}
+              onChange={(e) => setEventCity(e.target.value)}
+            />
+
+            <label htmlFor="">Address</label>
+            <input
+              type="text"
+              value={eventAddress}
+              onChange={(e) => setEventAddress(e.target.value)}
+            />
+          </div>
+
+        };
+
+        {eventType === "Digital" &&
+
+          <div>
+            <label htmlFor="">Link to Meetup</label>
+            <input
+              type="text"
+              value={eventLink}
+              onChange={(e) => setEventLink(e.target.value)}
+            />
+          </div>
+        }
 
         <label
           htmlFor=""
