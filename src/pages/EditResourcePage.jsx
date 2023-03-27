@@ -101,9 +101,6 @@ const EditResource = () => {
           onChange={(e) => setResourceTitle(e.target.value)}
         />
 
-        {/* <label htmlFor="">Upload Image</label> */}
-        <input type="file" onChange={(e) => handleImageUpload(e)} />
-
         <label htmlFor="">Type of Resource</label>
         <select
           value={resourceType}
@@ -124,12 +121,15 @@ const EditResource = () => {
           onChange={(e) => setResourceURL(e.target.value)}
         />
 
-        <label htmlFor="">Upload content of resource</label>
+        <label htmlFor="">Description</label>
         <input
           type="text"
           value={resourceContent}
           onChange={(e) => setResourceContent(e.target.value)}
         />
+
+        <label htmlFor="">Upload Image</label>
+        <input type="file" onChange={(e) => handleImageUpload(e)} />
 
         <button type="submit">Submit Changes</button>
         <button onClick={handleDelete}>Delete Resource</button>
