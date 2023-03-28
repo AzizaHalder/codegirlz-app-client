@@ -151,9 +151,6 @@ function SignupPage() {
         <button type="submit">Sign Up</button>
       </form>
 
-      {countryIndex}
-      {city}
-
       {errorMessage && <p className="error-message">{errorMessage}</p>}
 
       <p>Already have account?</p>
