@@ -1,19 +1,26 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import service from "../api/service";
+import countries from '../countries.json';
 
 const AddMeetup = () => {
+  const countryKeys = Object.keys(countries);
+  // list of arrays of cities
+  const cityArrayList = Object.values(countries)
+
   const [eventName, setEventName] = useState("");
   const [eventType, setEventType] = useState("");
-  const [eventCountry, setEventCountry] = useState("");
-  const [eventCity, setEventCity] = useState("");
   const [eventAddress, setEventAddress] = useState("");
   const [eventLink, setEventLink] = useState("");
   const [eventDescription, setEventDescription] = useState("");
   const [eventNewImage, setEventNewImage] = useState("");
   const [eventDateAndTime, setEventDateAndTime] = useState("");
-
+  const [city, setCity] = useState("");
+  const [countryIndex, setCountryIndex] = useState(0);
   const navigate = useNavigate();
+
+  const handleCity = (e) => setCity(e.target.value);
+  const handleCountryIndex = (e) => setCountryIndex(e.target.value);
 
   //   handle file/image upload
   const handleImageUpload = (e) => {
@@ -21,7 +28,7 @@ const AddMeetup = () => {
 
     // eventImage => this name has to be the same as in the model since we pass
     // req.body to .create() method when creating a new movie in '/api/movies' POST route
-    uploadData.append("imageUrl", e.target.files[0]);
+    uploadData.append("eventImage", e.target.files[0]);
 
     service
       .uploadEventImage(uploadData)
@@ -38,8 +45,7 @@ const AddMeetup = () => {
     const newMeetupDetails = {
       eventName,
       eventType,
-      eventCountry,
-      eventCity,
+      eventCity: city,
       eventAddress,
       eventLink,
       eventDescription,
@@ -52,13 +58,13 @@ const AddMeetup = () => {
       .then((res) => {
         setEventName("");
         setEventType("");
-        setEventCountry("");
-        setEventCity("");
         setEventAddress("");
         setEventLink("");
         setEventDescription("");
         setEventNewImage("");
         setEventDateAndTime("");
+        setCity("");
+        setCountryIndex(0);
         console.log("RES", res);
 
         navigate("/meetup");
@@ -92,20 +98,20 @@ const AddMeetup = () => {
 
         {eventType === "In-Person" &&
 
-          <div>
-            <label htmlFor="">Country</label>
-            <input
-              type="text"
-              value={eventCountry}
-              onChange={(e) => setEventCountry(e.target.value)}
-            />
 
-            <label htmlFor="">City</label>
-            <input
-              type="text"
-              value={eventCity}
-              onChange={(e) => setEventCity(e.target.value)}
-            />
+          <div>
+            <select value={countryIndex} onChange={handleCountryIndex}>
+              <option value="0" >Select Country </option>
+              {
+                countryKeys.map((result, index) => (<option value={index}>{result}</option>))
+              }
+            </select>
+            <select value={city} onChange={handleCity}>
+              <option >Select City</option>
+              {
+                cityArrayList[countryIndex].map((result) => (<option value={result}>{result}</option>))
+              }
+            </select>
 
             <label htmlFor="">Address</label>
             <input
@@ -116,6 +122,7 @@ const AddMeetup = () => {
           </div>
 
         };
+
 
         {eventType === "Digital" &&
 

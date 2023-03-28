@@ -9,8 +9,10 @@ function SignupPage() {
 
   // the list of country names, an Array of 116 countries 
   const countryKeys = Object.keys(countries);
+
   // list of arrays of cities
   const cityArrayList = Object.values(countries)
+
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -91,13 +93,13 @@ function SignupPage() {
           />
 
           <select value={countryIndex} onChange={handleCountryIndex}>
-            <option>Select Country </option>
+            <option value="0">Select Country </option>
             {
               countryKeys.map((result, index) => (<option value={index}>{result}</option>))
             }
           </select>
-          <select>
-            <option name="city" value={city} onChange={handleCity}>Select City</option>
+          <select value={city} onChange={handleCity}>
+            <option >Select City</option>
             {
               cityArrayList[countryIndex].map((result) => (<option value={result}>{result}</option>))
             }
@@ -148,6 +150,9 @@ function SignupPage() {
 
         <button type="submit">Sign Up</button>
       </form>
+
+      {countryIndex}
+      {city}
 
       {errorMessage && <p className="error-message">{errorMessage}</p>}
 

@@ -30,7 +30,7 @@ function App() {
         <Route path="/meetup/edit/:meetupId" element={<IsPrivate><EditMeetUp /></IsPrivate>} />
         <Route path="/resource" element={<ResourceList />} />
         <Route path="/resource/create" element={<IsPrivate><AddResource /></IsPrivate>} />
-        <Route path="/resource/:resourceId" element={<IsPrivate><ResourceDetails /></IsPrivate>} />
+        <Route path="/resource/:resourceId" element={<ResourceDetails />} />
         <Route path="/resource/edit/:resourceId" element={<IsPrivate><EditResource /></IsPrivate>} />
       </Routes>
     </div>
