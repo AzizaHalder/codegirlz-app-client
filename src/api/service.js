@@ -75,18 +75,6 @@ const createResource = (newResource) => {
     .catch(errorHandler);
 };
 
-// const deleteResource = () => {
-//   const { resourceId } = useParams();
-//   const storedToken = localStorage.getItem("authToken");
-
-//   return api
-//     .delete(`http://localhost:5005/resource/edit/${resourceId}`, {
-//       headers: { Authorization: `Bearer ${storedToken}` },
-//     })
-//     .then((res) => res.data)
-//     .catch(errorHandler);
-// };
-
 const meetupService = {
   getAllMeetup,
   uploadEventImage,
