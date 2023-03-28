@@ -23,7 +23,7 @@ const ResourceDetails = () => {
 
   if (resourceDetails) {
     return (
-      <div className="ResourceDetailsPage">
+      <article className="ResourceDetailsPage">
         <h1>{resourceDetails.resourceTitle}</h1>
         <img
           src={resourceDetails.resourceImage}
@@ -35,7 +35,7 @@ const ResourceDetails = () => {
         <Link to={`/resource/edit/${resourceId}`}>
           <button>Edit {resourceDetails.resourceType}</button>
         </Link>
-      </div>
+      </article>
     );
   }
 };
