@@ -1,19 +1,30 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import countries from '../countries.json';
 
 const API_URL = "http://localhost:5005";
 
-function SignupPage(props) {
+function SignupPage() {
+
+  // the list of country names, an Array of 116 countries 
+  const countryKeys = Object.keys(countries);
+
+  // list of arrays of cities
+  const cityArrayList = Object.values(countries)
+
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [city, setCity] = useState("");
-  const [level, setLevel] = useState("Junior");
+  const [level, setLevel] = useState("");
   const [linkedin, setLinkedin] = useState("");
   const [github, setGithub] = useState("");
   const [newOpp, setNewOpp] = useState(false);
   const [errorMessage, setErrorMessage] = useState(undefined);
+  const [city, setCity] = useState("");
+  const [countryIndex, setCountryIndex] = useState(0);
+
 
   const navigate = useNavigate();
 
@@ -24,11 +35,14 @@ function SignupPage(props) {
   const handleLevel = (e) => setLevel(e.target.value);
   const handleLinkedin = (e) => setLinkedin(e.target.value);
   const handleGithub = (e) => setGithub(e.target.value);
-  const handleNewOpp = (e) => setNewOpp(e.target.value);
+  const handleNewOpp = () => {
+    setNewOpp((current) => !current);
+  };
+  const handleCountryIndex = (e) => setCountryIndex(e.target.value);
+
 
   const handleSignupSubmit = (e) => {
     e.preventDefault();
-    // Create an object representing the request body
     const requestBody = {
       email,
       password,
@@ -40,9 +54,7 @@ function SignupPage(props) {
       newOpp,
     };
 
-    // Make an axios request to the API
-    // If POST request is successful redirect to login page
-    // If the request resolves with an error, set the error message in the state
+
     axios
       .post(`${API_URL}/auth/signup`, requestBody)
       .then((response) => {
@@ -54,54 +66,87 @@ function SignupPage(props) {
       });
   };
 
+
+
   return (
     <div className="SignupPage">
+
       <h1>Sign Up</h1>
 
       <form onSubmit={handleSignupSubmit}>
-        <label>Email:</label>
-        <input type="email" name="email" value={email} onChange={handleEmail} />
 
-        <label>Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePassword}
-        />
+        <fieldset>
+          <legend>Personal Details</legend>
 
-        <label>Name:</label>
-        <input type="text" name="name" value={name} onChange={handleName} />
+          <label>Name:</label>
+          <input type="text" name="name" value={name} onChange={handleName} />
 
-        <label>City:</label>
-        <input type="text" name="city" value={city} onChange={handleCity} />
+          <label>Email:</label>
+          <input type="email" name="email" value={email} onChange={handleEmail} />
 
-        <label>Level:</label>
-        <input type="text" name="level" value={level} onChange={handleLevel} />
+          <label>Password:</label>
+          <input
+            type="password"
+            name="password"
+            value={password}
+            onChange={handlePassword}
+          />
 
-        <label>Linkedin:</label>
-        <input
-          type="text"
-          name="linkedin"
-          value={linkedin}
-          onChange={handleLinkedin}
-        />
+          <select value={countryIndex} onChange={handleCountryIndex}>
+            <option value="0">Select Country </option>
+            {
+              countryKeys.map((result, index) => (<option value={index}>{result}</option>))
+            }
+          </select>
+          <select value={city} onChange={handleCity}>
+            <option >Select City</option>
+            {
+              cityArrayList[countryIndex].map((result) => (<option value={result}>{result}</option>))
+            }
+          </select>
+        </fieldset>
 
-        <label>Github:</label>
-        <input
-          type="text"
-          name="github"
-          value={github}
-          onChange={handleGithub}
-        />
+        <fieldset>
+          <legend>Social Media</legend>
+          <label>Linkedin:</label>
+          <input
+            type="text"
+            name="linkedin"
+            value={linkedin}
+            onChange={handleLinkedin}
+          />
+          <label>Github:</label>
+          <input
+            type="text"
+            name="github"
+            value={github}
+            onChange={handleGithub}
+          />
+        </fieldset>
 
-        <label>Open to new opportunities?</label>
-        <input
-          type="text"
-          name="newOpp"
-          value={newOpp}
-          onChange={handleNewOpp}
-        />
+        <fieldset>
+
+          <input type="checkbox" name={newOpp} id="newOpp" value={newOpp}
+            onClick={handleNewOpp} />
+          <label htmlFor="">Open to new opportunities?</label>
+
+
+          <label htmlFor="">Level:</label>
+          <select
+            id="level"
+            name={level}
+            onChange={handleLevel}
+          >
+            <option value="" >
+              Select Level
+            </option>
+            <option value="Entry Level">Entry Level</option>
+            <option value="Junior">Junior</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Senior">Senior</option>
+            <option value="Lead">Lead</option>
+          </select>
+        </fieldset>
 
         <button type="submit">Sign Up</button>
       </form>
@@ -115,5 +160,3 @@ function SignupPage(props) {
 }
 
 export default SignupPage;
-
-// JWT token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDFjNjZjYTJjMGRmYzA0M2YwMjA3NDYiLCJlbWFpbCI6ImhpQGVtYWlsLmNvbSIsIm5hbWUiOiJIaSIsImlhdCI6MTY3OTczOTc3NCwiZXhwIjoxNjc5NzYxMzc0fQ.7dTPdD52ce_wae-j7GHtVE3WgAupUs2Kzn-i8UbhpnU
