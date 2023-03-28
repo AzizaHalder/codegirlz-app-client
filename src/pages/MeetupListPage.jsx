@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 function MeetupList() {
   const [meetup, setMeetup] = useState([]);
+  // const [searchQuery, setSearchQuery] = useState("")
 
   useEffect(() => {
     service

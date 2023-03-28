@@ -1,6 +1,7 @@
 // src/api/service.js
 
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const api = axios.create({
   baseURL: "http://localhost:5005",
@@ -74,6 +75,18 @@ const createResource = (newResource) => {
     .catch(errorHandler);
 };
 
+// const deleteResource = () => {
+//   const { resourceId } = useParams();
+//   const storedToken = localStorage.getItem("authToken");
+
+//   return api
+//     .delete(`http://localhost:5005/resource/edit/${resourceId}`, {
+//       headers: { Authorization: `Bearer ${storedToken}` },
+//     })
+//     .then((res) => res.data)
+//     .catch(errorHandler);
+// };
+
 const meetupService = {
   getAllMeetup,
   uploadEventImage,
@@ -81,6 +94,7 @@ const meetupService = {
   getAllResource,
   uploadResourceImage,
   createResource,
+  // deleteResource,
 };
 
 export default meetupService;
