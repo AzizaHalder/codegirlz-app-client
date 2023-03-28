@@ -15,6 +15,7 @@ function SignupPage() {
   // how to access the index of the country array 
   // const array = Object.keys(cityArrayList)
   // console.log(array[0])
+  // do I need a useEffect?
 
 
   const [email, setEmail] = useState("");
@@ -25,7 +26,7 @@ function SignupPage() {
   const [github, setGithub] = useState("");
   const [newOpp, setNewOpp] = useState(false);
   const [errorMessage, setErrorMessage] = useState(undefined);
-  const [country, setCountry] = useState(countryKeys);
+  const [country, setCountry] = useState("");
   const [city, setCity] = useState("");
   const [cityIndex, setCityIndex] = useState(0);
 
@@ -76,7 +77,6 @@ function SignupPage() {
   };
 
 
-
   return (
     <div className="SignupPage">
 
@@ -101,13 +101,13 @@ function SignupPage() {
             onChange={handlePassword}
           />
 
-{/* how do I access the index of the country.map in order to set that index as the cityIndex?
+          {/* how do I access the index of the country.map in order to set that index as the cityIndex?
 Currently the dropdown only shows the state of 0, which is the default. 
 How do I get the state to update based off the index of the input from the user of the country?  */}
           <select >
             <option name="country" id="country" value={country} onChange={handleCountry}>Select Country </option>
             {
-              country.map((result, index) => (<option value={index} onChange={handleCityIndex}>{result}</option>))
+              countryKeys.map((result, index) => (<option value={index} onChange={handleCityIndex}>{result}</option>))
             }
 
           </select>
@@ -120,6 +120,8 @@ How do I get the state to update based off the index of the input from the user 
           </select>
 
         </fieldset>
+
+
 
         <fieldset>
           <legend>Social Media</legend>
