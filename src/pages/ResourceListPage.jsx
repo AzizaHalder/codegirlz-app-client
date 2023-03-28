@@ -22,13 +22,19 @@ function ResourceList() {
       );
   }, []);
 
+  /**@todo update variable names*/
+
   const handleQuery = (searchTerm) => {
     const resourceToSearch = [...resourceList];
-    console.log("Research To Search", resourceToSearch);
-    const searchQuery = resourceToSearch.filter((resource) =>
-      resource.resourceTitle
-        .toLowerCase()
-        .includes(searchTerm.trim().toLowerCase())
+    console.log("Resource To Search", resourceToSearch);
+    const searchQuery = resourceToSearch.filter(
+      (resource) =>
+        resource.resourceTitle
+          .toLowerCase()
+          .includes(searchTerm.trim().toLowerCase()) ||
+        resource.resourceType
+          .toLowerCase()
+          .includes(searchTerm.trim().toLowerCase())
     );
     setSearchResults(searchQuery);
     console.log(searchTerm);
@@ -39,22 +45,21 @@ function ResourceList() {
       <h2>Resource</h2>
       <SearchBar onQuery={handleQuery} />
       {resourceList &&
-        searchResults.map((singleResource) => {
-          return (
-            <div key={singleResource._id}>
-              <h3>{singleResource.resourceTitle}</h3>
-              <img
-                src={singleResource.resourceImage}
-                alt={singleResource.resourceTitle}
-              />
-              <p>{singleResource.resourceType}</p>
-              <p>{singleResource.author}</p>
-              <Link to={`/resource/${singleResource._id}`}>
-                <button>Read More</button>
-              </Link>
-            </div>
-          );
-        })}
+        searchResults.map(
+          ({ _id, resourceTitle, resourceImage, resourceType, author }) => {
+            return (
+              <div key={_id}>
+                <h3>{resourceTitle}</h3>
+                <img src={resourceImage} alt={resourceTitle} />
+                <p>{resourceType}</p>
+                <p>{author}</p>
+                <Link to={`/resource/${_id}`}>
+                  <button>Read More</button>
+                </Link>
+              </div>
+            );
+          }
+        )}
     </div>
   );
 }
