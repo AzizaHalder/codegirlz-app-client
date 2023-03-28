@@ -6,6 +6,7 @@ import { AuthContext } from "../context/auth.context";
 const ResourceDetails = () => {
   const [resourceDetails, setResourceDetails] = useState("");
   const [comment, setComment] = useState("");
+  const [allComments, setAllComments] = useState([]);
 
   const { resourceId } = useParams();
   const { user } = useContext(AuthContext);
@@ -22,6 +23,21 @@ const ResourceDetails = () => {
       .then((res) => setResourceDetails(res.data))
       .catch((err) =>
         console.log("Error while retrieving resource details:", err)
+      );
+  }, [resourceId]);
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("authToken");
+
+    axios
+      .get(`${API_URL}/resource/${resourceId}/comment-list`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((commentList) => {
+        setAllComments(commentList)
+      })
+      .catch((err) =>
+        console.log("Error while getting array of comments", err)
       );
   }, [resourceId]);
 
@@ -53,7 +69,23 @@ const ResourceDetails = () => {
           onChange={(e) => setComment(e.target.value)}
         />
         <button onClick={handleSubmitComment}>Comment</button>
+        <section>
+
+          {/* allComments is not an array OR it needs conditional rendering because right now there is nothing in the array  */}
+          {/* error message: all comments map is not a function  */}
+          {allComments.map(({ author, createdAt, comment }) => {
+            return (
+              <div>
+                {author}
+                {comment}
+                {createdAt}
+              </div>
+            )
+          })}
+        </section>
       </article>
+
+
     );
   }
 };
