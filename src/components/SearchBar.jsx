@@ -23,10 +23,10 @@ const SearchBar = ({ onQuery }) => {
           setQuery(e.target.value);
           onQuery(query);
         }}
-      /> */}
+      />
 
-      {/* <button
-        onClick={(e) => {
+      <button
+        onClick={() => {
           setQuery("");
           onQuery(query);
         }}
