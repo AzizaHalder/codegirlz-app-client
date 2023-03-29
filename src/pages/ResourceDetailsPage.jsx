@@ -4,9 +4,15 @@ import axios from "axios";
 import { AuthContext } from "../context/auth.context";
 
 const ResourceDetails = () => {
+
+
+
   const [resourceDetails, setResourceDetails] = useState("");
-  const [comment, setComment] = useState("");
-  const [allComments, setAllComments] = useState([]);
+  const [oneComment, setOneComment] = useState(""); // works and stores the comment
+  const [allComments, setAllComments] = useState(); // what is allComments - is this an object? yes it's an object
+  // const [commentIndex, setCommentIndex] = useState(0);
+
+
 
   const { resourceId } = useParams();
   const { user } = useContext(AuthContext);
@@ -33,8 +39,8 @@ const ResourceDetails = () => {
       .get(`${API_URL}/resource/${resourceId}/comment-list`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
-      .then((commentList) => {
-        setAllComments(commentList)
+      .then((commentList) => { //commentList.data is an object 
+        setAllComments(commentList.data)
       })
       .catch((err) =>
         console.log("Error while getting array of comments", err)
@@ -42,12 +48,23 @@ const ResourceDetails = () => {
   }, [resourceId]);
 
   const handleSubmitComment = () => {
-    const bodyComment = { resource: resourceId, user: user._id, comment };
+    const bodyComment = { resource: resourceId, user: user._id, comment: oneComment };
     const storedToken = localStorage.getItem("authToken");
     axios.post(`${API_URL}/resource/${resourceId}/comment`, bodyComment, {
       headers: { Authorization: `Bearer ${storedToken}` },
     });
+    setOneComment(bodyComment.comment);
   };
+
+  let commentList = Object.assign({}, allComments) // copy of allComments object 
+  // console.log(commentList)
+
+  let commentsArray = Object.values(commentList) // copy of the second object 
+  console.log(commentsArray)
+
+  let commentsArray2 = Object.values(commentsArray) // finally an array to map 
+  console.log(commentsArray2)
+
 
   if (resourceDetails) {
     return (
@@ -65,15 +82,25 @@ const ResourceDetails = () => {
         </Link>
         <input
           type="text"
-          value={comment}
-          onChange={(e) => setComment(e.target.value)}
+          value={oneComment}
+          onChange={(e) => setOneComment(e.target.value)}
         />
         <button onClick={handleSubmitComment}>Comment</button>
         <section>
+          <p>Your comment: {oneComment}</p>
+
+          {/* <p>Your List of comments: {allComments}</p> */}
+
+          {/* {listOfComments.map((comment, index) => {
+            return (
+              <div key={index}>{comment}</div>
+            )
+          })} */}
+
 
           {/* allComments is not an array OR it needs conditional rendering because right now there is nothing in the array  */}
           {/* error message: all comments map is not a function  */}
-          {allComments.map(({ author, createdAt, comment }) => {
+          {/* {allComments.map(({ author, createdAt, comment }) => {
             return (
               <div>
                 {author}
@@ -81,8 +108,19 @@ const ResourceDetails = () => {
                 {createdAt}
               </div>
             )
-          })}
+          })} */}
+
+          {
+            commentsArray2.map((value, index) => {
+              return (
+                <p>{value.comment}{index}</p>
+              )
+            })
+          }
+
+
         </section>
+
       </article>
 
 
