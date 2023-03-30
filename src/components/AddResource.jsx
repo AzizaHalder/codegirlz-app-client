@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import service from "../api/service";
+import { AuthContext } from "../context/auth.context";
 
 const AddResource = () => {
   const [resourceTitle, setResourceTitle] = useState("");
@@ -8,7 +9,7 @@ const AddResource = () => {
   const [resourceURL, setResourceURL] = useState("");
   const [resourceContent, setResourceContent] = useState("");
   const [resourceType, setResourceType] = useState("");
-  //   author & comments?
+  const { user } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -35,7 +36,7 @@ const AddResource = () => {
       resourceURL,
       resourceContent,
       resourceType,
-      //   author,
+      author: user._id,
     };
 
     service

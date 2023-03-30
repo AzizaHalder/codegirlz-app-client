@@ -13,7 +13,6 @@ function ResourceList() {
     service
       .getAllResource()
       .then((data) => {
-        console.log("DATA:", data);
         setResourceList(data);
         setSearchResults(data);
       })
