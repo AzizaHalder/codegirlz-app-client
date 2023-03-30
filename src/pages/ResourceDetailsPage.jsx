@@ -2,16 +2,13 @@ import { useState, useEffect, useContext } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../context/auth.context";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBookmark } from "@fortawesome/free-regular-svg-icons";
 
 const ResourceDetails = () => {
-
-
-
   const [resourceDetails, setResourceDetails] = useState("");
   const [oneComment, setOneComment] = useState("");
   const [allComments, setAllComments] = useState([]);
-
-
 
   const { resourceId } = useParams();
   const { user } = useContext(AuthContext);
@@ -39,7 +36,7 @@ const ResourceDetails = () => {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((commentList) => {
-        setAllComments(commentList.data)
+        setAllComments(commentList.data);
       })
       .catch((err) =>
         console.log("Error while getting array of comments", err)
@@ -47,7 +44,11 @@ const ResourceDetails = () => {
   }, [resourceId]);
 
   const handleSubmitComment = () => {
-    const bodyComment = { resource: resourceId, user: user._id, comment: oneComment };
+    const bodyComment = {
+      resource: resourceId,
+      user: user._id,
+      comment: oneComment,
+    };
     const storedToken = localStorage.getItem("authToken");
     axios.post(`${API_URL}/resource/${resourceId}/comment`, bodyComment, {
       headers: { Authorization: `Bearer ${storedToken}` },
@@ -58,12 +59,14 @@ const ResourceDetails = () => {
   const handleSave = () => {
     const storedToken = localStorage.getItem("authToken");
 
-    axios
-      .post(`${API_URL}/auth/${resourceId}/save`, { user }, {
+    axios.post(
+      `${API_URL}/auth/${resourceId}/save`,
+      { user },
+      {
         headers: { Authorization: `Bearer ${storedToken}` },
-      });
-  }
-
+      }
+    );
+  };
 
   if (resourceDetails) {
     return (
@@ -72,7 +75,15 @@ const ResourceDetails = () => {
           <button>Edit {resourceDetails.resourceType}</button>
         </Link>
 
-        <button onClick={handleSave}>Save</button>
+        {/* <button onClick={handleSave}>Save</button> */}
+        {/* We could use Icons: Conditional render, changes color so you know it has been saved  */}
+        <button onClick={handleSave}>
+          <FontAwesomeIcon
+            icon={faBookmark}
+            size="lg"
+            style={{ color: "#32612d" }}
+          />
+        </button>
 
         <h1>{resourceDetails.resourceTitle}</h1>
         <img
@@ -82,27 +93,31 @@ const ResourceDetails = () => {
         <p>{resourceDetails.resourceContent}</p>
         <p>{resourceDetails.resourceURL}</p>
         <p>{resourceDetails.resourceType}</p>
-        <div style={{ width: '70%' }}>
+        <div style={{ width: "70%" }}>
           <h6>Write a comment</h6>
-          <textarea rows="4" cols="50" placeholder="Comment" value={oneComment} onChange={(e) => setOneComment(e.target.value)}>
-          </textarea>
-          <button style={{ marginTop: '10px' }} onClick={handleSubmitComment}>Comment</button>
+          <textarea
+            rows="4"
+            cols="50"
+            placeholder="Comment"
+            value={oneComment}
+            onChange={(e) => setOneComment(e.target.value)}
+          ></textarea>
+          <button style={{ marginTop: "10px" }} onClick={handleSubmitComment}>
+            Comment
+          </button>
         </div>
         <section>
-
           {allComments.map(({ author, createdAt, comment }) => {
             return (
               <div>
-                <p>{author.name}</p>
+                {/* <p>{author.name}</p> */}
                 <p>{comment}</p>
                 <p>{createdAt}</p>
               </div>
-            )
+            );
           })}
         </section>
       </article>
-
-
     );
   }
 };

@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./../context/auth.context";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 
 function Navbar() {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
@@ -21,7 +23,6 @@ function Navbar() {
         <>
           {/* Do we want to show meet up list and resource list when use is not logged in? */}
 
-
           <Link to="/meetup/create">
             <button>Create Meetup</button>
           </Link>
@@ -29,6 +30,18 @@ function Navbar() {
           <Link to="/resource/create">
             <button>AddResource</button>
           </Link>
+
+          {/* Icon is from Font Awesome, had to install a few packages and import them at the top of the page */}
+          <Link to="/auth/save">
+            <button>
+              <FontAwesomeIcon
+                icon={faBookmark}
+                size="lg"
+                style={{ color: "#32612d" }}
+              />
+            </button>
+          </Link>
+
           <button onClick={logOutUser}>Logout</button>
           <span>Welcome {user && user.name}</span>
         </>
