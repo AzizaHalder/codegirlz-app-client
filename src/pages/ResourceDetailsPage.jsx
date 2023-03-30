@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../context/auth.context";
+import Comment from '../components/Comment'
 
 const ResourceDetails = () => {
 
@@ -56,19 +57,25 @@ const ResourceDetails = () => {
     setOneComment(bodyComment.comment);
   };
 
-  let commentList = Object.assign({}, allComments) // copy of allComments object 
-  // console.log(commentList)
+  // let commentList = Object.assign({}, allComments) // copy of allComments object 
+  // // console.log(commentList)
 
-  let commentsArray = Object.values(commentList) // copy of the second object 
-  console.log(commentsArray)
+  // let commentsArray = Object.values(commentList) // copy of the second object 
+  // console.log(commentsArray)
 
-  let commentsArray2 = Object.values(commentsArray) // finally an array to map 
-  console.log(commentsArray2)
+  // let commentsArray2 = Object.values(commentsArray) // finally an array to map 
+  // console.log(commentsArray2)
+
+
+
 
 
   if (resourceDetails) {
     return (
       <article className="ResourceDetailsPage">
+        <Link to={`/resource/edit/${resourceId}`}>
+          <button>Edit {resourceDetails.resourceType}</button>
+        </Link>
         <h1>{resourceDetails.resourceTitle}</h1>
         <img
           src={resourceDetails.resourceImage}
@@ -77,30 +84,28 @@ const ResourceDetails = () => {
         <p>{resourceDetails.resourceContent}</p>
         <p>{resourceDetails.resourceURL}</p>
         <p>{resourceDetails.resourceType}</p>
-        <Link to={`/resource/edit/${resourceId}`}>
-          <button>Edit {resourceDetails.resourceType}</button>
-        </Link>
-        <input
+        <Comment post={oneComment} />
+        {/* <input
           type="text"
           value={oneComment}
           onChange={(e) => setOneComment(e.target.value)}
         />
-        <button onClick={handleSubmitComment}>Comment</button>
-        <section>
-          <p>Your comment: {oneComment}</p>
+        <button onClick={handleSubmitComment}>Comment</button> */}
+        {/* <section> */}
+        {/* <p>Your comment: {oneComment}</p> */}
 
-          {/* <p>Your List of comments: {allComments}</p> */}
+        {/* <p>Your List of comments: {allComments}</p> */}
 
-          {/* {listOfComments.map((comment, index) => {
+        {/* {listOfComments.map((comment, index) => {
             return (
               <div key={index}>{comment}</div>
             )
           })} */}
 
 
-          {/* allComments is not an array OR it needs conditional rendering because right now there is nothing in the array  */}
-          {/* error message: all comments map is not a function  */}
-          {/* {allComments.map(({ author, createdAt, comment }) => {
+        {/* allComments is not an array OR it needs conditional rendering because right now there is nothing in the array  */}
+        {/* error message: all comments map is not a function  */}
+        {/* {allComments.map(({ author, createdAt, comment }) => {
             return (
               <div>
                 {author}
@@ -110,16 +115,19 @@ const ResourceDetails = () => {
             )
           })} */}
 
-          {
-            commentsArray2.map((value, index) => {
+        {/* {
+            commentsArray.map((value, index) => {
               return (
                 <p>{value.comment}{index}</p>
               )
             })
-          }
+          } */}
 
 
-        </section>
+
+
+
+        {/* </section> */}
 
       </article>
 
