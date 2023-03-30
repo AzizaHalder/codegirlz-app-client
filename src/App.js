@@ -14,6 +14,8 @@ import ResourceDetails from "./pages/ResourceDetailsPage";
 import EditResource from "./pages/EditResourcePage";
 import IsAnon from "./components/IsAnon";
 import IsPrivate from "./components/IsPrivate";
+import MyResources from "./pages/MyResources";
+
 
 function App() {
   return (
@@ -32,7 +34,9 @@ function App() {
         <Route path="/resource/create" element={<IsPrivate><AddResource /></IsPrivate>} />
         <Route path="/resource/:resourceId" element={<ResourceDetails />} />
         <Route path="/resource/edit/:resourceId" element={<IsPrivate><EditResource /></IsPrivate>} />
+
       </Routes>
+      <MyResources />
     </div>
   );
 }

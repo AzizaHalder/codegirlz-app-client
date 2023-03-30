@@ -55,6 +55,15 @@ const ResourceDetails = () => {
     setOneComment(bodyComment.comment);
   };
 
+  const handleSave = () => {
+    const storedToken = localStorage.getItem("authToken");
+
+    axios
+      .post(`${API_URL}/auth/${resourceId}/save`, { user }, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      });
+  }
+
 
   if (resourceDetails) {
     return (
@@ -62,6 +71,9 @@ const ResourceDetails = () => {
         <Link to={`/resource/edit/${resourceId}`}>
           <button>Edit {resourceDetails.resourceType}</button>
         </Link>
+
+        <button onClick={handleSave}>Save</button>
+
         <h1>{resourceDetails.resourceTitle}</h1>
         <img
           src={resourceDetails.resourceImage}

@@ -51,7 +51,7 @@ function ResourceList() {
                 <h3>{resourceTitle}</h3>
                 <img src={resourceImage} alt={resourceTitle} />
                 <p>{resourceType}</p>
-                <p>{author}</p>
+                <p>{author?.name}</p>
                 <Link to={`/resource/${_id}`}>
                   <button>Read More</button>
                 </Link>
