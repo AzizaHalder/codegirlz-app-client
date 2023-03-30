@@ -2,16 +2,14 @@ import { useState, useEffect, useContext } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../context/auth.context";
-import Comment from '../components/Comment'
 
 const ResourceDetails = () => {
 
 
 
   const [resourceDetails, setResourceDetails] = useState("");
-  const [oneComment, setOneComment] = useState(""); // works and stores the comment
-  const [allComments, setAllComments] = useState(); // what is allComments - is this an object? yes it's an object
-  // const [commentIndex, setCommentIndex] = useState(0);
+  const [oneComment, setOneComment] = useState("");
+  const [allComments, setAllComments] = useState([]);
 
 
 
@@ -40,7 +38,7 @@ const ResourceDetails = () => {
       .get(`${API_URL}/resource/${resourceId}/comment-list`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
-      .then((commentList) => { //commentList.data is an object 
+      .then((commentList) => {
         setAllComments(commentList.data)
       })
       .catch((err) =>
@@ -57,18 +55,6 @@ const ResourceDetails = () => {
     setOneComment(bodyComment.comment);
   };
 
-  // let commentList = Object.assign({}, allComments) // copy of allComments object 
-  // // console.log(commentList)
-
-  // let commentsArray = Object.values(commentList) // copy of the second object 
-  // console.log(commentsArray)
-
-  // let commentsArray2 = Object.values(commentsArray) // finally an array to map 
-  // console.log(commentsArray2)
-
-
-
-
 
   if (resourceDetails) {
     return (
@@ -84,51 +70,24 @@ const ResourceDetails = () => {
         <p>{resourceDetails.resourceContent}</p>
         <p>{resourceDetails.resourceURL}</p>
         <p>{resourceDetails.resourceType}</p>
-        <Comment post={oneComment} />
-        {/* <input
-          type="text"
-          value={oneComment}
-          onChange={(e) => setOneComment(e.target.value)}
-        />
-        <button onClick={handleSubmitComment}>Comment</button> */}
-        {/* <section> */}
-        {/* <p>Your comment: {oneComment}</p> */}
+        <div style={{ width: '70%' }}>
+          <h6>Write a comment</h6>
+          <textarea rows="4" cols="50" placeholder="Comment" value={oneComment} onChange={(e) => setOneComment(e.target.value)}>
+          </textarea>
+          <button style={{ marginTop: '10px' }} onClick={handleSubmitComment}>Comment</button>
+        </div>
+        <section>
 
-        {/* <p>Your List of comments: {allComments}</p> */}
-
-        {/* {listOfComments.map((comment, index) => {
-            return (
-              <div key={index}>{comment}</div>
-            )
-          })} */}
-
-
-        {/* allComments is not an array OR it needs conditional rendering because right now there is nothing in the array  */}
-        {/* error message: all comments map is not a function  */}
-        {/* {allComments.map(({ author, createdAt, comment }) => {
+          {allComments.map(({ author, createdAt, comment }) => {
             return (
               <div>
-                {author}
-                {comment}
-                {createdAt}
+                <p>{author.name}</p>
+                <p>{comment}</p>
+                <p>{createdAt}</p>
               </div>
             )
-          })} */}
-
-        {/* {
-            commentsArray.map((value, index) => {
-              return (
-                <p>{value.comment}{index}</p>
-              )
-            })
-          } */}
-
-
-
-
-
-        {/* </section> */}
-
+          })}
+        </section>
       </article>
 
 
