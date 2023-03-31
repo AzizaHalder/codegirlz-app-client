@@ -47,6 +47,17 @@ function ResourceList() {
     console.log(searchTerm);
   };
 
+  const handleFilter = (type) => {
+    if (type === "All") {
+      setSearchResults(resourceList);
+    } else {
+      const filtered = resourceList.filter(
+        (resource) => resource.resourceType === type
+      );
+      setSearchResults(filtered);
+    }
+  };
+
   const handleSave = (resourceId) => {
     const storedToken = localStorage.getItem("authToken");
 
@@ -64,6 +75,14 @@ function ResourceList() {
     <div className="ResourceListPage">
       <h2>Resource</h2>
       <SearchBar onQuery={handleQuery} />
+
+      <select name="Filter" onChange={(e) => handleFilter(e.target.value)}>
+        <option value={"All"}>All</option>
+        <option value={"Article"}>Article</option>
+        <option value={"Video"}>Video</option>
+        <option value={"Podcast"}>Podcast</option>
+      </select>
+
       {resourceList &&
         searchResults.map(
           ({ _id, resourceTitle, resourceImage, resourceType, author }) => {
