@@ -15,11 +15,11 @@ import EditResource from "./pages/EditResourcePage";
 import IsAnon from "./components/IsAnon";
 import IsPrivate from "./components/IsPrivate";
 
+
 function App() {
   return (
     <div className="App">
       <Navbar />
-
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/auth/login" element={<IsAnon><LoginPage /></IsAnon>} />
