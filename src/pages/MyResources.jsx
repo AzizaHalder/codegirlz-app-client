@@ -30,7 +30,7 @@ function MyResources() {
   /** @todo
    * Add Dynamic Link Route to each resource
    * <Link to={`${API_URL}/resource/${resourceId}`}></Link>
-   *
+   *Dynamic link
    */
   return (
     <div>
