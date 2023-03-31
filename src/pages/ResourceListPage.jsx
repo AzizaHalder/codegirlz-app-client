@@ -1,13 +1,21 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import service from "../api/service";
 import SearchBar from "../components/SearchBar";
+import { AuthContext } from "../context/auth.context";
+import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBookmark } from "@fortawesome/free-regular-svg-icons";
 
 function ResourceList() {
   // initial render
   const [resourceList, setResourceList] = useState([]);
   // holds result of filtered search
   const [searchResults, setSearchResults] = useState([]);
+
+  const { user } = useContext(AuthContext);
+
+  const API_URL = `http://localhost:5005`;
 
   useEffect(() => {
     service
@@ -39,6 +47,19 @@ function ResourceList() {
     console.log(searchTerm);
   };
 
+  const handleSave = (resourceId) => {
+    const storedToken = localStorage.getItem("authToken");
+
+    axios.post(
+      `${API_URL}/auth/${resourceId}/save`,
+      { user },
+      {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      },
+      console.log(`${API_URL}/auth/${resourceId}/save`)
+    );
+  };
+
   return (
     <div className="ResourceListPage">
       <h2>Resource</h2>
@@ -51,7 +72,15 @@ function ResourceList() {
                 <h3>{resourceTitle}</h3>
                 <img src={resourceImage} alt={resourceTitle} />
                 <p>{resourceType}</p>
+                {/* remove question mark once code finalised */}
                 <p>{author?.name}</p>
+                <button onClick={() => handleSave(_id)}>
+                  <FontAwesomeIcon
+                    icon={faBookmark}
+                    size="lg"
+                    style={{ color: "#32612d" }}
+                  />
+                </button>
                 <Link to={`/resource/${_id}`}>
                   <button>Read More</button>
                 </Link>
