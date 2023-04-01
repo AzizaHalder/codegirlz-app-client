@@ -6,7 +6,7 @@ import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 import logo from '../images/logo.png'
 import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 
 
@@ -18,62 +18,75 @@ function NavBar() {
 
       <Container>
         <Nav className="justify-content-center" fixed="top" id="nav-bar">
-          <Nav.Item>
+          <Navbar.Brand>
             <Link to="/">
               <Button justify variant="link"><img src={logo} alt="logo" id="logo-button"></img></Button>
             </Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Link to="/meetup">
-              <Button justify variant="light">Meetups</Button>
-            </Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Link to="/resource">
-              <Button justify variant="light">Resources</Button>
-            </Link>
-          </Nav.Item>
+          </Navbar.Brand>
 
-
-          {isLoggedIn && (
-            <>
-              {/* Do we want to show meet up list and resource list when use is not logged in? */}
-
-              <Link to="/meetup/create">
-                <button>Create Meetup</button>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav.Item>
+              <span>Welcome {user && user.name} 👋 </span>
+            </Nav.Item>
+            <Nav.Item>
+              <Link to="/meetup">
+                <Button justify variant="light">Meetups</Button>
               </Link>
-
-              <Link to="/resource/create">
-                <button>AddResource</button>
+            </Nav.Item>
+            <Nav.Item>
+              <Link to="/resource">
+                <Button justify variant="light">Resources</Button>
               </Link>
+            </Nav.Item>
 
-              {/* Icon is from Font Awesome, had to install a few packages and import them at the top of the page */}
-              <Link to="/auth/save">
-                <button>
-                  <FontAwesomeIcon
-                    icon={faBookmark}
-                    size="lg"
-                    style={{ color: "#32612d" }}
-                  />
-                </button>
-              </Link>
 
-              <button onClick={logOutUser}>Logout</button>
-              <span>Welcome {user && user.name}</span>
-            </>
-          )}
+            {isLoggedIn && (
+              <>
 
-          {!isLoggedIn && (
-            <>
-              <Link to="/auth/login">
-                <Button variant="light">Login</Button>
-              </Link>
-            </>
-          )}
-        </Nav >
+                <Nav.Item>
+                  <Link to="/meetup/create">
+                    <Button justify variant="light">Create Meetup</Button>
+                  </Link>
+                </Nav.Item>
+
+                <Nav.Item>
+                  <Link to="/resource/create">
+                    <Button justify variant="light">Add Resource</Button>
+                  </Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Link to="/auth/save">
+                    <Button justify variant="light">
+                      My Saved Items <FontAwesomeIcon
+                        icon={faBookmark}
+                        size="lg"
+                        style={{ color: "#32612d" }}
+                      />
+                    </Button>
+                  </Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Button justify variant="light" onClick={logOutUser}>Logout</Button>
+                </Nav.Item>
+
+              </>
+            )}
+
+            {!isLoggedIn && (
+              <>
+                <Nav.Item>
+                  <Link to="/auth/login">
+                    <Button variant="light">Login</Button>
+                  </Link>
+                </Nav.Item>
+              </>
+            )}
+          </Navbar.Collapse>
+        </Nav>
       </Container>
     </Navbar>
-  );
+  )
 }
 
 export default NavBar;
