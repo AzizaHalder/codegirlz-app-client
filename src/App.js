@@ -2,7 +2,7 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import MeetupList from "./pages/MeetupListPage";
 import AddMeetup from "./components/AddMeetup";
-import Navbar from "./components/Navbar";
+import NavBar from "./components/NavBar";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
@@ -21,7 +21,7 @@ import AttendMeetup from "./pages/SavedMeetup";
 function App() {
   return (
     <div className="App">
-      <Navbar />
+      <NavBar />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route
