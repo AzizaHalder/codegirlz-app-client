@@ -1,4 +1,5 @@
-import { useState, useContext } from "react";
+
+import { useRef, useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import service from "../api/service";
 import countries from "../countries.json";
@@ -11,13 +12,22 @@ const AddMeetup = () => {
 
   const [eventName, setEventName] = useState("");
   const [eventType, setEventType] = useState("");
-  const [eventAddress, setEventAddress] = useState("");
   const [eventLink, setEventLink] = useState("");
   const [eventDescription, setEventDescription] = useState("");
   const [eventNewImage, setEventNewImage] = useState("");
   const [eventDateAndTime, setEventDateAndTime] = useState("");
   const [city, setCity] = useState("");
   const [countryIndex, setCountryIndex] = useState(0);
+
+  const navigate = useNavigate();
+  const [address, setAddress] = useState();
+
+  const autoCompleteRef = useRef();
+  const inputRef = useRef();
+  const options = {
+    fields: ["name"],
+  };
+
   const { user } = useContext(AuthContext);
 
   const navigate = useNavigate();
@@ -27,20 +37,26 @@ const AddMeetup = () => {
   //   handle file/image upload
   const handleImageUpload = (e) => {
     const uploadData = new FormData();
-
-    // eventImage => this name has to be the same as in the model since we pass
-    // req.body to .create() method when creating a new movie in '/api/movies' POST route
     uploadData.append("eventImage", e.target.files[0]);
-
     service
       .uploadEventImage(uploadData)
       .then((response) => {
         console.log("response is: ", response.fileUrl);
-        // response carries "fileUrl" which we can use to update the state
         setEventNewImage(response.fileUrl);
       })
       .catch((err) => console.log("Error while uploading the image: ", err));
   };
+
+  useEffect(() => {
+    autoCompleteRef.current = new window.google.maps.places.Autocomplete(
+      inputRef.current,
+      options
+    );
+    autoCompleteRef.current.addListener("place_changed", async function () {
+      const place = await autoCompleteRef.current.getPlace();
+      setAddress(place.name);
+    });
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,7 +64,7 @@ const AddMeetup = () => {
       eventName,
       eventType,
       eventCity: city,
-      eventAddress,
+      eventAddress: address,
       eventLink,
       eventDescription,
       eventImage: eventNewImage,
@@ -61,7 +77,7 @@ const AddMeetup = () => {
       .then((res) => {
         setEventName("");
         setEventType("");
-        setEventAddress("");
+        setAddress();
         setEventLink("");
         setEventDescription("");
         setEventNewImage("");
@@ -113,15 +129,13 @@ const AddMeetup = () => {
             </select>
 
             <label htmlFor="">Address</label>
-            <input
-              type="text"
-              value={eventAddress}
-              onChange={(e) => setEventAddress(e.target.value)}
-            />
+            <input ref={inputRef} value={address} type="text" />
           </div>
-        )}
-        ;
+
+        };
+   
         {eventType === "Digital" && (
+
           <div>
             <label htmlFor="">Link to Meetup</label>
             <input
