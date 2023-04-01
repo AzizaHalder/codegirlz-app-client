@@ -1,7 +1,12 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import service from "../api/service";
+import { AuthContext } from "../context/auth.context";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBookmark } from "@fortawesome/free-regular-svg-icons";
+import { faBook } from "@fortawesome/free-solid-svg-icons";
 import SearchBar from "../components/SearchBar";
+import axios from "axios";
+import service from "../api/service";
 
 function ResourceList() {
   // initial render
@@ -9,13 +14,21 @@ function ResourceList() {
   // holds result of filtered search
   const [searchResults, setSearchResults] = useState([]);
 
+  const [userInfo, setUserInfo] = useState(false);
+
+  const { user } = useContext(AuthContext);
+
+  const API_URL = `http://localhost:5005`;
+
   useEffect(() => {
     service
       .getAllResource()
       .then((data) => {
         setResourceList(data);
         setSearchResults(data);
+        return service.getUserInfo();
       })
+      .then((user) => setUserInfo(user))
       .catch((err) =>
         console.error("Error while retrieving resource list:", err)
       );
@@ -25,7 +38,7 @@ function ResourceList() {
 
   const handleQuery = (searchTerm) => {
     const resourceToSearch = [...resourceList];
-    console.log("Resource To Search", resourceToSearch);
+    // console.log("Resource To Search", resourceToSearch);
     const searchQuery = resourceToSearch.filter(
       (resource) =>
         resource.resourceTitle
@@ -39,10 +52,45 @@ function ResourceList() {
     console.log(searchTerm);
   };
 
+  const handleFilter = (type) => {
+    if (type === "All") {
+      setSearchResults(resourceList);
+    } else {
+      const filtered = resourceList.filter(
+        (resource) => resource.resourceType === type
+      );
+      setSearchResults(filtered);
+    }
+  };
+
+  const handleSave = (resourceId) => {
+    const storedToken = localStorage.getItem("authToken");
+
+    axios
+      .post(
+        `${API_URL}/auth/${resourceId}/save`,
+        { user },
+        {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        }
+        // console.log(`${API_URL}/auth/${resourceId}/save`)
+      )
+      .then((res) => setUserInfo(res.data))
+      .catch((err) => console.log(err));
+  };
+  console.log(userInfo);
   return (
     <div className="ResourceListPage">
       <h2>Resource</h2>
       <SearchBar onQuery={handleQuery} />
+
+      <select name="Filter" onChange={(e) => handleFilter(e.target.value)}>
+        <option value={"All"}>All</option>
+        <option value={"Article"}>Article</option>
+        <option value={"Video"}>Video</option>
+        <option value={"Podcast"}>Podcast</option>
+      </select>
+
       {resourceList &&
         searchResults.map(
           ({ _id, resourceTitle, resourceImage, resourceType, author }) => {
@@ -51,7 +99,24 @@ function ResourceList() {
                 <h3>{resourceTitle}</h3>
                 <img src={resourceImage} alt={resourceTitle} />
                 <p>{resourceType}</p>
+                {/* remove question mark once code finalised */}
                 <p>{author?.name}</p>
+                <button onClick={() => handleSave(_id)}>
+                  {!userInfo.myResource?.includes(_id) ? (
+                    <FontAwesomeIcon
+                      icon={faBookmark}
+                      size="lg"
+                      style={{ color: "#32612d" }}
+                    />
+                  ) : (
+                    <FontAwesomeIcon
+                      icon={faBook}
+                      size="lg"
+                      style={{ color: "#32612d" }}
+                    />
+                  )}
+                </button>
+
                 <Link to={`/resource/${_id}`}>
                   <button>Read More</button>
                 </Link>

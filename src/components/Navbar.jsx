@@ -31,6 +31,10 @@ function Navbar() {
             <button>AddResource</button>
           </Link>
 
+          <Link to="/auth/attend">
+            <button>Attend Meetup</button>
+          </Link>
+
           {/* Icon is from Font Awesome, had to install a few packages and import them at the top of the page */}
           <Link to="/auth/save">
             <button>
