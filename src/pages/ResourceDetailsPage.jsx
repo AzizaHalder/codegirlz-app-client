@@ -31,7 +31,7 @@ const ResourceDetails = () => {
       );
   }, [resourceId]);
 
-  useEffect(() => {
+  const displayComments = () => {
     const storedToken = localStorage.getItem("authToken");
 
     axios
@@ -44,6 +44,10 @@ const ResourceDetails = () => {
       .catch((err) =>
         console.log("Error while getting array of comments", err)
       );
+  };
+
+  useEffect(() => {
+    displayComments();
   }, [resourceId]);
 
   const handleSubmitComment = () => {
@@ -53,10 +57,15 @@ const ResourceDetails = () => {
       comment: oneComment,
     };
     const storedToken = localStorage.getItem("authToken");
-    axios.post(`${API_URL}/resource/${resourceId}/comment`, bodyComment, {
-      headers: { Authorization: `Bearer ${storedToken}` },
-    });
-    setOneComment(bodyComment.comment);
+    axios
+      .post(`${API_URL}/resource/${resourceId}/comment`, bodyComment, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then(() => {
+        displayComments();
+        setOneComment("");
+      })
+      .catch((err) => console.log(err));
   };
 
   const handleSave = () => {
