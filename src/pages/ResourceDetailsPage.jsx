@@ -4,11 +4,14 @@ import axios from "axios";
 import { AuthContext } from "../context/auth.context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-regular-svg-icons";
+import { faBook } from "@fortawesome/free-solid-svg-icons";
 
 const ResourceDetails = () => {
   const [resourceDetails, setResourceDetails] = useState("");
   const [oneComment, setOneComment] = useState("");
   const [allComments, setAllComments] = useState([]);
+
+  const [saved, setSaved] = useState(false);
 
   const { resourceId } = useParams();
   const { user } = useContext(AuthContext);
@@ -66,6 +69,7 @@ const ResourceDetails = () => {
         headers: { Authorization: `Bearer ${storedToken}` },
       }
     );
+    setSaved(!saved);
   };
 
   if (resourceDetails) {
@@ -75,14 +79,22 @@ const ResourceDetails = () => {
           <button>Edit {resourceDetails.resourceType}</button>
         </Link>
 
-        {/* <button onClick={handleSave}>Save</button> */}
-        {/* We could use Icons: Conditional render, changes color so you know it has been saved  */}
-        <button onClick={handleSave}>
-          <FontAwesomeIcon
-            icon={faBookmark}
-            size="lg"
-            style={{ color: "#32612d" }}
-          />
+        <button value={saved} onClick={() => handleSave(resourceDetails._id)}>
+          {saved === true && (
+            <FontAwesomeIcon
+              icon={faBook}
+              size="lg"
+              style={{ color: "#32612d" }}
+            />
+          )}
+
+          {saved === false && (
+            <FontAwesomeIcon
+              icon={faBookmark}
+              size="lg"
+              style={{ color: "#32612d" }}
+            />
+          )}
         </button>
 
         <h1>{resourceDetails.resourceTitle}</h1>

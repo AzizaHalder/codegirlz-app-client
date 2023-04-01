@@ -1,11 +1,22 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import service from "../api/service";
 import { Link } from "react-router-dom";
 import SearchBar from "../components/SearchBar";
+import { AuthContext } from "../context/auth.context";
+import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBookmark } from "@fortawesome/free-regular-svg-icons";
+import { faBook } from "@fortawesome/free-solid-svg-icons";
 
 function MeetupList() {
   const [meetupList, setMeetupList] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
+
+  const [saved, setSaved] = useState(false);
+
+  const { user } = useContext(AuthContext);
+
+  const API_URL = `http://localhost:5005`;
 
   useEffect(() => {
     service
@@ -36,6 +47,20 @@ function MeetupList() {
     }
   };
 
+  const handleSave = (meetupId) => {
+    const storedToken = localStorage.getItem("authToken");
+
+    axios.post(
+      `${API_URL}/auth/${meetupId}/attend`,
+      { user },
+      {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      },
+      console.log(`${API_URL}/auth/${meetupId}/attend`)
+    );
+    setSaved(true);
+  };
+
   return (
     <div className="MeetupList">
       <h2>Meetup</h2>
@@ -57,6 +82,23 @@ function MeetupList() {
                 <img src={eventImage} alt={eventName} width="200" />
                 <p>{eventType}</p>
                 <p>{eventDateAndTime}</p>
+                <button value={saved} onClick={() => handleSave(_id)}>
+                  {saved === true && (
+                    <FontAwesomeIcon
+                      icon={faBookmark}
+                      size="lg"
+                      style={{ color: "#32612d" }}
+                    />
+                  )}
+
+                  {saved === false && (
+                    <FontAwesomeIcon
+                      icon={faBook}
+                      size="lg"
+                      style={{ color: "#32612d" }}
+                    />
+                  )}
+                </button>
                 <Link to={`/meetup/${_id}`}>
                   <button>See More Details</button>
                 </Link>

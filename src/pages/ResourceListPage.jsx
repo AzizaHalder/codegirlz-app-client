@@ -6,12 +6,15 @@ import { AuthContext } from "../context/auth.context";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-regular-svg-icons";
+import { faBook } from "@fortawesome/free-solid-svg-icons";
 
 function ResourceList() {
   // initial render
   const [resourceList, setResourceList] = useState([]);
   // holds result of filtered search
   const [searchResults, setSearchResults] = useState([]);
+
+  const [userInfo, setUserInfo] = useState(false);
 
   const { user } = useContext(AuthContext);
 
@@ -23,7 +26,9 @@ function ResourceList() {
       .then((data) => {
         setResourceList(data);
         setSearchResults(data);
+        return service.getUserInfo();
       })
+      .then((user) => setUserInfo(user))
       .catch((err) =>
         console.error("Error while retrieving resource list:", err)
       );
@@ -33,7 +38,7 @@ function ResourceList() {
 
   const handleQuery = (searchTerm) => {
     const resourceToSearch = [...resourceList];
-    console.log("Resource To Search", resourceToSearch);
+    // console.log("Resource To Search", resourceToSearch);
     const searchQuery = resourceToSearch.filter(
       (resource) =>
         resource.resourceTitle
@@ -61,16 +66,20 @@ function ResourceList() {
   const handleSave = (resourceId) => {
     const storedToken = localStorage.getItem("authToken");
 
-    axios.post(
-      `${API_URL}/auth/${resourceId}/save`,
-      { user },
-      {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      },
-      console.log(`${API_URL}/auth/${resourceId}/save`)
-    );
+    axios
+      .post(
+        `${API_URL}/auth/${resourceId}/save`,
+        { user },
+        {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        }
+        // console.log(`${API_URL}/auth/${resourceId}/save`)
+      )
+      .then((res) => setUserInfo(res.data))
+      .catch((err) => console.log(err));
+    // setSaved(true);
   };
-
+  console.log(userInfo);
   return (
     <div className="ResourceListPage">
       <h2>Resource</h2>
@@ -94,12 +103,21 @@ function ResourceList() {
                 {/* remove question mark once code finalised */}
                 <p>{author?.name}</p>
                 <button onClick={() => handleSave(_id)}>
-                  <FontAwesomeIcon
-                    icon={faBookmark}
-                    size="lg"
-                    style={{ color: "#32612d" }}
-                  />
+                  {!userInfo.myResource?.includes(_id) ? (
+                    <FontAwesomeIcon
+                      icon={faBookmark}
+                      size="lg"
+                      style={{ color: "#32612d" }}
+                    />
+                  ) : (
+                    <FontAwesomeIcon
+                      icon={faBook}
+                      size="lg"
+                      style={{ color: "#32612d" }}
+                    />
+                  )}
                 </button>
+
                 <Link to={`/resource/${_id}`}>
                   <button>Read More</button>
                 </Link>

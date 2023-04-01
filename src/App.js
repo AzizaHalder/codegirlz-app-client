@@ -15,6 +15,7 @@ import EditResource from "./pages/EditResourcePage";
 import IsAnon from "./components/IsAnon";
 import IsPrivate from "./components/IsPrivate";
 import MyResources from "./pages/MyResources";
+import AttendMeetup from "./pages/AttendMeetup";
 
 function App() {
   return (
@@ -83,8 +84,8 @@ function App() {
           }
         />
         <Route path="/auth/save" element={<MyResources />} />
+        <Route path="/auth/attend" element={<AttendMeetup />} />
       </Routes>
-      {/* <MyResources /> */}
     </div>
   );
 }
