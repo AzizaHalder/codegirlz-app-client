@@ -49,7 +49,11 @@ function NavBar() {
                     <Button justify variant="light">Create Meetup</Button>
                   </Link>
                 </Nav.Item>
-
+           <Nav.Item>
+              <Link to="/auth/attend">
+            <button>Attend Meetup</button>
+              </Link>
+               </Nav.Item>
                 <Nav.Item>
                   <Link to="/resource/create">
                     <Button justify variant="light">Add Resource</Button>
@@ -75,7 +79,7 @@ function NavBar() {
 
             {!isLoggedIn && (
               <>
-                <Nav.Item>
+                 <Nav.Item>
                   <Link to="/auth/login">
                     <Button variant="light">Login</Button>
                   </Link>
@@ -87,6 +91,7 @@ function NavBar() {
       </Container>
     </Navbar>
   )
+
 }
 
 export default NavBar;

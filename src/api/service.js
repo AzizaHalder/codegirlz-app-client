@@ -75,6 +75,16 @@ const createResource = (newResource) => {
     .catch(errorHandler);
 };
 
+const getUserInfo = () => {
+  const storedToken = localStorage.getItem("authToken");
+  return api
+    .get("/profile", {
+      headers: { Authorization: `Bearer ${storedToken}` },
+    })
+    .then((res) => res.data)
+    .catch(errorHandler);
+};
+
 const meetupService = {
   getAllMeetup,
   uploadEventImage,
@@ -82,7 +92,7 @@ const meetupService = {
   getAllResource,
   uploadResourceImage,
   createResource,
-  // deleteResource,
+  getUserInfo,
 };
 
 export default meetupService;

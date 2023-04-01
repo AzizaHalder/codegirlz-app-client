@@ -1,10 +1,17 @@
 import { useParams, Link } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../context/auth.context";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBookmark } from "@fortawesome/free-regular-svg-icons";
+import { faBook } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import { useState, useEffect } from "react";
 
 function MeetupDetails() {
   const [meetupSelected, setMeetup] = useState("");
+  const [attendMeetup, setAttendMeetup] = useState(false);
+
   const { meetupId } = useParams();
+  const { user } = useContext(AuthContext);
 
   const API_URL = `http://localhost:5005`;
 
@@ -15,27 +22,61 @@ function MeetupDetails() {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((result) => {
-        console.log("The result is", result.data);
+        // console.log("The result is", result.data);
         setMeetup(result.data);
-      });
+      })
+      .catch((err) =>
+        console.log("Error while retrieving meetup details:", err)
+      );
   }, [meetupId]);
+
+  const handleSave = () => {
+    const storedToken = localStorage.getItem("authToken");
+
+    axios.post(
+      `${API_URL}/auth/${meetupId}/attend`,
+      { user },
+      {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      }
+    );
+    setAttendMeetup(!attendMeetup);
+  };
 
   if (meetupSelected) {
     return (
       <div className="meetup-details">
         <img src={meetupSelected.eventImage} alt={meetupSelected.eventName} />
         <h1>{meetupSelected.eventName}</h1>
-        {/* author name not showing... ? */}
-        {/* If I look in Mongo I don't see author when I create an event */}
         <p>Created by: {meetupSelected.author}</p>
         <h3>{meetupSelected.eventType}</h3>
-        {/* add conditional logic for digital and in person events  */}
         <p>{meetupSelected.eventCountry}</p>
         <p>{meetupSelected.eventCity}</p>
         <p>{meetupSelected.eventAddress}</p>
         <p>{meetupSelected.eventLink}</p>
         <p>{meetupSelected.eventDateAndTime}</p>
         {/* add mapping over the array of attendees once atendees are added to the data  */}
+
+        <button
+          value={attendMeetup}
+          onClick={() => handleSave(meetupSelected._id)}
+        >
+          {attendMeetup === true && (
+            <FontAwesomeIcon
+              icon={faBook}
+              size="lg"
+              style={{ color: "#32612d" }}
+            />
+          )}
+
+          {attendMeetup === false && (
+            <FontAwesomeIcon
+              icon={faBookmark}
+              size="lg"
+              style={{ color: "#32612d" }}
+            />
+          )}
+        </button>
         <p>{meetupSelected.attendees}</p>
         <Link to={`/meetup/edit/${meetupSelected._id}`}>
           <button>Edit Meetup</button>
