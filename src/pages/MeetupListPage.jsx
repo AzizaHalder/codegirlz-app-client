@@ -6,7 +6,6 @@ import SearchBar from "../components/SearchBar";
 function MeetupList() {
   const [meetupList, setMeetupList] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
-  // const [searchQuery, setSearchQuery] = useState("")
 
   useEffect(() => {
     service
@@ -28,11 +27,26 @@ function MeetupList() {
     setSearchResults(searchQuery);
   };
 
+  const handleFilter = (type) => {
+    if (type === "All") {
+      setSearchResults(meetupList);
+    } else {
+      const filtered = meetupList.filter((meetup) => meetup.eventType === type);
+      setSearchResults(filtered);
+    }
+  };
+
   return (
     <div className="MeetupList">
       <h2>Meetup</h2>
 
       <SearchBar onQuery={handleQuery} />
+
+      <select onChange={(e) => handleFilter(e.target.value)}>
+        <option value={"All"}>All</option>
+        <option value={"Digital"}>Digital</option>
+        <option value={"In-Person"}>In-Person</option>
+      </select>
 
       {meetupList &&
         searchResults.map(
