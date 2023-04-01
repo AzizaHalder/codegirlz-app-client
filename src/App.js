@@ -17,11 +17,11 @@ import IsPrivate from "./components/IsPrivate";
 import MyResources from "./pages/MyResources";
 import AttendMeetup from "./pages/SavedMeetup";
 
+
 function App() {
   return (
     <div className="App">
       <Navbar />
-
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route

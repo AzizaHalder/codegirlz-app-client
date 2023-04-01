@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import countries from '../countries.json';
+
 
 const API_URL = "http://localhost:5005";
 
@@ -12,7 +13,6 @@ function SignupPage() {
 
   // list of arrays of cities
   const cityArrayList = Object.values(countries)
-
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -40,6 +40,24 @@ function SignupPage() {
   };
   const handleCountryIndex = (e) => setCountryIndex(e.target.value);
 
+  const [address, setAddress] = useState();
+
+  const autoCompleteRef = useRef();
+  const inputRef = useRef();
+  const options = {
+    fields: ["name"],
+  };
+  useEffect(() => {
+    autoCompleteRef.current = new window.google.maps.places.Autocomplete(
+      inputRef.current,
+      options
+    );
+    autoCompleteRef.current.addListener("place_changed", async function () {
+      const place = await autoCompleteRef.current.getPlace();
+      setAddress(place.name);
+    });
+  }, []);
+
 
   const handleSignupSubmit = (e) => {
     e.preventDefault();
@@ -48,6 +66,7 @@ function SignupPage() {
       password,
       name,
       city,
+      currentLocation: address,
       level,
       linkedin,
       github,
@@ -104,6 +123,15 @@ function SignupPage() {
               cityArrayList[countryIndex].map((result) => (<option value={result}>{result}</option>))
             }
           </select>
+        </fieldset>
+        <div>
+          <label>Enter address :</label>
+          <input ref={inputRef} value={address} type="text" />
+          {address}
+        </div>
+
+        <fieldset>
+
         </fieldset>
 
         <fieldset>
