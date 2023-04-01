@@ -1,61 +1,79 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { AuthContext } from "./../context/auth.context";
+import { AuthContext } from "../context/auth.context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
+import logo from '../images/logo.png'
+import Button from 'react-bootstrap/Button';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Nav';
+import Container from 'react-bootstrap/Container';
 
-function Navbar() {
+
+function NavBar() {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 
   return (
-    <nav>
-      <Link to="/">
-        <button>Home</button>
-      </Link>
-      <Link to="/meetup">
-        <button>Meetups</button>
-      </Link>
-      <Link to="/resource">
-        <button>Resources</button>
-      </Link>
+    <Navbar bg="light" expand="lg">
 
-      {isLoggedIn && (
-        <>
-          {/* Do we want to show meet up list and resource list when use is not logged in? */}
+      <Container>
+        <Nav className="justify-content-center" fixed="top" id="nav-bar">
+          <Nav.Item>
+            <Link to="/">
+              <Button justify variant="link"><img src={logo} alt="logo" id="logo-button"></img></Button>
+            </Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Link to="/meetup">
+              <Button justify variant="light">Meetups</Button>
+            </Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Link to="/resource">
+              <Button justify variant="light">Resources</Button>
+            </Link>
+          </Nav.Item>
 
-          <Link to="/meetup/create">
-            <button>Create Meetup</button>
-          </Link>
 
-          <Link to="/resource/create">
-            <button>AddResource</button>
-          </Link>
+          {isLoggedIn && (
+            <>
+              {/* Do we want to show meet up list and resource list when use is not logged in? */}
 
-          {/* Icon is from Font Awesome, had to install a few packages and import them at the top of the page */}
-          <Link to="/auth/save">
-            <button>
-              <FontAwesomeIcon
-                icon={faBookmark}
-                size="lg"
-                style={{ color: "#32612d" }}
-              />
-            </button>
-          </Link>
+              <Link to="/meetup/create">
+                <button>Create Meetup</button>
+              </Link>
 
-          <button onClick={logOutUser}>Logout</button>
-          <span>Welcome {user && user.name}</span>
-        </>
-      )}
+              <Link to="/resource/create">
+                <button>AddResource</button>
+              </Link>
 
-      {!isLoggedIn && (
-        <>
-          <Link to="/auth/login">
-            <button>Login</button>
-          </Link>
-        </>
-      )}
-    </nav>
+              {/* Icon is from Font Awesome, had to install a few packages and import them at the top of the page */}
+              <Link to="/auth/save">
+                <button>
+                  <FontAwesomeIcon
+                    icon={faBookmark}
+                    size="lg"
+                    style={{ color: "#32612d" }}
+                  />
+                </button>
+              </Link>
+
+              <button onClick={logOutUser}>Logout</button>
+              <span>Welcome {user && user.name}</span>
+            </>
+          )}
+
+          {!isLoggedIn && (
+            <>
+              <Link to="/auth/login">
+                <Button variant="light">Login</Button>
+              </Link>
+            </>
+          )}
+        </Nav >
+      </Container>
+    </Navbar>
   );
 }
 
-export default Navbar;
+export default NavBar;

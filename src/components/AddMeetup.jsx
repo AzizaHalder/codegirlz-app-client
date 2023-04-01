@@ -30,7 +30,6 @@ const AddMeetup = () => {
 
   const { user } = useContext(AuthContext);
 
-  const navigate = useNavigate();
   const handleCity = (e) => setCity(e.target.value);
   const handleCountryIndex = (e) => setCountryIndex(e.target.value);
 
@@ -132,8 +131,8 @@ const AddMeetup = () => {
             <input ref={inputRef} value={address} type="text" />
           </div>
 
-        };
-   
+        )};
+
         {eventType === "Digital" && (
 
           <div>
