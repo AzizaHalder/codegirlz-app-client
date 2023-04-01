@@ -1,6 +1,7 @@
 // src/api/service.js
 
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const api = axios.create({
   baseURL: "http://localhost:5005",
@@ -81,6 +82,7 @@ const meetupService = {
   getAllResource,
   uploadResourceImage,
   createResource,
+  // deleteResource,
 };
 
 export default meetupService;

@@ -14,6 +14,7 @@ import ResourceDetails from "./pages/ResourceDetailsPage";
 import EditResource from "./pages/EditResourcePage";
 import IsAnon from "./components/IsAnon";
 import IsPrivate from "./components/IsPrivate";
+import MyResources from "./pages/MyResources";
 
 
 function App() {
@@ -22,17 +23,68 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/auth/login" element={<IsAnon><LoginPage /></IsAnon>} />
-        <Route path="/auth/signup" element={<IsAnon><SignUpPage /></IsAnon>} />
+        <Route
+          path="/auth/login"
+          element={
+            <IsAnon>
+              <LoginPage />
+            </IsAnon>
+          }
+        />
+        <Route
+          path="/auth/signup"
+          element={
+            <IsAnon>
+              <SignUpPage />
+            </IsAnon>
+          }
+        />
         <Route path="/meetup" element={<MeetupList />} />
-        <Route path="/meetup/create" element={<IsPrivate><AddMeetup /></IsPrivate>} />
-        <Route path="/meetup/:meetupId" element={<IsPrivate><MeetupDetails /></IsPrivate>} />
-        <Route path="/meetup/edit/:meetupId" element={<IsPrivate><EditMeetUp /></IsPrivate>} />
+        <Route
+          path="/meetup/create"
+          element={
+            <IsPrivate>
+              <AddMeetup />
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/meetup/:meetupId"
+          element={
+            <IsPrivate>
+              <MeetupDetails />
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/meetup/edit/:meetupId"
+          element={
+            <IsPrivate>
+              <EditMeetUp />
+            </IsPrivate>
+          }
+        />
         <Route path="/resource" element={<ResourceList />} />
-        <Route path="/resource/create" element={<IsPrivate><AddResource /></IsPrivate>} />
+        <Route
+          path="/resource/create"
+          element={
+            <IsPrivate>
+              <AddResource />
+            </IsPrivate>
+          }
+        />
         <Route path="/resource/:resourceId" element={<ResourceDetails />} />
-        <Route path="/resource/edit/:resourceId" element={<IsPrivate><EditResource /></IsPrivate>} />
+        <Route
+          path="/resource/edit/:resourceId"
+          element={
+            <IsPrivate>
+              <EditResource />
+            </IsPrivate>
+          }
+        />
+        <Route path="/auth/save" element={<MyResources />} />
       </Routes>
+      {/* <MyResources /> */}
     </div>
   );
 }

@@ -1,12 +1,14 @@
-import { useRef, useEffect, useState } from "react";
+
+import { useRef, useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import service from "../api/service";
-import countries from '../countries.json';
+import countries from "../countries.json";
+import { AuthContext } from "../context/auth.context";
 
 const AddMeetup = () => {
   const countryKeys = Object.keys(countries);
   // list of arrays of cities
-  const cityArrayList = Object.values(countries)
+  const cityArrayList = Object.values(countries);
 
   const [eventName, setEventName] = useState("");
   const [eventType, setEventType] = useState("");
@@ -16,6 +18,7 @@ const AddMeetup = () => {
   const [eventDateAndTime, setEventDateAndTime] = useState("");
   const [city, setCity] = useState("");
   const [countryIndex, setCountryIndex] = useState(0);
+
   const navigate = useNavigate();
   const [address, setAddress] = useState();
 
@@ -25,6 +28,9 @@ const AddMeetup = () => {
     fields: ["name"],
   };
 
+  const { user } = useContext(AuthContext);
+
+  const navigate = useNavigate();
   const handleCity = (e) => setCity(e.target.value);
   const handleCountryIndex = (e) => setCountryIndex(e.target.value);
 
@@ -63,6 +69,7 @@ const AddMeetup = () => {
       eventDescription,
       eventImage: eventNewImage,
       eventDateAndTime,
+      author: user._id,
     };
 
     service
@@ -94,7 +101,6 @@ const AddMeetup = () => {
           value={eventName}
           onChange={(e) => setEventName(e.target.value)}
         />
-
         <label htmlFor="">Type of Event</label>
         <select
           id="eventTypes"
@@ -107,30 +113,28 @@ const AddMeetup = () => {
           <option value="Digital">Digital</option>
           <option value="In-Person">In-Person</option>
         </select>
-
-        {eventType === "In-Person" &&
-
-
+        {eventType === "In-Person" && (
           <div>
             <select value={countryIndex} onChange={handleCountryIndex}>
-              <option value="0" >Select Country </option>
-              {
-                countryKeys.map((result, index) => (<option value={index}>{result}</option>))
-              }
+              <option value="0">Select Country </option>
+              {countryKeys.map((result, index) => (
+                <option value={index}>{result}</option>
+              ))}
             </select>
             <select value={city} onChange={handleCity}>
-              <option >Select City</option>
-              {
-                cityArrayList[countryIndex].map((result) => (<option value={result}>{result}</option>))
-              }
+              <option>Select City</option>
+              {cityArrayList[countryIndex].map((result) => (
+                <option value={result}>{result}</option>
+              ))}
             </select>
 
             <label htmlFor="">Address</label>
             <input ref={inputRef} value={address} type="text" />
           </div>
-        };
 
-        {eventType === "Digital" &&
+        };
+   
+        {eventType === "Digital" && (
 
           <div>
             <label htmlFor="">Link to Meetup</label>
@@ -140,23 +144,25 @@ const AddMeetup = () => {
               onChange={(e) => setEventLink(e.target.value)}
             />
           </div>
-        }
-
-        <label htmlFor="" placeholder="Please Give a brief description of the meetup.">Description</label>
+        )}
+        <label
+          htmlFor=""
+          placeholder="Please Give a brief description of the meetup."
+        >
+          Description
+        </label>
         <textarea
           rows="5"
           cols="30"
           value={eventDescription}
           onChange={(e) => setEventDescription(e.target.value)}
         />
-
         <label htmlFor="">Select Time and Date</label>
         <input
           type="datetime-local"
           value={eventDateAndTime}
           onChange={(e) => setEventDateAndTime(e.target.value)}
         />
-
         {/* Can we add a spinner here so that people know that the image is still loading, seems to take a while sometimes */}
         <input
           type="file"
