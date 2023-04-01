@@ -1,12 +1,12 @@
 import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import service from "../api/service";
-import SearchBar from "../components/SearchBar";
 import { AuthContext } from "../context/auth.context";
-import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-regular-svg-icons";
 import { faBook } from "@fortawesome/free-solid-svg-icons";
+import SearchBar from "../components/SearchBar";
+import axios from "axios";
+import service from "../api/service";
 
 function ResourceList() {
   // initial render
@@ -77,7 +77,6 @@ function ResourceList() {
       )
       .then((res) => setUserInfo(res.data))
       .catch((err) => console.log(err));
-    // setSaved(true);
   };
   console.log(userInfo);
   return (

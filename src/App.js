@@ -15,7 +15,7 @@ import EditResource from "./pages/EditResourcePage";
 import IsAnon from "./components/IsAnon";
 import IsPrivate from "./components/IsPrivate";
 import MyResources from "./pages/MyResources";
-import AttendMeetup from "./pages/AttendMeetup";
+import AttendMeetup from "./pages/SavedMeetup";
 
 function App() {
   return (

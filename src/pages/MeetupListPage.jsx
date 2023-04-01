@@ -1,18 +1,18 @@
 import { useState, useEffect, useContext } from "react";
-import service from "../api/service";
 import { Link } from "react-router-dom";
-import SearchBar from "../components/SearchBar";
 import { AuthContext } from "../context/auth.context";
-import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-regular-svg-icons";
 import { faBook } from "@fortawesome/free-solid-svg-icons";
+import SearchBar from "../components/SearchBar";
+import axios from "axios";
+import service from "../api/service";
 
 function MeetupList() {
   const [meetupList, setMeetupList] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
-
-  const [saved, setSaved] = useState(false);
+  // Attend a meetup
+  const [userInfo, setUserInfo] = useState(false);
 
   const { user } = useContext(AuthContext);
 
@@ -24,10 +24,10 @@ function MeetupList() {
       .then((data) => {
         setMeetupList(data);
         setSearchResults(data);
+        return service.getUserInfo();
       })
-      .catch((err) =>
-        console.log("Error while retrieving resource list:", err)
-      );
+      .then((user) => setUserInfo(user))
+      .catch((err) => console.log("Error while retrieving meetup list:", err));
   }, []); //effect runs once after initial render
 
   const handleQuery = (searchTerm) => {
@@ -50,15 +50,18 @@ function MeetupList() {
   const handleSave = (meetupId) => {
     const storedToken = localStorage.getItem("authToken");
 
-    axios.post(
-      `${API_URL}/auth/${meetupId}/attend`,
-      { user },
-      {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      },
-      console.log(`${API_URL}/auth/${meetupId}/attend`)
-    );
-    setSaved(true);
+    axios
+      .post(
+        `${API_URL}/auth/${meetupId}/attend`,
+        { user },
+        {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        },
+        console.log(`${API_URL}/auth/${meetupId}/attend`)
+      )
+      .then((res) => setUserInfo(res.data))
+      .catch((err) => console.log("Error while trying to attend meetup", err));
+    // setSaved(true);
   };
 
   return (
@@ -82,16 +85,15 @@ function MeetupList() {
                 <img src={eventImage} alt={eventName} width="200" />
                 <p>{eventType}</p>
                 <p>{eventDateAndTime}</p>
-                <button value={saved} onClick={() => handleSave(_id)}>
-                  {saved === true && (
+                <button onClick={() => handleSave(_id)}>
+                  {/* remove ?  */}
+                  {!userInfo.eventsAttended?.includes(_id) ? (
                     <FontAwesomeIcon
                       icon={faBookmark}
                       size="lg"
                       style={{ color: "#32612d" }}
                     />
-                  )}
-
-                  {saved === false && (
+                  ) : (
                     <FontAwesomeIcon
                       icon={faBook}
                       size="lg"

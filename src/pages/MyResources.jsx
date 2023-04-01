@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
 
 function MyResources() {
   const { user } = useContext(AuthContext);
@@ -37,7 +37,7 @@ function MyResources() {
                 <Link to={`/resource/${value._id}`}>
                   <>
                     <img src={value.resourceImage} alt={value.resourceTitle} />
-                    <h3> {value.resourceTitle}</h3>{" "}
+                    <h3> {value.resourceTitle}</h3>
                   </>
                 </Link>
               ))}
