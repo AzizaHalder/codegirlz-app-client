@@ -114,23 +114,23 @@ function NavBar() {
                     <ul>
                       <li>
 
-                        <Button variant="outline-secondary"><Nav.Item>
+                        <Button variant="secondary"><Nav.Item>
                           <Link to="/meetup">
-                            Meetups {" "}<FontAwesomeIcon icon={faUsers} style={{ color: "#81B4A6", }} />
+                            Meetups
                           </Link>
                         </Nav.Item></Button>
                       </li>
                       <li>
-                        <Button variant="outline-secondary"><Nav.Item>
+                        <Button variant="secondary"><Nav.Item>
                           <Link to="/resource">
-                            Resources {" "}<FontAwesomeIcon icon={faLaptopFile} style={{ color: "#81B4A6", }} />
+                            Resources
                           </Link>
                         </Nav.Item></Button>
                       </li>
                       <li>
-                        <Button variant="outline-secondary"><Nav.Item>
+                        <Button variant="secondary"><Nav.Item>
                           <Link to="/auth/login">
-                            Login{" "}<FontAwesomeIcon icon={faRightToBracket} style={{ color: "#81B4A6", }} />
+                            Login
                           </Link>
                         </Nav.Item></Button>
                       </li>
