@@ -20,7 +20,7 @@ function NavBar() {
 
   return (
 
-    <Navbar collapseOnSelect bg="light" expand="sm" className="justify-content-center" id="external-navbar"  >
+    <Navbar bg="light" expand="sm" className="justify-content-center" id="external-navbar"  >
 
       {isLoggedIn && (
         <>
@@ -30,14 +30,14 @@ function NavBar() {
                 <img src={logo} alt="logo" id="logo-button"></img>
               </Link></Navbar.Brand>
 
-              <Navbar.Toggle aria-controls="navbarScroll" id="nav-toggle" />
+              <Navbar.Toggle aria-controls="basic-navbar-nav" id="nav-toggle" />
               <Navbar.Collapse id="responsive-navbar-nav" >
                 <Nav className="justify-content-end" style={{ width: "100%" }} id="nav-drop-down-menu"  >
                   <ButtonGroup className="mb-2">
 
                     <ul>
                       <li>
-                        <Button variant="outline-secondary"><NavDropdown align="right" title={<FontAwesomeIcon icon={faUsers} style={{ color: "#81B4A6", }} />} id="navbarScrollingDropdown" className="dropdown-menu-end" >
+                        <Button variant="outline-light"><NavDropdown align="right" title={<FontAwesomeIcon icon={faUsers} style={{ color: "#81B4A6" }} />} id="navbarScrollingDropdown" className="dropdown-menu-end" >
                           <NavDropdown.Item ><Link to="/meetup">
                             Browse Meetups
                           </Link>
@@ -55,7 +55,7 @@ function NavBar() {
                         </NavDropdown></Button>
                       </li>
                       <li>
-                        <Button variant="outline-secondary"><NavDropdown title={<FontAwesomeIcon icon={faLaptopFile} style={{ color: "#81B4A6", }} />} id="collasible-nav-dropdown">
+                        <Button variant="outline-light"><NavDropdown title={<FontAwesomeIcon icon={faLaptopFile} style={{ color: "#81B4A6", }} />} id="collasible-nav-dropdown">
                           <NavDropdown.Item><Link to="/resource">
                             Browse Resources
                           </Link>
@@ -69,7 +69,7 @@ function NavBar() {
                         </Button>
                       </li>
                       <li>
-                        <Button variant="outline-secondary"><Nav.Item>
+                        <Button variant="outline-light"><Nav.Item>
                           <Link to="/auth/save">
                             <FontAwesomeIcon
                               icon={faBookmark}
@@ -80,7 +80,7 @@ function NavBar() {
                         </Button>
                       </li>
                       <li>
-                        <Button variant="outline-secondary"><Nav.Item onClick={logOutUser}>
+                        <Button variant="outline-light"><Nav.Item onClick={logOutUser}>
                           Logout
                         </Nav.Item></Button>
                       </li>
@@ -113,14 +113,14 @@ function NavBar() {
 
                         <Button style={{ backgroundColor: "#1A6A68", border: "none" }}><Nav.Item>
                           <Link to="/meetup">
-                            Meetups
+                            Meetup
                           </Link>
                         </Nav.Item></Button>
                       </li>
                       <li>
                         <Button style={{ backgroundColor: "#1A6A68", border: "none" }}><Nav.Item>
                           <Link to="/resource">
-                            Resources
+                            Learn
                           </Link>
                         </Nav.Item></Button>
                       </li>
