@@ -29,15 +29,13 @@ function NavBar() {
               <Navbar.Brand href="#home"><Link to="/" className="navbar-brand">
                 <img src={logo} alt="logo" id="logo-button"></img>
               </Link></Navbar.Brand>
-
               <Navbar.Toggle aria-controls="basic-navbar-nav" id="nav-toggle" />
               <Navbar.Collapse id="responsive-navbar-nav" >
                 <Nav className="justify-content-end" style={{ width: "100%" }} id="nav-drop-down-menu"  >
                   <ButtonGroup className="mb-2">
-
                     <ul>
                       <li>
-                        <Button variant="outline-light"><NavDropdown align="right" title={<FontAwesomeIcon icon={faUsers} style={{ color: "#81B4A6" }} />} id="navbarScrollingDropdown" className="dropdown-menu-end" >
+                        <NavDropdown align="right" title={<FontAwesomeIcon icon={faUsers} style={{ color: "#81B4A6" }} />} id="navbarScrollingDropdown" className="dropdown-menu-end" >
                           <NavDropdown.Item ><Link to="/meetup">
                             Browse Meetups
                           </Link>
@@ -52,10 +50,10 @@ function NavBar() {
                               Attend Meetup
                             </Link>
                           </NavDropdown.Item>
-                        </NavDropdown></Button>
+                        </NavDropdown>
                       </li>
                       <li>
-                        <Button variant="outline-light"><NavDropdown title={<FontAwesomeIcon icon={faLaptopFile} style={{ color: "#81B4A6", }} />} id="collasible-nav-dropdown">
+                        <NavDropdown title={<FontAwesomeIcon icon={faLaptopFile} style={{ color: "#81B4A6", }} />} id="collasible-nav-dropdown">
                           <NavDropdown.Item><Link to="/resource">
                             Browse Resources
                           </Link>
@@ -66,10 +64,9 @@ function NavBar() {
                             </Link>
                           </NavDropdown.Item>
                         </NavDropdown>
-                        </Button>
                       </li>
                       <li>
-                        <Button variant="outline-light"><Nav.Item>
+                        <Nav.Item>
                           <Link to="/auth/save">
                             <FontAwesomeIcon
                               icon={faBookmark}
@@ -77,10 +74,9 @@ function NavBar() {
                             />
                           </Link>
                         </Nav.Item>
-                        </Button>
                       </li>
-                      <li>
-                        <Button variant="outline-light"><Nav.Item onClick={logOutUser}>
+                      <li id="log-out-button-list">
+                        <Button variant="outline-light" id="login-button"><Nav.Item onClick={logOutUser} style={{ color: "#81B4A6" }} >
                           Logout
                         </Nav.Item></Button>
                       </li>
@@ -91,7 +87,6 @@ function NavBar() {
             </Nav>
           </Container>
         </>
-
       )
       }
 
@@ -103,14 +98,12 @@ function NavBar() {
               <Navbar.Brand href="#home"><Link to="/" className="navbar-brand">
                 <img src={logo} alt="logo" id="logo-button"></img>
               </Link></Navbar.Brand>
-
-              <Navbar.Toggle aria-controls="navbarScroll" id="nav-toggle" />
+              <Navbar.Toggle aria-controls="basic-navbar-nav" id="nav-toggle" />
               <Navbar.Collapse id="responsive-navbar-nav" >
                 <Nav className="justify-content-end" style={{ width: "100%" }} id="nav-drop-down-menu" >
                   <ButtonGroup className="mb-2">
                     <ul>
                       <li>
-
                         <Button style={{ backgroundColor: "#1A6A68", border: "none" }}><Nav.Item>
                           <Link to="/meetup">
                             Meetup

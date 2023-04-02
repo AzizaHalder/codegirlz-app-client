@@ -50,31 +50,31 @@
     width: 50%;
     max-width: 100px;
     min-width: 50px;
-    margin: auto;
-    float: left;
+    margin-left: 7%;
+    float: center;
   }
 
   #external-navbar {
     width: 100vw;
-    max-height: 3%;
+    /* max-height: 3%; */
     margin: auto;
     float: left;
-    overflow: hidden;
   }
 
   #nav-drop-down-menu ul {
     display: flex;
-    background-color: #1a6a68;
+    background-color: #f8f9fa;
     padding: 4%;
     outline: none;
     width: 100%;
+    margin-bottom: 12%;
   }
 
   #nav-drop-down-menu li {
     border: none;
     outline: none;
     padding: 0 0 10% 0;
-    width: 25%;
+    width: 30%;
   }
 
   #nav-container-logged-in {
@@ -97,30 +97,38 @@
     color: #1a6a68;
   }
 
-  #nav-container-logged-in button {
-    color: #f8f9fa;
-    display: block;
-    border: none;
-  }
-
   /* the dropdown of the menu */
   #nav-drop-down-menu {
     display: flex;
   }
 
-
   #nav-container-logged-out li a {
     text-decoration: none;
-    display: inline-block;
+    display: inline;
     color: white;
-    padding: 0 4% 0 0;
-    margin: 0 15px 0 15px;
   }
 
-  /* #nav-container-logged-out ul {
+  #nav-toggle {
+    color: white;
+  }
+
+  #nav-container-logged-out ul {
     display: flex;
-    justify-content: space-between;
-  } */
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+  }
+
+  #login-button {
+    border: 1px solid;
+    border-radius: 5px;
+    border-color: #1a6a68;
+    color: #1a6a68;
+  }
+
+  #login-button:hover {
+    color: #1a6a68;
+  }
 }
 
 /* for desktop */
