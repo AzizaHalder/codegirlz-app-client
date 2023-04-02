@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  position: fixed;
 }
 
 .App-logo {
@@ -41,41 +42,23 @@
 
 #logo-button {
   width: 50%;
-  max-width: 250px;
-  max-height: 3%;
-  float: left;
+  max-height: 200px;
 }
 
-#nav-container {
-  display: flex;
+#external-navbar {
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
   width: 100vw;
-  align-items: center;
   display: inline-block;
-  background-color: #1a6a68;
   max-height: 3%;
-}
-
-#nav-toggle {
-  background-color: #81b4a6;
 }
 
 #nav-container-logged-in,
 #nav-container-logged-out {
   display: flex;
-  justify-content: center;
+  justify-content: space;
   align-items: center;
-  width: 100vw;
-  display: inline-block;
-  background-color: #1a6a68;
-  max-height: 3%;
-}
-
-#nav-drop-down-menu {
-  display: flex;
-  flex-direction: column;
-  background-color: white;
 }
 
 #nav-bar li {
@@ -88,6 +71,15 @@
   color: #1a6a68;
 }
 
-#nav-container a {
-  color: #1a6a68;
+#nav-bar ul {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* the dropdown of the menu */
+#nav-drop-down-menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
