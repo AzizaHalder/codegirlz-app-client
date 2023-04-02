@@ -25,21 +25,19 @@ function NavBar() {
       {isLoggedIn && (
         <>
           <Container id="nav-container-logged-in">
-            <Nav className="justify-content-center me-auto " navbarScroll fixed="top" id="nav-bar" >
-              <Navbar.Brand className="border-left pl-2 ms-auto" >
-                <Link to="/" className="navbar-brand">
-                  <img src={logo} alt="logo" id="logo-button"></img>
-                </Link>
-              </Navbar.Brand>
+            <Nav className="justify-content-end" style={{ width: "100%" }} navbarScroll fixed="top" id="nav-bar" >
+              <Navbar.Brand href="#home"><Link to="/" className="navbar-brand">
+                <img src={logo} alt="logo" id="logo-button"></img>
+              </Link></Navbar.Brand>
 
               <Navbar.Toggle aria-controls="navbarScroll" id="nav-toggle" />
               <Navbar.Collapse id="responsive-navbar-nav" >
-                <Nav className="mr-auto" id="nav-drop-down-menu" >
+                <Nav className="justify-content-end" style={{ width: "100%" }} id="nav-drop-down-menu"  >
                   <ButtonGroup className="mb-2">
 
                     <ul>
                       <li>
-                        <Button variant="outline-secondary"><NavDropdown align="end" title={<FontAwesomeIcon icon={faUsers} style={{ color: "#81B4A6", }} />} id="navbarScrollingDropdown" className="dropdown-menu-end" >
+                        <Button variant="outline-secondary"><NavDropdown align="right" title={<FontAwesomeIcon icon={faUsers} style={{ color: "#81B4A6", }} />} id="navbarScrollingDropdown" className="dropdown-menu-end" >
                           <NavDropdown.Item ><Link to="/meetup">
                             Browse Meetups
                           </Link>
@@ -101,34 +99,33 @@ function NavBar() {
         <>
 
           <Container id="nav-container-logged-out">
-            <Nav className="justify-content-center me-auto " navbarScroll fixed="top" id="nav-bar" >
-              <Navbar.Brand className="border-left pl-2 ms-auto" >
-                <Link to="/" className="navbar-brand">
-                  <img src={logo} alt="logo" id="logo-button"></img>
-                </Link>
-              </Navbar.Brand>
+            <Nav className="justify-content-end" style={{ width: "100%" }} navbarScroll fixed="top" id="nav-bar" >
+              <Navbar.Brand href="#home"><Link to="/" className="navbar-brand">
+                <img src={logo} alt="logo" id="logo-button"></img>
+              </Link></Navbar.Brand>
+
               <Navbar.Toggle aria-controls="navbarScroll" id="nav-toggle" />
               <Navbar.Collapse id="responsive-navbar-nav" >
-                <Nav className="mr-auto" id="nav-drop-down-menu" >
+                <Nav className="justify-content-end" style={{ width: "100%" }} id="nav-drop-down-menu" >
                   <ButtonGroup className="mb-2">
                     <ul>
                       <li>
 
-                        <Button variant="secondary"><Nav.Item>
+                        <Button style={{ backgroundColor: "#1A6A68", border: "none" }}><Nav.Item>
                           <Link to="/meetup">
                             Meetups
                           </Link>
                         </Nav.Item></Button>
                       </li>
                       <li>
-                        <Button variant="secondary"><Nav.Item>
+                        <Button style={{ backgroundColor: "#1A6A68", border: "none" }}><Nav.Item>
                           <Link to="/resource">
                             Resources
                           </Link>
                         </Nav.Item></Button>
                       </li>
                       <li>
-                        <Button variant="secondary"><Nav.Item>
+                        <Button style={{ backgroundColor: "#1A6A68", border: "none" }}><Nav.Item>
                           <Link to="/auth/login">
                             Login
                           </Link>

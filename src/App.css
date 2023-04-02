@@ -50,6 +50,7 @@
   width: 100vw;
   display: inline-block;
   max-height: 3%;
+  margin: auto;
 }
 
 #nav-container-logged-in,
@@ -57,6 +58,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 0;
 }
 
 #nav-bar li {
@@ -104,4 +106,9 @@
 #nav-container-logged-out ul {
   display: flex;
   justify-content: space-between;
+}
+
+#nav-drop-down-menu {
+  display: flex;
+  justify-content: center;
 }
