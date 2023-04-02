@@ -42,14 +42,11 @@
 
 #logo-button {
   width: 50%;
-  max-width: 150px;
+  max-width: 100px;
   min-width: 50px;
 }
 
 #external-navbar {
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
   width: 100vw;
   display: inline-block;
   max-height: 3%;
@@ -90,5 +87,21 @@
   align-items: center;
 }
 
-.btn {
+#nav-container-logged-out li {
+  list-style-type: none;
+  margin: 0 2% 0 2%;
+  height: 1rem;
+}
+
+#nav-container-logged-out li a {
+  text-decoration: none;
+  display: inline-block;
+  color: #1a6a68;
+  padding: 0 2% 0 2%;
+  margin: 0 10px 0 10px;
+}
+
+#nav-container-logged-out ul {
+  display: flex;
+  justify-content: space-between;
 }

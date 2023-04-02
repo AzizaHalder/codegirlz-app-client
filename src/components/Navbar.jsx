@@ -25,22 +25,22 @@ function NavBar() {
       {isLoggedIn && (
         <>
           <Container id="nav-container-logged-in">
-            <Nav className="justify-content-center " navbarScroll fixed="top" id="nav-bar" >
-              <Navbar.Brand>
+            <Nav className="justify-content-center me-auto " navbarScroll fixed="top" id="nav-bar" >
+              <Navbar.Brand className="border-left pl-2 ms-auto" >
                 <Link to="/" className="navbar-brand">
                   <img src={logo} alt="logo" id="logo-button"></img>
                 </Link>
               </Navbar.Brand>
 
               <Navbar.Toggle aria-controls="navbarScroll" id="nav-toggle" />
-              <Navbar.Collapse id="navbarScroll" >
-                <Nav className="me-auto" id="nav-drop-down-menu" >
-                  <ButtonGroup  className="mb-2">
+              <Navbar.Collapse id="responsive-navbar-nav" >
+                <Nav className="mr-auto" id="nav-drop-down-menu" >
+                  <ButtonGroup className="mb-2">
 
                     <ul>
                       <li>
-                        <Button variant="outline-secondary"><NavDropdown title={<FontAwesomeIcon icon={faUsers} style={{ color: "#81B4A6", }} />} id="navbarScrollingDropdown" className="dropdown-menu-end" >
-                          <NavDropdown.Item><Link to="/meetup">
+                        <Button variant="outline-secondary"><NavDropdown align="end" title={<FontAwesomeIcon icon={faUsers} style={{ color: "#81B4A6", }} />} id="navbarScrollingDropdown" className="dropdown-menu-end" >
+                          <NavDropdown.Item ><Link to="/meetup">
                             Browse Meetups
                           </Link>
                           </NavDropdown.Item>
@@ -101,16 +101,16 @@ function NavBar() {
         <>
 
           <Container id="nav-container-logged-out">
-            <Nav className="justify-content-center " navbarScroll fixed="top" id="nav-bar" >
-              <Navbar.Brand>
+            <Nav className="justify-content-center me-auto " navbarScroll fixed="top" id="nav-bar" >
+              <Navbar.Brand className="border-left pl-2 ms-auto" >
                 <Link to="/" className="navbar-brand">
                   <img src={logo} alt="logo" id="logo-button"></img>
                 </Link>
               </Navbar.Brand>
               <Navbar.Toggle aria-controls="navbarScroll" id="nav-toggle" />
-              <Navbar.Collapse id="navbarScroll" >
-                <Nav className="me-auto" id="nav-drop-down-menu" >
-                  <ButtonGroup size="lg" className="mb-2">
+              <Navbar.Collapse id="responsive-navbar-nav" >
+                <Nav className="mr-auto" id="nav-drop-down-menu" >
+                  <ButtonGroup className="mb-2">
                     <ul>
                       <li>
 
