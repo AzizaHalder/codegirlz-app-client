@@ -35,7 +35,7 @@ function NavBar() {
               <Navbar.Toggle aria-controls="navbarScroll" id="nav-toggle" />
               <Navbar.Collapse id="navbarScroll" >
                 <Nav className="me-auto" id="nav-drop-down-menu" >
-                  <ButtonGroup size="lg" className="mb-2">
+                  <ButtonGroup  className="mb-2">
 
                     <ul>
                       <li>
