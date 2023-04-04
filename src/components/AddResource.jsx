@@ -63,7 +63,6 @@ const AddResource = () => {
           value={resourceTitle}
           onChange={(e) => setResourceTitle(e.target.value)}
         />
-
         <label htmlFor="">Type of Resource</label>
         <select
           value={resourceType}
@@ -76,25 +75,37 @@ const AddResource = () => {
           <option value="Podcast">Podcast</option>
           <option value="Video">Video</option>
         </select>
-
         <label htmlFor="">URL for Resource</label>
         <input
           type="text"
           value={resourceURL}
-          onChange={(e) => setResourceURL(e.target.value)}
+          onChange={(e) => console.log(e.target.value)}
         />
 
-        <label htmlFor="">Description</label>
-        <textarea
-          rows="5"
-          cols="30"
-          value={resourceContent}
-          onChange={(e) => setResourceContent(e.target.value)}
-        />
+        {resourceType === "Video" ? (
+          <>
+            <video
+              controls
+              width={250}
+              src={"https://www.youtube.com/watch?v=zE-a5eqvlv8"}
+              type="video/youtube"
+              crossOrigin="anonymous"
+            ></video>
+          </>
+        ) : (
+          <>
+            <label htmlFor="">Description</label>
+            <textarea
+              rows="5"
+              cols="30"
+              value={resourceContent}
+              onChange={(e) => setResourceContent(e.target.value)}
+            />
+          </>
+        )}
 
         <label htmlFor="">Upload Image</label>
         <input type="file" onChange={(e) => handleImageUpload(e)} />
-
         <button type="submit">Upload New Resource</button>
       </form>
     </div>
