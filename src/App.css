@@ -1,6 +1,5 @@
 .App {
   text-align: center;
-  position: fixed;
 }
 
 .App-logo {
@@ -63,11 +62,12 @@
 
   #nav-drop-down-menu ul {
     display: flex;
-    background-color: #f8f9fa;
+    /* background-color: #f8f9fa; */
     padding: 4%;
     outline: none;
     width: 100%;
     margin-bottom: 12%;
+    align-items: baseline;
   }
 
   #nav-drop-down-menu li {
@@ -82,6 +82,7 @@
     justify-content: center;
     align-items: center;
     margin-left: 0;
+    /* background-color: #1a6a68; */
   }
 
   #nav-bar li {
@@ -95,6 +96,13 @@
     display: block;
     padding: 0 2% 0 2%;
     color: #1a6a68;
+  }
+
+  /* Header background color */
+  .navbar-brand {
+    background-color: #1a6a68;
+    width: 100%;
+    margin-bottom: 5px;
   }
 
   /* the dropdown of the menu */
@@ -120,13 +128,14 @@
   }
 
   #login-button {
-    border: 1px solid;
+    border: 1.5px solid;
     border-radius: 5px;
     border-color: #1a6a68;
     color: #1a6a68;
   }
 
   #login-button:hover {
+    background-color: #81b4a6;
     color: #1a6a68;
   }
 }
@@ -145,6 +154,7 @@
     display: inline-block;
     max-height: 3%;
     margin: auto;
+    background-color: #1a6a68;
   }
 
   #nav-container-logged-in,
@@ -153,12 +163,14 @@
     justify-content: center;
     align-items: center;
     margin-left: 0;
+    background-color: #1a6a68;
   }
 
   #nav-bar li {
     list-style-type: none;
     margin: 0 2% 0 2%;
     height: 1rem;
+    padding: 8px;
   }
 
   #nav-bar li a {
@@ -194,7 +206,7 @@
     display: inline-block;
     color: white;
     padding: 0 2% 0 2%;
-    margin: 0 10px 0 10px;
+    margin: 0 10px;
   }
 
   #nav-container-logged-out ul {
@@ -205,5 +217,20 @@
   #nav-drop-down-menu {
     display: flex;
     justify-content: center;
+  }
+
+  /* logout button */
+  #login-button {
+    border: 1.5px solid;
+    border-radius: 5px;
+    color: #1a6a68;
+    border-color: #1a6a68;
+    background-color: #81b4a6;
+  }
+
+  #login-button:hover {
+    color: #81b4a6;
+    background-color: #1a6a68;
+    border-color: #81b4a6;
   }
 }
