@@ -2,7 +2,7 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import MeetupList from "./pages/MeetupListPage";
 import AddMeetup from "./components/AddMeetup";
-import NavBar from "./components/NavBar";
+import NavBar from "./components/NavBar-temp";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
@@ -16,7 +16,6 @@ import IsAnon from "./components/IsAnon";
 import IsPrivate from "./components/IsPrivate";
 import MyResources from "./pages/MyResources";
 import AttendMeetup from "./pages/SavedMeetup";
-
 
 function App() {
   return (
