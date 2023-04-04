@@ -2,7 +2,7 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import MeetupList from "./pages/MeetupListPage";
 import AddMeetup from "./components/AddMeetup";
-import NavBar from "./components/NavBar-temp";
+import NavBar from "./components/NavBar";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
