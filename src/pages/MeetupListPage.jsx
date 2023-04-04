@@ -21,9 +21,10 @@ function MeetupList() {
   useEffect(() => {
     service
       .getAllMeetup()
-      .then((data) => {
-        setMeetupList(data);
-        setSearchResults(data);
+      .then((result) => {
+        setMeetupList(result);
+        setSearchResults(result);
+        console.log(result);
         return service.getUserInfo();
       })
       .then((user) => setUserInfo(user))
