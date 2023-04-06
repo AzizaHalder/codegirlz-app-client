@@ -77,31 +77,45 @@ const AddResource = () => {
           <option value="Podcast">Podcast</option>
           <option value="Video">Video</option>
         </select>
-        <label htmlFor="">URL for Resource</label>
-        <input
-          type="text"
-          value={resourceURL}
-          onChange={(e) => setResourceURL(e.target.value)}
-        />
 
-        <label htmlFor="">Upload Video</label>
-        <input type="url" onChange={(e) => setUploadVideo(e.target.value)} />
-        {/* <iframe
-          title="Video"
-          width="420"
-          height="315"
-          src="https://www.youtube.com/embed/tgbNymZ7vqY"
-        ></iframe> */}
+        {resourceType === "Article" && (
+          <>
+            <label htmlFor="">URL for Resource</label>
+            <input
+              type="text"
+              value={resourceURL}
+              onChange={(e) => setResourceURL(e.target.value)}
+            />
 
-        <>
-          <label htmlFor="">Description</label>
-          <textarea
-            rows="5"
-            cols="30"
-            value={resourceContent}
-            onChange={(e) => setResourceContent(e.target.value)}
-          />
-        </>
+            <label htmlFor="">Article Content</label>
+            <textarea
+              rows="10"
+              cols="30"
+              value={resourceContent}
+              onChange={(e) => setResourceContent(e.target.value)}
+            />
+          </>
+        )}
+
+        {resourceContent === "Podcast" && <></>}
+
+        {resourceType === "Video" && (
+          <>
+            <label htmlFor="">Upload Video URL</label>
+            <input
+              type="url"
+              onChange={(e) => setUploadVideo(e.target.value)}
+            />
+
+            <label htmlFor="">Description</label>
+            <textarea
+              rows="3"
+              cols="30"
+              value={resourceContent}
+              onChange={(e) => setResourceContent(e.target.value)}
+            />
+          </>
+        )}
 
         <label htmlFor="">Upload Image</label>
         <input type="file" onChange={(e) => handleImageUpload(e)} />
