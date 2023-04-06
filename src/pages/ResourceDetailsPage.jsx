@@ -124,21 +124,16 @@ const ResourceDetails = () => {
         {resourceDetails.resourceType === "Podcast" && (
           <>
             <h1>{resourceDetails.resourceTitle}</h1>
-            <img
-              src={resourceDetails.resourceImage}
-              alt={resourceDetails.resourceTitle}
-            />
-            <p>{resourceDetails.resourceContent}</p>
-            <p>{resourceDetails.uploadVideo}</p>
             <iframe
               loading="lazy"
               width="560"
               height="315"
-              src={`https://open.spotify.com/embed/episode${resourceDetails.uploadPodcast}?utm_source=generator`}
+              src={`https://open.spotify.com/embed/episode${resourceDetails.podcastUpload}?utm_source=generator`}
               title="Spotify podcast"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowfullscreen
             ></iframe>
+            <p>{resourceDetails.resourceContent}</p>
             <p>{resourceDetails.resourceType}</p>
           </>
         )}
@@ -146,21 +141,17 @@ const ResourceDetails = () => {
         {resourceDetails.resourceType === "Video" && (
           <>
             <h1>{resourceDetails.resourceTitle}</h1>
-            <img
-              src={resourceDetails.resourceImage}
-              alt={resourceDetails.resourceTitle}
-            />
-            <p>{resourceDetails.resourceContent}</p>
-            <p>{resourceDetails.uploadVideo}</p>
+            <p>{resourceDetails.videoUpload}</p>
             <iframe
               width="560"
               height="315"
-              src={`https://www.youtube.com/embed/${resourceDetails.uploadVideo}`}
+              src={`https://www.youtube.com/embed/${resourceDetails.videoUpload}`}
               title="YouTube video player"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowfullscreen
             ></iframe>
+            <p>{resourceDetails.resourceContent}</p>
             <p>{resourceDetails.resourceType}</p>
           </>
         )}

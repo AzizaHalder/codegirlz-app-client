@@ -93,12 +93,46 @@ function ResourceList() {
 
       {resourceList &&
         searchResults.map(
-          ({ _id, resourceTitle, resourceImage, resourceType, author }) => {
+          ({
+            _id,
+            resourceTitle,
+            resourceImage,
+            resourceType,
+            author,
+            podcastUpload,
+            videoUpload,
+          }) => {
             return (
               <div key={_id}>
                 <h3>{resourceTitle}</h3>
-                <img src={resourceImage} alt={resourceTitle} />
+
                 <p>{resourceType}</p>
+                {resourceType === "Article" && (
+                  <img src={resourceImage} alt={resourceTitle} />
+                )}
+
+                {resourceType === "Podcast" && (
+                  <iframe
+                    className="PodcastThumbnail"
+                    loading="lazy"
+                    width="50%"
+                    src={`https://open.spotify.com/embed/episode${podcastUpload}?utm_source=generator`}
+                    title="Spotify podcast"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                  ></iframe>
+                )}
+
+                {resourceType === "Video" && (
+                  <iframe
+                    width="50%"
+                    src={`https://www.youtube.com/embed/${videoUpload}`}
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                  ></iframe>
+                )}
                 {/* remove question mark once code finalised */}
                 <p>{author?.name}</p>
                 <button onClick={() => handleSave(_id)}>

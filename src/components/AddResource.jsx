@@ -9,8 +9,8 @@ const AddResource = () => {
   const [resourceURL, setResourceURL] = useState("");
   const [resourceContent, setResourceContent] = useState("");
   const [resourceType, setResourceType] = useState("");
-  const [uploadVideo, setUploadVideo] = useState("");
-  const [uploadPodcast, setUploadPodcast] = useState("");
+  const [videoUpload, setVideoUpload] = useState("");
+  const [podcastUpload, setPodcastUpload] = useState("");
   const { user } = useContext(AuthContext);
 
   const navigate = useNavigate();
@@ -39,8 +39,8 @@ const AddResource = () => {
       resourceContent,
       resourceType,
       author: user._id,
-      uploadVideo,
-      uploadPodcast,
+      videoUpload,
+      podcastUpload,
     };
 
     service
@@ -106,7 +106,7 @@ const AddResource = () => {
             <label htmlFor="">Upload Spotify Podcast URL</label>
             <input
               type="url"
-              onChange={(e) => setUploadPodcast(e.target.value)}
+              onChange={(e) => setPodcastUpload(e.target.value)}
             />
             <label htmlFor="">Description</label>
             <textarea
@@ -123,7 +123,7 @@ const AddResource = () => {
             <label htmlFor="">Upload Video URL</label>
             <input
               type="url"
-              onChange={(e) => setUploadVideo(e.target.value)}
+              onChange={(e) => setVideoUpload(e.target.value)}
             />
 
             <label htmlFor="">Description</label>
