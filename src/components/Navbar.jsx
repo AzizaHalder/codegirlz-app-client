@@ -61,7 +61,7 @@ function NavBar() {
                           id="navbarScrollingDropdown"
                           className="dropdown-menu-end"
                         >
-                          <NavDropdown.Item>
+                          <NavDropdown.Item id="nav-dropdown-item">
                             <Link to="/meetup">Browse Meetups</Link>
                           </NavDropdown.Item>
                           <NavDropdown.Item>

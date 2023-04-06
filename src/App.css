@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  font-family: "Lacquer", cursive;
+  font-family: "Lato", sans-serif;
 }
 
 .App-logo {
@@ -49,7 +51,7 @@
     width: 50%;
     max-width: 100px;
     min-width: 50px;
-    margin-left: 7%;
+    margin-left: 5%;
     float: center;
   }
 
@@ -176,14 +178,12 @@
   #nav-bar li a {
     text-decoration: none;
     display: block;
-    color: #1a6a68;
+    color: black;
     padding: 0 2% 0 2%;
   }
 
   #nav-bar ul {
     display: flex;
-    /* add for responsiv design 
-  flex-direction: column; */
     justify-content: space-between;
   }
 
@@ -233,4 +233,27 @@
     background-color: #1a6a68;
     border-color: #81b4a6;
   }
+}
+
+/* home page  */
+
+#header {
+  background-image: url("https://res.cloudinary.com/ddieot9rc/image/upload/v1680808735/code-girlz/profile_vft3rz.jpg");
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+#image-home {
+  width: 30%;
+}
+
+#image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
