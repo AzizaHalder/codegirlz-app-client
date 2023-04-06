@@ -10,6 +10,7 @@ const AddResource = () => {
   const [resourceContent, setResourceContent] = useState("");
   const [resourceType, setResourceType] = useState("");
   const [uploadVideo, setUploadVideo] = useState("");
+  const [uploadPodcast, setUploadPodcast] = useState("");
   const { user } = useContext(AuthContext);
 
   const navigate = useNavigate();
@@ -39,6 +40,7 @@ const AddResource = () => {
       resourceType,
       author: user._id,
       uploadVideo,
+      uploadPodcast,
     };
 
     service
@@ -80,9 +82,12 @@ const AddResource = () => {
 
         {resourceType === "Article" && (
           <>
+            <label htmlFor="">Upload Image</label>
+            <input type="file" onChange={(e) => handleImageUpload(e)} />
+
             <label htmlFor="">URL for Resource</label>
             <input
-              type="text"
+              type="url"
               value={resourceURL}
               onChange={(e) => setResourceURL(e.target.value)}
             />
@@ -96,8 +101,22 @@ const AddResource = () => {
             />
           </>
         )}
-
-        {resourceContent === "Podcast" && <></>}
+        {resourceType === "Podcast" && (
+          <>
+            <label htmlFor="">Upload Spotify Podcast URL</label>
+            <input
+              type="url"
+              onChange={(e) => setUploadPodcast(e.target.value)}
+            />
+            <label htmlFor="">Description</label>
+            <textarea
+              cols="30"
+              rows="3"
+              value={resourceContent}
+              onChange={(e) => setResourceContent(e.target.value)}
+            ></textarea>
+          </>
+        )}
 
         {resourceType === "Video" && (
           <>
@@ -117,8 +136,6 @@ const AddResource = () => {
           </>
         )}
 
-        <label htmlFor="">Upload Image</label>
-        <input type="file" onChange={(e) => handleImageUpload(e)} />
         <button type="submit">Upload New Resource</button>
       </form>
     </div>

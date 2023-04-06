@@ -109,7 +109,7 @@ const ResourceDetails = () => {
         </button>
 
         {resourceDetails.resourceType === "Article" && (
-          <div>
+          <>
             <h1>{resourceDetails.resourceTitle}</h1>
             <img
               src={resourceDetails.resourceImage}
@@ -118,21 +118,33 @@ const ResourceDetails = () => {
             <p>{resourceDetails.resourceContent}</p>
             <p>{resourceDetails.resourceURL}</p>
             <p>{resourceDetails.resourceType}</p>
-            <div style={{ width: "70%" }}>
-              <h6>Write a comment</h6>
-              <textarea
-                rows="4"
-                cols="50"
-                placeholder="Comment"
-                value={oneComment}
-                onChange={(e) => setOneComment(e.target.value)}
-              ></textarea>
-            </div>
-          </div>
+          </>
+        )}
+
+        {resourceDetails.resourceType === "Podcast" && (
+          <>
+            <h1>{resourceDetails.resourceTitle}</h1>
+            <img
+              src={resourceDetails.resourceImage}
+              alt={resourceDetails.resourceTitle}
+            />
+            <p>{resourceDetails.resourceContent}</p>
+            <p>{resourceDetails.uploadVideo}</p>
+            <iframe
+              loading="lazy"
+              width="560"
+              height="315"
+              src={`https://open.spotify.com/embed/episode${resourceDetails.uploadPodcast}?utm_source=generator`}
+              title="Spotify podcast"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+            <p>{resourceDetails.resourceType}</p>
+          </>
         )}
 
         {resourceDetails.resourceType === "Video" && (
-          <div>
+          <>
             <h1>{resourceDetails.resourceTitle}</h1>
             <img
               src={resourceDetails.resourceImage}
@@ -150,11 +162,11 @@ const ResourceDetails = () => {
               allowfullscreen
             ></iframe>
             <p>{resourceDetails.resourceType}</p>
-          </div>
+          </>
         )}
 
-        <div style={{ width: "70%" }}>
-          <h6>Write a comment</h6>
+        <div className="LeaveComment" style={{ width: "70%" }}>
+          <h6>Leave a comment</h6>
           <textarea
             rows="4"
             cols="50"
@@ -162,11 +174,11 @@ const ResourceDetails = () => {
             value={oneComment}
             onChange={(e) => setOneComment(e.target.value)}
           ></textarea>
-        </div>
 
-        <button style={{ marginTop: "10px" }} onClick={handleSubmitComment}>
-          Comment
-        </button>
+          <button style={{ marginTop: "10px" }} onClick={handleSubmitComment}>
+            Comment
+          </button>
+        </div>
         <section>
           {allComments.map(({ author, createdAt, comment }) => {
             return (
