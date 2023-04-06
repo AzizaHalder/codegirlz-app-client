@@ -9,6 +9,7 @@ const AddResource = () => {
   const [resourceURL, setResourceURL] = useState("");
   const [resourceContent, setResourceContent] = useState("");
   const [resourceType, setResourceType] = useState("");
+  const [uploadVideo, setUploadVideo] = useState("");
   const { user } = useContext(AuthContext);
 
   const navigate = useNavigate();
@@ -37,6 +38,7 @@ const AddResource = () => {
       resourceContent,
       resourceType,
       author: user._id,
+      uploadVideo,
     };
 
     service
@@ -79,30 +81,27 @@ const AddResource = () => {
         <input
           type="text"
           value={resourceURL}
-          onChange={(e) => console.log(e.target.value)}
+          onChange={(e) => setResourceURL(e.target.value)}
         />
 
-        {resourceType === "Video" ? (
-          <>
-            <video
-              controls
-              width={250}
-              src={"https://www.youtube.com/watch?v=zE-a5eqvlv8"}
-              type="video/youtube"
-              crossOrigin="anonymous"
-            ></video>
-          </>
-        ) : (
-          <>
-            <label htmlFor="">Description</label>
-            <textarea
-              rows="5"
-              cols="30"
-              value={resourceContent}
-              onChange={(e) => setResourceContent(e.target.value)}
-            />
-          </>
-        )}
+        <label htmlFor="">Upload Video</label>
+        <input type="url" onChange={(e) => setUploadVideo(e.target.value)} />
+        {/* <iframe
+          title="Video"
+          width="420"
+          height="315"
+          src="https://www.youtube.com/embed/tgbNymZ7vqY"
+        ></iframe> */}
+
+        <>
+          <label htmlFor="">Description</label>
+          <textarea
+            rows="5"
+            cols="30"
+            value={resourceContent}
+            onChange={(e) => setResourceContent(e.target.value)}
+          />
+        </>
 
         <label htmlFor="">Upload Image</label>
         <input type="file" onChange={(e) => handleImageUpload(e)} />
