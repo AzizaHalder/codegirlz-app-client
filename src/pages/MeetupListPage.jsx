@@ -2,8 +2,10 @@ import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookmark } from "@fortawesome/free-regular-svg-icons";
-import { faBook } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCalendarPlus,
+  faCalendar,
+} from "@fortawesome/free-regular-svg-icons";
 import SearchBar from "../components/SearchBar";
 import axios from "axios";
 import service from "../api/service";
@@ -86,17 +88,20 @@ function MeetupList() {
                 <img src={eventImage} alt={eventName} width="200" />
                 <p>{eventType}</p>
                 <p>{eventDateAndTime}</p>
-                <button onClick={() => handleSave(_id)}>
-                  {/* remove ?  */}
+                <button
+                  title="Attend / Unattend Meetup"
+                  onClick={() => handleSave(_id)}
+                >
+                  {/* remove --> ?  */}
                   {!userInfo.eventsAttended?.includes(_id) ? (
                     <FontAwesomeIcon
-                      icon={faBookmark}
+                      icon={faCalendarPlus}
                       size="lg"
                       style={{ color: "#32612d" }}
                     />
                   ) : (
                     <FontAwesomeIcon
-                      icon={faBook}
+                      icon={faCalendar}
                       size="lg"
                       style={{ color: "#32612d" }}
                     />

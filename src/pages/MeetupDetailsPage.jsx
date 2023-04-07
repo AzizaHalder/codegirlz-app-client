@@ -2,8 +2,10 @@ import { useParams, Link } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookmark } from "@fortawesome/free-regular-svg-icons";
-import { faBook } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCalendar,
+  faCalendarPlus,
+} from "@fortawesome/free-regular-svg-icons";
 import axios from "axios";
 
 function MeetupDetails() {
@@ -63,7 +65,7 @@ function MeetupDetails() {
         >
           {attendMeetup === true && (
             <FontAwesomeIcon
-              icon={faBook}
+              icon={faCalendar}
               size="lg"
               style={{ color: "#32612d" }}
             />
@@ -71,7 +73,7 @@ function MeetupDetails() {
 
           {attendMeetup === false && (
             <FontAwesomeIcon
-              icon={faBookmark}
+              icon={faCalendarPlus}
               size="lg"
               style={{ color: "#32612d" }}
             />
