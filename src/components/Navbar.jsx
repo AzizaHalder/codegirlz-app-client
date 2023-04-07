@@ -10,7 +10,6 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import { faLaptopFile } from "@fortawesome/free-solid-svg-icons";
-import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 

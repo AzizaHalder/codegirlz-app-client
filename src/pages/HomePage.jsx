@@ -1,9 +1,17 @@
 import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
 import ListGroup from 'react-bootstrap/ListGroup';
+import Button from 'react-bootstrap/Button';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+
+
+
+
 
 
 function HomePage() {
+
 
     return (
         <div>
@@ -76,19 +84,59 @@ function HomePage() {
                 <Card id="footer-card">
                     <Card.Header>GirlCoderz</Card.Header>
                     <ListGroup variant="flush">
-                        <ListGroup.Item>Sign Up</ListGroup.Item>
-                        <ListGroup.Item>Meetup</ListGroup.Item>
-                        <ListGroup.Item>Learn</ListGroup.Item>
+                        <Link to="/auth/signup"><ListGroup.Item>Sign Up</ListGroup.Item></Link>
+                        <Link to="/meetup"><ListGroup.Item>Meetup</ListGroup.Item></Link>
+                        <Link to="/resource"><ListGroup.Item>Learn</ListGroup.Item></Link>
                     </ListGroup>
                 </Card>
                 <Card id="footer-card">
                     <Card.Header>Recruiters</Card.Header>
                     <ListGroup variant="flush">
-                        <ListGroup.Item>Register</ListGroup.Item>
+                        <Link to="/auth/signup"><ListGroup.Item>Register</ListGroup.Item></Link>
                         <ListGroup.Item>Hire GirlCoderz</ListGroup.Item>
                         <ListGroup.Item>GirlCoderz Circles</ListGroup.Item>
                     </ListGroup>
                 </Card>
+                <Card style={{ width: '18rem' }} id="footer-contact-us">
+                    <Card.Body>
+                        <Card.Title>Created by</Card.Title>
+                        <div>
+                            <Card.Text>Aziza Halder
+                                <Link to="https://github.com/AzizaHalder">
+                                    <Card.Img id="github-logo" src="https://res.cloudinary.com/ddieot9rc/image/upload/v1680853437/code-girlz/github-mark_pus5z3.png" />
+                                </Link>
+
+                                <Link to="https://github.com/ozzleme">
+                                    <FontAwesomeIcon
+                                        icon={faEnvelope}
+                                        size="2xl"
+                                        style={{ color: "#1A6A68" }}
+                                        id="email-image"
+                                    />
+                                </Link>
+                            </Card.Text>
+                        </div>
+                        <div>
+                            <Card.Text>Nicole Bell
+                                <Link to="https://github.com/ozzleme" >
+                                    <Card.Img id="github-logo" src="https://res.cloudinary.com/ddieot9rc/image/upload/v1680853437/code-girlz/github-mark_pus5z3.png" />
+                                </Link>
+                                <Link to="https://github.com/ozzleme"  >
+                                    <FontAwesomeIcon
+                                        icon={faEnvelope}
+                                        size="2xl"
+                                        style={{ color: "#1A6A68" }}
+                                        id="email-image"
+                                    />
+                                </Link>
+                            </Card.Text>
+                        </div>
+                    </Card.Body>
+                </Card>
+
+            </div>
+            <div id="copyright-footer">
+                <p>© Copyright 2023 All Rights Reserved</p>
             </div>
         </div>
     )
