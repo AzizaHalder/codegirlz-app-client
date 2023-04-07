@@ -250,19 +250,21 @@
   color: #1a6a68;
 }
 
-#image-home {
-  width: 30%;
-}
-
-#logo-image {
-  width: 30%;
-}
-
 #image-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100vw;
   color: #1a6a68;
+}
+
+#card-container {
+  border: none;
+  padding: 6%;
+}
+
+#header-card-image {
+  border-radius: 0px;
 }
 
 #home-gallery {
@@ -273,8 +275,7 @@
   align-items: center;
 }
 
-#card-image,
-#card {
+#card-image {
   border-radius: 0px;
   width: 20rem;
   height: 14rem;
@@ -290,7 +291,6 @@
 #footer-card {
   width: 31rem;
   border-radius: 0px;
-  height: 11rem;
   color: #1a6a68;
 }
 
@@ -301,8 +301,8 @@
 
 #footer-contact-us {
   border-radius: 0px;
+  border: none;
   width: 15rem;
-  height: 11rem;
 }
 
 #copyright-footer {

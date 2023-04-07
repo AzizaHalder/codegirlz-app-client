@@ -26,18 +26,24 @@ function HomePage() {
                 </Card.ImgOverlay>
             </Card>
             <div id="image-container">
-                <img src="https://res.cloudinary.com/ddieot9rc/image/upload/v1680808126/code-girlz/meetup3_zlitwj.jpg" alt="meetupImg2" id="image-home" />
-                <div>
-                    <h2>Meetups</h2>
-                    <h3>meet with coderz in your area or online</h3>
-                </div>
-            </div>
-            <div id="image-container">
-                <div>
-                    <h2>Resources</h2>
-                    <h3>read, listen or watch to learn more about web development </h3>
-                </div>
-                <img src="https://res.cloudinary.com/ddieot9rc/image/upload/v1680810179/code-girlz/resources_vmpwhx.jpg" alt="meetupImg2" id="image-home" />
+                <Card style={{ width: '40%' }} id="card-container">
+                    <Card.Body>
+                        <Card.Title><h2>Meetups</h2></Card.Title>
+                        <Card.Text>
+                            <h3>meet with coderz in your area or online</h3>
+                        </Card.Text>
+                    </Card.Body>
+                    <Card.Img variant="top" src="https://res.cloudinary.com/ddieot9rc/image/upload/v1680808126/code-girlz/meetup3_zlitwj.jpg" id="header-card-image" />
+                </Card>
+                <Card style={{ width: '40%' }} id="card-container">
+                    <Card.Img variant="top" src="https://res.cloudinary.com/ddieot9rc/image/upload/v1680810179/code-girlz/resources_vmpwhx.jpg" id="header-card-image" />
+                    <Card.Body>
+                        <Card.Title><h2>Resources</h2></Card.Title>
+                        <Card.Text>
+                            <h3>read, listen or watch to learn more about web development </h3>
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
             </div>
             <div id="home-gallery">
                 <Card style={{ width: '20rem' }} id="card">
@@ -84,21 +90,12 @@ function HomePage() {
             <div id="footer">
                 <Card id="footer-card">
                     <Card.Header>GirlCoderz</Card.Header>
-                    <ListGroup variant="flush">
+                    <ListGroup id="list-group" >
                         <Link to="/auth/signup"><ListGroup.Item>Sign Up</ListGroup.Item></Link>
                         <Link to="/meetup"><ListGroup.Item>Meetup</ListGroup.Item></Link>
                         <Link to="/resource"><ListGroup.Item>Learn</ListGroup.Item></Link>
                     </ListGroup>
-                </Card>
-                <Card id="footer-card">
-                    <Card.Header>Recruiters</Card.Header>
-                    <ListGroup variant="flush">
-                        <Link to="/auth/signup"><ListGroup.Item>Register</ListGroup.Item></Link>
-                        <ListGroup.Item>Hire GirlCoderz</ListGroup.Item>
-                        <ListGroup.Item>GirlCoderz Circles</ListGroup.Item>
-                    </ListGroup>
-                </Card>
-                <Card style={{ width: '18rem' }} id="footer-contact-us">
+                </Card><Card style={{ width: '18rem' }} id="footer-contact-us">
                     <Card.Body>
                         <Card.Title>Created by</Card.Title>
                         <div>
@@ -134,6 +131,15 @@ function HomePage() {
                         </div>
                     </Card.Body>
                 </Card>
+                <Card id="footer-card">
+                    <Card.Header>Recruiters</Card.Header>
+                    <ListGroup id="list-group">
+                        <Link to="/auth/signup"><ListGroup.Item>Register</ListGroup.Item></Link>
+                        <ListGroup.Item>Hire GirlCoderz</ListGroup.Item>
+                        <ListGroup.Item>GirlCoderz Circles</ListGroup.Item>
+                    </ListGroup>
+                </Card>
+
 
             </div>
             <div id="copyright-footer">
