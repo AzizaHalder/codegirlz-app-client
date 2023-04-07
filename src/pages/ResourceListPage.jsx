@@ -136,7 +136,7 @@ function ResourceList() {
                 {/* remove question mark once code finalised */}
                 <p>{author?.name}</p>
                 <button
-                  title="Save / Unsave Resource"
+                  title="save / unsave resource"
                   onClick={() => handleSave(_id)}
                 >
                   {!userInfo.myResource?.includes(_id) ? (
