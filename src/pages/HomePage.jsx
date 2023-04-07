@@ -18,19 +18,21 @@ function HomePage() {
             <Card id="title-card">
                 <Card.Img id="title-card-image" src="https://res.cloudinary.com/ddieot9rc/image/upload/v1680857251/code-girlz/profile_tlpyz2.jpg" alt="Card image" />
                 <Card.ImgOverlay id="card-image-overlay">
-                    <Card.Text>
-                        <h1>CodeGirlz</h1>
-                        <h2>connecting female identifying coders</h2>
-                        <h3>in person and online</h3>
-                    </Card.Text>
+                    <div style={{ width: '50%' }}>
+                        <Card.Title id="card-title-codegirlz">CodeGirlz</Card.Title>
+                        <Card.Text id="card-text-codegirlz">
+                            connecting female identifying coders <br></br>
+                            in person and online
+                        </Card.Text>
+                    </div>
                 </Card.ImgOverlay>
             </Card>
             <div id="image-container">
                 <Card style={{ width: '40%' }} id="card-container">
                     <Card.Body>
-                        <Card.Title><h2>Meetups</h2></Card.Title>
+                        <Card.Title>Meetups</Card.Title>
                         <Card.Text>
-                            <h3>meet with coderz in your area or online</h3>
+                            meet with coderz in your area or online
                         </Card.Text>
                     </Card.Body>
                     <Card.Img variant="top" src="https://res.cloudinary.com/ddieot9rc/image/upload/v1680808126/code-girlz/meetup3_zlitwj.jpg" id="header-card-image" />
@@ -38,9 +40,9 @@ function HomePage() {
                 <Card style={{ width: '40%' }} id="card-container">
                     <Card.Img variant="top" src="https://res.cloudinary.com/ddieot9rc/image/upload/v1680810179/code-girlz/resources_vmpwhx.jpg" id="header-card-image" />
                     <Card.Body>
-                        <Card.Title><h2>Resources</h2></Card.Title>
+                        <Card.Title >Resources</Card.Title>
                         <Card.Text>
-                            <h3>read, listen or watch to learn more about web development </h3>
+                            read, listen or watch to learn more about web development
                         </Card.Text>
                     </Card.Body>
                 </Card>

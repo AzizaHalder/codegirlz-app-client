@@ -235,7 +235,7 @@
   }
 }
 
-/* home page  */
+/* home page responsive with bootstrap  */
 
 #title-card,
 #title-card-image {
@@ -265,6 +265,14 @@
 
 #header-card-image {
   border-radius: 0px;
+}
+
+#card-title-codegirlz {
+  font-size: 320%;
+}
+
+#card-text-codegirlz {
+  font-size: 100%;
 }
 
 #home-gallery {
