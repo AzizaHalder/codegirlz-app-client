@@ -257,3 +257,30 @@
   justify-content: center;
   align-items: center;
 }
+
+#home-gallery {
+  display: flex;
+  width: 100vw;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+#card-image,
+#card {
+  border-radius: 0px;
+  width: 20rem;
+  height: 14rem;
+}
+
+#footer {
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+}
+
+#footer-card {
+  width: 30rem;
+  border-radius: 0px;
+}
