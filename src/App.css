@@ -237,19 +237,24 @@
 
 /* home page  */
 
-#header {
-  background-image: url("https://res.cloudinary.com/ddieot9rc/image/upload/v1680808735/code-girlz/profile_vft3rz.jpg");
-  height: 100vh;
-  background-repeat: no-repeat;
-  background-size: cover;
+#title-card,
+#title-card-image {
+  border-radius: 0px;
+}
+
+#card-image-overlay {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
+  align-items: center;
+  justify-content: flex-end;
+
   color: #1a6a68;
 }
 
 #image-home {
+  width: 30%;
+}
+
+#logo-image {
   width: 30%;
 }
 

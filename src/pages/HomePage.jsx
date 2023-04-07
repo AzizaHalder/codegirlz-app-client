@@ -15,15 +15,16 @@ function HomePage() {
 
     return (
         <div>
-            <div id="header">
-                <div id="header-title">
-                    <h1>CodeGirlz</h1>
-                </div>
-                <div id="header-text">
-                    <h2>connecting female identifying coders</h2>
-                    <h3>in person and online</h3>
-                </div>
-            </div>
+            <Card id="title-card">
+                <Card.Img id="title-card-image" src="https://res.cloudinary.com/ddieot9rc/image/upload/v1680857251/code-girlz/profile_tlpyz2.jpg" alt="Card image" />
+                <Card.ImgOverlay id="card-image-overlay">
+                    <Card.Text>
+                        <h1>CodeGirlz</h1>
+                        <h2>connecting female identifying coders</h2>
+                        <h3>in person and online</h3>
+                    </Card.Text>
+                </Card.ImgOverlay>
+            </Card>
             <div id="image-container">
                 <img src="https://res.cloudinary.com/ddieot9rc/image/upload/v1680808126/code-girlz/meetup3_zlitwj.jpg" alt="meetupImg2" id="image-home" />
                 <div>
