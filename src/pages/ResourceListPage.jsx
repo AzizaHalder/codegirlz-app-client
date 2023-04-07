@@ -2,8 +2,8 @@ import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookmark } from "@fortawesome/free-regular-svg-icons";
-import { faBook } from "@fortawesome/free-solid-svg-icons";
+import { faBookmark } from "@fortawesome/free-solid-svg-icons";
+import { faFileCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import SearchBar from "../components/SearchBar";
 import axios from "axios";
 import service from "../api/service";
@@ -135,16 +135,19 @@ function ResourceList() {
                 )}
                 {/* remove question mark once code finalised */}
                 <p>{author?.name}</p>
-                <button onClick={() => handleSave(_id)}>
+                <button
+                  title="Save / Unsave Resource"
+                  onClick={() => handleSave(_id)}
+                >
                   {!userInfo.myResource?.includes(_id) ? (
                     <FontAwesomeIcon
-                      icon={faBookmark}
+                      icon={faFileCirclePlus}
                       size="lg"
                       style={{ color: "#32612d" }}
                     />
                   ) : (
                     <FontAwesomeIcon
-                      icon={faBook}
+                      icon={faBookmark}
                       size="lg"
                       style={{ color: "#32612d" }}
                     />
