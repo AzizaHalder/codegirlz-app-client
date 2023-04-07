@@ -9,6 +9,8 @@ const AddResource = () => {
   const [resourceURL, setResourceURL] = useState("");
   const [resourceContent, setResourceContent] = useState("");
   const [resourceType, setResourceType] = useState("");
+  const [videoUpload, setVideoUpload] = useState("");
+  const [podcastUpload, setPodcastUpload] = useState("");
   const { user } = useContext(AuthContext);
 
   const navigate = useNavigate();
@@ -37,6 +39,8 @@ const AddResource = () => {
       resourceContent,
       resourceType,
       author: user._id,
+      videoUpload,
+      podcastUpload,
     };
 
     service
@@ -63,7 +67,6 @@ const AddResource = () => {
           value={resourceTitle}
           onChange={(e) => setResourceTitle(e.target.value)}
         />
-
         <label htmlFor="">Type of Resource</label>
         <select
           value={resourceType}
@@ -77,23 +80,61 @@ const AddResource = () => {
           <option value="Video">Video</option>
         </select>
 
-        <label htmlFor="">URL for Resource</label>
-        <input
-          type="text"
-          value={resourceURL}
-          onChange={(e) => setResourceURL(e.target.value)}
-        />
+        {resourceType === "Article" && (
+          <>
+            <label htmlFor="">Upload Image</label>
+            <input type="file" onChange={(e) => handleImageUpload(e)} />
 
-        <label htmlFor="">Description</label>
-        <textarea
-          rows="5"
-          cols="30"
-          value={resourceContent}
-          onChange={(e) => setResourceContent(e.target.value)}
-        />
+            <label htmlFor="">URL for Resource</label>
+            <input
+              type="url"
+              value={resourceURL}
+              onChange={(e) => setResourceURL(e.target.value)}
+            />
 
-        <label htmlFor="">Upload Image</label>
-        <input type="file" onChange={(e) => handleImageUpload(e)} />
+            <label htmlFor="">Article Content</label>
+            <textarea
+              rows="10"
+              cols="30"
+              value={resourceContent}
+              onChange={(e) => setResourceContent(e.target.value)}
+            />
+          </>
+        )}
+        {resourceType === "Podcast" && (
+          <>
+            <label htmlFor="">Upload Spotify Podcast URL</label>
+            <input
+              type="url"
+              onChange={(e) => setPodcastUpload(e.target.value)}
+            />
+            <label htmlFor="">Description</label>
+            <textarea
+              cols="30"
+              rows="3"
+              value={resourceContent}
+              onChange={(e) => setResourceContent(e.target.value)}
+            ></textarea>
+          </>
+        )}
+
+        {resourceType === "Video" && (
+          <>
+            <label htmlFor="">Upload Video URL</label>
+            <input
+              type="url"
+              onChange={(e) => setVideoUpload(e.target.value)}
+            />
+
+            <label htmlFor="">Description</label>
+            <textarea
+              rows="3"
+              cols="30"
+              value={resourceContent}
+              onChange={(e) => setResourceContent(e.target.value)}
+            />
+          </>
+        )}
 
         <button type="submit">Upload New Resource</button>
       </form>

@@ -11,7 +11,8 @@ const EditResource = () => {
   const [resourceURL, setResourceURL] = useState("");
   const [resourceContent, setResourceContent] = useState("");
   const [resourceType, setResourceType] = useState("");
-  //   author & comments?
+  const [podcastUpload, setPodcastUpload] = useState("");
+  const [videoUpload, setVideoUpload] = useState("");
 
   const { resourceId } = useParams();
   const navigate = useNavigate("");
@@ -31,6 +32,8 @@ const EditResource = () => {
         setResourceType(details.resourceType);
         setResourceURL(details.resourceURL);
         setResourceContent(details.resourceContent);
+        setPodcastUpload(details.podcastUpload);
+        setVideoUpload(details.videoUpload);
       })
       .catch((err) => console.log("Error while retrieving resource:", err));
   }, [resourceId]);
@@ -59,7 +62,8 @@ const EditResource = () => {
       resourceURL,
       resourceContent,
       resourceType,
-      //   author,
+      podcastUpload,
+      videoUpload,
     };
 
     axios
@@ -72,6 +76,8 @@ const EditResource = () => {
         setResourceType("");
         setResourceURL("");
         setResourceContent("");
+        setPodcastUpload("");
+        setVideoUpload("");
         navigate("/resource");
       })
       .catch((err) => console.log("Error while updating resource:", err));
@@ -114,23 +120,65 @@ const EditResource = () => {
           <option value="Video">Video</option>
         </select>
 
-        <label htmlFor="">URL for Resource</label>
-        <input
-          type="text"
-          value={resourceURL}
-          onChange={(e) => setResourceURL(e.target.value)}
-        />
+        {resourceType === "Article" && (
+          <>
+            <label htmlFor="">Update Image</label>
+            <input type="file" onChange={(e) => handleImageUpload(e)} />
 
-        <label htmlFor="">Description</label>
-        <textarea
-          rows="5"
-          cols="30"
-          value={resourceContent}
-          onChange={(e) => setResourceContent(e.target.value)}
-        />
+            <label htmlFor="">URL for Resource</label>
+            <input
+              type="url"
+              value={resourceURL}
+              onChange={(e) => setResourceURL(e.target.value)}
+            />
 
-        <label htmlFor="">Upload Image</label>
-        <input type="file" onChange={(e) => handleImageUpload(e)} />
+            <label htmlFor="">Article Content</label>
+            <textarea
+              placeholder="Add your article"
+              rows="10"
+              cols="30"
+              value={resourceContent}
+              onChange={(e) => setResourceContent(e.target.value)}
+            />
+          </>
+        )}
+
+        {resourceType === "Podcast" && (
+          <>
+            <label htmlFor="">Upload Spotify Podcast URL</label>
+            <input
+              type="url"
+              value={`https://open.spotify.com/embed/episode${podcastUpload}?utm_source=generator`}
+              onChange={(e) => setPodcastUpload(e.target.value)}
+            />
+            <label htmlFor="">Description</label>
+            <textarea
+              cols="30"
+              rows="3"
+              value={resourceContent}
+              onChange={(e) => setResourceContent(e.target.value)}
+            ></textarea>
+          </>
+        )}
+
+        {resourceType === "Video" && (
+          <>
+            <label htmlFor="">Upload Video URL</label>
+            <input
+              type="url"
+              value={`https://www.youtube.com/embed/${videoUpload}`}
+              onChange={(e) => setVideoUpload(e.target.value)}
+            />
+
+            <label htmlFor="">Description</label>
+            <textarea
+              rows="3"
+              cols="30"
+              value={resourceContent}
+              onChange={(e) => setResourceContent(e.target.value)}
+            />
+          </>
+        )}
 
         <button type="submit">Submit Changes</button>
         <button onClick={handleDelete}>Delete Resource</button>

@@ -25,7 +25,10 @@ const ResourceDetails = () => {
       .get(`${API_URL}/resource/${resourceId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
-      .then((res) => setResourceDetails(res.data))
+      .then((res) => {
+        setResourceDetails(res.data);
+        console.log(res.data);
+      })
       .catch((err) =>
         console.log("Error while retrieving resource details:", err)
       );
@@ -87,7 +90,6 @@ const ResourceDetails = () => {
         <Link to={`/resource/edit/${resourceId}`}>
           <button>Edit {resourceDetails.resourceType}</button>
         </Link>
-
         <button value={saved} onClick={() => handleSave(resourceDetails._id)}>
           {saved === true && (
             <FontAwesomeIcon
@@ -106,16 +108,56 @@ const ResourceDetails = () => {
           )}
         </button>
 
-        <h1>{resourceDetails.resourceTitle}</h1>
-        <img
-          src={resourceDetails.resourceImage}
-          alt={resourceDetails.resourceTitle}
-        />
-        <p>{resourceDetails.resourceContent}</p>
-        <p>{resourceDetails.resourceURL}</p>
-        <p>{resourceDetails.resourceType}</p>
-        <div style={{ width: "70%" }}>
-          <h6>Write a comment</h6>
+        {resourceDetails.resourceType === "Article" && (
+          <>
+            <h1>{resourceDetails.resourceTitle}</h1>
+            <img
+              src={resourceDetails.resourceImage}
+              alt={resourceDetails.resourceTitle}
+            />
+            <p>{resourceDetails.resourceContent}</p>
+            <p>{resourceDetails.resourceURL}</p>
+            <p>{resourceDetails.resourceType}</p>
+          </>
+        )}
+
+        {resourceDetails.resourceType === "Podcast" && (
+          <>
+            <h1>{resourceDetails.resourceTitle}</h1>
+            <iframe
+              loading="lazy"
+              width="560"
+              height="315"
+              src={`https://open.spotify.com/embed/episode${resourceDetails.podcastUpload}?utm_source=generator`}
+              title="Spotify podcast"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+            <p>{resourceDetails.resourceContent}</p>
+            <p>{resourceDetails.resourceType}</p>
+          </>
+        )}
+
+        {resourceDetails.resourceType === "Video" && (
+          <>
+            <h1>{resourceDetails.resourceTitle}</h1>
+            <p>{resourceDetails.videoUpload}</p>
+            <iframe
+              width="560"
+              height="315"
+              src={`https://www.youtube.com/embed/${resourceDetails.videoUpload}`}
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+            <p>{resourceDetails.resourceContent}</p>
+            <p>{resourceDetails.resourceType}</p>
+          </>
+        )}
+
+        <div className="LeaveComment" style={{ width: "70%" }}>
+          <h6>Leave a comment</h6>
           <textarea
             rows="4"
             cols="50"
@@ -123,6 +165,7 @@ const ResourceDetails = () => {
             value={oneComment}
             onChange={(e) => setOneComment(e.target.value)}
           ></textarea>
+
           <button style={{ marginTop: "10px" }} onClick={handleSubmitComment}>
             Comment
           </button>
