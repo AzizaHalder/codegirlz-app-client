@@ -6,6 +6,7 @@ import {
   faCalendarPlus,
   faCalendar,
 } from "@fortawesome/free-regular-svg-icons";
+import Button from "react-bootstrap/Button";
 import SearchBar from "../components/SearchBar";
 import axios from "axios";
 import service from "../api/service";
@@ -16,7 +17,7 @@ function MeetupList() {
   // Attend a meetup
   const [userInfo, setUserInfo] = useState(false);
 
-  const { user } = useContext(AuthContext);
+  const { user, isLoggedIn } = useContext(AuthContext);
 
   const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
@@ -26,7 +27,6 @@ function MeetupList() {
       .then((result) => {
         setMeetupList(result);
         setSearchResults(result);
-        console.log(result);
         return service.getUserInfo();
       })
       .then((user) => setUserInfo(user))
@@ -59,8 +59,8 @@ function MeetupList() {
         { user },
         {
           headers: { Authorization: `Bearer ${storedToken}` },
-        },
-        console.log(`${API_URL}/auth/${meetupId}/attend`)
+        }
+        // console.log(`${API_URL}/auth/${meetupId}/attend`)
       )
       .then((res) => setUserInfo(res.data))
       .catch((err) => console.log("Error while trying to attend meetup", err));
@@ -88,25 +88,27 @@ function MeetupList() {
                 <img src={eventImage} alt={eventName} width="200" />
                 <p>{eventType}</p>
                 <p>{eventDateAndTime}</p>
-                <button
-                  title="Attend / Unattend Meetup"
-                  onClick={() => handleSave(_id)}
-                >
-                  {/* remove --> ?  */}
-                  {!userInfo.eventsAttended?.includes(_id) ? (
-                    <FontAwesomeIcon
-                      icon={faCalendarPlus}
-                      size="lg"
-                      style={{ color: "#32612d" }}
-                    />
-                  ) : (
-                    <FontAwesomeIcon
-                      icon={faCalendar}
-                      size="lg"
-                      style={{ color: "#32612d" }}
-                    />
-                  )}
-                </button>
+                {isLoggedIn && (
+                  <Button
+                    title="Attend / Unattend Meetup"
+                    onClick={() => handleSave(_id)}
+                  >
+                    {/* remove --> ?  */}
+                    {!userInfo.eventsAttended?.includes(_id) ? (
+                      <FontAwesomeIcon
+                        icon={faCalendarPlus}
+                        size="lg"
+                        style={{ color: "#32612d" }}
+                      />
+                    ) : (
+                      <FontAwesomeIcon
+                        icon={faCalendar}
+                        size="lg"
+                        style={{ color: "#32612d" }}
+                      />
+                    )}
+                  </Button>
+                )}
                 <Link to={`/meetup/${_id}`}>
                   <button>See More Details</button>
                 </Link>

@@ -4,6 +4,7 @@ import { AuthContext } from "../context/auth.context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 import { faFileCirclePlus } from "@fortawesome/free-solid-svg-icons";
+import Button from "react-bootstrap/Button";
 import SearchBar from "../components/SearchBar";
 import axios from "axios";
 import service from "../api/service";
@@ -16,7 +17,7 @@ function ResourceList() {
 
   const [userInfo, setUserInfo] = useState(false);
 
-  const { user } = useContext(AuthContext);
+  const { user, isLoggedIn } = useContext(AuthContext);
 
   const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
@@ -133,24 +134,27 @@ function ResourceList() {
                 )}
                 {/* remove question mark once code finalised */}
                 <p>{author?.name}</p>
-                <button
-                  title="save / unsave resource"
-                  onClick={() => handleSave(_id)}
-                >
-                  {!userInfo.myResource?.includes(_id) ? (
-                    <FontAwesomeIcon
-                      icon={faFileCirclePlus}
-                      size="lg"
-                      style={{ color: "#32612d" }}
-                    />
-                  ) : (
-                    <FontAwesomeIcon
-                      icon={faBookmark}
-                      size="lg"
-                      style={{ color: "#32612d" }}
-                    />
-                  )}
-                </button>
+
+                {isLoggedIn && (
+                  <Button
+                    title="save / unsave resource"
+                    onClick={() => handleSave(_id)}
+                  >
+                    {!userInfo.myResource?.includes(_id) ? (
+                      <FontAwesomeIcon
+                        icon={faFileCirclePlus}
+                        size="lg"
+                        style={{ color: "#32612d" }}
+                      />
+                    ) : (
+                      <FontAwesomeIcon
+                        icon={faBookmark}
+                        size="lg"
+                        style={{ color: "#32612d" }}
+                      />
+                    )}
+                  </Button>
+                )}
 
                 <Link to={`/resource/${_id}`}>
                   <button>Read More</button>
