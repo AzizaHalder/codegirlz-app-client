@@ -1,20 +1,19 @@
 import { useState, useRef, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import service from "../api/service";
 import countries from "../countries.json";
 
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
 const EditProfile = () => {
+
+    const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
+
     const countryKeys = Object.keys(countries);
 
     // list of arrays of cities
     const cityArrayList = Object.values(countries);
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const [name, setName] = useState("");
     const [currentLocation, setCurrentLocation] = useState("");
     const [city, setCity] = useState("");
@@ -28,8 +27,6 @@ const EditProfile = () => {
     const { profileId } = useParams();
     const navigate = useNavigate("");
 
-    const handleEmail = (e) => setEmail(e.target.value);
-    const handlePassword = (e) => setPassword(e.target.value);
     const handleName = (e) => setName(e.target.value);
     const handleCity = (e) => setCity(e.target.value);
     const handleLevel = (e) => setLevel(e.target.value);
@@ -62,13 +59,12 @@ const EditProfile = () => {
         const storedToken = localStorage.getItem("authToken");
 
         axios
-            .get(`${API_URL}/profile/edit/${profileId}`, {
+            .get(`${API_URL}/profile/${profileId}`, {
                 headers: { Authorization: `Bearer ${storedToken}` },
             })
             .then((res) => {
                 const profile = res.data;
-                setEmail(profile.email);
-                setPassword(profile.password)
+                console.log(res.data);
                 setName(profile.name);
                 setCurrentLocation(profile.currentLocation);
                 setCity(profile.city);
@@ -81,14 +77,14 @@ const EditProfile = () => {
     }, [profileId]);
 
 
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
         const storedToken = localStorage.getItem("authToken");
         const updatedProfile = {
-            email,
             name,
-            password,
             currentLocation,
             city,
             level,
@@ -102,8 +98,6 @@ const EditProfile = () => {
                 headers: { Authorization: `Bearer ${storedToken}` },
             })
             .then(() => {
-                setEmail("");
-                setPassword("");
                 setName("");
                 setCurrentLocation("");
                 setCity("");
@@ -111,7 +105,7 @@ const EditProfile = () => {
                 setLinkedin("");
                 setGithub("");
                 setNewOpp(false);
-                navigate("/:profileId");
+                navigate(`/profile/${profileId}`);
             })
             .catch((err) => console.log("Error while updating user profile:", err));
     };
@@ -124,7 +118,7 @@ const EditProfile = () => {
             })
             .then(() => {
                 alert("Your profile has been successfully deleted! ");
-                navigate("/");
+                navigate(`${API_URL}/auth/signup`);
             })
             .catch((err) => console.log("Error while deleting profile: ", err));
     };
@@ -137,24 +131,9 @@ const EditProfile = () => {
                 <fieldset>
                     <legend>Personal Details</legend>
 
-                    <label>Name:</label>
-                    <input type="text" name="name" value={name} />
+                    <label htmlFor="">Name:</label>
+                    <input type="text" name="name" value={name} onChange={handleName} />
 
-                    <label>Email:</label>
-                    <input
-                        type="email"
-                        name="email"
-                        value={email}
-                        onChange={handleEmail}
-                    />
-
-                    <label>Password:</label>
-                    <input
-                        type="password"
-                        name="password"
-                        value={password}
-                        onChange={handlePassword}
-                    />
 
                     <select value={countryIndex} onChange={handleCountryIndex}>
                         <option value="0">Select Country </option>
@@ -170,7 +149,7 @@ const EditProfile = () => {
                     </select>
                 </fieldset>
                 <div>
-                    <label>Enter address :</label>
+                    <label htmlFor="">Enter address :</label>
                     <input ref={inputRef} value={address} name="currentLocation" type="text" />
                 </div>
 
@@ -178,14 +157,14 @@ const EditProfile = () => {
 
                 <fieldset>
                     <legend>Social Media</legend>
-                    <label>Linkedin:</label>
+                    <label htmlFor="">Linkedin:</label>
                     <input
                         type="text"
                         name="linkedin"
                         value={linkedin}
                         onChange={handleLinkedin}
                     />
-                    <label>Github:</label>
+                    <label htmlFor="">Github:</label>
                     <input
                         type="text"
                         name="github"
@@ -217,6 +196,8 @@ const EditProfile = () => {
 
                 <button type="submit">Save Changes</button>
             </form>
+
+            <button onClick={handleDelete}>Delete</button>
 
             {errorMessage && <p className="error-message">{errorMessage}</p>}
 
