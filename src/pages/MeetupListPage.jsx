@@ -6,6 +6,7 @@ import {
   faCalendarPlus,
   faCalendar,
 } from "@fortawesome/free-regular-svg-icons";
+import Button from "react-bootstrap/Button";
 import SearchBar from "../components/SearchBar";
 import axios from "axios";
 import service from "../api/service";
@@ -88,25 +89,27 @@ function MeetupList() {
                 <img src={eventImage} alt={eventName} width="200" />
                 <p>{eventType}</p>
                 <p>{eventDateAndTime}</p>
-                <button
-                  title="Attend / Unattend Meetup"
-                  onClick={() => handleSave(_id)}
-                >
-                  {/* remove --> ?  */}
-                  {!userInfo.eventsAttended?.includes(_id) ? (
-                    <FontAwesomeIcon
-                      icon={faCalendarPlus}
-                      size="lg"
-                      style={{ color: "#32612d" }}
-                    />
-                  ) : (
-                    <FontAwesomeIcon
-                      icon={faCalendar}
-                      size="lg"
-                      style={{ color: "#32612d" }}
-                    />
-                  )}
-                </button>
+                {user === true && (
+                  <Button
+                    title="Attend / Unattend Meetup"
+                    onClick={() => handleSave(_id)}
+                  >
+                    {/* remove --> ?  */}
+                    {!userInfo.eventsAttended?.includes(_id) ? (
+                      <FontAwesomeIcon
+                        icon={faCalendarPlus}
+                        size="lg"
+                        style={{ color: "#32612d" }}
+                      />
+                    ) : (
+                      <FontAwesomeIcon
+                        icon={faCalendar}
+                        size="lg"
+                        style={{ color: "#32612d" }}
+                      />
+                    )}
+                  </Button>
+                )}
                 <Link to={`/meetup/${_id}`}>
                   <button>See More Details</button>
                 </Link>
