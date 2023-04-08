@@ -17,11 +17,13 @@ import IsPrivate from "./components/IsPrivate";
 import MyResources from "./pages/MyResources";
 import AttendMeetup from "./pages/SavedMeetup";
 import Profile from "./pages/Profile";
+import EditProfile from "./pages/EditProfile";
 
 function App() {
   return (
     <div className="App">
       <NavBar />
+
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route
@@ -86,6 +88,7 @@ function App() {
         <Route path="/resource/save" element={<MyResources />} />
         <Route path="/auth/attend" element={<AttendMeetup />} />
         <Route path="/profile/:profileId" element={<Profile />} />
+        <Route path="profile/edit/:profileId" element={<EditProfile />} />
       </Routes>
     </div>
   );

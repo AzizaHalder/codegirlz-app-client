@@ -54,7 +54,7 @@ function NavBar() {
                           title={
                             <FontAwesomeIcon
                               icon={faUsers}
-                              size="2x"
+                              size="xl"
                               style={{ color: "#81B4A6" }}
                             />
                           }
@@ -77,7 +77,7 @@ function NavBar() {
                           title={
                             <FontAwesomeIcon
                               icon={faLaptopFile}
-                              size="2x"
+                              size="xl"
                               style={{ color: "#81B4A6" }}
                             />
                           }
@@ -96,7 +96,7 @@ function NavBar() {
                           <Link to="/resource/save">
                             <FontAwesomeIcon
                               icon={faBookmark}
-                              size="2x"
+                              size="xl"
                               style={{ color: "#81B4A6" }}
                             />
                           </Link>
