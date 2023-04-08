@@ -4,7 +4,7 @@ import { AuthContext } from "../context/auth.context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 import { faUsers } from "@fortawesome/free-solid-svg-icons";
-import logo from "../images/logo.png";
+import logo from "../images/logo_zoom.jpg";
 import Button from "react-bootstrap/Button";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -61,7 +61,7 @@ function NavBar() {
                           id="navbarScrollingDropdown"
                           className="dropdown-menu-end"
                         >
-                          <NavDropdown.Item>
+                          <NavDropdown.Item id="nav-dropdown-item">
                             <Link to="/meetup">Browse Meetups</Link>
                           </NavDropdown.Item>
                           <NavDropdown.Item>
@@ -106,8 +106,6 @@ function NavBar() {
                         <Button variant="outline-light" id="login-button">
                           <Nav.Item
                             onClick={logOutUser}
-                            // style={{ color: "#81B4A6" }}
-                          >
                             Logout
                           </Nav.Item>
                         </Button>

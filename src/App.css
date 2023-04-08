@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  font-family: "Lacquer", cursive;
+  font-family: "Lato", sans-serif;
 }
 
 .App-logo {
@@ -49,7 +51,7 @@
     width: 50%;
     max-width: 100px;
     min-width: 50px;
-    margin-left: 7%;
+    margin-left: 5%;
     float: center;
   }
 
@@ -176,14 +178,12 @@
   #nav-bar li a {
     text-decoration: none;
     display: block;
-    color: #1a6a68;
+    color: black;
     padding: 0 2% 0 2%;
   }
 
   #nav-bar ul {
     display: flex;
-    /* add for responsiv design 
-  flex-direction: column; */
     justify-content: space-between;
   }
 
@@ -233,4 +233,96 @@
     background-color: #1a6a68;
     border-color: #81b4a6;
   }
+}
+
+/* home page responsive with bootstrap  */
+
+#title-card,
+#title-card-image {
+  border-radius: 0px;
+}
+
+#card-image-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  color: #1a6a68;
+}
+
+#image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  color: #1a6a68;
+}
+
+#card-container {
+  border: none;
+  padding: 6%;
+}
+
+#header-card-image {
+  border-radius: 0px;
+}
+
+#card-title-codegirlz {
+  font-size: 320%;
+}
+
+#card-text-codegirlz {
+  font-size: 100%;
+}
+
+#home-gallery {
+  display: flex;
+  width: 100vw;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+#card-image {
+  border-radius: 0px;
+  width: 20rem;
+  height: 14rem;
+}
+
+#footer {
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+}
+
+#footer-card {
+  width: 31rem;
+  border-radius: 0px;
+  color: #1a6a68;
+}
+
+#github-logo,
+#email-image {
+  width: 15%;
+}
+
+#footer-contact-us {
+  border-radius: 0px;
+  border: none;
+  width: 15rem;
+}
+
+#copyright-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1a6a68;
+  height: 2.5rem;
+  color: white;
+}
+
+#footer-card a {
+  text-decoration: none;
+  color: black;
 }

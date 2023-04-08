@@ -123,7 +123,6 @@ function SignupPage() {
         <div>
           <label>Enter address :</label>
           <input ref={inputRef} value={address} type="text" />
-          {address}
         </div>
 
         <fieldset></fieldset>
