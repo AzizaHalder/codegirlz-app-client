@@ -24,6 +24,7 @@ function NavBar() {
       id="external-navbar"
     >
       {isLoggedIn && (
+        
         <>
           <Container id="nav-container-logged-in">
             <Nav
