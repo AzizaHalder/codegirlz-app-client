@@ -16,6 +16,7 @@ import IsAnon from "./components/IsAnon";
 import IsPrivate from "./components/IsPrivate";
 import MyResources from "./pages/MyResources";
 import AttendMeetup from "./pages/SavedMeetup";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -84,6 +85,7 @@ function App() {
         />
         <Route path="/resource/save" element={<MyResources />} />
         <Route path="/auth/attend" element={<AttendMeetup />} />
+        <Route path="/profile/:profileId" element={<Profile />} />
       </Routes>
     </div>
   );
