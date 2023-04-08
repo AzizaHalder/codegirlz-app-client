@@ -105,10 +105,6 @@ function NavBar() {
                       <li id="log-out-button-list">
                         <Button variant="outline-light" id="login-button">
                           <Nav.Item onClick={logOutUser}>Logout</Nav.Item>
-                          <Nav.Item
-                            onClick={logOutUser}
-                            Logout
-                          </Nav.Item>
                         </Button>
                       </li>
                     </ul>
