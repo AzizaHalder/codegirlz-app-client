@@ -55,7 +55,7 @@ function MeetupList() {
 
     axios
       .post(
-        `${API_URL}/auth/${meetupId}/attend`,
+        `${API_URL}/meetup/${meetupId}/attend`,
         { user },
         {
           headers: { Authorization: `Bearer ${storedToken}` },

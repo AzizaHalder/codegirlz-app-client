@@ -35,14 +35,16 @@ function MeetupDetails() {
   const handleSave = () => {
     const storedToken = localStorage.getItem("authToken");
 
-    axios.post(
-      `${API_URL}/auth/${meetupId}/attend`,
-      { user },
-      {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      }
-    );
-    setAttendMeetup(!attendMeetup);
+    axios
+      .post(
+        `${API_URL}/meetup/${meetupId}/attend`,
+        { user },
+        {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        }
+      )
+      .then(() => setAttendMeetup(!attendMeetup))
+      .catch((err) => console.log("Error while trying to save resource:", err));
   };
 
   if (meetupSelected) {
