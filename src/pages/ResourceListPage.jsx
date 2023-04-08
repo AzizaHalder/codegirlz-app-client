@@ -2,8 +2,8 @@ import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookmark } from "@fortawesome/free-regular-svg-icons";
-import { faBook } from "@fortawesome/free-solid-svg-icons";
+import { faBookmark } from "@fortawesome/free-solid-svg-icons";
+import { faFileCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import SearchBar from "../components/SearchBar";
 import axios from "axios";
 import service from "../api/service";
@@ -26,7 +26,6 @@ function ResourceList() {
       .then((data) => {
         setResourceList(data);
         setSearchResults(data);
-        console.log("DATA", data);
         return service.getUserInfo();
       })
       .then((user) => setUserInfo(user))
@@ -69,17 +68,16 @@ function ResourceList() {
 
     axios
       .post(
-        `${API_URL}/auth/${resourceId}/save`,
+        `${API_URL}/resource/${resourceId}/save`,
         { user },
         {
           headers: { Authorization: `Bearer ${storedToken}` },
         }
-        // console.log(`${API_URL}/auth/${resourceId}/save`)
       )
       .then((res) => setUserInfo(res.data))
       .catch((err) => console.log(err));
   };
-  // console.log(userInfo);
+
   return (
     <div className="ResourceListPage">
       <h2>Resource</h2>
@@ -129,23 +127,25 @@ function ResourceList() {
                     width="50%"
                     src={`https://www.youtube.com/embed/${videoUpload}`}
                     title="YouTube video player"
-                    frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowfullscreen
                   ></iframe>
                 )}
                 {/* remove question mark once code finalised */}
                 <p>{author?.name}</p>
-                <button onClick={() => handleSave(_id)}>
+                <button
+                  title="save / unsave resource"
+                  onClick={() => handleSave(_id)}
+                >
                   {!userInfo.myResource?.includes(_id) ? (
                     <FontAwesomeIcon
-                      icon={faBookmark}
+                      icon={faFileCirclePlus}
                       size="lg"
                       style={{ color: "#32612d" }}
                     />
                   ) : (
                     <FontAwesomeIcon
-                      icon={faBook}
+                      icon={faBookmark}
                       size="lg"
                       style={{ color: "#32612d" }}
                     />

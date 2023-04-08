@@ -82,7 +82,7 @@ function App() {
             </IsPrivate>
           }
         />
-        <Route path="/auth/save" element={<MyResources />} />
+        <Route path="/resource/save" element={<MyResources />} />
         <Route path="/auth/attend" element={<AttendMeetup />} />
       </Routes>
     </div>

@@ -93,7 +93,7 @@ function NavBar() {
                       </li>
                       <li>
                         <Nav.Item>
-                          <Link to="/auth/save">
+                          <Link to="/resource/save">
                             <FontAwesomeIcon
                               icon={faBookmark}
                               size="2x"
@@ -104,6 +104,7 @@ function NavBar() {
                       </li>
                       <li id="log-out-button-list">
                         <Button variant="outline-light" id="login-button">
+                          <Nav.Item onClick={logOutUser}>Logout</Nav.Item>
                           <Nav.Item
                             onClick={logOutUser}
                             Logout

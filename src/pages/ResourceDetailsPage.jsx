@@ -3,8 +3,8 @@ import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../context/auth.context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookmark } from "@fortawesome/free-regular-svg-icons";
-import { faBook } from "@fortawesome/free-solid-svg-icons";
+import { faBookmark } from "@fortawesome/free-solid-svg-icons";
+import { faFileCirclePlus } from "@fortawesome/free-solid-svg-icons";
 
 const ResourceDetails = () => {
   const [resourceDetails, setResourceDetails] = useState("");
@@ -75,7 +75,7 @@ const ResourceDetails = () => {
     const storedToken = localStorage.getItem("authToken");
 
     axios.post(
-      `${API_URL}/auth/${resourceId}/save`,
+      `${API_URL}/resource/${resourceId}/save`,
       { user },
       {
         headers: { Authorization: `Bearer ${storedToken}` },
@@ -90,10 +90,14 @@ const ResourceDetails = () => {
         <Link to={`/resource/edit/${resourceId}`}>
           <button>Edit {resourceDetails.resourceType}</button>
         </Link>
-        <button value={saved} onClick={() => handleSave(resourceDetails._id)}>
+        <button
+          title="save / unsave resource"
+          value={saved}
+          onClick={() => handleSave(resourceDetails._id)}
+        >
           {saved === true && (
             <FontAwesomeIcon
-              icon={faBook}
+              icon={faFileCirclePlus}
               size="lg"
               style={{ color: "#32612d" }}
             />
