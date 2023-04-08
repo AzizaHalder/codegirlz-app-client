@@ -2,6 +2,8 @@ import React from 'react';
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Card from 'react-bootstrap/Card';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 
 
@@ -29,7 +31,25 @@ function Profile() {
 
     if (profileSelected) {
         return (
-            <div>{profileSelected.name}</div>
+            <div><Card style={{ width: '30rem' }} id="profile-page">
+                <Card.Img variant="top" src="https://res.cloudinary.com/ddieot9rc/image/upload/v1680959549/code-girlz/chicken-circle-profile_llshtv.jpg" style={{ width: '15rem' }}/>
+                <Card.Body>
+                    <Card.Title>{profileSelected.name}</Card.Title>
+                    <Card.Text>
+                        Add some details about yourself. Share more information about your interests or skills for recruiters to see.
+                    </Card.Text>
+                </Card.Body>
+                <ListGroup className="list-group-flush">
+                    <ListGroup.Item>City: {profileSelected.city}</ListGroup.Item>
+                    <ListGroup.Item>Level: {profileSelected.level}</ListGroup.Item>
+                    <ListGroup.Item>Open to new opportunities?<br></br>{profileSelected.newOpp === true ? <p>Yes!</p> : <p>Not yet..</p>}</ListGroup.Item>
+                </ListGroup>
+                <Card.Body>
+                    <Card.Text>Social Links:</Card.Text>
+                    <Card.Link href="#">Add your Github Link</Card.Link>
+                    <Card.Link href="#">Add your LinkedIn page</Card.Link>
+                </Card.Body>
+            </Card></div>
         )
     }
 }
