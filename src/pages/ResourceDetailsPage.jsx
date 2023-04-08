@@ -89,9 +89,11 @@ const ResourceDetails = () => {
   if (resourceDetails) {
     return (
       <article className="ResourceDetailsPage">
-        <Link to={`/resource/edit/${resourceId}`}>
-          <button>Edit {resourceDetails.resourceType}</button>
-        </Link>
+        {user._id === resourceDetails.author && (
+          <Link to={`/resource/edit/${resourceId}`}>
+            <button>Edit {resourceDetails.resourceType}</button>
+          </Link>
+        )}
         <button
           title="save / unsave resource"
           value={saved}

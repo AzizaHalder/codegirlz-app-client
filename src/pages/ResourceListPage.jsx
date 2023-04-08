@@ -17,7 +17,7 @@ function ResourceList() {
 
   const [userInfo, setUserInfo] = useState(false);
 
-  const { user } = useContext(AuthContext);
+  const { user, isLoggedIn } = useContext(AuthContext);
 
   const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
@@ -135,7 +135,7 @@ function ResourceList() {
                 {/* remove question mark once code finalised */}
                 <p>{author?.name}</p>
 
-                {user === true && (
+                {isLoggedIn && (
                   <Button
                     title="save / unsave resource"
                     onClick={() => handleSave(_id)}
