@@ -17,7 +17,7 @@ function MeetupList() {
   // Attend a meetup
   const [userInfo, setUserInfo] = useState(false);
 
-  const { user } = useContext(AuthContext);
+  const { user, isLoggedIn } = useContext(AuthContext);
 
   const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
@@ -27,7 +27,6 @@ function MeetupList() {
       .then((result) => {
         setMeetupList(result);
         setSearchResults(result);
-        console.log(result);
         return service.getUserInfo();
       })
       .then((user) => setUserInfo(user))
@@ -60,8 +59,8 @@ function MeetupList() {
         { user },
         {
           headers: { Authorization: `Bearer ${storedToken}` },
-        },
-        console.log(`${API_URL}/auth/${meetupId}/attend`)
+        }
+        // console.log(`${API_URL}/auth/${meetupId}/attend`)
       )
       .then((res) => setUserInfo(res.data))
       .catch((err) => console.log("Error while trying to attend meetup", err));
@@ -89,7 +88,7 @@ function MeetupList() {
                 <img src={eventImage} alt={eventName} width="200" />
                 <p>{eventType}</p>
                 <p>{eventDateAndTime}</p>
-                {user === true && (
+                {isLoggedIn && (
                   <Button
                     title="Attend / Unattend Meetup"
                     onClick={() => handleSave(_id)}

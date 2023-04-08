@@ -14,6 +14,7 @@ function MeetupDetails() {
 
   const { meetupId } = useParams();
   const { user } = useContext(AuthContext);
+  console.log(user);
 
   const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
@@ -31,6 +32,8 @@ function MeetupDetails() {
         console.log("Error while retrieving meetup details:", err)
       );
   }, [meetupId]);
+
+  console.log(meetupSelected);
 
   const handleSave = () => {
     const storedToken = localStorage.getItem("authToken");
@@ -82,9 +85,11 @@ function MeetupDetails() {
           )}
         </button>
         <p>{meetupSelected.attendees}</p>
-        <Link to={`/meetup/edit/${meetupSelected._id}`}>
-          <button>Edit Meetup</button>
-        </Link>
+        {user._id === meetupSelected.author && (
+          <Link to={`/meetup/edit/${meetupSelected._id}`}>
+            <button>Edit Meetup</button>
+          </Link>
+        )}
       </div>
     );
   }
