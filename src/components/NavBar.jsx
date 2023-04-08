@@ -4,7 +4,7 @@ import { AuthContext } from "../context/auth.context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 import { faUsers } from "@fortawesome/free-solid-svg-icons";
-import logo from "../images/logo_zoom.jpg";
+import logo from "../images/logo.png";
 import Button from "react-bootstrap/Button";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -61,7 +61,7 @@ function NavBar() {
                           id="navbarScrollingDropdown"
                           className="dropdown-menu-end"
                         >
-                          <NavDropdown.Item id="nav-dropdown-item">
+                          <NavDropdown.Item>
                             <Link to="/meetup">Browse Meetups</Link>
                           </NavDropdown.Item>
                           <NavDropdown.Item>
