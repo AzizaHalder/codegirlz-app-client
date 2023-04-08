@@ -26,7 +26,6 @@ function ResourceList() {
       .then((data) => {
         setResourceList(data);
         setSearchResults(data);
-        console.log("DATA", data);
         return service.getUserInfo();
       })
       .then((user) => setUserInfo(user))
@@ -69,17 +68,16 @@ function ResourceList() {
 
     axios
       .post(
-        `${API_URL}/auth/${resourceId}/save`,
+        `${API_URL}/resource/${resourceId}/save`,
         { user },
         {
           headers: { Authorization: `Bearer ${storedToken}` },
         }
-        // console.log(`${API_URL}/auth/${resourceId}/save`)
       )
       .then((res) => setUserInfo(res.data))
       .catch((err) => console.log(err));
   };
-  // console.log(userInfo);
+
   return (
     <div className="ResourceListPage">
       <h2>Resource</h2>

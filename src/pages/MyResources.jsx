@@ -14,10 +14,13 @@ function MyResources() {
     const storedToken = localStorage.getItem("authToken");
 
     axios
-      .get(`${API_URL}/auth/save`, {
+      .get(`${API_URL}/resource/save`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
-      .then((res) => setSavedResource(res.data))
+      .then((res) => {
+        // console.log("this is the axios response", res.data.myResource);
+        setSavedResource(res.data.myResource);
+      })
       .catch((err) =>
         console.log("Error while retrieving saved resources details:", err)
       );
@@ -30,42 +33,40 @@ function MyResources() {
       <h1>SavedResources</h1>
 
       {savedResource &&
-        savedResource.map(({ myResource, _id }) => {
-          return (
-            <div key={_id}>
-              {myResource.map(
-                ({
-                  podcastUpload,
-                  _id,
-                  resourceImage,
-                  resourceTitle,
-                  resourceType,
-                  videoUpload,
-                }) => (
-                  <Link to={`/resource/${_id}`}>
-                    <>
-                      <img src={resourceImage} alt={resourceTitle} />
-                      <h3> {resourceTitle}</h3>
-                      <h3>{resourceType}</h3>
-                      {resourceType === "Article" && (
-                        <iframe
-                          title="Youtube video player"
-                          src={`https://www.youtube.com/embed/${videoUpload}`}
-                        ></iframe>
-                      )}
-                      {resourceType === "Podcast" && (
-                        <iframe
-                          title="Spotify Podcast"
-                          src={`https://open.spotify.com/embed/episode${podcastUpload}?utm_source=generator`}
-                        ></iframe>
-                      )}
-                    </>
-                  </Link>
-                )
-              )}
-            </div>
-          );
-        })}
+        savedResource.map(
+          ({
+            podcastUpload,
+            _id,
+            resourceImage,
+            resourceTitle,
+            resourceType,
+            videoUpload,
+          }) => {
+            return (
+              <div key={_id}>
+                <Link to={`/resource/${_id}`}>
+                  <>
+                    <img src={resourceImage} alt={resourceTitle} />
+                    <h3> {resourceTitle}</h3>
+                    <h3>{resourceType}</h3>
+                    {resourceType === "Article" && (
+                      <iframe
+                        title="Youtube video player"
+                        src={`https://www.youtube.com/embed/${videoUpload}`}
+                      ></iframe>
+                    )}
+                    {resourceType === "Podcast" && (
+                      <iframe
+                        title="Spotify Podcast"
+                        src={`https://open.spotify.com/embed/episode${podcastUpload}?utm_source=generator`}
+                      ></iframe>
+                    )}
+                  </>
+                </Link>
+              </div>
+            );
+          }
+        )}
     </div>
   );
 }

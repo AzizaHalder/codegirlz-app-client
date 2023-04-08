@@ -75,7 +75,7 @@ const ResourceDetails = () => {
     const storedToken = localStorage.getItem("authToken");
 
     axios.post(
-      `${API_URL}/auth/${resourceId}/save`,
+      `${API_URL}/resource/${resourceId}/save`,
       { user },
       {
         headers: { Authorization: `Bearer ${storedToken}` },
