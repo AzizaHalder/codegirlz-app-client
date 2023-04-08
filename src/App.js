@@ -83,7 +83,7 @@ function App() {
           }
         />
         <Route path="/resource/save" element={<MyResources />} />
-        <Route path="/auth/attend" element={<AttendMeetup />} />
+        <Route path="/meetup/attend" element={<AttendMeetup />} />
       </Routes>
     </div>
   );
