@@ -18,7 +18,7 @@ function ResourceList() {
 
   const { user } = useContext(AuthContext);
 
-  const API_URL = `http://localhost:5005`;
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
   useEffect(() => {
     service
@@ -26,6 +26,7 @@ function ResourceList() {
       .then((data) => {
         setResourceList(data);
         setSearchResults(data);
+        console.log("DATA", data);
         return service.getUserInfo();
       })
       .then((user) => setUserInfo(user))
@@ -78,7 +79,7 @@ function ResourceList() {
       .then((res) => setUserInfo(res.data))
       .catch((err) => console.log(err));
   };
-  console.log(userInfo);
+  // console.log(userInfo);
   return (
     <div className="ResourceListPage">
       <h2>Resource</h2>
@@ -93,12 +94,46 @@ function ResourceList() {
 
       {resourceList &&
         searchResults.map(
-          ({ _id, resourceTitle, resourceImage, resourceType, author }) => {
+          ({
+            _id,
+            resourceTitle,
+            resourceImage,
+            resourceType,
+            author,
+            podcastUpload,
+            videoUpload,
+          }) => {
             return (
               <div key={_id}>
                 <h3>{resourceTitle}</h3>
-                <img src={resourceImage} alt={resourceTitle} />
+
                 <p>{resourceType}</p>
+                {resourceType === "Article" && (
+                  <img src={resourceImage} alt={resourceTitle} />
+                )}
+
+                {resourceType === "Podcast" && (
+                  <iframe
+                    className="PodcastThumbnail"
+                    loading="lazy"
+                    width="50%"
+                    src={`https://open.spotify.com/embed/episode${podcastUpload}?utm_source=generator`}
+                    title="Spotify podcast"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                  ></iframe>
+                )}
+
+                {resourceType === "Video" && (
+                  <iframe
+                    width="50%"
+                    src={`https://www.youtube.com/embed/${videoUpload}`}
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                  ></iframe>
+                )}
                 {/* remove question mark once code finalised */}
                 <p>{author?.name}</p>
                 <button onClick={() => handleSave(_id)}>

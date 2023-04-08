@@ -10,6 +10,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import { faLaptopFile } from "@fortawesome/free-solid-svg-icons";
+import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 
@@ -24,7 +25,6 @@ function NavBar() {
       id="external-navbar"
     >
       {isLoggedIn && (
-        
         <>
           <Container id="nav-container-logged-in">
             <Nav
@@ -106,8 +106,6 @@ function NavBar() {
                         <Button variant="outline-light" id="login-button">
                           <Nav.Item
                             onClick={logOutUser}
-                          // style={{ color: "#81B4A6" }}
-                          >
                             Logout
                           </Nav.Item>
                         </Button>

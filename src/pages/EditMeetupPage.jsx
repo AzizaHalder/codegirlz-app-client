@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import service from "../api/service";
 
-const API_URL = "http://localhost:5005";
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
 function EditMeetUp() {
   const [eventName, setEventName] = useState("");
@@ -128,7 +128,7 @@ function EditMeetUp() {
             <option value="Digital">Digital</option>
             <option value="In-Person">In-Person</option>
           </select>
-          {eventType === "In-Person" &&
+          {eventType === "In-Person" && (
             <div>
               {/* Need to get data from JSON file */}
               <label htmlFor="">Country</label>
@@ -155,9 +155,9 @@ function EditMeetUp() {
                 onChange={(e) => setEventAddress(e.target.value)}
               />
             </div>
-          }
+          )}
 
-          {eventType === "Digital" &&
+          {eventType === "Digital" && (
             <div>
               <label htmlFor="">Link to Meetup</label>
               <input
@@ -167,10 +167,14 @@ function EditMeetUp() {
                 onChange={(e) => setEventLink(e.target.value)}
               />
             </div>
-          }
+          )}
 
-
-          <label htmlFor="" placeholder="Please Give a brief description of the meetup.">Description</label>
+          <label
+            htmlFor=""
+            placeholder="Please Give a brief description of the meetup."
+          >
+            Description
+          </label>
           <textarea
             rows="5"
             cols="30"

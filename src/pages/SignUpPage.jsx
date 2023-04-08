@@ -1,18 +1,16 @@
 import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import countries from '../countries.json';
+import countries from "../countries.json";
 
-
-const API_URL = "http://localhost:5005";
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
 function SignupPage() {
-
-  // the list of country names, an Array of 116 countries 
+  // the list of country names, an Array of 116 countries
   const countryKeys = Object.keys(countries);
 
   // list of arrays of cities
-  const cityArrayList = Object.values(countries)
+  const cityArrayList = Object.values(countries);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,7 +22,6 @@ function SignupPage() {
   const [errorMessage, setErrorMessage] = useState(undefined);
   const [city, setCity] = useState("");
   const [countryIndex, setCountryIndex] = useState(0);
-
 
   const navigate = useNavigate();
 
@@ -58,7 +55,6 @@ function SignupPage() {
     });
   }, []);
 
-
   const handleSignupSubmit = (e) => {
     e.preventDefault();
     const requestBody = {
@@ -73,7 +69,6 @@ function SignupPage() {
       newOpp,
     };
 
-
     axios
       .post(`${API_URL}/auth/signup`, requestBody)
       .then((response) => {
@@ -85,15 +80,11 @@ function SignupPage() {
       });
   };
 
-
-
   return (
     <div className="SignupPage">
-
       <h1>Sign Up</h1>
 
       <form onSubmit={handleSignupSubmit}>
-
         <fieldset>
           <legend>Personal Details</legend>
 
@@ -101,7 +92,12 @@ function SignupPage() {
           <input type="text" name="name" value={name} onChange={handleName} />
 
           <label>Email:</label>
-          <input type="email" name="email" value={email} onChange={handleEmail} />
+          <input
+            type="email"
+            name="email"
+            value={email}
+            onChange={handleEmail}
+          />
 
           <label>Password:</label>
           <input
@@ -113,15 +109,15 @@ function SignupPage() {
 
           <select value={countryIndex} onChange={handleCountryIndex}>
             <option value="0">Select Country </option>
-            {
-              countryKeys.map((result, index) => (<option value={index}>{result}</option>))
-            }
+            {countryKeys.map((result, index) => (
+              <option value={index}>{result}</option>
+            ))}
           </select>
           <select value={city} onChange={handleCity}>
-            <option >Select City</option>
-            {
-              cityArrayList[countryIndex].map((result) => (<option value={result}>{result}</option>))
-            }
+            <option>Select City</option>
+            {cityArrayList[countryIndex].map((result) => (
+              <option value={result}>{result}</option>
+            ))}
           </select>
         </fieldset>
         <div>
@@ -129,9 +125,7 @@ function SignupPage() {
           <input ref={inputRef} value={address} type="text" />
         </div>
 
-        <fieldset>
-
-        </fieldset>
+        <fieldset></fieldset>
 
         <fieldset>
           <legend>Social Media</legend>
@@ -152,21 +146,18 @@ function SignupPage() {
         </fieldset>
 
         <fieldset>
-
-          <input type="checkbox" name={newOpp} id="newOpp" value={newOpp}
-            onClick={handleNewOpp} />
+          <input
+            type="checkbox"
+            name={newOpp}
+            id="newOpp"
+            value={newOpp}
+            onClick={handleNewOpp}
+          />
           <label htmlFor="">Open to new opportunities?</label>
 
-
           <label htmlFor="">Level:</label>
-          <select
-            id="level"
-            name={level}
-            onChange={handleLevel}
-          >
-            <option value="" >
-              Select Level
-            </option>
+          <select id="level" name={level} onChange={handleLevel}>
+            <option value="">Select Level</option>
             <option value="Entry Level">Entry Level</option>
             <option value="Junior">Junior</option>
             <option value="Intermediate">Intermediate</option>

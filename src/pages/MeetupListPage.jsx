@@ -16,14 +16,15 @@ function MeetupList() {
 
   const { user } = useContext(AuthContext);
 
-  const API_URL = `http://localhost:5005`;
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
   useEffect(() => {
     service
       .getAllMeetup()
-      .then((data) => {
-        setMeetupList(data);
-        setSearchResults(data);
+      .then((result) => {
+        setMeetupList(result);
+        setSearchResults(result);
+        console.log(result);
         return service.getUserInfo();
       })
       .then((user) => setUserInfo(user))

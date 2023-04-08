@@ -7,7 +7,7 @@ import axios from "axios";
 function AttendMeetup() {
   const [attendEvent, setAttendEvent] = useState(null);
 
-  const API_URL = `http://localhost:5005`;
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
   useEffect(() => {
     const storedToken = localStorage.getItem("authToken");
