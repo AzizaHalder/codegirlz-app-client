@@ -19,7 +19,7 @@ function SignupPage() {
   const [linkedin, setLinkedin] = useState("");
   const [github, setGithub] = useState("");
   const [newOpp, setNewOpp] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(undefined);
+  const [errorMessage, setErrorMessage] = useState("");
   const [city, setCity] = useState("");
   const [countryIndex, setCountryIndex] = useState(0);
 
@@ -75,7 +75,7 @@ function SignupPage() {
         navigate("/auth/login");
       })
       .catch((error) => {
-        const errorDescription = error.response.data.message;
+        const errorDescription = error.response.data.errorMessage;
         setErrorMessage(errorDescription);
       });
   };

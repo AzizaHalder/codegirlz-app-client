@@ -1,0 +1,25 @@
+#LoginPage {
+  margin-top: 10%;
+}
+
+#form-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#sign-up-button-div {
+  margin-top: 4%;
+}
+
+#sign-up-button {
+  background-color: #1a6a68;
+  border-color: #1a6a68;
+}
+
+#login-button {
+  background-color: #81b4a6;
+  border-color: #81b4a6;
+  color: white;
+}
