@@ -19,16 +19,18 @@ function SignupPage() {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [level, setLevel] = useState("");
-  const [linkedin, setLinkedin] = useState("");
-  const [github, setGithub] = useState("");
   const [newOpp, setNewOpp] = useState(false);
   const [errorMessage, setErrorMessage] = useState(undefined);
   const [city, setCity] = useState("");
   const [countryIndex, setCountryIndex] = useState(0);
   const [profileImg, setProfileImg] = useState("");
   const [randomImg, setRandomImg] = useState("");
-  const [userDescription, setUserDescription] = useState("");
   const [address, setAddress] = useState("");
+  const [linkedin, setLinkedin] = useState("");
+  const [github, setGithub] = useState("");
+  const [description, setDescription] = useState("");
+
+
 
   const navigate = useNavigate();
 
@@ -37,8 +39,6 @@ function SignupPage() {
   const handleName = (e) => setName(e.target.value);
   const handleCity = (e) => setCity(e.target.value);
   const handleLevel = (e) => setLevel(e.target.value);
-  const handleLinkedin = (e) => setLinkedin(e.target.value);
-  const handleGithub = (e) => setGithub(e.target.value);
   const handleNewOpp = () => {
     setNewOpp((current) => !current);
   };
@@ -71,11 +71,11 @@ function SignupPage() {
       city,
       currentLocation: address,
       level,
+      newOpp,
+      profileImg,
       linkedin,
       github,
-      newOpp,
-      profileImg: profileImg,
-      userDescription: userDescription,
+      description
     };
 
     axios
@@ -123,114 +123,72 @@ function SignupPage() {
     <div className="SignupPage">
       <h1>CodeGirlz Sign Up</h1>
 
-      <form class="row g-3" onSubmit={handleSignupSubmit} id="form-signup">
+      <form className="row g-3" onSubmit={handleSignupSubmit} id="form-signup">
         <div id="profile-pic-container">
-          <Card.Img src={profileImg} style={{ width: "10rem" }} />
+          {profileImg &&
+            <Card.Img src={profileImg} style={{ width: "10rem" }} />
+          }
+          {!profileImg &&
+            <Card.Img src="https://api.dicebear.com/6.x/pixel-art/svg?seed=Kiki" style={{ width: "10rem" }} />
+          }
           <Button
             variant="outline-secondary"
             size="sm"
             id="random-image-button"
             onClick={generateNewImageUrl}
           >
-            Press for Random Profile Image
+            Press for New Random Profile Image
           </Button>
         </div>
-        <fieldset class="col-md-6" id="personal-details-container">
+        <fieldset className="col-md-6" id="personal-details-container">
           <legend>Personal Details</legend>
           <div>
-            <label class="form-label" for="validationServer01" >Name:</label>
-            <input type="text" class="form-control" name="name" id="validationDefault01" value={name} onChange={handleName} required />
+            <label className="form-label">Name:</label>
+            <input type="text" className="form-control" name="name" value={name} onChange={handleName} required />
           </div>
-          <label for="validationDefault02" class="form-label">Email:</label>
-          <input class="form-control" id="validationDefault02" required
+          <label className="form-label">Email:</label>
+          <input className="form-control" required
             type="email"
             name="email"
             value={email}
             onChange={handleEmail}
           />
 
-          <label for="validationDefault03" class="form-label">Password:</label>
-          <input class="form-control" id="validationDefault03" required
+          <label className="form-label">Password:</label>
+          <input className="form-control" required
             type="password"
             name="password"
             value={password}
             onChange={handlePassword}
           />
         </fieldset>
-        <fieldset class="col-md-6" >
+        <fieldset className="col-md-6" >
           <legend>Residence Information</legend>
-          <label class="form-label">Enter Country of Residence:</label>
-          <select class="form-select" value={countryIndex} onChange={handleCountryIndex}>
+          <label className="form-label">Enter Country of Residence:</label>
+          <select className="form-select" value={countryIndex} onChange={handleCountryIndex}>
             <option value="0">Select Country </option>
             {countryKeys.map((result, index) => (
               <option value={index}>{result}</option>
             ))}
           </select>
-          <label class="form-label">Enter City of Residence:</label>
-          <select class="form-select" value={city} onChange={handleCity}>
+          <label className="form-label">Enter City of Residence:</label>
+          <select className="form-select" value={city} onChange={handleCity}>
             <option>Select City</option>
             {cityArrayList[countryIndex].map((result) => (
               <option value={result}>{result}</option>
             ))}
           </select>
-          <div>
-            <label class="form-label">Enter Current Address :</label>
-            <input class="form-control" ref={inputRef} value={address} type="text" onChange={handleAddress} />
-          </div>
         </fieldset>
 
-
-        <fieldset class="col-md-6">
-          <legend>Social Media</legend>
-          <label class="form-label">Linkedin:</label>
-          <input class="form-control"
-            type="text"
-            name="linkedin"
-            value={linkedin}
-            onChange={handleLinkedin}
-          />
-          <label class="form-label">Github:</label>
-          <input class="form-control"
-            type="text"
-            name="github"
-            value={github}
-            onChange={handleGithub}
-          />
-        </fieldset>
-
-        <fieldset class="col-md-6">
-          <input class="form-check-input" required
+        <fieldset className="col-md-6">
+          <input className="form-check-input"
             type="checkbox"
             name={newOpp}
-            id="newOpp invalidCheck2"
+            id="newOpp"
             value={newOpp}
             onClick={handleNewOpp}
           />
-          <label htmlFor="" class="form-check-label" for="invalidCheck2">Open to new opportunities?</label>
-          <div>
-            <label for="validationDefault03" class="form-label">Level of Programmer:</label>
-            <select class="form-control" id="validationDefault03 level-label" required name={level} onChange={handleLevel}>
-              <option value="">Select Level</option>
-              <option value="Entry Level">Entry Level</option>
-              <option value="Junior">Junior</option>
-              <option value="Intermediate">Intermediate</option>
-              <option value="Senior">Senior</option>
-              <option value="Lead">Lead</option>
-            </select>
-          </div>
-        </fieldset>
-        <fieldset class="col-md-6">
-          <label
-            htmlFor=""
-            for="validationTextarea" class="form-label"
-          >
-            Describe yourself. What makes you unique as a developer? What are you passionate about? What projects are you currently working on? What are you're looking for in your next role.         </label>
-          <textarea class="form-control"
-            rows="5"
-            cols="30"
-            value={userDescription}
-            onChange={(e) => setUserDescription(e.target.value)}
-          />
+          <label htmlFor="" className="form-check-label">Open to new opportunities?</label>
         </fieldset>
         <div>{errorMessage && <p className="error-message" style={{ color: 'red' }}>{errorMessage}</p>}</div>
 

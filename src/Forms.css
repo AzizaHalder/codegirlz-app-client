@@ -34,3 +34,8 @@
   align-items: center;
 }
 
+.starlabel label:after {
+  content:" *";
+  color: red;
+}
+
