@@ -22,7 +22,8 @@
   border-color: #1a6a68;
 }
 
-#login-button {
+#login-button,
+#update-button {
   background-color: #81b4a6;
   border-color: #81b4a6;
   color: white;
@@ -33,4 +34,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+#delete-button,
+#update-button {
+  margin: 2%;
 }

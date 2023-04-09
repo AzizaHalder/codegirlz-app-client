@@ -103,11 +103,11 @@ function Profile() {
                     </Card.Body>
                     <div id="profile-button-group">
                         <Link to={`/profile/${profileId}/edit`}>
-                            <Button variant="outline-secondary" size="sm">
+                            <Button variant="secondary" id="update-button" size="sm">
                                 Update Profile
                             </Button>
                         </Link>
-                        <Button onClick={handleDelete} variant="outline-secondary" size="sm">
+                        <Button onClick={handleDelete} variant="danger" id="delete-button" size="sm">
                             Delete Profile
                         </Button>
                     </div>
