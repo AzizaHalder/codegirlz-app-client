@@ -100,7 +100,7 @@ const EditProfile = () => {
         };
 
         axios
-            .put(`${API_URL}/profile/edit/${profileId}`, updatedProfile, {
+            .put(`${API_URL}/profile/${profileId}/edit`, updatedProfile, {
                 headers: { Authorization: `Bearer ${storedToken}` },
             })
             .then(() => {
@@ -114,19 +114,6 @@ const EditProfile = () => {
                 navigate(`/profile/${profileId}`);
             })
             .catch((err) => console.log("Error while updating user profile:", err));
-    };
-
-    const handleDelete = () => {
-        const storedToken = localStorage.getItem("authToken");
-        axios
-            .delete(`${API_URL}/profile/edit/${profileId}`, {
-                headers: { Authorization: `Bearer ${storedToken}` },
-            })
-            .then(() => {
-                alert("Your profile has been successfully deleted! ");
-                navigate(`${API_URL}/auth/signup`);
-            })
-            .catch((err) => console.log("Error while deleting profile: ", err));
     };
 
     useEffect(() => {
@@ -215,8 +202,6 @@ const EditProfile = () => {
 
                 <button type="submit">Save Changes</button>
             </form>
-
-            <button onClick={handleDelete}>Delete</button>
 
             {errorMessage && <p className="error-message">{errorMessage}</p>}
 

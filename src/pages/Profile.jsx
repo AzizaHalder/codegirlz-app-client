@@ -4,6 +4,10 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
+import Button from 'react-bootstrap/Button'
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 
 
@@ -11,10 +15,13 @@ import ListGroup from 'react-bootstrap/ListGroup';
 
 
 function Profile() {
+
+
     const [profileSelected, setProfile] = useState("");
 
     const { profileId } = useParams();
     const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
+    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -30,6 +37,19 @@ function Profile() {
                 console.log("Error while retrieving meetup details:", err)
             );
     }, [profileId]);
+
+    const handleDelete = () => {
+        const storedToken = localStorage.getItem("authToken");
+        axios
+            .delete(`${API_URL}/profile/${profileId}/edit`, {
+                headers: { Authorization: `Bearer ${storedToken}` },
+            })
+            .then(() => {
+                alert("Your profile has been successfully deleted! ");
+                navigate(`${API_URL}/auth/signup`);
+            })
+            .catch((err) => console.log("Error while deleting profile: ", err));
+    };
 
 
     if (profileSelected) {
@@ -53,7 +73,10 @@ function Profile() {
                     <Card.Link href="#">Add your Github Link</Card.Link>
                     <Card.Link href="#">Add your LinkedIn page</Card.Link>
                 </Card.Body>
-            </Card></div>
+                {/* error says no routes match the url below  */}
+                <Link to={`/profile/${profileId}/edit`}><Button variant="outline-secondary" size="lg">Edit Profile Information</Button></Link>
+                <Button onClick={handleDelete} variant="outline-secondary" size="lg">Delete Profile</Button>
+            </Card></div >
 
         )
     }
