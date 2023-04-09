@@ -27,6 +27,8 @@ function SignupPage() {
   const [countryIndex, setCountryIndex] = useState(0);
   const [profileImg, setProfileImg] = useState("");
   const [randomImg, setRandomImg] = useState("");
+  const [userDescription, setUserDescription] = useState("");
+  const [address, setAddress] = useState("");
 
   const navigate = useNavigate();
 
@@ -41,8 +43,8 @@ function SignupPage() {
     setNewOpp((current) => !current);
   };
   const handleCountryIndex = (e) => setCountryIndex(e.target.value);
+  const handleAddress = (e) => setAddress(e.target.value);
 
-  const [address, setAddress] = useState();
 
   const autoCompleteRef = useRef();
   const inputRef = useRef();
@@ -73,6 +75,7 @@ function SignupPage() {
       github,
       newOpp,
       profileImg: profileImg,
+      userDescription: userDescription,
     };
 
     axios
@@ -132,7 +135,7 @@ function SignupPage() {
             Press for Random Profile Image
           </Button>
         </div>
-        <fieldset class="col-md-4">
+        <fieldset class="col-md-6" id="personal-details-container">
           <legend>Personal Details</legend>
           <div>
             <label class="form-label" for="validationServer01" >Name:</label>
@@ -153,6 +156,9 @@ function SignupPage() {
             value={password}
             onChange={handlePassword}
           />
+        </fieldset>
+        <fieldset class="col-md-6" >
+          <legend>Residence Information</legend>
           <label class="form-label">Enter Country of Residence:</label>
           <select class="form-select" value={countryIndex} onChange={handleCountryIndex}>
             <option value="0">Select Country </option>
@@ -169,12 +175,12 @@ function SignupPage() {
           </select>
           <div>
             <label class="form-label">Enter Current Address :</label>
-            <input class="form-control" ref={inputRef} value={address} type="text" />
+            <input class="form-control" ref={inputRef} value={address} type="text" onChange={handleAddress} />
           </div>
         </fieldset>
 
 
-        <fieldset class="col-md-4">
+        <fieldset class="col-md-6">
           <legend>Social Media</legend>
           <label class="form-label">Linkedin:</label>
           <input class="form-control"
@@ -192,7 +198,7 @@ function SignupPage() {
           />
         </fieldset>
 
-        <fieldset class="col-md-4">
+        <fieldset class="col-md-6">
           <input class="form-check-input" required
             type="checkbox"
             name={newOpp}
@@ -212,6 +218,19 @@ function SignupPage() {
               <option value="Lead">Lead</option>
             </select>
           </div>
+        </fieldset>
+        <fieldset class="col-md-6">
+          <label
+            htmlFor=""
+            for="validationTextarea" class="form-label"
+          >
+            Describe yourself. What makes you unique as a developer? What are you passionate about? What projects are you currently working on? What are you're looking for in your next role.         </label>
+          <textarea class="form-control"
+            rows="5"
+            cols="30"
+            value={userDescription}
+            onChange={(e) => setUserDescription(e.target.value)}
+          />
         </fieldset>
         <div>{errorMessage && <p className="error-message" style={{ color: 'red' }}>{errorMessage}</p>}</div>
 
