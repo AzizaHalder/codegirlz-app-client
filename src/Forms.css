@@ -1,16 +1,19 @@
-#LoginPage {
+#LoginPage,
+#SignupPage {
   margin-top: 10%;
 }
 
-#form-login {
+#form-login,
+#form-signup {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-#sign-up-button-div {
-  margin-top: 4%;
+#sign-up-button-div,
+#login-container {
+  margin-top: 3%;
 }
 
 #sign-up-button {
@@ -22,4 +25,15 @@
   background-color: #81b4a6;
   border-color: #81b4a6;
   color: white;
+}
+
+#profile-pic-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#form-signup {
+    width: 75%;
 }

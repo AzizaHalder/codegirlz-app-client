@@ -8,7 +8,7 @@ const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 function LoginPage(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState(undefined);
 
   const navigate = useNavigate();
 
@@ -36,14 +36,11 @@ function LoginPage(props) {
       });
   };
 
-  // Example starter JavaScript for disabling form submissions if there are invalid fields
   (function () {
     'use strict'
 
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.querySelectorAll('.needs-validation')
+    const forms = document.querySelectorAll('.needs-validation')
 
-    // Loop over them and prevent submission
     Array.prototype.slice.call(forms)
       .forEach(function (form) {
         form.addEventListener('submit', function (event) {
@@ -59,7 +56,7 @@ function LoginPage(props) {
 
   return (
     <div className="LoginPage" >
-    <h2>CodeGirlz Login</h2>
+      <h2>CodeGirlz Login</h2>
       <form class="row g-3 needs-validation" novalidate onSubmit={handleLoginSubmit} id="form-login" >
         <div class="col-md-4">
           <label for="validationCustomUsername" class="form-label">Email</label>
@@ -78,7 +75,7 @@ function LoginPage(props) {
             Please provide a password at least 6 characters long with one capital letter, one lowercase letter, and one number.
           </div>
         </div>
-        <div>{errorMessage && <p className="error-message">{errorMessage}</p>}</div>
+        <div>{errorMessage && <p className="error-message" style={{ color: 'red' }}>{errorMessage}</p>}</div>
         <div class="col-md-6">
           <button class="btn btn-primary" type="submit" id="login-button">Login</button>
         </div>

@@ -2,6 +2,9 @@ import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import countries from "../countries.json";
+import Card from "react-bootstrap/Card";
+import images from "../images.json";
+import Button from "react-bootstrap/Button";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
@@ -19,9 +22,11 @@ function SignupPage() {
   const [linkedin, setLinkedin] = useState("");
   const [github, setGithub] = useState("");
   const [newOpp, setNewOpp] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState(undefined);
   const [city, setCity] = useState("");
   const [countryIndex, setCountryIndex] = useState(0);
+  const [profileImg, setProfileImg] = useState("");
+  const [randomImg, setRandomImg] = useState("");
 
   const navigate = useNavigate();
 
@@ -67,6 +72,7 @@ function SignupPage() {
       linkedin,
       github,
       newOpp,
+      profileImg: profileImg,
     };
 
     axios
@@ -80,64 +86,105 @@ function SignupPage() {
       });
   };
 
+  useEffect(() => {
+    setProfileImg(randomImg);
+  }, [randomImg]);
+
+  const generateNewImageUrl = () => {
+    let randomIndex = Math.floor(Math.random() * 30);
+    setRandomImg(images.images[randomIndex]);
+    setProfileImg(randomImg);
+  };
+
+  (function () {
+    'use strict'
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll('.needs-validation')
+
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+
+          form.classList.add('was-validated')
+        }, false)
+      })
+  })()
+
   return (
     <div className="SignupPage">
-      <h1>Sign Up</h1>
+      <h1>CodeGirlz Sign Up</h1>
 
-      <form onSubmit={handleSignupSubmit}>
-        <fieldset>
+      <form class="row g-3" onSubmit={handleSignupSubmit} id="form-signup">
+        <div id="profile-pic-container">
+          <Card.Img src={profileImg} style={{ width: "10rem" }} />
+          <Button
+            variant="outline-secondary"
+            size="sm"
+            id="random-image-button"
+            onClick={generateNewImageUrl}
+          >
+            Press for Random Profile Image
+          </Button>
+        </div>
+        <fieldset class="col-md-4">
           <legend>Personal Details</legend>
-
-          <label>Name:</label>
-          <input type="text" name="name" value={name} onChange={handleName} />
-
-          <label>Email:</label>
-          <input
+          <div>
+            <label class="form-label" for="validationServer01" >Name:</label>
+            <input type="text" class="form-control" name="name" id="validationDefault01" value={name} onChange={handleName} required />
+          </div>
+          <label for="validationDefault02" class="form-label">Email:</label>
+          <input class="form-control" id="validationDefault02" required
             type="email"
             name="email"
             value={email}
             onChange={handleEmail}
           />
 
-          <label>Password:</label>
-          <input
+          <label for="validationDefault03" class="form-label">Password:</label>
+          <input class="form-control" id="validationDefault03" required
             type="password"
             name="password"
             value={password}
             onChange={handlePassword}
           />
-
-          <select value={countryIndex} onChange={handleCountryIndex}>
+          <label class="form-label">Enter Country of Residence:</label>
+          <select class="form-select" value={countryIndex} onChange={handleCountryIndex}>
             <option value="0">Select Country </option>
             {countryKeys.map((result, index) => (
               <option value={index}>{result}</option>
             ))}
           </select>
-          <select value={city} onChange={handleCity}>
+          <label class="form-label">Enter City of Residence:</label>
+          <select class="form-select" value={city} onChange={handleCity}>
             <option>Select City</option>
             {cityArrayList[countryIndex].map((result) => (
               <option value={result}>{result}</option>
             ))}
           </select>
+          <div>
+            <label class="form-label">Enter Current Address :</label>
+            <input class="form-control" ref={inputRef} value={address} type="text" />
+          </div>
         </fieldset>
-        <div>
-          <label>Enter address :</label>
-          <input ref={inputRef} value={address} type="text" />
-        </div>
 
-        <fieldset></fieldset>
 
-        <fieldset>
+        <fieldset class="col-md-4">
           <legend>Social Media</legend>
-          <label>Linkedin:</label>
-          <input
+          <label class="form-label">Linkedin:</label>
+          <input class="form-control"
             type="text"
             name="linkedin"
             value={linkedin}
             onChange={handleLinkedin}
           />
-          <label>Github:</label>
-          <input
+          <label class="form-label">Github:</label>
+          <input class="form-control"
             type="text"
             name="github"
             value={github}
@@ -145,34 +192,37 @@ function SignupPage() {
           />
         </fieldset>
 
-        <fieldset>
-          <input
+        <fieldset class="col-md-4">
+          <input class="form-check-input" required
             type="checkbox"
             name={newOpp}
-            id="newOpp"
+            id="newOpp invalidCheck2"
             value={newOpp}
             onClick={handleNewOpp}
           />
-          <label htmlFor="">Open to new opportunities?</label>
-
-          <label htmlFor="">Level:</label>
-          <select id="level" name={level} onChange={handleLevel}>
-            <option value="">Select Level</option>
-            <option value="Entry Level">Entry Level</option>
-            <option value="Junior">Junior</option>
-            <option value="Intermediate">Intermediate</option>
-            <option value="Senior">Senior</option>
-            <option value="Lead">Lead</option>
-          </select>
+          <label htmlFor="" class="form-check-label" for="invalidCheck2">Open to new opportunities?</label>
+          <div>
+            <label for="validationDefault03" class="form-label">Level of Programmer:</label>
+            <select class="form-control" id="validationDefault03 level-label" required name={level} onChange={handleLevel}>
+              <option value="">Select Level</option>
+              <option value="Entry Level">Entry Level</option>
+              <option value="Junior">Junior</option>
+              <option value="Intermediate">Intermediate</option>
+              <option value="Senior">Senior</option>
+              <option value="Lead">Lead</option>
+            </select>
+          </div>
         </fieldset>
+        <div>{errorMessage && <p className="error-message" style={{ color: 'red' }}>{errorMessage}</p>}</div>
 
-        <button type="submit">Sign Up</button>
+        <div class="col-12" id="sign-up-button-div">
+          <button class="btn btn-primary" type="submit" id="sign-up-button">Sign Up</button>
+        </div>
+        <div class="col-12" id="login-container">
+          <p>Already have an account?</p>
+          <Link to={"/login"}><button class="btn btn-primary" type="submit" id="login-button">Login</button></Link>
+        </div>
       </form>
-
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-
-      <p>Already have account?</p>
-      <Link to={"/login"}> Login</Link>
     </div>
   );
 }
