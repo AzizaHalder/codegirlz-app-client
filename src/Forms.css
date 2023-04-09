@@ -38,5 +38,11 @@
 
 #delete-button,
 #update-button {
-  margin: 2%;
+  margin-top: 3%;
+  margin-right: 3%;
+  margin-left: 3%;
+}
+
+#delete-button {
+  margin-bottom: 10%;
 }
