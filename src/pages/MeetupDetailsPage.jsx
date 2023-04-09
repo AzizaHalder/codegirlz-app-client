@@ -14,6 +14,7 @@ function MeetupDetails() {
 
   const { meetupId } = useParams();
   const { user } = useContext(AuthContext);
+  console.log(user);
 
   const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
@@ -32,17 +33,21 @@ function MeetupDetails() {
       );
   }, [meetupId]);
 
+  console.log(meetupSelected);
+
   const handleSave = () => {
     const storedToken = localStorage.getItem("authToken");
 
-    axios.post(
-      `${API_URL}/auth/${meetupId}/attend`,
-      { user },
-      {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      }
-    );
-    setAttendMeetup(!attendMeetup);
+    axios
+      .post(
+        `${API_URL}/meetup/${meetupId}/attend`,
+        { user },
+        {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        }
+      )
+      .then(() => setAttendMeetup(!attendMeetup))
+      .catch((err) => console.log("Error while trying to save resource:", err));
   };
 
   if (meetupSelected) {
@@ -80,9 +85,11 @@ function MeetupDetails() {
           )}
         </button>
         <p>{meetupSelected.attendees}</p>
-        <Link to={`/meetup/edit/${meetupSelected._id}`}>
-          <button>Edit Meetup</button>
-        </Link>
+        {user._id === meetupSelected.author && (
+          <Link to={`/meetup/edit/${meetupSelected._id}`}>
+            <button>Edit Meetup</button>
+          </Link>
+        )}
       </div>
     );
   }

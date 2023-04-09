@@ -74,22 +74,26 @@ const ResourceDetails = () => {
   const handleSave = () => {
     const storedToken = localStorage.getItem("authToken");
 
-    axios.post(
-      `${API_URL}/resource/${resourceId}/save`,
-      { user },
-      {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      }
-    );
-    setSaved(!saved);
+    axios
+      .post(
+        `${API_URL}/resource/${resourceId}/save`,
+        { user },
+        {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        }
+      )
+      .then(() => setSaved(!saved))
+      .catch((err) => console.log("Error while trying to attend meetup:", err));
   };
 
   if (resourceDetails) {
     return (
       <article className="ResourceDetailsPage">
-        <Link to={`/resource/edit/${resourceId}`}>
-          <button>Edit {resourceDetails.resourceType}</button>
-        </Link>
+        {user._id === resourceDetails.author && (
+          <Link to={`/resource/edit/${resourceId}`}>
+            <button>Edit {resourceDetails.resourceType}</button>
+          </Link>
+        )}
         <button
           title="save / unsave resource"
           value={saved}

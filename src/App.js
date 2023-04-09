@@ -86,9 +86,12 @@ function App() {
           }
         />
         <Route path="/resource/save" element={<MyResources />} />
-        <Route path="/auth/attend" element={<AttendMeetup />} />
+
         <Route path="/profile/:profileId" element={<Profile />} />
         <Route path="profile/:profileId/edit/" element={<EditProfile />} />
+
+        <Route path="/meetup/attend" element={<AttendMeetup />} />
+
       </Routes>
     </div>
   );

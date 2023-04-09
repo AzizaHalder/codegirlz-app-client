@@ -13,7 +13,7 @@ function AttendMeetup() {
     const storedToken = localStorage.getItem("authToken");
 
     axios
-      .get(`${API_URL}/auth/attend`, {
+      .get(`${API_URL}/meetup/attend`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((res) => setAttendEvent(res.data))

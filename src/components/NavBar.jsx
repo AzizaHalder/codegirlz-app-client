@@ -72,7 +72,7 @@ return (
                             <Link to="/meetup/create">Create Meetup</Link>
                           </NavDropdown.Item>
                           <NavDropdown.Item>
-                            <Link to="/auth/attend">Attend Meetup</Link>
+                            <Link to="/meetup/attend">Attend Meetup</Link>
                           </NavDropdown.Item>
                         </NavDropdown>
                       </li>
