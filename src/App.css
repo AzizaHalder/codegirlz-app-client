@@ -344,3 +344,7 @@
   border: none;
   margin: 0 auto;
 }
+
+#random-image-button {
+  margin-top: 4%;
+}

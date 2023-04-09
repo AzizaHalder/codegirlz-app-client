@@ -2,6 +2,9 @@ import { useState, useRef, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import countries from "../countries.json";
+import Card from 'react-bootstrap/Card';
+import images from '../images.json'
+import Button from 'react-bootstrap/Button';
 
 
 
@@ -23,6 +26,8 @@ const EditProfile = () => {
     const [newOpp, setNewOpp] = useState(false);
     const [countryIndex, setCountryIndex] = useState(0);
     const [errorMessage, setErrorMessage] = useState(undefined);
+    const [profileImg, setProfileImg] = useState("");
+    const [randomImg, setRandomImg] = useState("")
 
     const { profileId } = useParams();
     const navigate = useNavigate("");
@@ -91,6 +96,7 @@ const EditProfile = () => {
             linkedin,
             github,
             newOpp,
+            profileImg: profileImg,
         };
 
         axios
@@ -123,6 +129,18 @@ const EditProfile = () => {
             .catch((err) => console.log("Error while deleting profile: ", err));
     };
 
+    useEffect(() => {
+        setProfileImg(randomImg)
+    }, [randomImg])
+
+    const generateNewImageUrl = () => {
+        let randomIndex = Math.floor(Math.random() * 30);
+        console.log(randomIndex)
+        setRandomImg(images.images[randomIndex]);
+        console.log(randomImg)
+        setProfileImg(randomImg)
+    }
+
     return (
         <div className="SignupPage">
             <h1>Edit User Information</h1>
@@ -130,7 +148,8 @@ const EditProfile = () => {
             <form onSubmit={handleSubmit}>
                 <fieldset>
                     <legend>Personal Details</legend>
-
+                    <Card.Img src={profileImg} style={{ width: '15rem' }} />
+                    <Button variant="outline-secondary" size="sm" id="random-image-button" onClick={generateNewImageUrl}>Press to Generate Random New Profile Image</Button>
                     <label htmlFor="">Name:</label>
                     <input type="text" name="name" value={name} onChange={handleName} />
 

@@ -9,11 +9,13 @@ import ListGroup from 'react-bootstrap/ListGroup';
 
 
 
+
 function Profile() {
     const [profileSelected, setProfile] = useState("");
 
     const { profileId } = useParams();
     const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
+
 
     useEffect(() => {
         const storedToken = localStorage.getItem("authToken");
@@ -29,10 +31,12 @@ function Profile() {
             );
     }, [profileId]);
 
+
     if (profileSelected) {
         return (
+
             <div id="profile-container"><Card style={{ width: '30rem' }} id="profile-page">
-                <Card.Img variant="top" src="https://res.cloudinary.com/ddieot9rc/image/upload/v1680978855/code-girlz/circle-dog_jk4sag.png" style={{ width: '15rem' }} />
+                <Card.Img variant="top" src={profileSelected.profileImg} style={{ width: '15rem' }} />
                 <Card.Body>
                     <Card.Title>{profileSelected.name}</Card.Title>
                     <Card.Text>
@@ -50,6 +54,7 @@ function Profile() {
                     <Card.Link href="#">Add your LinkedIn page</Card.Link>
                 </Card.Body>
             </Card></div>
+
         )
     }
 }
