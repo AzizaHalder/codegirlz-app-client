@@ -8,6 +8,7 @@ const api = axios.create({
   withCredentials: true,
 });
 
+
 const errorHandler = (err) => {
   throw err;
 };

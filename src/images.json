@@ -1,0 +1,33 @@
+{
+  "images": [
+    "https://api.dicebear.com/6.x/pixel-art/svg?seed=Bob",
+    "https://api.dicebear.com/6.x/pixel-art/svg?seed=Lucy",
+    "https://api.dicebear.com/6.x/pixel-art/svg?seed=Buster",
+    "https://api.dicebear.com/6.x/pixel-art/svg?seed=Kiki",
+    "https://api.dicebear.com/6.x/pixel-art/svg?seed=Kitty",
+    "https://api.dicebear.com/6.x/pixel-art/svg?seed=Leo",
+    "https://api.dicebear.com/6.x/pixel-art/svg?seed=Dusty",
+    "https://api.dicebear.com/6.x/pixel-art/svg?seed=Boots",
+    "https://api.dicebear.com/6.x/pixel-art/svg?seed=Cleo",
+    "https://api.dicebear.com/6.x/pixel-art/svg?seed=Lilly",
+    "https://api.dicebear.com/6.x/pixel-art/svg?seed=George",
+    "https://api.dicebear.com/6.x/pixel-art/svg?seed=Cookie",
+    "https://api.dicebear.com/6.x/pixel-art/svg?seed=Lucky",
+    "https://api.dicebear.com/6.x/pixel-art/svg?seed=Bear",
+    "https://api.dicebear.com/6.x/pixel-art/svg?seed=Willow",
+    "https://api.dicebear.com/6.x/pixel-art/svg?seed=Bailey",
+    "https://api.dicebear.com/6.x/pixel-art/svg?seed=Abby",
+    "https://api.dicebear.com/6.x/pixel-art/svg?seed=Lily",
+    "https://api.dicebear.com/6.x/pixel-art/svg?seed=Charlie",
+    "https://api.dicebear.com/6.x/bottts-neutral/svg?seed=Willow",
+    "https://api.dicebear.com/6.x/bottts-neutral/svg?seed=Cookie",
+    "https://api.dicebear.com/6.x/bottts-neutral/svg?seed=Lily",
+    "https://api.dicebear.com/6.x/bottts-neutral/svg?seed=Abby",
+    "https://api.dicebear.com/6.x/bottts-neutral/svg?seed=Leo",
+    "https://api.dicebear.com/6.x/bottts-neutral/svg?seed=Kitty",
+    "https://api.dicebear.com/6.x/bottts-neutral/svg?seed=Boots",
+    "https://api.dicebear.com/6.x/bottts-neutral/svg?seed=Lily",
+    "https://api.dicebear.com/6.x/bottts-neutral/svg?seed=Buddy",
+    "https://api.dicebear.com/6.x/bottts-neutral/svg?seed=Bob"
+  ]
+}

@@ -13,9 +13,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Router>
-    <AuthProviderWrapper>
-      <App />
-    </AuthProviderWrapper>
+      <AuthProviderWrapper>
+        <App />
+      </AuthProviderWrapper>
   </Router>
 );
 

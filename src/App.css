@@ -146,17 +146,20 @@
 @media only screen and (min-width: 601px) {
   /* navbar for desktop */
   #logo-button {
-    width: 50%;
+    width: 100%;
     max-width: 100px;
     min-width: 50px;
+    padding: 0px;
+    margin: 0px;
   }
 
   #external-navbar {
     width: 100vw;
     display: inline-block;
     max-height: 3%;
-    margin: auto;
     background-color: #1a6a68;
+    padding: 0px;
+    margin: 0px;
   }
 
   #nav-container-logged-in,
@@ -246,7 +249,6 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-
   color: #1a6a68;
 }
 
@@ -325,4 +327,24 @@
 #footer-card a {
   text-decoration: none;
   color: black;
+}
+
+/* profile page */
+
+#profile-container {
+  width: 100vw;
+  margin-top: 3%;
+}
+
+#profile-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 75%;
+  border: none;
+  margin: 0 auto;
+}
+
+#random-image-button {
+  margin-top: 4%;
 }
