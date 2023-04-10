@@ -269,6 +269,18 @@
   .resource-img {
     width: 500px;
   }
+
+  .resource-podcast {
+    text-align: start;
+    padding: 0 2px;
+    font-size: smaller;
+  }
+
+  .resource-video {
+    text-align: start;
+    padding: 10px 2px;
+    font-size: smaller;
+  }
 }
 
 /* home page responsive with bootstrap  */

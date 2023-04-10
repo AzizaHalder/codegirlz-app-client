@@ -119,14 +119,16 @@ const ResourceDetails = () => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowfullscreen
               ></iframe>
-              <p>{resourceDetails.resourceContent}</p>
+              <p className="resource-podcast">
+                {resourceDetails.resourceContent}
+              </p>
             </>
           )}
 
           {resourceDetails.resourceType === "Video" && (
             <>
               <h1 className="page-title">{resourceDetails.resourceTitle}</h1>
-              <p>{resourceDetails.videoUpload}</p>
+
               <iframe
                 width="560"
                 height="315"
@@ -136,7 +138,9 @@ const ResourceDetails = () => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowfullscreen
               ></iframe>
-              <p>{resourceDetails.resourceContent}</p>
+              <p className="resource-video">
+                {resourceDetails.resourceContent}
+              </p>
             </>
           )}
 
