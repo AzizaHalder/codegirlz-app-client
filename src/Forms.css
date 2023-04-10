@@ -33,6 +33,17 @@
   background-color: #81b4a6;
   border-color: #81b4a6;
   color: white;
+  width: 100px;
+}
+
+#login-button:hover,
+#update-button:hover,
+#edit-btn:hover,
+#edit-meetup-btn:hover,
+#comment-btn:hover {
+  background-color: #1a6a68;
+  border: none;
+  color: white;
 }
 
 #profile-pic-container {
@@ -54,6 +65,10 @@
 
 #delete-button {
   margin-bottom: 10%;
+}
+
+#delete-button:hover {
+  background-color: rgb(159, 0, 0);
 }
 
 #profile-details-container {
