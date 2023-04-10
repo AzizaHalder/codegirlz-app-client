@@ -7,6 +7,8 @@ import {
   faCalendar,
 } from "@fortawesome/free-regular-svg-icons";
 import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import Container from "react-bootstrap/Container";
 import SearchBar from "../components/SearchBar";
 import axios from "axios";
 import service from "../api/service";
@@ -68,55 +70,72 @@ function MeetupList() {
   };
 
   return (
-    <div className="MeetupList">
+    <Container className="MeetupListPage">
       <h2>Meetup</h2>
 
       <SearchBar onQuery={handleQuery} />
 
-      <select onChange={(e) => handleFilter(e.target.value)}>
+      <select
+        className="form-select"
+        onChange={(e) => handleFilter(e.target.value)}
+      >
         <option value={"All"}>All</option>
         <option value={"Digital"}>Digital</option>
         <option value={"In-Person"}>In-Person</option>
       </select>
 
-      {meetupList &&
-        searchResults.map(
-          ({ eventImage, eventName, eventType, eventDateAndTime, _id }) => {
-            return (
-              <div key={_id}>
-                <h3>{eventName}</h3>
-                <img src={eventImage} alt={eventName} width="200" />
-                <p>{eventType}</p>
-                <p>{eventDateAndTime}</p>
-                {isLoggedIn && (
-                  <Button
-                    title="Attend / Unattend Meetup"
-                    onClick={() => handleSave(_id)}
-                  >
-                    {/* remove --> ?  */}
-                    {!userInfo.eventsAttended?.includes(_id) ? (
-                      <FontAwesomeIcon
-                        icon={faCalendarPlus}
-                        size="lg"
-                        style={{ color: "#32612d" }}
+      <div className="all-cards">
+        {meetupList &&
+          searchResults.map(
+            ({ eventImage, eventName, eventType, eventDateAndTime, _id }) => {
+              return (
+                <Card
+                  key={_id}
+                  className="border-0 card-list bg-light"
+                  style={{ width: "250px" }}
+                >
+                  <div className="card-content">
+                    <Link to={`/meetup/${_id}`} className="more-details">
+                      <Card.Title>{eventName}</Card.Title>
+                      <img
+                        src={eventImage}
+                        alt={eventName}
+                        className="card-img"
                       />
-                    ) : (
-                      <FontAwesomeIcon
-                        icon={faCalendar}
-                        size="lg"
-                        style={{ color: "#32612d" }}
-                      />
+                      <div className="event-details">
+                        <p>{eventType}</p>
+                        <p>{eventDateAndTime}</p>
+                      </div>
+                    </Link>
+                    {isLoggedIn && (
+                      <Button
+                        className="bg-transparent border-0"
+                        title="Attend / Unattend Meetup"
+                        onClick={() => handleSave(_id)}
+                      >
+                        {/* remove --> ?  */}
+                        {!userInfo.eventsAttended?.includes(_id) ? (
+                          <FontAwesomeIcon
+                            icon={faCalendarPlus}
+                            size="lg"
+                            style={{ color: "#81b4a6" }}
+                          />
+                        ) : (
+                          <FontAwesomeIcon
+                            icon={faCalendar}
+                            size="lg"
+                            style={{ color: "#1a6a68" }}
+                          />
+                        )}
+                      </Button>
                     )}
-                  </Button>
-                )}
-                <Link to={`/meetup/${_id}`}>
-                  <button>See More Details</button>
-                </Link>
-              </div>
-            );
-          }
-        )}
-    </div>
+                  </div>
+                </Card>
+              );
+            }
+          )}
+      </div>
+    </Container>
   );
 }
 

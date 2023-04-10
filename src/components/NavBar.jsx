@@ -14,20 +14,13 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 
-
 function NavBar() {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 
-  const userId = user
-  
-  
-return (
-  <Navbar
-    // bg="light"
-      expand="sm"
-      className="justify-content-center"
-      id="external-navbar"
-    >
+  const userId = user;
+
+  return (
+    <Navbar expand="sm" className="justify-content-center" id="external-navbar">
       {isLoggedIn && (
         <>
           <Container id="nav-container-logged-in">
@@ -72,7 +65,7 @@ return (
                             <Link to="/meetup/create">Create Meetup</Link>
                           </NavDropdown.Item>
                           <NavDropdown.Item>
-                            <Link to="/meetup/attend">Attend Meetup</Link>
+                            <Link to="/meetup/attend">Saved Meetups</Link>
                           </NavDropdown.Item>
                         </NavDropdown>
                       </li>
@@ -107,7 +100,7 @@ return (
                         </Nav.Item>
                       </li>
                       <li>
-                      <Nav.Item>
+                        <Nav.Item>
                           <Link to={`/profile/${userId._id}`}>
                             <FontAwesomeIcon
                               icon={faUser}
