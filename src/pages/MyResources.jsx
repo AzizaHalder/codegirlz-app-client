@@ -3,6 +3,7 @@ import { AuthContext } from "../context/auth.context";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
+import Container from "react-bootstrap/Container";
 import axios from "axios";
 
 function MyResources() {
@@ -30,7 +31,7 @@ function MyResources() {
   console.log(`This is the saved resource:`, savedResource);
 
   return (
-    <div className="SavedResources">
+    <Container className="SavedResources">
       <h1>SavedResources</h1>
       <div className="all-cards">
         {savedResource &&
@@ -85,7 +86,7 @@ function MyResources() {
             }
           )}
       </div>
-    </div>
+    </Container>
   );
 }
 

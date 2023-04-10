@@ -3,6 +3,7 @@ import { AuthContext } from "../context/auth.context";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
+import Container from "react-bootstrap/Container";
 import axios from "axios";
 
 function AttendMeetup() {
@@ -26,28 +27,22 @@ function AttendMeetup() {
   console.log("Attending event", attendEvent);
 
   return (
-    <div className="SavedMeetup">
+    <Container className="SavedMeetup">
       <h1>SavedMeetup</h1>
       <div className="all-cards">
         {attendEvent &&
           attendEvent.map(({ eventsAttended, _id }) => {
             return (
-              <Card
-                key={_id}
-                className="border-0 card-list bg-light"
-                // style={{ width: "250px" }}
-              >
+              <Card key={_id} className="border-0 card-list bg-light">
                 {eventsAttended.map((value) => (
                   <div className="card-content">
                     <Link to={`/meetup/${value._id}`} className="more-details">
-                      {/* <> */}
                       <img
                         src={value.eventImage}
                         alt={value.eventName}
                         className="card-img"
                       />
                       <Card.Title>{value.eventName}</Card.Title>
-                      {/* </> */}
                     </Link>
                   </div>
                 ))}
@@ -55,7 +50,7 @@ function AttendMeetup() {
             );
           })}
       </div>
-    </div>
+    </Container>
   );
 }
 

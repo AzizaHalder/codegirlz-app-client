@@ -8,6 +8,7 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import Container from "react-bootstrap/Container";
 import SearchBar from "../components/SearchBar";
 import axios from "axios";
 import service from "../api/service";
@@ -69,7 +70,7 @@ function MeetupList() {
   };
 
   return (
-    <div className="MeetupListPage">
+    <Container className="MeetupListPage">
       <h2>Meetup</h2>
 
       <SearchBar onQuery={handleQuery} />
@@ -132,7 +133,7 @@ function MeetupList() {
             }
           )}
       </div>
-    </div>
+    </Container>
   );
 }
 
