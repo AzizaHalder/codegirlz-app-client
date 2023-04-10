@@ -16,13 +16,16 @@
   }
 
   .card-img {
-    width: 140px;
-    margin: 10px;
+    width: 210px;
   }
 
   .podcast-thumbnail {
     width: 140px;
     height: 120px;
+  }
+
+  .card-video {
+    width: 210px;
   }
 
   .more-details {
@@ -34,6 +37,13 @@
   .more-details:hover {
     text-decoration: solid;
     color: #1a6a68;
+  }
+
+  .resource-card-btn {
+    display: flex;
+    color: #1a6a68;
+    align-items: baseline;
+    justify-content: end;
   }
 }
 
@@ -75,17 +85,19 @@
   .card-img {
     padding-bottom: 18px;
   }
+
   .card-list iframe {
     max-width: 230px;
     padding-bottom: 18px;
   }
+
   .podcast-thumbnail {
     padding-top: 18px;
   }
 
   .resource-card-btn {
     display: flex;
-    color: #81b4a6;
+    color: #1a6a68;
     align-items: baseline;
     justify-content: end;
   }
