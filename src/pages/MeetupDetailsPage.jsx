@@ -52,7 +52,7 @@ function MeetupDetails() {
     return (
       <div className="meetup-details">
         <img src={meetupSelected.eventImage} alt={meetupSelected.eventName} />
-        <h1>{meetupSelected.eventName}</h1>
+        <h1 className="page-title">{meetupSelected.eventName}</h1>
 
         {/*
         - When creating a meetup, cannot retrieve author

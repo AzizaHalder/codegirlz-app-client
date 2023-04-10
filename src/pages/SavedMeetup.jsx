@@ -28,7 +28,7 @@ function AttendMeetup() {
 
   return (
     <Container className="SavedMeetup">
-      <h1>SavedMeetup</h1>
+      <h1 className="page-title">SavedMeetup</h1>
       <div className="all-cards">
         {attendEvent &&
           attendEvent.map(({ eventsAttended, _id }) => {
