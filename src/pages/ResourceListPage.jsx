@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 import { faFileCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 import SearchBar from "../components/SearchBar";
 import axios from "axios";
 import service from "../api/service";
@@ -91,78 +92,83 @@ function ResourceList() {
         <option value={"Podcast"}>Podcast</option>
       </select>
 
-      {resourceList &&
-        searchResults.map(
-          ({
-            _id,
-            resourceTitle,
-            resourceImage,
-            resourceType,
-            author,
-            podcastUpload,
-            videoUpload,
-          }) => {
-            return (
-              <div key={_id}>
-                <h3>{resourceTitle}</h3>
+      <div className="all-cards">
+        {resourceList &&
+          searchResults.map(
+            ({
+              _id,
+              resourceTitle,
+              resourceImage,
+              resourceType,
+              podcastUpload,
+              videoUpload,
+            }) => {
+              return (
+                <Card key={_id} className="border-0 card-list">
+                  <div className="card-content">
+                    <Link to={`/resource/${_id}`} className="more-details">
+                      {resourceType === "Article" && (
+                        <img
+                          className="list-img"
+                          src={resourceImage}
+                          alt={resourceTitle}
+                        />
+                      )}
 
-                <p>{resourceType}</p>
-                {resourceType === "Article" && (
-                  <img src={resourceImage} alt={resourceTitle} />
-                )}
+                      {resourceType === "Podcast" && (
+                        <iframe
+                          className="podcast-thumbnail"
+                          loading="lazy"
+                          src={`https://open.spotify.com/embed/episode${podcastUpload}?utm_source=generator`}
+                          title="Spotify podcast"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allowfullscreen
+                        ></iframe>
+                      )}
 
-                {resourceType === "Podcast" && (
-                  <iframe
-                    className="PodcastThumbnail"
-                    loading="lazy"
-                    width="50%"
-                    src={`https://open.spotify.com/embed/episode${podcastUpload}?utm_source=generator`}
-                    title="Spotify podcast"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen
-                  ></iframe>
-                )}
+                      {resourceType === "Video" && (
+                        <iframe
+                          src={`https://www.youtube.com/embed/${videoUpload}`}
+                          title="YouTube video player"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allowfullscreen
+                        ></iframe>
+                      )}
 
-                {resourceType === "Video" && (
-                  <iframe
-                    width="50%"
-                    src={`https://www.youtube.com/embed/${videoUpload}`}
-                    title="YouTube video player"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen
-                  ></iframe>
-                )}
-                {/* remove question mark once code finalised */}
-                <p>{author?.name}</p>
-
-                {isLoggedIn && (
-                  <Button
-                    title="save / unsave resource"
-                    onClick={() => handleSave(_id)}
-                  >
-                    {!userInfo.myResource?.includes(_id) ? (
-                      <FontAwesomeIcon
-                        icon={faFileCirclePlus}
-                        size="lg"
-                        style={{ color: "#32612d" }}
-                      />
-                    ) : (
-                      <FontAwesomeIcon
-                        icon={faBookmark}
-                        size="lg"
-                        style={{ color: "#32612d" }}
-                      />
-                    )}
-                  </Button>
-                )}
-
-                <Link to={`/resource/${_id}`}>
-                  <button>Read More</button>
-                </Link>
-              </div>
-            );
-          }
-        )}
+                      <h2>{resourceTitle}</h2>
+                    </Link>
+                    <div className="card-info">
+                      <p>{resourceType}</p>
+                      {isLoggedIn && (
+                        <Button
+                          className="bg-transparent border-0"
+                          title="save / unsave resource"
+                          onClick={() => handleSave(_id)}
+                        >
+                          {/* remove question mark once code finalised */}
+                          {!userInfo.myResource?.includes(_id) ? (
+                            <FontAwesomeIcon
+                              icon={faFileCirclePlus}
+                              size="lg"
+                              style={{ color: "#81b4a6" }}
+                            />
+                          ) : (
+                            <FontAwesomeIcon
+                              icon={faBookmark}
+                              size="lg"
+                              style={{ color: "#1a6a68" }}
+                            />
+                          )}
+                        </Button>
+                      )}
+                    </div>
+                  </div>
+                  {/* <button>Read More</button> */}
+                </Card>
+              );
+            }
+          )}
+      </div>
     </div>
   );
 }

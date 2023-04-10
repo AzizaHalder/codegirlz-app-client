@@ -1,0 +1,104 @@
+@media only screen and (max-width: 600px) {
+  /* Cards for ResourceListPage, MeetupListPage */
+  .all-cards {
+    display: flex;
+    flex-wrap: wrap;
+    /* align-items: center; */
+  }
+  .card-list {
+    display: flex;
+    width: 45%;
+    padding: 10px;
+    margin: 10px;
+    box-sizing: border-box;
+    align-items: center;
+    box-shadow: 0 8px 16px 0 rgba(107, 105, 105, 0.1);
+  }
+
+  .list-img {
+    width: 140px;
+    margin: 10px;
+  }
+
+  .card-list iframe {
+    margin: 5px;
+    width: 140px;
+    height: 120px;
+  }
+
+  .podcast-thumbnail {
+    width: 140px;
+    height: 120px;
+  }
+
+  .more-details {
+    cursor: pointer;
+    text-decoration: none;
+    color: #1a6a68;
+  }
+
+  .more-details:hover {
+    text-decoration: solid;
+    color: #1a6a68;
+  }
+}
+
+/* Large screens */
+@media only screen and (min-width: 601px) {
+  .ResourceListPage {
+    background-color: rgba(129, 180, 166, 0.1);
+  }
+  .all-cards {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: baseline;
+  }
+
+  .card-list {
+    /* padding: 10px; */
+    margin: 20px;
+    box-sizing: border-box;
+  }
+
+  .more-details {
+    color: #1a6a68;
+    /* text-align: center; */
+    padding: 10px;
+    text-decoration: none;
+  }
+  .card-content {
+    padding: 15px;
+    border-radius: 10px;
+    /* background-color: rgba(129, 180, 166, 0.1); */
+  }
+  .card-list:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1);
+
+    transform: scale(1.1);
+    color: #1a6a68;
+  }
+
+  .more-details:hover {
+    color: #1a6a68;
+  }
+
+  .list-img {
+    padding-bottom: 18px;
+  }
+  .card-list iframe {
+    padding-bottom: 18px;
+  }
+  .podcast-thumbnail {
+    padding-top: 18px;
+  }
+
+  .card-info {
+    display: flex;
+    color: #81b4a6;
+    align-items: baseline;
+    justify-content: end;
+    /* display: inline-block; */
+  }
+}

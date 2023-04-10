@@ -1,4 +1,5 @@
 import "./App.css";
+import "./cards.css";
 import { Routes, Route } from "react-router-dom";
 import MeetupList from "./pages/MeetupListPage";
 import AddMeetup from "./components/AddMeetup";
@@ -91,7 +92,6 @@ function App() {
         <Route path="profile/:profileId/edit/" element={<EditProfile />} />
 
         <Route path="/meetup/attend" element={<AttendMeetup />} />
-
       </Routes>
     </div>
   );
