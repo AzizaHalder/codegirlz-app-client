@@ -104,7 +104,11 @@ function ResourceList() {
               videoUpload,
             }) => {
               return (
-                <Card key={_id} className="border-0 card-list">
+                <Card
+                  key={_id}
+                  className="border-0 card-list bg-light"
+                  style={{ width: "250px" }}
+                >
                   <div className="card-content">
                     <Link to={`/resource/${_id}`} className="more-details">
                       {resourceType === "Article" && (
@@ -135,9 +139,9 @@ function ResourceList() {
                         ></iframe>
                       )}
 
-                      <h2>{resourceTitle}</h2>
+                      <Card.Title>{resourceTitle}</Card.Title>
                     </Link>
-                    <div className="card-info">
+                    <div className="resource-card-btn">
                       <p>{resourceType}</p>
                       {isLoggedIn && (
                         <Button
