@@ -38,12 +38,10 @@ function SignupPage() {
   const handlePassword = (e) => setPassword(e.target.value);
   const handleName = (e) => setName(e.target.value);
   const handleCity = (e) => setCity(e.target.value);
-  const handleLevel = (e) => setLevel(e.target.value);
   const handleNewOpp = () => {
     setNewOpp((current) => !current);
   };
   const handleCountryIndex = (e) => setCountryIndex(e.target.value);
-  const handleAddress = (e) => setAddress(e.target.value);
 
 
   const autoCompleteRef = useRef();
@@ -51,6 +49,7 @@ function SignupPage() {
   const options = {
     fields: ["name"],
   };
+
   useEffect(() => {
     autoCompleteRef.current = new window.google.maps.places.Autocomplete(
       inputRef.current,
@@ -98,26 +97,6 @@ function SignupPage() {
     setRandomImg(images.images[randomIndex]);
     setProfileImg(randomImg);
   };
-
-  (function () {
-    'use strict'
-
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.querySelectorAll('.needs-validation')
-
-    // Loop over them and prevent submission
-    Array.prototype.slice.call(forms)
-      .forEach(function (form) {
-        form.addEventListener('submit', function (event) {
-          if (!form.checkValidity()) {
-            event.preventDefault()
-            event.stopPropagation()
-          }
-
-          form.classList.add('was-validated')
-        }, false)
-      })
-  })()
 
   return (
     <div className="SignupPage">
@@ -183,7 +162,7 @@ function SignupPage() {
         <fieldset className="col-md-6">
           <input className="form-check-input"
             type="checkbox"
-            name={newOpp}
+            name="newOpp"
             id="newOpp"
             value={newOpp}
             onClick={handleNewOpp}

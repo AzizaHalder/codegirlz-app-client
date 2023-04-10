@@ -1,5 +1,6 @@
 #LoginPage,
-#SignupPage {
+#SignupPage,
+#EditProfile {
   margin-top: 10%;
 }
 
@@ -12,12 +13,14 @@
 }
 
 #sign-up-button-div,
-#login-container {
-  margin-top: 3%;
+#login-container,
+#save-button-div {
+  margin-top: 1%;
   margin-bottom: 3%;
 }
 
-#sign-up-button {
+#sign-up-button,
+#save-button {
   background-color: #1a6a68;
   border-color: #1a6a68;
 }
@@ -45,4 +48,51 @@
 
 #delete-button {
   margin-bottom: 10%;
+}
+
+#profile-details-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#profile-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#profile-page {
+  display: flex;
+  flex-direction: column;
+}
+
+#social-media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#social-link {
+  margin-right: 5%;
+  margin-left: 5%;
+}
+
+#profile-container a {
+  color: black;
+  text-decoration: none;
+}
+
+#profile-container a:hover {
+  text-decoration: underline;
+}
+
+#profile-container a:active {
+  color: #1a6a68;
+}
+
+#profile-container a:visited {
+  color: #1a6a68;
 }
