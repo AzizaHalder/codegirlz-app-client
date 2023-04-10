@@ -8,6 +8,7 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
 
 function MeetupDetails() {
   const [meetupSelected, setMeetup] = useState("");
@@ -50,7 +51,7 @@ function MeetupDetails() {
 
   if (meetupSelected) {
     return (
-      <div className="meetup-details">
+      <Container className="meetup-details">
         <img src={meetupSelected.eventImage} alt={meetupSelected.eventName} />
         <h1 className="page-title">{meetupSelected.eventName}</h1>
 
@@ -96,7 +97,7 @@ function MeetupDetails() {
             </Button>
           </Link>
         )}
-      </div>
+      </Container>
     );
   }
 }

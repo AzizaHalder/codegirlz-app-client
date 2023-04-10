@@ -6,11 +6,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 import { faFileCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import Button from "react-bootstrap/Button";
+import { Container } from "react-bootstrap";
 
 const ResourceDetails = () => {
   const [resourceDetails, setResourceDetails] = useState("");
   const [oneComment, setOneComment] = useState("");
   const [allComments, setAllComments] = useState([]);
+  console.log(resourceDetails);
 
   const [saved, setSaved] = useState(false);
 
@@ -89,7 +91,7 @@ const ResourceDetails = () => {
 
   if (resourceDetails) {
     return (
-      <article className="ResourceDetailsPage">
+      <Container className="ResourceDetailsPage">
         <div className="resource-content">
           {resourceDetails.resourceType === "Article" && (
             <>
@@ -102,8 +104,9 @@ const ResourceDetails = () => {
               <p className="article-content">
                 {resourceDetails.resourceContent}
               </p>
-              <small>Source: {resourceDetails.resourceURL}</small>
-              {/* <p>{resourceDetails.resourceType}</p> */}
+              <p className="article-url">
+                <strong>Source:</strong> {resourceDetails.resourceURL}
+              </p>
             </>
           )}
 
@@ -111,9 +114,8 @@ const ResourceDetails = () => {
             <>
               <h1 className="page-title">{resourceDetails.resourceTitle}</h1>
               <iframe
+                className="podcast-display"
                 loading="lazy"
-                width="560"
-                height="315"
                 src={`https://open.spotify.com/embed/episode${resourceDetails.podcastUpload}?utm_source=generator`}
                 title="Spotify podcast"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -130,8 +132,7 @@ const ResourceDetails = () => {
               <h1 className="page-title">{resourceDetails.resourceTitle}</h1>
 
               <iframe
-                width="560"
-                height="315"
+                className="video-display"
                 src={`https://www.youtube.com/embed/${resourceDetails.videoUpload}`}
                 title="YouTube video player"
                 frameborder="0"
@@ -183,12 +184,11 @@ const ResourceDetails = () => {
             </Button>
           </div>
 
-          <div className="LeaveComment" style={{ width: "70%" }}>
-            <h6>Leave a comment</h6>
+          <div className="leave-comment" style={{ width: "70%" }}>
             <textarea
-              rows="4"
-              cols="50"
-              placeholder="Comment"
+              rows="3"
+              cols="60"
+              placeholder="Leave a comment"
               value={oneComment}
               onChange={(e) => setOneComment(e.target.value)}
             ></textarea>
@@ -197,7 +197,6 @@ const ResourceDetails = () => {
               variant="secondary"
               size="sm"
               id="comment-btn"
-              // style={{ marginTop: "10px" }}
               onClick={handleSubmitComment}
             >
               Comment
@@ -206,16 +205,23 @@ const ResourceDetails = () => {
           <section>
             {allComments.map(({ author, createdAt, comment }) => {
               return (
-                <div>
-                  {/* <p>{author.name}</p> */}
-                  <p>{comment}</p>
-                  <p>{createdAt}</p>
+                <div className="comments-user">
+                  <p>
+                    <img
+                      className="comments-img"
+                      src={author.profileImg}
+                      alt={author.name}
+                    />{" "}
+                    <strong>{author.name}:</strong> {comment}
+                  </p>
+                  {/* <br /> */}
+                  <small>{createdAt}</small>
                 </div>
               );
             })}
           </section>
         </div>
-      </article>
+      </Container>
     );
   }
 };
