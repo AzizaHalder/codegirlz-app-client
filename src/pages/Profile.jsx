@@ -45,77 +45,83 @@ function Profile() {
 
     if (profileSelected) {
         return (
-            <Container>
-                <div id="profile-container">
-                    <Card style={{ width: "30rem" }} id="profile-page">
-                        {profileSelected.profileImg && <Card.Img
-                            variant="top"
-                            src={profileSelected.profileImg}
-                            style={{ width: "10rem" }}
-                        />}
-                        {!profileSelected.profileImg && <Card.Img
-                            variant="top"
-                            src="https://api.dicebear.com/6.x/pixel-art/svg?seed=Kiki"
-                            style={{ width: "10rem" }}
-                        />}
-                        <Link to={`/profile/${profileId}/edit`}>
-                            <Button variant="outline-secondary" size="sm">
-                                Change Profile Pic
-                            </Button>
-                        </Link>
 
-                        <Card.Body>
-                            <Card.Title style={{ fontSize: "3rem" }}>{profileSelected.name}</Card.Title>
-                            {profileSelected.description && <Card.Text>
-                                {profileSelected.description}
-                            </Card.Text>}
-                            {!profileSelected.description && <Card.Text><Link to={`/profile/${profileId}/edit`}>
-                                Tell recruiters more about yourself by adding a description
-                            </Link></Card.Text>}
-
-                        </Card.Body>
-                        <legend>Residence Information</legend>
-                        <ListGroup className="list-group-flush">
-
-                            {profileSelected.currentLocation &&
-                                <ListGroup.Item>Address: {profileSelected.currentLocation}</ListGroup.Item>
-                            }
-                            {!profileSelected.currentLocation &&
-                                <ListGroup.Item><Link to={`/profile/${profileId}/edit`}>Add Address</Link></ListGroup.Item>
-                            }
-                            <ListGroup.Item>City: {profileSelected.city}</ListGroup.Item>
-                            <legend>Experience</legend>
-                            {profileSelected.level &&
-                                <ListGroup.Item>Level: {profileSelected.level}</ListGroup.Item>
-                            }
-                            {!profileSelected.level &&
-                                <ListGroup.Item><Link to={`/profile/${profileId}/edit`}>Add Level</Link></ListGroup.Item>
-                            }
-                            <ListGroup.Item>
-                                Open to new opportunities?<br></br>
-                                {profileSelected.newOpp === true ? <p>Yes!</p> : <p>Not yet..</p>}
-                            </ListGroup.Item>
-                        </ListGroup>
-                        <Card.Body>
-                            <legend>Social Media</legend>
-                            {profileSelected.github && <Card.Text><Link to={profileSelected.github}>Github</Link></Card.Text>}
-                            {!profileSelected.github && <Card.Text><Link to={`/profile/${profileId}/edit`}>Add Github</Link></Card.Text>}
-                            {profileSelected.linkedin && <Card.Text><Link to={profileSelected.linkedin}>Linkedin</Link></Card.Text>}
-                            {!profileSelected.linkedin && <Card.Text><Link to={`/profile/${profileId}/edit`}>Add Linkedin</Link></Card.Text>}
-                        </Card.Body>
-                        <div id="profile-button-group">
+            <div id="profile-container">
+                <div>
+                    <Card.Body style={{ width: "30rem" }} id="profile-page">
+                        <div>
+                            {profileSelected.profileImg && <Card.Img
+                                variant="top"
+                                src={profileSelected.profileImg}
+                                style={{ width: "10rem" }}
+                            />}
+                            {!profileSelected.profileImg && <Card.Img
+                                variant="top"
+                                src="https://api.dicebear.com/6.x/pixel-art/svg?seed=Kiki"
+                                style={{ width: "10rem" }}
+                            />}</div><br></br>
+                        <div>
                             <Link to={`/profile/${profileId}/edit`}>
-                                <Button variant="secondary" id="update-button" size="sm">
-                                    Update Profile
+                                <Button variant="outline-secondary" size="sm">
+                                    Change Profile Pic
                                 </Button>
                             </Link>
-                            <Button onClick={handleDelete} variant="danger" id="delete-button" size="sm">
-                                Delete Profile
-                            </Button>
                         </div>
-                    </Card>
+                    </Card.Body>
                 </div>
-            </Container>
+                <Card.Body>
+                    <Card.Title style={{ fontSize: "3rem" }}>{profileSelected.name}</Card.Title>
+                    {profileSelected.description && <Card.Text>
+                        {profileSelected.description}
+                    </Card.Text>}
+                    {!profileSelected.description && <Card.Text><Link to={`/profile/${profileId}/edit`}>
+                        Tell recruiters more about yourself by adding a description
+                    </Link></Card.Text>}
+
+                </Card.Body>
+                <legend>Residence Information</legend>
+                <ListGroup className="list-group-flush">
+
+                    {profileSelected.currentLocation &&
+                        <ListGroup.Item>Address: {profileSelected.currentLocation}</ListGroup.Item>
+                    }
+                    {!profileSelected.currentLocation &&
+                        <ListGroup.Item><Link to={`/profile/${profileId}/edit`}>Add Address</Link></ListGroup.Item>
+                    }
+                    <ListGroup.Item>City: {profileSelected.city}</ListGroup.Item>
+                    <legend>Experience</legend>
+                    {profileSelected.level &&
+                        <ListGroup.Item>Level: {profileSelected.level}</ListGroup.Item>
+                    }
+                    {!profileSelected.level &&
+                        <ListGroup.Item><Link to={`/profile/${profileId}/edit`}>Add Level</Link></ListGroup.Item>
+                    }
+                    <ListGroup.Item>
+                        Open to new opportunities?<br></br>
+                        {profileSelected.newOpp === true ? <p>Yes!</p> : <p>Not yet..</p>}
+                    </ListGroup.Item>
+                </ListGroup>
+                <legend>Social Media</legend>
+                <Card.Body id="social-media">
+                    <div id="social-link">
+                        {profileSelected.github && <Card.Text><Link to={profileSelected.github}>Github  </Link></Card.Text>}
+                        {!profileSelected.github && <Card.Text><Link to={`/profile/${profileId}/edit`}>Add Github  </Link></Card.Text>}
+                    </div>
+                    <div id="social-link">{profileSelected.linkedin && <Card.Text><Link to={profileSelected.linkedin}>Linkedin  </Link></Card.Text>}
+                        {!profileSelected.linkedin && <Card.Text><Link to={`/profile/${profileId}/edit`}>Add Linkedin  </Link></Card.Text>}
+                    </div>
+                </Card.Body>
+                <div id="profile-button-group">
+                    <Link to={`/profile/${profileId}/edit`}>
+                        <Button variant="secondary" id="update-button" size="sm">
+                            Update Profile
+                        </Button>
+                    </Link>
+                    <Button onClick={handleDelete} variant="danger" id="delete-button" size="sm">
+                        Delete Profile
+                    </Button>
+                </div>
+            </div>
         );
     }
 }

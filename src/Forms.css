@@ -56,3 +56,43 @@
   justify-content: center;
   align-items: center;
 }
+
+#profile-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#profile-page {
+  display: flex;
+  flex-direction: column;
+}
+
+#social-media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#social-link {
+  margin-right: 5%;
+  margin-left: 5%;
+}
+
+#profile-container a {
+  color: black;
+  text-decoration: none;
+}
+
+#profile-container a:hover {
+  text-decoration: underline;
+}
+
+#profile-container a:active {
+  color: #1a6a68;
+}
+
+#profile-container a:visited {
+  color: #1a6a68;
+}
