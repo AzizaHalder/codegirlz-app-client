@@ -31,33 +31,38 @@ function LoginPage(props) {
         navigate("/");
       })
       .catch((error) => {
-        const errorDescription = error.response.data.message;
+        const errorDescription = error.response.data.errorMessage;
         setErrorMessage(errorDescription);
       });
   };
 
   return (
-    <div className="LoginPage">
-      <h1>Login</h1>
+    <div className="LoginPage" >
+      <h2>CodeGirlz Login</h2>
+      <form className="row g-3" onSubmit={handleLoginSubmit} id="form-login" >
+        <div className="col-md-4">
+          <label className="form-label">Email</label>
 
-      <form onSubmit={handleLoginSubmit}>
-        <label>Email:</label>
-        <input type="email" name="email" value={email} onChange={handleEmail} />
-
-        <label>Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePassword}
-        />
-
-        <button type="submit">Login</button>
+          <div className="input-group">
+            <input type="email" className="form-control" value={email} required onChange={handleEmail} />
+          </div>
+        </div>
+        <div className="col-md-4">
+          <label className="form-label">Password</label>
+          <div className="input-group">
+            <input type="password" name="password" className="form-control" value={password} onChange={handlePassword} required />
+          </div>
+        </div>
+        <div>{errorMessage && <p className="error-message" style={{ color: 'red' }}>{errorMessage}</p>}</div>
+        <div class="col-md-6">
+          <button className="btn btn-primary" type="submit" id="login-button">Login</button>
+        </div>
       </form>
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
 
-      <p>Don't have an account yet?</p>
-      <Link to={"/auth/signup"}> Sign Up</Link>
+      <div className="col-12" id="sign-up-button-div">
+        <p>Don't have an account yet?</p>
+        <Link to={"/auth/signup"}><button className="btn btn-primary" type="submit" id="sign-up-button">Sign Up</button></Link>
+      </div>
     </div>
   );
 }

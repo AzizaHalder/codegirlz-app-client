@@ -2,6 +2,9 @@ import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import countries from "../countries.json";
+import Card from "react-bootstrap/Card";
+import images from "../images.json";
+import Button from "react-bootstrap/Button";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
@@ -16,12 +19,18 @@ function SignupPage() {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [level, setLevel] = useState("");
-  const [linkedin, setLinkedin] = useState("");
-  const [github, setGithub] = useState("");
   const [newOpp, setNewOpp] = useState(false);
   const [errorMessage, setErrorMessage] = useState(undefined);
   const [city, setCity] = useState("");
   const [countryIndex, setCountryIndex] = useState(0);
+  const [profileImg, setProfileImg] = useState("");
+  const [randomImg, setRandomImg] = useState("");
+  const [address, setAddress] = useState("");
+  const [linkedin, setLinkedin] = useState("");
+  const [github, setGithub] = useState("");
+  const [description, setDescription] = useState("");
+
+
 
   const navigate = useNavigate();
 
@@ -30,14 +39,12 @@ function SignupPage() {
   const handleName = (e) => setName(e.target.value);
   const handleCity = (e) => setCity(e.target.value);
   const handleLevel = (e) => setLevel(e.target.value);
-  const handleLinkedin = (e) => setLinkedin(e.target.value);
-  const handleGithub = (e) => setGithub(e.target.value);
   const handleNewOpp = () => {
     setNewOpp((current) => !current);
   };
   const handleCountryIndex = (e) => setCountryIndex(e.target.value);
+  const handleAddress = (e) => setAddress(e.target.value);
 
-  const [address, setAddress] = useState();
 
   const autoCompleteRef = useRef();
   const inputRef = useRef();
@@ -64,9 +71,11 @@ function SignupPage() {
       city,
       currentLocation: address,
       level,
+      newOpp,
+      profileImg,
       linkedin,
       github,
-      newOpp,
+      description
     };
 
     axios
@@ -75,104 +84,122 @@ function SignupPage() {
         navigate("/auth/login");
       })
       .catch((error) => {
-        const errorDescription = error.response.data.message;
+        const errorDescription = error.response.data.errorMessage;
         setErrorMessage(errorDescription);
       });
   };
 
+  useEffect(() => {
+    setProfileImg(randomImg);
+  }, [randomImg]);
+
+  const generateNewImageUrl = () => {
+    let randomIndex = Math.floor(Math.random() * 30);
+    setRandomImg(images.images[randomIndex]);
+    setProfileImg(randomImg);
+  };
+
+  (function () {
+    'use strict'
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll('.needs-validation')
+
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+
+          form.classList.add('was-validated')
+        }, false)
+      })
+  })()
+
   return (
     <div className="SignupPage">
-      <h1>Sign Up</h1>
+      <h1>CodeGirlz Sign Up</h1>
 
-      <form onSubmit={handleSignupSubmit}>
-        <fieldset>
+      <form className="row g-3" onSubmit={handleSignupSubmit} id="form-signup">
+        <div id="profile-pic-container">
+          {profileImg &&
+            <Card.Img src={profileImg} style={{ width: "10rem" }} />
+          }
+          {!profileImg &&
+            <Card.Img src="https://api.dicebear.com/6.x/pixel-art/svg?seed=Kiki" style={{ width: "10rem" }} />
+          }
+          <Button
+            variant="outline-secondary"
+            size="sm"
+            id="random-image-button"
+            onClick={generateNewImageUrl}
+          >
+            Press for New Random Profile Image
+          </Button>
+        </div>
+        <fieldset className="col-md-6" id="personal-details-container">
           <legend>Personal Details</legend>
-
-          <label>Name:</label>
-          <input type="text" name="name" value={name} onChange={handleName} />
-
-          <label>Email:</label>
-          <input
+          <div>
+            <label className="form-label">Name:</label>
+            <input type="text" className="form-control" name="name" value={name} onChange={handleName} required />
+          </div>
+          <label className="form-label">Email:</label>
+          <input className="form-control" required
             type="email"
             name="email"
             value={email}
             onChange={handleEmail}
           />
 
-          <label>Password:</label>
-          <input
+          <label className="form-label">Password:</label>
+          <input className="form-control" required
             type="password"
             name="password"
             value={password}
             onChange={handlePassword}
           />
-
-          <select value={countryIndex} onChange={handleCountryIndex}>
+        </fieldset>
+        <fieldset className="col-md-6" >
+          <legend>Residence Information</legend>
+          <label className="form-label">Enter Country of Residence:</label>
+          <select className="form-select" value={countryIndex} onChange={handleCountryIndex}>
             <option value="0">Select Country </option>
             {countryKeys.map((result, index) => (
               <option value={index}>{result}</option>
             ))}
           </select>
-          <select value={city} onChange={handleCity}>
+          <label className="form-label">Enter City of Residence:</label>
+          <select className="form-select" value={city} onChange={handleCity}>
             <option>Select City</option>
             {cityArrayList[countryIndex].map((result) => (
               <option value={result}>{result}</option>
             ))}
           </select>
         </fieldset>
-        <div>
-          <label>Enter address :</label>
-          <input ref={inputRef} value={address} type="text" />
-        </div>
 
-        <fieldset></fieldset>
-
-        <fieldset>
-          <legend>Social Media</legend>
-          <label>Linkedin:</label>
-          <input
-            type="text"
-            name="linkedin"
-            value={linkedin}
-            onChange={handleLinkedin}
-          />
-          <label>Github:</label>
-          <input
-            type="text"
-            name="github"
-            value={github}
-            onChange={handleGithub}
-          />
-        </fieldset>
-
-        <fieldset>
-          <input
+        <fieldset className="col-md-6">
+          <input className="form-check-input"
             type="checkbox"
             name={newOpp}
             id="newOpp"
             value={newOpp}
             onClick={handleNewOpp}
           />
-          <label htmlFor="">Open to new opportunities?</label>
-
-          <label htmlFor="">Level:</label>
-          <select id="level" name={level} onChange={handleLevel}>
-            <option value="">Select Level</option>
-            <option value="Entry Level">Entry Level</option>
-            <option value="Junior">Junior</option>
-            <option value="Intermediate">Intermediate</option>
-            <option value="Senior">Senior</option>
-            <option value="Lead">Lead</option>
-          </select>
+          <label htmlFor="" className="form-check-label">Open to new opportunities?</label>
         </fieldset>
+        <div>{errorMessage && <p className="error-message" style={{ color: 'red' }}>{errorMessage}</p>}</div>
 
-        <button type="submit">Sign Up</button>
+        <div class="col-12" id="sign-up-button-div">
+          <button class="btn btn-primary" type="submit" id="sign-up-button">Sign Up</button>
+        </div>
+        <div class="col-12" id="login-container">
+          <p>Already have an account?</p>
+          <Link to={"/login"}><button class="btn btn-primary" type="submit" id="login-button">Login</button></Link>
+        </div>
       </form>
-
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-
-      <p>Already have account?</p>
-      <Link to={"/login"}> Login</Link>
     </div>
   );
 }

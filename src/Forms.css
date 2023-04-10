@@ -1,0 +1,48 @@
+#LoginPage,
+#SignupPage {
+  margin-top: 10%;
+}
+
+#form-login,
+#form-signup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#sign-up-button-div,
+#login-container {
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+
+#sign-up-button {
+  background-color: #1a6a68;
+  border-color: #1a6a68;
+}
+
+#login-button,
+#update-button {
+  background-color: #81b4a6;
+  border-color: #81b4a6;
+  color: white;
+}
+
+#profile-pic-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#delete-button,
+#update-button {
+  margin-top: 3%;
+  margin-right: 3%;
+  margin-left: 3%;
+}
+
+#delete-button {
+  margin-bottom: 10%;
+}
