@@ -113,7 +113,7 @@ function ResourceList() {
                     <Link to={`/resource/${_id}`} className="more-details">
                       {resourceType === "Article" && (
                         <img
-                          className="list-img"
+                          className="card-img"
                           src={resourceImage}
                           alt={resourceTitle}
                         />

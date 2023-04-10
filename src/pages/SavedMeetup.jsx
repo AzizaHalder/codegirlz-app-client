@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Card from "react-bootstrap/Card";
 import axios from "axios";
 
 function AttendMeetup() {
@@ -25,24 +26,36 @@ function AttendMeetup() {
   console.log("Attending event", attendEvent);
 
   return (
-    <>
+    <div className="SavedMeetup">
       <h1>SavedMeetup</h1>
-      {attendEvent &&
-        attendEvent.map(({ eventsAttended, _id }) => {
-          return (
-            <div key={_id}>
-              {eventsAttended.map((value) => (
-                <Link to={`/meetup/${value._id}`}>
-                  <>
-                    <img src={value.eventImage} alt={value.eventName} />
-                    <h3>{value.eventName}</h3>
-                  </>
-                </Link>
-              ))}
-            </div>
-          );
-        })}
-    </>
+      <div className="all-cards">
+        {attendEvent &&
+          attendEvent.map(({ eventsAttended, _id }) => {
+            return (
+              <Card
+                key={_id}
+                className="border-0 card-list bg-light"
+                // style={{ width: "250px" }}
+              >
+                {eventsAttended.map((value) => (
+                  <div className="card-content">
+                    <Link to={`/meetup/${value._id}`} className="more-details">
+                      {/* <> */}
+                      <img
+                        src={value.eventImage}
+                        alt={value.eventName}
+                        className="card-img"
+                      />
+                      <Card.Title>{value.eventName}</Card.Title>
+                      {/* </> */}
+                    </Link>
+                  </div>
+                ))}
+              </Card>
+            );
+          })}
+      </div>
+    </div>
   );
 }
 

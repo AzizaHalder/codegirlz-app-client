@@ -96,7 +96,7 @@ function MeetupList() {
                       <img
                         src={eventImage}
                         alt={eventName}
-                        className="list-img"
+                        className="card-img"
                       />
                       {/* <img src={eventImage} alt={eventName} width="200" /> */}
                       <div className="event-details">

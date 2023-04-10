@@ -1,15 +1,3 @@
-/* Fix this so whole page has background color */
-.ResourceListPage {
-  background-color: rgba(129, 180, 166, 0.1);
-}
-.MeetupListPage {
-  background-color: rgba(129, 180, 166, 0.1);
-}
-
-.SavedResources {
-  background-color: rgba(129, 180, 166, 0.1);
-}
-
 @media only screen and (max-width: 600px) {
   /* Cards for ResourceListPage, MeetupListPage */
   .all-cards {
@@ -27,7 +15,7 @@
     box-shadow: 0 8px 16px 0 rgba(107, 105, 105, 0.1);
   }
 
-  .list-img {
+  .card-img {
     width: 140px;
     margin: 10px;
   }
@@ -90,7 +78,7 @@
     color: #1a6a68;
   }
 
-  .list-img {
+  .card-img {
     padding-bottom: 18px;
   }
   .card-list iframe {

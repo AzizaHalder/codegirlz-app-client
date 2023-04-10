@@ -58,7 +58,7 @@ function MyResources() {
                           <img
                             src={resourceImage}
                             alt={resourceTitle}
-                            className="list-img"
+                            className="card-img"
                           />
                         )}
 
