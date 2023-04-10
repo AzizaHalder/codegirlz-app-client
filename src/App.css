@@ -236,6 +236,39 @@
     background-color: #1a6a68;
     border-color: #81b4a6;
   }
+
+  /* Page headers */
+  .page-title {
+    font-size: 50px;
+    color: #1a6a68;
+    padding: 20px;
+  }
+
+  /* ResourceDetailsPage */
+  .ResourceDetailsPage {
+    padding: 10px;
+    margin: 20px 40px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .article-content {
+    max-width: 500px;
+  }
+
+  .resource-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .info {
+    padding: 40px;
+  }
+
+  .resource-img {
+    width: 500px;
+  }
 }
 
 /* home page responsive with bootstrap  */
