@@ -1,7 +1,12 @@
+/* Fix this so whole page has background color */
 .ResourceListPage {
   background-color: rgba(129, 180, 166, 0.1);
 }
 .MeetupListPage {
+  background-color: rgba(129, 180, 166, 0.1);
+}
+
+.SavedResources {
   background-color: rgba(129, 180, 166, 0.1);
 }
 
@@ -27,11 +32,11 @@
     margin: 10px;
   }
 
-  .card-list iframe {
+  /* .card-video {
     margin: 5px;
     width: 140px;
     height: 120px;
-  }
+  } */
 
   .podcast-thumbnail {
     width: 140px;
