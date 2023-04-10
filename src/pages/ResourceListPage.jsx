@@ -83,10 +83,14 @@ function ResourceList() {
 
   return (
     <Container className="ResourceListPage">
-      <h2>Resource</h2>
+      <h2>Learn</h2>
       <SearchBar onQuery={handleQuery} />
 
-      <select name="Filter" onChange={(e) => handleFilter(e.target.value)}>
+      <select
+        name="Filter"
+        className="form-select"
+        onChange={(e) => handleFilter(e.target.value)}
+      >
         <option value={"All"}>All</option>
         <option value={"Article"}>Article</option>
         <option value={"Video"}>Video</option>
@@ -170,7 +174,6 @@ function ResourceList() {
                       )}
                     </div>
                   </div>
-                  {/* <button>Read More</button> */}
                 </Card>
               );
             }

@@ -6,7 +6,7 @@ const SearchBar = ({ onQuery }) => {
   return (
     <Form className="SearchBar">
       <Row className="justify-content-center m-4">
-        <Col sm={5}>
+        <Col sm={6}>
           <Form.Control
             placeholder="Type your search here.."
             type="text"

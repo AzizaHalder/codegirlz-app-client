@@ -75,7 +75,10 @@ function MeetupList() {
 
       <SearchBar onQuery={handleQuery} />
 
-      <select onChange={(e) => handleFilter(e.target.value)}>
+      <select
+        className="form-select"
+        onChange={(e) => handleFilter(e.target.value)}
+      >
         <option value={"All"}>All</option>
         <option value={"Digital"}>Digital</option>
         <option value={"In-Person"}>In-Person</option>
@@ -99,7 +102,6 @@ function MeetupList() {
                         alt={eventName}
                         className="card-img"
                       />
-                      {/* <img src={eventImage} alt={eventName} width="200" /> */}
                       <div className="event-details">
                         <p>{eventType}</p>
                         <p>{eventDateAndTime}</p>
