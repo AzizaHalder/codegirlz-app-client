@@ -26,7 +26,10 @@
 }
 
 #login-button,
-#update-button {
+#update-button,
+#edit-btn,
+#edit-meetup-btn,
+#comment-btn {
   background-color: #81b4a6;
   border-color: #81b4a6;
   color: white;
@@ -40,7 +43,10 @@
 }
 
 #delete-button,
-#update-button {
+#update-button,
+#edit-btn,
+#edit-meetup-btn,
+#comment-btn {
   margin-top: 3%;
   margin-right: 3%;
   margin-left: 3%;

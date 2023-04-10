@@ -7,6 +7,7 @@ import {
   faCalendarPlus,
 } from "@fortawesome/free-regular-svg-icons";
 import axios from "axios";
+import Button from "react-bootstrap/Button";
 
 function MeetupDetails() {
   const [meetupSelected, setMeetup] = useState("");
@@ -14,7 +15,6 @@ function MeetupDetails() {
 
   const { meetupId } = useParams();
   const { user } = useContext(AuthContext);
-  console.log(user);
 
   const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
@@ -25,15 +25,13 @@ function MeetupDetails() {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((result) => {
-        // console.log("The result is", result.data);
+        console.log("The result is", result.data);
         setMeetup(result.data);
       })
       .catch((err) =>
         console.log("Error while retrieving meetup details:", err)
       );
   }, [meetupId]);
-
-  console.log(meetupSelected);
 
   const handleSave = () => {
     const storedToken = localStorage.getItem("authToken");
@@ -55,7 +53,11 @@ function MeetupDetails() {
       <div className="meetup-details">
         <img src={meetupSelected.eventImage} alt={meetupSelected.eventName} />
         <h1>{meetupSelected.eventName}</h1>
-        <p>Created by: {meetupSelected.author}</p>
+
+        {/*
+        - When creating a meetup, cannot retrieve author
+         <p>Created by: {meetupSelected.author?.name}</p> 
+         */}
         <h3>{meetupSelected.eventType}</h3>
         <p>{meetupSelected.eventCountry}</p>
         <p>{meetupSelected.eventCity}</p>
@@ -64,7 +66,9 @@ function MeetupDetails() {
         <p>{meetupSelected.eventDateAndTime}</p>
         {/* add mapping over the array of attendees once atendees are added to the data  */}
 
-        <button
+        <Button
+          className="bg-transparent border-0"
+          title="attend / unattend meetup"
           value={attendMeetup}
           onClick={() => handleSave(meetupSelected._id)}
         >
@@ -72,7 +76,7 @@ function MeetupDetails() {
             <FontAwesomeIcon
               icon={faCalendar}
               size="lg"
-              style={{ color: "#32612d" }}
+              style={{ color: "#1a6a68" }}
             />
           )}
 
@@ -80,14 +84,16 @@ function MeetupDetails() {
             <FontAwesomeIcon
               icon={faCalendarPlus}
               size="lg"
-              style={{ color: "#32612d" }}
+              style={{ color: "#81b4a6" }}
             />
           )}
-        </button>
+        </Button>
         <p>{meetupSelected.attendees}</p>
         {user._id === meetupSelected.author && (
           <Link to={`/meetup/edit/${meetupSelected._id}`}>
-            <button>Edit Meetup</button>
+            <Button variant="secondary" size="sm" id="edit-meetup-btn">
+              Edit Meetup
+            </Button>
           </Link>
         )}
       </div>

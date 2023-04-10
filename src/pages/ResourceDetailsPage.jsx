@@ -5,6 +5,7 @@ import { AuthContext } from "../context/auth.context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 import { faFileCirclePlus } from "@fortawesome/free-solid-svg-icons";
+import Button from "react-bootstrap/Button";
 
 const ResourceDetails = () => {
   const [resourceDetails, setResourceDetails] = useState("");
@@ -91,30 +92,11 @@ const ResourceDetails = () => {
       <article className="ResourceDetailsPage">
         {user._id === resourceDetails.author && (
           <Link to={`/resource/edit/${resourceId}`}>
-            <button>Edit {resourceDetails.resourceType}</button>
+            <Button variant="secondary" size="sm" id="edit-btn">
+              Edit {resourceDetails.resourceType}
+            </Button>
           </Link>
         )}
-        <button
-          title="save / unsave resource"
-          value={saved}
-          onClick={() => handleSave(resourceDetails._id)}
-        >
-          {saved === true && (
-            <FontAwesomeIcon
-              icon={faFileCirclePlus}
-              size="lg"
-              style={{ color: "#32612d" }}
-            />
-          )}
-
-          {saved === false && (
-            <FontAwesomeIcon
-              icon={faBookmark}
-              size="lg"
-              style={{ color: "#32612d" }}
-            />
-          )}
-        </button>
 
         {resourceDetails.resourceType === "Article" && (
           <>
@@ -163,6 +145,28 @@ const ResourceDetails = () => {
             <p>{resourceDetails.resourceType}</p>
           </>
         )}
+        <Button
+          className="bg-transparent border-0"
+          title="save / unsave resource"
+          value={saved}
+          onClick={() => handleSave(resourceDetails._id)}
+        >
+          {saved === true && (
+            <FontAwesomeIcon
+              icon={faFileCirclePlus}
+              size="lg"
+              style={{ color: "#81b4a6" }}
+            />
+          )}
+
+          {saved === false && (
+            <FontAwesomeIcon
+              icon={faBookmark}
+              size="lg"
+              style={{ color: "#1a6a68" }}
+            />
+          )}
+        </Button>
 
         <div className="LeaveComment" style={{ width: "70%" }}>
           <h6>Leave a comment</h6>
@@ -174,9 +178,15 @@ const ResourceDetails = () => {
             onChange={(e) => setOneComment(e.target.value)}
           ></textarea>
 
-          <button style={{ marginTop: "10px" }} onClick={handleSubmitComment}>
+          <Button
+            variant="secondary"
+            size="sm"
+            id="comment-btn"
+            // style={{ marginTop: "10px" }}
+            onClick={handleSubmitComment}
+          >
             Comment
-          </button>
+          </Button>
         </div>
         <section>
           {allComments.map(({ author, createdAt, comment }) => {
