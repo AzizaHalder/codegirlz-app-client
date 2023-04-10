@@ -1,5 +1,6 @@
 #LoginPage,
-#SignupPage {
+#SignupPage,
+#EditProfile {
   margin-top: 10%;
 }
 
@@ -12,12 +13,14 @@
 }
 
 #sign-up-button-div,
-#login-container {
-  margin-top: 3%;
+#login-container,
+#save-button-div {
+  margin-top: 1%;
   margin-bottom: 3%;
 }
 
-#sign-up-button {
+#sign-up-button,
+#save-button {
   background-color: #1a6a68;
   border-color: #1a6a68;
 }
@@ -45,4 +48,11 @@
 
 #delete-button {
   margin-bottom: 10%;
+}
+
+#profile-details-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
