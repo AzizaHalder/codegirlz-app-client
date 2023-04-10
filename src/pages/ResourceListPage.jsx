@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 import { faFileCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import SearchBar from "../components/SearchBar";
 import axios from "axios";
@@ -81,7 +82,7 @@ function ResourceList() {
   };
 
   return (
-    <div className="ResourceListPage">
+    <Container className="ResourceListPage">
       <h2>Resource</h2>
       <SearchBar onQuery={handleQuery} />
 
@@ -102,6 +103,7 @@ function ResourceList() {
               resourceType,
               podcastUpload,
               videoUpload,
+              author,
             }) => {
               return (
                 <Card
@@ -143,7 +145,7 @@ function ResourceList() {
                       <Card.Title>{resourceTitle}</Card.Title>
                     </Link>
                     <div className="resource-card-btn">
-                      <p>{resourceType}</p>
+                      <p>By: {author.name}</p>
                       {isLoggedIn && (
                         <Button
                           className="bg-transparent border-0"
@@ -174,7 +176,7 @@ function ResourceList() {
             }
           )}
       </div>
-    </div>
+    </Container>
   );
 }
 
