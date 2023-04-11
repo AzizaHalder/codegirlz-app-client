@@ -444,8 +444,12 @@
   align-items: center;
   justify-content: center;
   background-color: #1a6a68;
-  height: 2.5rem;
+  height: 3rem;
+  margin-top: 10px;
   color: white;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }
 
 #footer-card a {
