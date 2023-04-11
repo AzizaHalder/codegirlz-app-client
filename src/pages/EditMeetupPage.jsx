@@ -1,25 +1,47 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
+import countries from "../countries.json";
 import axios from "axios";
 import service from "../api/service";
 import Button from "react-bootstrap/Button";
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
-
 function EditMeetUp() {
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
+
+  const countryKeys = Object.keys(countries);
+  const cityArrayList = Object.values(countries);
+
   const [eventName, setEventName] = useState("");
   const [eventType, setEventType] = useState("");
-  const [eventCountry, setEventCountry] = useState("");
+  const [eventCountry, setEventCountry] = useState(0);
   const [eventCity, setEventCity] = useState("");
   const [eventAddress, setEventAddress] = useState("");
   const [eventLink, setEventLink] = useState("");
   const [eventDescription, setEventDescription] = useState("");
   const [eventNewImage, setEventNewImage] = useState("");
   const [eventDateAndTime, setEventDateAndTime] = useState("");
+  const [address, setAddress] = useState();
 
   const { meetupId } = useParams();
   const navigate = useNavigate();
+
+  const autoCompleteRef = useRef();
+  const inputRef = useRef();
+  const options = {
+    fields: ["name"],
+  };
+
+  useEffect(() => {
+    autoCompleteRef.current = new window.google.maps.places.Autocomplete(
+      inputRef.current,
+      options
+    );
+    autoCompleteRef.current.addListener("place_changed", async function () {
+      const place = await autoCompleteRef.current.getPlace();
+      setAddress(place.name);
+    });
+  }, []);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("authToken");
@@ -32,7 +54,6 @@ function EditMeetUp() {
         const oneMeetup = response.data;
         setEventName(oneMeetup.eventName);
         setEventType(oneMeetup.eventType);
-        setEventCountry(oneMeetup.eventCountry);
         setEventCity(oneMeetup.eventCity);
         setEventAddress(oneMeetup.eventAddress);
         setEventLink(oneMeetup.eventLink);
@@ -65,7 +86,7 @@ function EditMeetUp() {
       eventType,
       eventCountry,
       eventCity,
-      eventAddress,
+      eventAddress: address,
       eventLink,
       eventDescription,
       eventImage: eventNewImage,
@@ -119,6 +140,7 @@ function EditMeetUp() {
             />
             <label htmlFor="">Name of Meetup</label>
           </Form.Floating>
+
           <Form.Floating className="form-margin">
             <Form.Select
               id="eventTypes"
@@ -134,37 +156,51 @@ function EditMeetUp() {
             </Form.Select>
             <label htmlFor="">Type of Event</label>
           </Form.Floating>
+
           {eventType === "In-Person" && (
             <>
               <Form.Floating className="form-margin">
-                {/* Need to get data from JSON file */}
-                <Form.Control
-                  type="text"
-                  name="eventCountry"
+                <Form.Select
                   value={eventCountry}
                   onChange={(e) => setEventCountry(e.target.value)}
-                />
+                >
+                  <option value="0">Select Country </option>
+                  {countryKeys.map((result, index) => (
+                    <option value={index} name={result}>
+                      {result}
+                    </option>
+                  ))}
+                </Form.Select>
+
                 <label htmlFor="">Country</label>
               </Form.Floating>
+
               <Form.Floating className="form-margin">
-                {/* Need to get data from JSON file */}
-                <Form.Control
-                  type="text"
-                  name="eventCity"
+                <Form.Select
                   value={eventCity}
                   onChange={(e) => setEventCity(e.target.value)}
-                />
+                >
+                  <option>City</option>
+                  {cityArrayList[eventCountry].map((result) => (
+                    <option value={result} name="city">
+                      {result}
+                    </option>
+                  ))}
+                </Form.Select>
                 <label htmlFor="">City</label>
               </Form.Floating>
-              <Form.Floating className="form-margin">
-                <Form.Control
-                  type="text"
+
+              <div>
+                <label className="form-label">Address</label>
+                <input
+                  className="form-control"
+                  ref={inputRef}
+                  value={address}
                   name="eventAddress"
-                  value={eventAddress}
-                  onChange={(e) => setEventAddress(e.target.value)}
+                  type="text"
                 />
-                <label htmlFor="">Address</label>
-              </Form.Floating>
+              </div>
+              {/* </Form.Floating> */}
             </>
           )}
 
