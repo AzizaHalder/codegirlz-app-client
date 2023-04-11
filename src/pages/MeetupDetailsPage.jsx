@@ -52,51 +52,73 @@ function MeetupDetails() {
   if (meetupSelected) {
     return (
       <Container className="meetup-details">
-        <img src={meetupSelected.eventImage} alt={meetupSelected.eventName} />
-        <h1 className="page-title">{meetupSelected.eventName}</h1>
+        <div id="left" className="meetup">
+          <img
+            id="meetup-img"
+            src={meetupSelected.eventImage}
+            alt={meetupSelected.eventName}
+          />
+        </div>
+        <div className="meetup meetup-info" id="right">
+          <h5>{meetupSelected.eventType}</h5>
+          <h1 className="page-title">{meetupSelected.eventName}</h1>
 
-        {/*
+          {/*
         - When creating a meetup, cannot retrieve author
          <p>Created by: {meetupSelected.author?.name}</p> 
          */}
-        <h3>{meetupSelected.eventType}</h3>
-        <p>{meetupSelected.eventCountry}</p>
-        <p>{meetupSelected.eventCity}</p>
-        <p>{meetupSelected.eventAddress}</p>
-        <p>{meetupSelected.eventLink}</p>
-        <p>{meetupSelected.eventDateAndTime}</p>
-        {/* add mapping over the array of attendees once atendees are added to the data  */}
-
-        <Button
-          className="bg-transparent border-0"
-          title="attend / unattend meetup"
-          value={attendMeetup}
-          onClick={() => handleSave(meetupSelected._id)}
-        >
-          {attendMeetup === true && (
-            <FontAwesomeIcon
-              icon={faCalendar}
-              size="lg"
-              style={{ color: "#1a6a68" }}
-            />
+          {meetupSelected.eventType === "Digital" && (
+            <p>{meetupSelected.eventLink}</p>
           )}
-
-          {attendMeetup === false && (
-            <FontAwesomeIcon
-              icon={faCalendarPlus}
-              size="lg"
-              style={{ color: "#81b4a6" }}
-            />
+          {meetupSelected.eventType === "In-Person" && (
+            <div>
+              <div className="meetup-location">
+                <p>
+                  <strong>Time and Location</strong>
+                </p>
+              </div>
+              <div className="meetup-location">
+                <p>
+                  {meetupSelected.eventCountry} | {meetupSelected.eventCity} |
+                  {meetupSelected.eventAddress}
+                </p>
+                <p>{meetupSelected.eventDateAndTime}</p>
+              </div>
+            </div>
           )}
-        </Button>
-        <p>{meetupSelected.attendees}</p>
-        {user._id === meetupSelected.author && (
-          <Link to={`/meetup/edit/${meetupSelected._id}`}>
-            <Button variant="secondary" size="sm" id="edit-meetup-btn">
-              Edit Meetup
-            </Button>
-          </Link>
-        )}
+          {/* add mapping over the array of attendees once atendees are added to the data  */}
+
+          <Button
+            className="bg-transparent border-0"
+            title="attend / unattend meetup"
+            value={attendMeetup}
+            onClick={() => handleSave(meetupSelected._id)}
+          >
+            {attendMeetup === true && (
+              <FontAwesomeIcon
+                icon={faCalendar}
+                size="lg"
+                style={{ color: "#1a6a68" }}
+              />
+            )}
+
+            {attendMeetup === false && (
+              <FontAwesomeIcon
+                icon={faCalendarPlus}
+                size="lg"
+                style={{ color: "#81b4a6" }}
+              />
+            )}
+          </Button>
+          <p>{meetupSelected.attendees}</p>
+          {user._id === meetupSelected.author && (
+            <Link to={`/meetup/edit/${meetupSelected._id}`}>
+              <Button variant="secondary" size="sm" id="edit-meetup-btn">
+                Edit Meetup
+              </Button>
+            </Link>
+          )}
+        </div>
       </Container>
     );
   }

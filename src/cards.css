@@ -45,6 +45,11 @@
     align-items: baseline;
     justify-content: end;
   }
+
+  /* MeetupDetails */
+  #meetup-img {
+    max-width: 300px;
+  }
 }
 
 /* Large screens */
@@ -105,6 +110,29 @@
   .event-details {
     color: #81b4a6;
     align-items: baseline;
-    justify-content: end;
+    justify-content: flex-end;
+  }
+
+  /* Meetup Details Page */
+  .meetup-details {
+    display: flex;
+    margin-top: 50px;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    border: #1a6a68 1px solid;
+  }
+
+  #meetup-img {
+    max-width: 300px;
+  }
+
+  .meetup {
+    width: 1000px;
+  }
+
+  .location-details {
+    display: flex;
+    flex-direction: row;
   }
 }
