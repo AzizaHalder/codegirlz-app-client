@@ -49,6 +49,7 @@ const EditProfile = () => {
     const options = {
         fields: ["name"],
     };
+    
     useEffect(() => {
         autoCompleteRef.current = new window.google.maps.places.Autocomplete(
             inputRef.current,

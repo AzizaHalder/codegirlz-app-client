@@ -5,6 +5,7 @@ import countries from "../countries.json";
 import { AuthContext } from "../context/auth.context";
 
 const AddMeetup = () => {
+
   const countryKeys = Object.keys(countries);
   // list of arrays of cities
   const cityArrayList = Object.values(countries);
@@ -21,16 +22,27 @@ const AddMeetup = () => {
   const navigate = useNavigate();
   const [address, setAddress] = useState();
 
+  const { user } = useContext(AuthContext);
+
+  const handleCity = (e) => setCity(e.target.value);
+  const handleCountryIndex = (e) => setCountryIndex(e.target.value);
+
   const autoCompleteRef = useRef();
   const inputRef = useRef();
   const options = {
     fields: ["name"],
   };
 
-  const { user } = useContext(AuthContext);
-
-  const handleCity = (e) => setCity(e.target.value);
-  const handleCountryIndex = (e) => setCountryIndex(e.target.value);
+  useEffect(() => {
+    autoCompleteRef.current = new window.google.maps.places.Autocomplete(
+      inputRef.current,
+      options
+    );
+    autoCompleteRef.current.addListener("place_changed", async function () {
+      const place = await autoCompleteRef.current.getPlace();
+      setAddress(place.name);
+    });
+  }, []);
 
   //   handle file/image upload
   const handleImageUpload = (e) => {
@@ -44,17 +56,6 @@ const AddMeetup = () => {
       })
       .catch((err) => console.log("Error while uploading the image: ", err));
   };
-
-  useEffect(() => {
-    autoCompleteRef.current = new window.google.maps.places.Autocomplete(
-      inputRef.current,
-      options
-    );
-    autoCompleteRef.current.addListener("place_changed", async function () {
-      const place = await autoCompleteRef.current.getPlace();
-      setAddress(place.name);
-    });
-  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -113,21 +114,31 @@ const AddMeetup = () => {
         </select>
         {eventType === "In-Person" && (
           <div>
-            <select value={countryIndex} onChange={handleCountryIndex}>
-              <option value="0">Select Country </option>
-              {countryKeys.map((result, index) => (
-                <option value={index}>{result}</option>
-              ))}
-            </select>
-            <select value={city} onChange={handleCity}>
-              <option>Select City</option>
-              {cityArrayList[countryIndex].map((result) => (
-                <option value={result}>{result}</option>
-              ))}
-            </select>
-
-            <label htmlFor="">Address</label>
-            <input ref={inputRef} value={address} type="text" />
+            <div>
+              <select value={countryIndex} onChange={handleCountryIndex}>
+                <option value="0">Select Country </option>
+                {countryKeys.map((result, index) => (
+                  <option value={index}>{result}</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <select value={city} onChange={handleCity}>
+                <option>Select City</option>
+                {cityArrayList[countryIndex].map((result) => (
+                  <option value={result}>{result}</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label >Search address: </label>
+              <input
+                ref={inputRef}
+                value={address}
+                name="currentLocation"
+                type="text"
+              />
+            </div>
           </div>
         )}
         ;
