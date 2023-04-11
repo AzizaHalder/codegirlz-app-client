@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import Form from "react-bootstrap/Form";
 import axios from "axios";
 import service from "../api/service";
 
@@ -99,90 +100,112 @@ const EditResource = () => {
   return (
     <div className="EditResource">
       <h2>Edit Resource</h2>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="">Title</label>
-        <input
-          type="text"
-          value={resourceTitle}
-          onChange={(e) => setResourceTitle(e.target.value)}
-        />
-
-        <label htmlFor="">Type of Resource</label>
-        <select
-          value={resourceType}
-          onChange={(e) => setResourceType(e.target.value)}
-        >
-          <option value="" disabled selected>
-            Select Resource Type
-          </option>
-          <option value="Article">Article</option>
-          <option value="Podcast">Podcast</option>
-          <option value="Video">Video</option>
-        </select>
-
-        {resourceType === "Article" && (
-          <>
-            <label htmlFor="">Update Image</label>
-            <input type="file" onChange={(e) => handleImageUpload(e)} />
-
-            <label htmlFor="">URL for Resource</label>
-            <input
-              type="url"
-              value={resourceURL}
-              onChange={(e) => setResourceURL(e.target.value)}
+      <Form className="edit-resource" onSubmit={handleSubmit}>
+        <div className="col-md-6">
+          <Form.Floating className="form-margin">
+            <Form.Control
+              type="text"
+              value={resourceTitle}
+              onChange={(e) => setResourceTitle(e.target.value)}
             />
+            <label className="form-label">Title</label>
+          </Form.Floating>
 
-            <label htmlFor="">Article Content</label>
-            <textarea
-              placeholder="Add your article"
-              rows="10"
-              cols="30"
-              value={resourceContent}
-              onChange={(e) => setResourceContent(e.target.value)}
-            />
-          </>
-        )}
+          <Form.Floating className="form-margin">
+            <Form.Select
+              value={resourceType}
+              onChange={(e) => setResourceType(e.target.value)}
+            >
+              <option value="" disabled selected>
+                Select Resource Type
+              </option>
+              <option value="Article">Article</option>
+              <option value="Podcast">Podcast</option>
+              <option value="Video">Video</option>
+            </Form.Select>
+            <label className="form-label">Type of Resource</label>
+          </Form.Floating>
 
-        {resourceType === "Podcast" && (
-          <>
-            <label htmlFor="">Upload Spotify Podcast URL</label>
-            <input
-              type="url"
-              value={`https://open.spotify.com/embed/episode${podcastUpload}?utm_source=generator`}
-              onChange={(e) => setPodcastUpload(e.target.value)}
-            />
-            <label htmlFor="">Description</label>
-            <textarea
-              cols="30"
-              rows="3"
-              value={resourceContent}
-              onChange={(e) => setResourceContent(e.target.value)}
-            ></textarea>
-          </>
-        )}
+          {resourceType === "Article" && (
+            <>
+              <Form.Floating className="form-margin">
+                <Form.Control
+                  type="file"
+                  id="img-upload"
+                  onChange={(e) => handleImageUpload(e)}
+                />
+                <label className="form-label upload-img">Update Image</label>
+              </Form.Floating>
 
-        {resourceType === "Video" && (
-          <>
-            <label htmlFor="">Upload Video URL</label>
-            <input
-              type="url"
-              value={`https://www.youtube.com/embed/${videoUpload}`}
-              onChange={(e) => setVideoUpload(e.target.value)}
-            />
+              <Form.Floating className="form-margin">
+                <Form.Control
+                  type="url"
+                  value={resourceURL}
+                  onChange={(e) => setResourceURL(e.target.value)}
+                />
+                <label className="form-label">URL for Resource</label>
+              </Form.Floating>
+              <Form.Floating className="form-margin">
+                <Form.Control
+                  placeholder="Edit your article"
+                  as="textarea"
+                  rows={5}
+                  value={resourceContent}
+                  onChange={(e) => setResourceContent(e.target.value)}
+                />
+                <label className="form-label">Article Content</label>
+              </Form.Floating>
+            </>
+          )}
 
-            <label htmlFor="">Description</label>
-            <textarea
-              rows="3"
-              cols="30"
-              value={resourceContent}
-              onChange={(e) => setResourceContent(e.target.value)}
-            />
-          </>
-        )}
+          {resourceType === "Podcast" && (
+            <>
+              <Form.Floating className="form-margin">
+                <Form.Control
+                  type="url"
+                  value={`https://open.spotify.com/embed/episode${podcastUpload}?utm_source=generator`}
+                  onChange={(e) => setPodcastUpload(e.target.value)}
+                />
+                <label className="form-label">Upload Spotify Podcast URL</label>
+              </Form.Floating>
+              <Form.Floating className="form-margin">
+                <Form.Control
+                  cols="30"
+                  rows="3"
+                  value={resourceContent}
+                  onChange={(e) => setResourceContent(e.target.value)}
+                />
+                <label className="form-label">Description</label>
+              </Form.Floating>
+            </>
+          )}
 
-        <button type="submit">Submit Changes</button>
-        <button onClick={handleDelete}>Delete Resource</button>
-      </form>
+          {resourceType === "Video" && (
+            <>
+              <Form.Floating className="form-margin">
+                <Form.Control
+                  type="url"
+                  value={`https://www.youtube.com/embed/${videoUpload}`}
+                  onChange={(e) => setVideoUpload(e.target.value)}
+                />
+                <label className="form-label">Upload Video URL</label>
+              </Form.Floating>
+              <Form.Floating className="form-margin">
+                <Form.Control
+                  rows="3"
+                  cols="30"
+                  value={resourceContent}
+                  onChange={(e) => setResourceContent(e.target.value)}
+                />
+                <label className="form-label">Description</label>
+              </Form.Floating>
+            </>
+          )}
+
+          <button type="submit">Submit Changes</button>
+          <button onClick={handleDelete}>Delete Resource</button>
+        </div>
+      </Form>
     </div>
   );
 };

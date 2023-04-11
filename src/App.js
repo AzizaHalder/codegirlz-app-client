@@ -20,6 +20,7 @@ import AttendMeetup from "./pages/SavedMeetup";
 import Profile from "./pages/Profile";
 import EditProfile from "./pages/EditProfile";
 import "./Forms.css";
+import "./editPages.css";
 import Footer from "./components/Footer";
 
 function App() {

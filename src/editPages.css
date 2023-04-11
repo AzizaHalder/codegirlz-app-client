@@ -1,0 +1,18 @@
+.edit-resource,
+.edit-meetup,
+.new-meetup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.upload-img {
+  padding: 10px;
+  margin-top: 3px;
+}
+
+.form-margin {
+  margin: 20px;
+}
