@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 import service from "../api/service";
+import Button from "react-bootstrap/Button";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
@@ -106,7 +107,7 @@ function EditMeetUp() {
   return (
     // <div>
     <div className="EditMeetup">
-      <h2>Edit Meetup</h2>
+      <h1 className="page-title">Edit Meetup</h1>
       <Form className="edit-meetup" onSubmit={handleSubmit}>
         <div className="col-md-6">
           <Form.Floating className="form-margin">
@@ -212,8 +213,22 @@ function EditMeetUp() {
               onChange={(e) => handleImageUpload(e)}
             />
           </Form.Floating>
-          <button type="submit">Submit Changes</button>
-          <button onClick={handleDelete}>Delete Meetup</button>
+          <Button
+            variant="secondary"
+            size="sm"
+            type="submit"
+            id="edit-meetup-btn"
+          >
+            Submit Changes
+          </Button>
+          <Button
+            variant="danger"
+            id="delete-meetup-btn"
+            size="sm"
+            onClick={handleDelete}
+          >
+            Delete Meetup
+          </Button>
         </div>
       </Form>
     </div>

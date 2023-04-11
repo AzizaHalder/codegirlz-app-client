@@ -152,7 +152,7 @@ function Profile() {
           <Button
             onClick={handleDelete}
             variant="danger"
-            id="delete-button"
+            id="delete-btn"
             size="sm"
           >
             Delete Profile

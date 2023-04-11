@@ -113,7 +113,7 @@ function MeetupDetails() {
           <p>{meetupSelected.attendees}</p>
           {user._id === meetupSelected.author && (
             <Link to={`/meetup/edit/${meetupSelected._id}`}>
-              <Button variant="secondary" size="sm" id="edit-meetup-btn">
+              <Button variant="secondary" size="sm" id="meetup-changes-btn">
                 Edit Meetup
               </Button>
             </Link>
