@@ -32,7 +32,7 @@ function MyResources() {
 
   return (
     <Container className="SavedResources">
-      <h1>SavedResources</h1>
+      <h1 className="page-title">SavedResources</h1>
       <div className="all-cards">
         {savedResource &&
           savedResource.map(

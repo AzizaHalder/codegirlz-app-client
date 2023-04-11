@@ -83,7 +83,7 @@ function ResourceList() {
 
   return (
     <Container className="ResourceListPage">
-      <h2>Learn</h2>
+      <h1 className="page-title">Learn</h1>
       <SearchBar onQuery={handleQuery} />
 
       <select

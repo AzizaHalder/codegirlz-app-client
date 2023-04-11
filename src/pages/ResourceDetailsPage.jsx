@@ -5,11 +5,14 @@ import { AuthContext } from "../context/auth.context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 import { faFileCirclePlus } from "@fortawesome/free-solid-svg-icons";
+import Button from "react-bootstrap/Button";
+import { Container } from "react-bootstrap";
 
 const ResourceDetails = () => {
   const [resourceDetails, setResourceDetails] = useState("");
   const [oneComment, setOneComment] = useState("");
   const [allComments, setAllComments] = useState([]);
+  console.log(resourceDetails);
 
   const [saved, setSaved] = useState(false);
 
@@ -88,108 +91,137 @@ const ResourceDetails = () => {
 
   if (resourceDetails) {
     return (
-      <article className="ResourceDetailsPage">
-        {user._id === resourceDetails.author && (
-          <Link to={`/resource/edit/${resourceId}`}>
-            <button>Edit {resourceDetails.resourceType}</button>
-          </Link>
-        )}
-        <button
-          title="save / unsave resource"
-          value={saved}
-          onClick={() => handleSave(resourceDetails._id)}
-        >
-          {saved === true && (
-            <FontAwesomeIcon
-              icon={faFileCirclePlus}
-              size="lg"
-              style={{ color: "#32612d" }}
-            />
+      <Container className="ResourceDetailsPage">
+        <div className="resource-content">
+          {resourceDetails.resourceType === "Article" && (
+            <>
+              <h1 className="page-title">{resourceDetails.resourceTitle}</h1>
+              <img
+                className="resource-img"
+                src={resourceDetails.resourceImage}
+                alt={resourceDetails.resourceTitle}
+              />
+              <p className="article-content">
+                {resourceDetails.resourceContent}
+              </p>
+              <p className="article-url">
+                <strong>Source:</strong> {resourceDetails.resourceURL}
+              </p>
+            </>
           )}
 
-          {saved === false && (
-            <FontAwesomeIcon
-              icon={faBookmark}
-              size="lg"
-              style={{ color: "#32612d" }}
-            />
+          {resourceDetails.resourceType === "Podcast" && (
+            <>
+              <h1 className="page-title">{resourceDetails.resourceTitle}</h1>
+              <iframe
+                className="podcast-display"
+                loading="lazy"
+                src={`https://open.spotify.com/embed/episode${resourceDetails.podcastUpload}?utm_source=generator`}
+                title="Spotify podcast"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+              <p className="resource-podcast">
+                {resourceDetails.resourceContent}
+              </p>
+            </>
           )}
-        </button>
 
-        {resourceDetails.resourceType === "Article" && (
-          <>
-            <h1>{resourceDetails.resourceTitle}</h1>
-            <img
-              src={resourceDetails.resourceImage}
-              alt={resourceDetails.resourceTitle}
-            />
-            <p>{resourceDetails.resourceContent}</p>
-            <p>{resourceDetails.resourceURL}</p>
-            <p>{resourceDetails.resourceType}</p>
-          </>
-        )}
+          {resourceDetails.resourceType === "Video" && (
+            <>
+              <h1 className="page-title">{resourceDetails.resourceTitle}</h1>
 
-        {resourceDetails.resourceType === "Podcast" && (
-          <>
-            <h1>{resourceDetails.resourceTitle}</h1>
-            <iframe
-              loading="lazy"
-              width="560"
-              height="315"
-              src={`https://open.spotify.com/embed/episode${resourceDetails.podcastUpload}?utm_source=generator`}
-              title="Spotify podcast"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            ></iframe>
-            <p>{resourceDetails.resourceContent}</p>
-            <p>{resourceDetails.resourceType}</p>
-          </>
-        )}
+              <iframe
+                className="video-display"
+                src={`https://www.youtube.com/embed/${resourceDetails.videoUpload}`}
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+              <p className="resource-video">
+                {resourceDetails.resourceContent}
+              </p>
+            </>
+          )}
 
-        {resourceDetails.resourceType === "Video" && (
-          <>
-            <h1>{resourceDetails.resourceTitle}</h1>
-            <p>{resourceDetails.videoUpload}</p>
-            <iframe
-              width="560"
-              height="315"
-              src={`https://www.youtube.com/embed/${resourceDetails.videoUpload}`}
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            ></iframe>
-            <p>{resourceDetails.resourceContent}</p>
-            <p>{resourceDetails.resourceType}</p>
-          </>
-        )}
+          <div className="resource-info">
+            {user._id === resourceDetails.author && (
+              <Link to={`/resource/edit/${resourceId}`}>
+                <Button
+                  className="info"
+                  variant="secondary"
+                  size="sm"
+                  id="edit-btn"
+                >
+                  Edit {resourceDetails.resourceType}
+                </Button>
+              </Link>
+            )}
+            <Button
+              className="bg-transparent border-0 "
+              title="save / unsave resource"
+              value={saved}
+              onClick={() => handleSave(resourceDetails._id)}
+            >
+              {saved === true && (
+                <FontAwesomeIcon
+                  className="info"
+                  icon={faBookmark}
+                  size="lg"
+                  style={{ color: "#81b4a6" }}
+                />
+              )}
 
-        <div className="LeaveComment" style={{ width: "70%" }}>
-          <h6>Leave a comment</h6>
-          <textarea
-            rows="4"
-            cols="50"
-            placeholder="Comment"
-            value={oneComment}
-            onChange={(e) => setOneComment(e.target.value)}
-          ></textarea>
+              {saved === false && (
+                <FontAwesomeIcon
+                  className="info"
+                  icon={faFileCirclePlus}
+                  size="lg"
+                  style={{ color: "#1a6a68" }}
+                />
+              )}
+            </Button>
+          </div>
 
-          <button style={{ marginTop: "10px" }} onClick={handleSubmitComment}>
-            Comment
-          </button>
+          <div className="leave-comment" style={{ width: "70%" }}>
+            <textarea
+              rows="3"
+              cols="60"
+              placeholder="Leave a comment"
+              value={oneComment}
+              onChange={(e) => setOneComment(e.target.value)}
+            ></textarea>
+
+            <Button
+              variant="secondary"
+              size="sm"
+              id="comment-btn"
+              onClick={handleSubmitComment}
+            >
+              Comment
+            </Button>
+          </div>
+          <section>
+            {allComments.map(({ author, createdAt, comment }) => {
+              return (
+                <div className="comments-user">
+                  <p>
+                    <img
+                      className="comments-img"
+                      src={author.profileImg}
+                      alt={author.name}
+                    />{" "}
+                    <strong>{author.name}:</strong> {comment}
+                  </p>
+                  {/* <br /> */}
+                  <small>{createdAt}</small>
+                </div>
+              );
+            })}
+          </section>
         </div>
-        <section>
-          {allComments.map(({ author, createdAt, comment }) => {
-            return (
-              <div>
-                {/* <p>{author.name}</p> */}
-                <p>{comment}</p>
-                <p>{createdAt}</p>
-              </div>
-            );
-          })}
-        </section>
-      </article>
+      </Container>
     );
   }
 };

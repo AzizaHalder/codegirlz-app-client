@@ -26,9 +26,23 @@
 }
 
 #login-button,
-#update-button {
+#update-button,
+#edit-btn,
+#edit-meetup-btn,
+#comment-btn {
   background-color: #81b4a6;
   border-color: #81b4a6;
+  color: white;
+  width: 100px;
+}
+
+#login-button:hover,
+#update-button:hover,
+#edit-btn:hover,
+#edit-meetup-btn:hover,
+#comment-btn:hover {
+  background-color: #1a6a68;
+  border: none;
   color: white;
 }
 
@@ -40,7 +54,10 @@
 }
 
 #delete-button,
-#update-button {
+#update-button,
+#edit-btn,
+#edit-meetup-btn,
+#comment-btn {
   margin-top: 3%;
   margin-right: 3%;
   margin-left: 3%;
@@ -48,6 +65,10 @@
 
 #delete-button {
   margin-bottom: 10%;
+}
+
+#delete-button:hover {
+  background-color: rgb(159, 0, 0);
 }
 
 #profile-details-container {

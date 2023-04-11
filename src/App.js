@@ -21,6 +21,7 @@ import Profile from "./pages/Profile";
 import EditProfile from "./pages/EditProfile";
 import "./Forms.css";
 import "./editPages.css";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -95,6 +96,7 @@ function App() {
 
         <Route path="/meetup/attend" element={<AttendMeetup />} />
       </Routes>
+      <Footer />
     </div>
   );
 }

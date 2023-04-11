@@ -91,12 +91,52 @@ const AddMeetup = () => {
   };
 
   return (
-    <div className="NewMeetup">
-      <h2>New Meetup</h2>
-      <Form className="new-meetup" onSubmit={handleSubmit}>
-        <div className="col-md-6">
-          <Form.Floating className="form-margin">
-            <Form.Control
+
+    <>
+      <h1 className="page-title">NewMeetup</h1>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="">Name of Meetup</label>
+        <input
+          type="text"
+          value={eventName}
+          onChange={(e) => setEventName(e.target.value)}
+        />
+        <label htmlFor="">Type of Event</label>
+        <select
+          id="eventTypes"
+          name={eventType}
+          onChange={(e) => setEventType(e.target.value)}
+        >
+          <option value="" disabled selected>
+            Select Event Type
+          </option>
+          <option value="Digital">Digital</option>
+          <option value="In-Person">In-Person</option>
+        </select>
+        {eventType === "In-Person" && (
+          <div>
+            <select value={countryIndex} onChange={handleCountryIndex}>
+              <option value="0">Select Country </option>
+              {countryKeys.map((result, index) => (
+                <option value={index}>{result}</option>
+              ))}
+            </select>
+            <select value={city} onChange={handleCity}>
+              <option>Select City</option>
+              {cityArrayList[countryIndex].map((result) => (
+                <option value={result}>{result}</option>
+              ))}
+            </select>
+
+            <label htmlFor="">Address</label>
+            <input ref={inputRef} value={address} type="text" />
+          </div>
+        )}
+        ;
+        {eventType === "Digital" && (
+          <div>
+            <label htmlFor="">Link to Meetup</label>
+            <input
               type="text"
               value={eventName}
               onChange={(e) => setEventName(e.target.value)}
@@ -184,12 +224,44 @@ const AddMeetup = () => {
               // value={eventNewImage}
               onChange={(e) => handleImageUpload(e)}
             />
+
             <label>Upload Image</label>
           </Form.Floating>
           <button type="submit">Submit New Meetup</button>
         </div>
       </Form>
     </div>
+
+          </div>
+        )}
+        <label
+          htmlFor=""
+          placeholder="Please Give a brief description of the meetup."
+        >
+          Description
+        </label>
+        <textarea
+          rows="5"
+          cols="30"
+          value={eventDescription}
+          onChange={(e) => setEventDescription(e.target.value)}
+        />
+        <label htmlFor="">Select Time and Date</label>
+        <input
+          type="datetime-local"
+          value={eventDateAndTime}
+          onChange={(e) => setEventDateAndTime(e.target.value)}
+        />
+        {/* Can we add a spinner here so that people know that the image is still loading, seems to take a while sometimes */}
+        <input
+          type="file"
+          // value={eventNewImage}
+          onChange={(e) => handleImageUpload(e)}
+        />
+        <button type="submit">Submit New Meetup</button>
+      </form>
+    </>
+
   );
 };
 
