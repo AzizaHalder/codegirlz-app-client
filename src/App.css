@@ -445,11 +445,12 @@
   justify-content: center;
   background-color: #1a6a68;
   height: 3rem;
-  margin-top: 10px;
+  margin-top: 60px;
   color: white;
   left: 0;
   bottom: 0;
   width: 100%;
+  position: fixed;
 }
 
 #footer-card a {

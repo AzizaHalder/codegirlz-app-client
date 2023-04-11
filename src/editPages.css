@@ -1,6 +1,7 @@
 .edit-resource,
 .edit-meetup,
-.new-meetup {
+.new-meetup,
+.add-resource {
   display: flex;
   flex-direction: column;
   justify-content: center;
