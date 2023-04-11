@@ -30,8 +30,6 @@ function SignupPage() {
   const [github, setGithub] = useState("");
   const [description, setDescription] = useState("");
 
-
-
   const navigate = useNavigate();
 
   const handleEmail = (e) => setEmail(e.target.value);
@@ -42,7 +40,6 @@ function SignupPage() {
     setNewOpp((current) => !current);
   };
   const handleCountryIndex = (e) => setCountryIndex(e.target.value);
-
 
   const autoCompleteRef = useRef();
   const inputRef = useRef();
@@ -74,7 +71,7 @@ function SignupPage() {
       profileImg,
       linkedin,
       github,
-      description
+      description,
     };
 
     axios
@@ -100,16 +97,19 @@ function SignupPage() {
 
   return (
     <div className="SignupPage">
-      <h1>CodeGirlz Sign Up</h1>
+      <h1 className="page-title">CodeGirlz Sign Up</h1>
 
       <form className="row g-3" onSubmit={handleSignupSubmit} id="form-signup">
         <div id="profile-pic-container">
-          {profileImg &&
+          {profileImg && (
             <Card.Img src={profileImg} style={{ width: "10rem" }} />
-          }
-          {!profileImg &&
-            <Card.Img src="https://api.dicebear.com/6.x/pixel-art/svg?seed=Kiki" style={{ width: "10rem" }} />
-          }
+          )}
+          {!profileImg && (
+            <Card.Img
+              src="https://api.dicebear.com/6.x/pixel-art/svg?seed=Kiki"
+              style={{ width: "10rem" }}
+            />
+          )}
           <Button
             variant="outline-secondary"
             size="sm"
@@ -123,10 +123,19 @@ function SignupPage() {
           <legend>Personal Details</legend>
           <div>
             <label className="form-label">Name:</label>
-            <input type="text" className="form-control" name="name" value={name} onChange={handleName} required />
+            <input
+              type="text"
+              className="form-control"
+              name="name"
+              value={name}
+              onChange={handleName}
+              required
+            />
           </div>
           <label className="form-label">Email:</label>
-          <input className="form-control" required
+          <input
+            className="form-control"
+            required
             type="email"
             name="email"
             value={email}
@@ -134,17 +143,23 @@ function SignupPage() {
           />
 
           <label className="form-label">Password:</label>
-          <input className="form-control" required
+          <input
+            className="form-control"
+            required
             type="password"
             name="password"
             value={password}
             onChange={handlePassword}
           />
         </fieldset>
-        <fieldset className="col-md-6" >
+        <fieldset className="col-md-6">
           <legend>Residence Information</legend>
           <label className="form-label">Enter Country of Residence:</label>
-          <select className="form-select" value={countryIndex} onChange={handleCountryIndex}>
+          <select
+            className="form-select"
+            value={countryIndex}
+            onChange={handleCountryIndex}
+          >
             <option value="0">Select Country </option>
             {countryKeys.map((result, index) => (
               <option value={index}>{result}</option>
@@ -160,23 +175,38 @@ function SignupPage() {
         </fieldset>
 
         <fieldset className="col-md-6">
-          <input className="form-check-input"
+          <input
+            className="form-check-input"
             type="checkbox"
             name="newOpp"
             id="newOpp"
             value={newOpp}
             onClick={handleNewOpp}
           />
-          <label htmlFor="" className="form-check-label">Open to new opportunities?</label>
+          <label htmlFor="" className="form-check-label">
+            Open to new opportunities?
+          </label>
         </fieldset>
-        <div>{errorMessage && <p className="error-message" style={{ color: 'red' }}>{errorMessage}</p>}</div>
+        <div>
+          {errorMessage && (
+            <p className="error-message" style={{ color: "red" }}>
+              {errorMessage}
+            </p>
+          )}
+        </div>
 
         <div class="col-12" id="sign-up-button-div">
-          <button class="btn btn-primary" type="submit" id="sign-up-button">Sign Up</button>
+          <button class="btn btn-primary" type="submit" id="sign-up-button">
+            Sign Up
+          </button>
         </div>
         <div class="col-12" id="login-container">
           <p>Already have an account?</p>
-          <Link to={"/login"}><button class="btn btn-primary" type="submit" id="login-button">Login</button></Link>
+          <Link to={"/login"}>
+            <button class="btn btn-primary" type="submit" id="login-button">
+              Login
+            </button>
+          </Link>
         </div>
       </form>
     </div>

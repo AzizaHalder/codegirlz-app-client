@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import service from "../api/service";
 import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 const AddResource = () => {
   const [resourceTitle, setResourceTitle] = useState("");
@@ -156,7 +157,9 @@ const AddResource = () => {
             </>
           )}
 
-          <button type="submit">Upload New Resource</button>
+          <Button id="new-res-btn" variant="secondary" size="sm" type="submit">
+            Upload New Resource
+          </Button>
         </div>
       </Form>
     </div>

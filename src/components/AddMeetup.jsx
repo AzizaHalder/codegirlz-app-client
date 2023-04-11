@@ -4,6 +4,8 @@ import { AuthContext } from "../context/auth.context";
 import service from "../api/service";
 import countries from "../countries.json";
 import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+
 const AddMeetup = () => {
   const countryKeys = Object.keys(countries);
   // list of arrays of cities
@@ -178,7 +180,9 @@ const AddMeetup = () => {
             />
             <label>Upload Image</label>
           </Form.Floating>
-          <button type="submit">Submit New Meetup</button>
+          <Button variant="secondary" id="submit-btn" size="sm" type="submit">
+            Submit New Meetup
+          </Button>
         </div>
       </Form>
     </div>

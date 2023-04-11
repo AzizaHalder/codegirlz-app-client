@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 import service from "../api/service";
+import Button from "react-bootstrap/Button";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
@@ -202,8 +203,17 @@ const EditResource = () => {
             </>
           )}
 
-          <button type="submit">Submit Changes</button>
-          <button onClick={handleDelete}>Delete Resource</button>
+          <Button variant="secondary" id="edit-res-btn" size="sm" type="submit">
+            Submit Changes
+          </Button>
+          <Button
+            variant="danger"
+            id="delete-res-btn"
+            size="sm"
+            onClick={handleDelete}
+          >
+            Delete Resource
+          </Button>
         </div>
       </Form>
     </div>

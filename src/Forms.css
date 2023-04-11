@@ -25,24 +25,40 @@
   border-color: #1a6a68;
 }
 
+#new-res-btn,
+#edit-res-btn,
+#submit-btn,
+#edit-meetup-btn,
 #login-button,
 #update-button,
 #edit-btn,
 #edit-meetup-btn,
-#comment-btn {
+#comment-btn,
+#meetup-changes-btn {
   background-color: #81b4a6;
   border-color: #81b4a6;
   color: white;
-  width: 100px;
+  padding: 5px 10px;
 }
 
+#sign-up-button:hover,
+#save-button:hover {
+  background-color: #81b4a6;
+  border: none;
+}
+
+#new-res-btn:hover,
+#edit-res-btn:hover,
+#edit-meetup-btn:hover,
 #login-button:hover,
 #update-button:hover,
 #edit-btn:hover,
 #edit-meetup-btn:hover,
-#comment-btn:hover {
+#comment-btn:hover,
+#meetup-changes-btn:hover,
+#submit-btn:hover {
   background-color: #1a6a68;
-  border: none;
+  border: 1px solid white;
   color: white;
 }
 
@@ -53,22 +69,33 @@
   align-items: center;
 }
 
-#delete-button,
+#delete-meetup-btn,
+#delete-btn,
+#submit-btn,
+#edit-meetup-btn,
 #update-button,
 #edit-btn,
 #edit-meetup-btn,
-#comment-btn {
-  margin-top: 3%;
-  margin-right: 3%;
-  margin-left: 3%;
+#comment-btn,
+#meetup-changes-btn {
+  /* margin-top: 3%; */
+  /* margin-right: 3%; */
+  /* margin-left: 3%; */
 }
 
-#delete-button {
-  margin-bottom: 10%;
+#delete-res-btn,
+#delete-btn,
+#delete-meetup-btn {
+  /* margin-bottom: 10%; */
+  margin: 10px;
+  padding: 5px 10px;
 }
 
-#delete-button:hover {
+#delete-res-btn:hover,
+#delete-btn:hover,
+#delete-meetup-btn:hover {
   background-color: rgb(159, 0, 0);
+  border: 1px solid rgb(159, 0, 0);
 }
 
 #profile-details-container {
