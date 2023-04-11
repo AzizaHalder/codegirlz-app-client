@@ -102,7 +102,7 @@ const EditResource = () => {
       <h2>Edit Resource</h2>
       <Form className="edit-resource" onSubmit={handleSubmit}>
         <div className="col-md-6">
-          <Form.Floating className="edit-margin">
+          <Form.Floating className="form-margin">
             <Form.Control
               type="text"
               value={resourceTitle}
@@ -111,7 +111,7 @@ const EditResource = () => {
             <label className="form-label">Title</label>
           </Form.Floating>
 
-          <Form.Floating className="edit-margin">
+          <Form.Floating className="form-margin">
             <Form.Select
               value={resourceType}
               onChange={(e) => setResourceType(e.target.value)}
@@ -128,18 +128,16 @@ const EditResource = () => {
 
           {resourceType === "Article" && (
             <>
-              <Form.Floating className="edit-margin">
+              <Form.Floating className="form-margin">
                 <Form.Control
                   type="file"
                   id="img-upload"
                   onChange={(e) => handleImageUpload(e)}
                 />
-                <label className="form-label" id="update-img">
-                  Update Image
-                </label>
+                <label className="form-label upload-img">Update Image</label>
               </Form.Floating>
 
-              <Form.Floating className="edit-margin">
+              <Form.Floating className="form-margin">
                 <Form.Control
                   type="url"
                   value={resourceURL}
@@ -147,11 +145,11 @@ const EditResource = () => {
                 />
                 <label className="form-label">URL for Resource</label>
               </Form.Floating>
-              <Form.Floating className="edit-margin">
+              <Form.Floating className="form-margin">
                 <Form.Control
-                  placeholder="Add your article"
-                  rows="10"
-                  cols="30"
+                  placeholder="Edit your article"
+                  as="textarea"
+                  rows={5}
                   value={resourceContent}
                   onChange={(e) => setResourceContent(e.target.value)}
                 />
@@ -162,7 +160,7 @@ const EditResource = () => {
 
           {resourceType === "Podcast" && (
             <>
-              <Form.Floating className="edit-margin">
+              <Form.Floating className="form-margin">
                 <Form.Control
                   type="url"
                   value={`https://open.spotify.com/embed/episode${podcastUpload}?utm_source=generator`}
@@ -170,7 +168,7 @@ const EditResource = () => {
                 />
                 <label className="form-label">Upload Spotify Podcast URL</label>
               </Form.Floating>
-              <Form.Floating className="edit-margin">
+              <Form.Floating className="form-margin">
                 <Form.Control
                   cols="30"
                   rows="3"
@@ -184,7 +182,7 @@ const EditResource = () => {
 
           {resourceType === "Video" && (
             <>
-              <Form.Floating className="edit-margin">
+              <Form.Floating className="form-margin">
                 <Form.Control
                   type="url"
                   value={`https://www.youtube.com/embed/${videoUpload}`}
@@ -192,7 +190,7 @@ const EditResource = () => {
                 />
                 <label className="form-label">Upload Video URL</label>
               </Form.Floating>
-              <Form.Floating className="edit-margin">
+              <Form.Floating className="form-margin">
                 <Form.Control
                   rows="3"
                   cols="30"

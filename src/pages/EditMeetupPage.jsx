@@ -109,7 +109,7 @@ function EditMeetUp() {
       <h2>Edit Meetup</h2>
       <Form className="edit-meetup" onSubmit={handleSubmit}>
         <div className="col-md-6">
-          <Form.Floating className="edit-margin">
+          <Form.Floating className="form-margin">
             <Form.Control
               type="text"
               name="eventName"
@@ -118,7 +118,7 @@ function EditMeetUp() {
             />
             <label htmlFor="">Name of Meetup</label>
           </Form.Floating>
-          <Form.Floating className="edit-margin">
+          <Form.Floating className="form-margin">
             <Form.Select
               id="eventTypes"
               name="eventType"
@@ -135,7 +135,7 @@ function EditMeetUp() {
           </Form.Floating>
           {eventType === "In-Person" && (
             <>
-              <Form.Floating className="edit-margin">
+              <Form.Floating className="form-margin">
                 {/* Need to get data from JSON file */}
                 <Form.Control
                   type="text"
@@ -145,7 +145,7 @@ function EditMeetUp() {
                 />
                 <label htmlFor="">Country</label>
               </Form.Floating>
-              <Form.Floating className="edit-margin">
+              <Form.Floating className="form-margin">
                 {/* Need to get data from JSON file */}
                 <Form.Control
                   type="text"
@@ -155,7 +155,7 @@ function EditMeetUp() {
                 />
                 <label htmlFor="">City</label>
               </Form.Floating>
-              <Form.Floating className="edit-margin">
+              <Form.Floating className="form-margin">
                 <Form.Control
                   type="text"
                   name="eventAddress"
@@ -169,7 +169,7 @@ function EditMeetUp() {
 
           {eventType === "Digital" && (
             <>
-              <Form.Floating className="edit-margin">
+              <Form.Floating className="form-margin">
                 <Form.Control
                   type="text"
                   name="eventLink"
@@ -180,10 +180,10 @@ function EditMeetUp() {
               </Form.Floating>
             </>
           )}
-          <Form.Floating className="edit-margin">
+          <Form.Floating className="form-margin">
             <Form.Control
               as="textarea"
-              rows={10}
+              rows={5}
               value={eventDescription}
               onChange={(e) => setEventDescription(e.target.value)}
             />
@@ -194,7 +194,7 @@ function EditMeetUp() {
               Description
             </label>
           </Form.Floating>
-          <Form.Floating className="edit-margin">
+          <Form.Floating className="form-margin">
             <Form.Control
               type="datetime-local"
               name="eventDateAndTime"
@@ -203,7 +203,7 @@ function EditMeetUp() {
             />
             <label htmlFor="">Select Time and Date</label>
           </Form.Floating>
-          <Form.Floating className="edit-margin">
+          <Form.Floating className="form-margin">
             {/* Should we add a spinner here so that people know that the image is still loading, seems to take a while sometimes, can be this be solved by async await server side */}
             <input
               type="file"
