@@ -1,0 +1,16 @@
+.edit-resource {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+#update-img {
+  padding: 3px;
+  margin-top: 3px;
+}
+
+.edit-margin {
+  margin: 20px;
+}
