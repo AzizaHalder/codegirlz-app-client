@@ -1,7 +1,8 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import service from "../api/service";
 import { AuthContext } from "../context/auth.context";
+import service from "../api/service";
+import Form from "react-bootstrap/Form";
 
 const AddResource = () => {
   const [resourceTitle, setResourceTitle] = useState("");
@@ -60,84 +61,104 @@ const AddResource = () => {
   return (
     <div className="AddResource">
       <h2>Upload a Resource</h2>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="">Title</label>
-        <input
-          type="text"
-          value={resourceTitle}
-          onChange={(e) => setResourceTitle(e.target.value)}
-        />
-        <label htmlFor="">Type of Resource</label>
-        <select
-          value={resourceType}
-          onChange={(e) => setResourceType(e.target.value)}
-        >
-          <option value="" disabled selected>
-            Select Resource Type
-          </option>
-          <option value="Article">Article</option>
-          <option value="Podcast">Podcast</option>
-          <option value="Video">Video</option>
-        </select>
-
-        {resourceType === "Article" && (
-          <>
-            <label htmlFor="">Upload Image</label>
-            <input type="file" onChange={(e) => handleImageUpload(e)} />
-
-            <label htmlFor="">URL for Resource</label>
-            <input
-              type="url"
-              value={resourceURL}
-              onChange={(e) => setResourceURL(e.target.value)}
+      <Form className="add-resource" onSubmit={handleSubmit}>
+        <div className="col-md-6">
+          <Form.Floating className="form-margin">
+            <Form.Control
+              type="text"
+              value={resourceTitle}
+              onChange={(e) => setResourceTitle(e.target.value)}
             />
+            <label htmlFor="">Title</label>
+          </Form.Floating>
+          <Form.Floating className="form-margin">
+            <Form.Select
+              value={resourceType}
+              onChange={(e) => setResourceType(e.target.value)}
+            >
+              <option value="" disabled selected>
+                Select Resource Type
+              </option>
+              <option value="Article">Article</option>
+              <option value="Podcast">Podcast</option>
+              <option value="Video">Video</option>
+            </Form.Select>
+            <label htmlFor="">Type of Resource</label>
+          </Form.Floating>
 
-            <label htmlFor="">Article Content</label>
-            <textarea
-              rows="10"
-              cols="30"
-              value={resourceContent}
-              onChange={(e) => setResourceContent(e.target.value)}
-            />
-          </>
-        )}
-        {resourceType === "Podcast" && (
-          <>
-            <label htmlFor="">Upload Spotify Podcast URL</label>
-            <input
-              type="url"
-              onChange={(e) => setPodcastUpload(e.target.value)}
-            />
-            <label htmlFor="">Description</label>
-            <textarea
-              cols="30"
-              rows="3"
-              value={resourceContent}
-              onChange={(e) => setResourceContent(e.target.value)}
-            ></textarea>
-          </>
-        )}
+          {resourceType === "Article" && (
+            <>
+              <Form.Floating className="form-margin">
+                <Form.Control
+                  type="file"
+                  onChange={(e) => handleImageUpload(e)}
+                />
+                <label htmlFor="">Upload Image</label>
+              </Form.Floating>
+              <Form.Floating className="form-margin">
+                <Form.Control
+                  type="url"
+                  value={resourceURL}
+                  onChange={(e) => setResourceURL(e.target.value)}
+                />
+                <label htmlFor="">URL for Resource</label>
+              </Form.Floating>
+              <Form.Floating className="form-margin">
+                <Form.Control
+                  as="textarea"
+                  rows={10}
+                  value={resourceContent}
+                  onChange={(e) => setResourceContent(e.target.value)}
+                />
+                <label htmlFor="">Article Content</label>
+              </Form.Floating>
+            </>
+          )}
+          {resourceType === "Podcast" && (
+            <>
+              <Form.Floating className="form-margin">
+                <Form.Control
+                  type="url"
+                  onChange={(e) => setPodcastUpload(e.target.value)}
+                />
+                <label htmlFor="">Upload Spotify Podcast URL</label>
+              </Form.Floating>
+              <Form.Floating className="form-margin">
+                <Form.Control
+                  as="textarea"
+                  rows={4}
+                  value={resourceContent}
+                  onChange={(e) => setResourceContent(e.target.value)}
+                />
+                <label htmlFor="">Description</label>
+              </Form.Floating>
+            </>
+          )}
 
-        {resourceType === "Video" && (
-          <>
-            <label htmlFor="">Upload Video URL</label>
-            <input
-              type="url"
-              onChange={(e) => setVideoUpload(e.target.value)}
-            />
+          {resourceType === "Video" && (
+            <>
+              <Form.Floating className="form-margin">
+                <Form.Control
+                  type="url"
+                  onChange={(e) => setVideoUpload(e.target.value)}
+                />
+                <label htmlFor="">Upload Video URL</label>
+              </Form.Floating>
+              <Form.Floating className="form-margin">
+                <Form.Control
+                  as="textarea"
+                  rows={3}
+                  value={resourceContent}
+                  onChange={(e) => setResourceContent(e.target.value)}
+                />
+                <label htmlFor="">Description</label>
+              </Form.Floating>
+            </>
+          )}
 
-            <label htmlFor="">Description</label>
-            <textarea
-              rows="3"
-              cols="30"
-              value={resourceContent}
-              onChange={(e) => setResourceContent(e.target.value)}
-            />
-          </>
-        )}
-
-        <button type="submit">Upload New Resource</button>
-      </form>
+          <button type="submit">Upload New Resource</button>
+        </div>
+      </Form>
     </div>
   );
 };
