@@ -101,7 +101,7 @@ const EditResource = () => {
     <div className="EditResource">
       <h2>Edit Resource</h2>
       <Form className="edit-resource" onSubmit={handleSubmit}>
-        <div className="col-md-6 edit-resource-content">
+        <div className="col-md-6">
           <Form.Floating className="edit-margin">
             <Form.Control
               type="text"
