@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
+import { Button } from "react-bootstrap";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
@@ -83,11 +84,21 @@ function LoginPage(props) {
       <div className="col-12" id="sign-up-button-div">
         <p>Don't have an account yet?</p>
         <Link to={"/auth/signup"}>
-          <button className="btn btn-primary" type="submit" id="sign-up-button">
+          <Button className="btn btn-primary" type="submit" id="sign-up-button">
             Sign Up
-          </button>
+          </Button>
         </Link>
       </div>
+
+      <section>
+        <Link to={"/auth/recruiter/login"}>
+          <Button className="btn">Recruiter Login</Button>
+        </Link>
+
+        <Link to={"/auth/recruiter/signup"}>
+          <Button>Are You a Recruiter? Sign up your company!</Button>
+        </Link>
+      </section>
     </div>
   );
 }
