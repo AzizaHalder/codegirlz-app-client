@@ -71,7 +71,7 @@ function MeetupList() {
 
   return (
     <Container className="MeetupListPage">
-      <h2>Meetup</h2>
+      <h1 className="page-title">Meetup</h1>
 
       <SearchBar onQuery={handleQuery} />
 

@@ -140,6 +140,54 @@
     background-color: #81b4a6;
     color: #1a6a68;
   }
+
+  .page-title {
+    font-size: 30px;
+    color: #1a6a68;
+    padding: 20px;
+    margin-top: 150px;
+  }
+
+  /* Resource Details Page */
+  .resource-info {
+    text-align: start;
+    margin: 5px;
+  }
+
+  .resource-video {
+    font-size: smaller;
+    text-align: start;
+    padding-left: 3px;
+  }
+  .resource-content {
+    padding: 45px;
+  }
+
+  .article-content {
+    text-align: start;
+  }
+  /* Comments */
+  .leave-comment > textarea {
+    width: 250px;
+
+    margin-left: 10px;
+    text-align: start;
+    margin-top: 10px;
+  }
+
+  .leave-comment {
+    text-align: start;
+    margin-bottom: 20px;
+  }
+  .comments-user {
+    padding: 10px;
+    text-align: start;
+  }
+
+  .comments-img {
+    width: 30px;
+    padding: 3px;
+  }
 }
 
 /* for desktop */
@@ -235,6 +283,82 @@
     color: #81b4a6;
     background-color: #1a6a68;
     border-color: #81b4a6;
+  }
+
+  /* Page headers */
+  .page-title {
+    font-size: 40px;
+    color: #1a6a68;
+    padding: 20px;
+  }
+
+  /* ResourceDetailsPage */
+  .ResourceDetailsPage {
+    padding: 10px;
+    margin: 20px 40px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .article-content {
+    max-width: 500px;
+    text-align: start;
+  }
+
+  .article-url {
+    text-align: start;
+    font-size: small;
+  }
+
+  .resource-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .info {
+    padding: 40px;
+  }
+
+  .resource-img {
+    width: 500px;
+  }
+
+  .resource-podcast {
+    text-align: start;
+    padding: 0 25px;
+    font-size: smaller;
+  }
+  .podcast-display {
+    width: 560px;
+    height: 315px;
+  }
+  .video-display {
+    width: 560px;
+    height: 315px;
+  }
+
+  .resource-video {
+    text-align: start;
+    padding: 10px 25px;
+    font-size: smaller;
+  }
+
+  /* Comments */
+  .leave-comment {
+    text-align: start;
+    margin-bottom: 20px;
+  }
+
+  .comments-user {
+    padding: 10px;
+    text-align: start;
+    margin: 10px 0 5px 0;
+  }
+
+  .comments-img {
+    width: 30px;
+    padding: 3px;
   }
 }
 

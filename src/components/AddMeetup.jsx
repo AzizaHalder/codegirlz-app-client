@@ -1,4 +1,3 @@
-
 import { useRef, useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import service from "../api/service";
@@ -91,8 +90,8 @@ const AddMeetup = () => {
   };
 
   return (
-    <div>
-      <h2>New Meetup</h2>
+    <>
+      <h1 className="page-title">NewMeetup</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="">Name of Meetup</label>
         <input
@@ -130,11 +129,9 @@ const AddMeetup = () => {
             <label htmlFor="">Address</label>
             <input ref={inputRef} value={address} type="text" />
           </div>
-
-        )};
-
+        )}
+        ;
         {eventType === "Digital" && (
-
           <div>
             <label htmlFor="">Link to Meetup</label>
             <input
@@ -170,7 +167,7 @@ const AddMeetup = () => {
         />
         <button type="submit">Submit New Meetup</button>
       </form>
-    </div>
+    </>
   );
 };
 

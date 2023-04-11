@@ -7,6 +7,8 @@ import {
   faCalendarPlus,
 } from "@fortawesome/free-regular-svg-icons";
 import axios from "axios";
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
 
 function MeetupDetails() {
   const [meetupSelected, setMeetup] = useState("");
@@ -14,7 +16,6 @@ function MeetupDetails() {
 
   const { meetupId } = useParams();
   const { user } = useContext(AuthContext);
-  console.log(user);
 
   const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
@@ -25,15 +26,13 @@ function MeetupDetails() {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((result) => {
-        // console.log("The result is", result.data);
+        console.log("The result is", result.data);
         setMeetup(result.data);
       })
       .catch((err) =>
         console.log("Error while retrieving meetup details:", err)
       );
   }, [meetupId]);
-
-  console.log(meetupSelected);
 
   const handleSave = () => {
     const storedToken = localStorage.getItem("authToken");
@@ -52,45 +51,75 @@ function MeetupDetails() {
 
   if (meetupSelected) {
     return (
-      <div className="meetup-details">
-        <img src={meetupSelected.eventImage} alt={meetupSelected.eventName} />
-        <h1>{meetupSelected.eventName}</h1>
-        <p>Created by: {meetupSelected.author}</p>
-        <h3>{meetupSelected.eventType}</h3>
-        <p>{meetupSelected.eventCountry}</p>
-        <p>{meetupSelected.eventCity}</p>
-        <p>{meetupSelected.eventAddress}</p>
-        <p>{meetupSelected.eventLink}</p>
-        <p>{meetupSelected.eventDateAndTime}</p>
-        {/* add mapping over the array of attendees once atendees are added to the data  */}
+      <Container className="meetup-details">
+        <div id="left" className="meetup">
+          <img
+            id="meetup-img"
+            src={meetupSelected.eventImage}
+            alt={meetupSelected.eventName}
+          />
+        </div>
+        <div className="meetup meetup-info" id="right">
+          <h5>{meetupSelected.eventType}</h5>
+          <h1 className="page-title">{meetupSelected.eventName}</h1>
 
-        <button
-          value={attendMeetup}
-          onClick={() => handleSave(meetupSelected._id)}
-        >
-          {attendMeetup === true && (
-            <FontAwesomeIcon
-              icon={faCalendar}
-              size="lg"
-              style={{ color: "#32612d" }}
-            />
+          {/*
+        - When creating a meetup, cannot retrieve author
+         <p>Created by: {meetupSelected.author?.name}</p> 
+         */}
+          {meetupSelected.eventType === "Digital" && (
+            <p>{meetupSelected.eventLink}</p>
           )}
+          {meetupSelected.eventType === "In-Person" && (
+            <div>
+              <div className="meetup-location">
+                <p>
+                  <strong>Time and Location</strong>
+                </p>
+              </div>
+              <div className="meetup-location">
+                <p>
+                  {meetupSelected.eventCountry} | {meetupSelected.eventCity} |
+                  {meetupSelected.eventAddress}
+                </p>
+                <p>{meetupSelected.eventDateAndTime}</p>
+              </div>
+            </div>
+          )}
+          {/* add mapping over the array of attendees once atendees are added to the data  */}
 
-          {attendMeetup === false && (
-            <FontAwesomeIcon
-              icon={faCalendarPlus}
-              size="lg"
-              style={{ color: "#32612d" }}
-            />
+          <Button
+            className="bg-transparent border-0"
+            title="attend / unattend meetup"
+            value={attendMeetup}
+            onClick={() => handleSave(meetupSelected._id)}
+          >
+            {attendMeetup === true && (
+              <FontAwesomeIcon
+                icon={faCalendar}
+                size="lg"
+                style={{ color: "#1a6a68" }}
+              />
+            )}
+
+            {attendMeetup === false && (
+              <FontAwesomeIcon
+                icon={faCalendarPlus}
+                size="lg"
+                style={{ color: "#81b4a6" }}
+              />
+            )}
+          </Button>
+          <p>{meetupSelected.attendees}</p>
+          {user._id === meetupSelected.author && (
+            <Link to={`/meetup/edit/${meetupSelected._id}`}>
+              <Button variant="secondary" size="sm" id="edit-meetup-btn">
+                Edit Meetup
+              </Button>
+            </Link>
           )}
-        </button>
-        <p>{meetupSelected.attendees}</p>
-        {user._id === meetupSelected.author && (
-          <Link to={`/meetup/edit/${meetupSelected._id}`}>
-            <button>Edit Meetup</button>
-          </Link>
-        )}
-      </div>
+        </div>
+      </Container>
     );
   }
 }
