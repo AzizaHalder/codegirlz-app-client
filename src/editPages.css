@@ -1,4 +1,5 @@
-.edit-resource {
+.edit-resource,
+.edit-meetup {
   display: flex;
   flex-direction: column;
   justify-content: center;
