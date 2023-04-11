@@ -43,7 +43,7 @@
     display: flex;
     color: #1a6a68;
     align-items: baseline;
-    justify-content: end;
+    justify-content: flex-end;
   }
 
   /* MeetupDetails */
@@ -104,7 +104,7 @@
     display: flex;
     color: #1a6a68;
     align-items: baseline;
-    justify-content: end;
+    justify-content: flex-end;
   }
 
   .event-details {

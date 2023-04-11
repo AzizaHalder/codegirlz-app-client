@@ -1,5 +1,5 @@
-import "./App.css";
-import "./cards.css";
+import "./styles/App.css";
+import "./styles/cards.css";
 import { Routes, Route } from "react-router-dom";
 import MeetupList from "./pages/MeetupListPage";
 import AddMeetup from "./components/AddMeetup";
@@ -19,9 +19,11 @@ import MyResources from "./pages/MyResources";
 import AttendMeetup from "./pages/SavedMeetup";
 import Profile from "./pages/Profile";
 import EditProfile from "./pages/EditProfile";
-import "./Forms.css";
-import "./editPages.css";
 import Footer from "./components/Footer";
+import "./styles/Forms.css";
+import "./styles/editPages.css";
+
+// src / styles / index.css;
 
 function App() {
   return (
