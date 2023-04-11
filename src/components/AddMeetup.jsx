@@ -107,25 +107,19 @@ const AddMeetup = () => {
             </Form.Select>
             <label htmlFor="">Type of Event</label>
           </Form.Floating>
-          {eventType === "In-Person" && (
+          {eventType === "Digital" && (
             <>
               <Form.Floating className="form-margin">
-                <Form.Select
-                  id="eventTypes"
-                  name={eventType}
-                  onChange={(e) => setEventType(e.target.value)}
-                >
-                  <option value="" disabled selected>
-                    Select Event Type
-                  </option>
-                  <option value="Digital">Digital</option>
-                  <option value="In-Person">In-Person</option>
-                </Form.Select>
-                <label htmlFor="">Type of Event</label>
+                <Form.Control
+                  type="url"
+                  value={eventLink}
+                  onChange={(e) => setEventLink(e.target.value)}
+                />
+                <label htmlFor="">Link to Meetup</label>
               </Form.Floating>
             </>
           )}
-          {eventType === "Digital" && (
+          {eventType === "In-Person" && (
             <>
               <Form.Floating className="form-margin">
                 <Form.Select value={countryIndex} onChange={handleCountryIndex}>
