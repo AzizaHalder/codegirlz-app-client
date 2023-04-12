@@ -52,6 +52,19 @@
   #meetup-img {
     max-width: 300px;
   }
+
+  /* Job Candidates */
+  .candidates-list {
+    display: flex;
+    margin: 20px;
+  }
+  .candidates {
+    box-shadow: 0 4px 8px 0 rgba(107, 105, 105, 0.1);
+    box-sizing: border-box;
+    width: 100px;
+    padding: 10px 7px;
+    margin: 12px;
+  }
 }
 
 #saved-meetup-card {
@@ -149,5 +162,20 @@
   #saved-meetup-card {
     width: 75%;
     height: auto;
+  }
+
+  /* Job Candidate Cards */
+  .candidates-list {
+    /* display: flex; */
+    margin: 10px 30px;
+    align-items: row;
+  }
+  .candidates {
+    box-shadow: 0 4px 8px 0 rgba(107, 105, 105, 0.1);
+    box-sizing: border-box;
+    /* width: 140px; */
+    /* height: auto; */
+    padding: 10px 7px;
+    margin: 12px;
   }
 }
