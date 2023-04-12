@@ -8,7 +8,6 @@ import Button from "react-bootstrap/Button";
 
 const AddMeetup = () => {
   const countryKeys = Object.keys(countries);
-  // list of arrays of cities
   const cityArrayList = Object.values(countries);
   const [eventName, setEventName] = useState("");
   const [eventType, setEventType] = useState("");
@@ -87,7 +86,7 @@ const AddMeetup = () => {
   };
   return (
     <div className="NewMeetup">
-      <h1 className="page-title">NewMeetup</h1>
+      <h1 className="page-title">New Meetup</h1>
       <Form className="new-meetup" onSubmit={handleSubmit}>
         <div className="col-md-6">
           <Form.Floating className="form-margin">
