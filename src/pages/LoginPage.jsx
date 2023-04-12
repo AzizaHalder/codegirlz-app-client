@@ -91,12 +91,10 @@ function LoginPage() {
       </div>
 
       <section>
-        <Link to={"/auth/recruiter/login"}>
-          <Button className="btn">Recruiter Login</Button>
-        </Link>
-
         <Link to={"/auth/recruiter/signup"}>
-          <Button>Are You a Recruiter? Sign up your company!</Button>
+          <Button id="signup-recruiter">
+            Are You a Recruiter? <br /> Sign up your company!
+          </Button>
         </Link>
       </section>
     </div>
