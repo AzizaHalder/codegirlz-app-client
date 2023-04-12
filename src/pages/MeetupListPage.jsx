@@ -85,6 +85,7 @@ function MeetupList() {
       </select>
 
       <div className="all-cards">
+
         {meetupList &&
           searchResults.map(
             ({ eventImage, eventName, eventType, eventDateAndTime, _id }) => {
