@@ -153,6 +153,13 @@
     width: 30px;
     padding: 3px;
   }
+
+  #home-gallery {
+    border: none;
+    padding: 6%;
+    width: 100%;
+    height: auto;
+  }
 }
 
 /* for desktop */
@@ -336,6 +343,20 @@
   width: 100vw;
 }
 
+#title-card h1,
+#footer h1 {
+  font-size: 5.9vw;
+}
+
+#title-card h2,
+#footer h2 {
+  font-size: 3vh;
+}
+#title-card p,
+#footer p {
+  font-size: 2vmin;
+}
+
 #card-image-overlay {
   display: flex;
   align-items: center;
@@ -354,6 +375,7 @@
 #card-container {
   border: none;
   padding: 6%;
+  width: 100vw;
 }
 
 #header-card-image {
