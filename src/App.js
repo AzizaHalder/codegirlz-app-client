@@ -24,6 +24,7 @@ import SignUpPageRecruiter from "./pages/SignUpPageRecruiter";
 import "./styles/Forms.css";
 import "./styles/editPages.css";
 import LoginPageRecruiter from "./pages/LoginPageRecruiter";
+import JobCandidates from "./pages/JobCandidates";
 
 // src / styles / index.css;
 
@@ -110,6 +111,7 @@ function App() {
 
         <Route path="/profile/:profileId" element={<Profile />} />
         <Route path="profile/:profileId/edit/" element={<EditProfile />} />
+        <Route path="/recruiter/job-candidates" element={<JobCandidates />} />
       </Routes>
       <Footer />
     </div>
