@@ -4,12 +4,17 @@ import axios from "axios";
 import { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
+import FloatingLabel from 'react-bootstrap/FloatingLabel'
+
 
 const LoginPageRecruiter = () => {
   const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const [errorMessage, setErrorMessage] = useState(undefined);
+
 
   const navigate = useNavigate();
 
@@ -28,24 +33,44 @@ const LoginPageRecruiter = () => {
         authenticateUser();
         navigate("/");
       })
-      .catch((err) => console.log("Error while logging in:", err));
+      .catch((error) => {
+        const errorDescription = error.response.data.errorMessage;
+        setErrorMessage(errorDescription);
+      });
   };
 
   return (
     <div className="RecruiterLogin">
       <h1 className="page-title">Recruiterz Login</h1>
-      <Form className="row g-3" onSubmit={handleLogin}>
-        <Form.Label>Email</Form.Label>
-        <Form.Control type="email" value={email} onChange={handleEmail} />
-        <Form.Label>Password</Form.Label>
-        <Form.Control
-          type="password"
-          value={password}
-          onChange={handlePassword}
-        />
-        <Button className="btn" type="submit">
-          Login
-        </Button>
+      <Form className="row g-3" onSubmit={handleLogin} id="rec-form-signup">
+        <div>
+          <FloatingLabel
+            controlId="floatingInput"
+            label="Email"
+            className="mb-3"
+          >
+            <Form.Control type="email" placeholder="name@example.com" value={email} onChange={handleEmail} />
+          </FloatingLabel>
+        </div>
+        <br></br>
+        <div>
+          <FloatingLabel controlId="floatingPassword" label="Password">
+            <Form.Control type="password" placeholder="Password" value={password}
+              onChange={handlePassword} />
+          </FloatingLabel>
+        </div>
+        <div>
+          {errorMessage && (
+            <p className="error-message" style={{ color: "red" }}>
+              {errorMessage}
+            </p>
+          )}
+        </div>
+        <div className="col-md-6">
+          <Button id="sign-up-button" type="submit">
+            Login
+          </Button>
+        </div>
       </Form>
     </div>
   );

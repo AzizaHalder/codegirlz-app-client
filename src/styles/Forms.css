@@ -1,6 +1,7 @@
 #LoginPage,
 #SignupPage,
-#EditProfile {
+#EditProfile,
+#RecruiterSignup {
   margin-top: 10%;
   padding-bottom: 50%;
 }
@@ -147,4 +148,16 @@
 
 #profile-container a:visited {
   color: black;
+}
+
+#SignupPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#rec-form-signup {
+  width: 75%;
+  margin: auto;
 }
