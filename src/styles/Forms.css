@@ -24,6 +24,7 @@
   margin-bottom: 10%;
 }
 
+#signup-recruiter,
 #sign-up-button,
 #save-button {
   background-color: #1a6a68;
@@ -46,6 +47,7 @@
   padding: 5px 10px;
 }
 
+#signup-recruiter:hover,
 #sign-up-button:hover,
 #save-button:hover {
   background-color: #81b4a6;
