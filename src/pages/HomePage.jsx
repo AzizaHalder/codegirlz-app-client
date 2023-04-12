@@ -4,11 +4,11 @@ import ListGroup from "react-bootstrap/ListGroup";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import Container from "react-bootstrap/Container";
+
 function HomePage() {
   return (
-
-    <div id="title-card" >
-      <Card id="title-card" >
+    <div id="title-card">
+      <Card id="title-card">
         <Card.Img
           id="title-card-image"
           src="https://res.cloudinary.com/ddieot9rc/image/upload/v1680857251/code-girlz/profile_tlpyz2.jpg"
@@ -26,28 +26,32 @@ function HomePage() {
       </Card>
       <div id="image-container">
         <Card style={{ width: "40%" }} id="card-container">
-          <Card.Body>
-            <Card.Title>Meetups</Card.Title>
-            <Card.Text>meet with coderz in your area or online</Card.Text>
-          </Card.Body>
-          <Card.Img
-            variant="top"
-            src="https://res.cloudinary.com/ddieot9rc/image/upload/v1680808126/code-girlz/meetup3_zlitwj.jpg"
-            id="header-card-image"
-          />
+          <Link to={"/meetup"} className="home-info">
+            <Card.Body>
+              <Card.Title>Meetups</Card.Title>
+              <Card.Text>meet with coderz in your area or online</Card.Text>
+            </Card.Body>
+            <Card.Img
+              variant="top"
+              src="https://res.cloudinary.com/ddieot9rc/image/upload/v1680808126/code-girlz/meetup3_zlitwj.jpg"
+              id="header-card-image"
+            />
+          </Link>
         </Card>
         <Card style={{ width: "40%" }} id="card-container">
-          <Card.Img
-            variant="top"
-            src="https://res.cloudinary.com/ddieot9rc/image/upload/v1680810179/code-girlz/resources_vmpwhx.jpg"
-            id="header-card-image"
-          />
-          <Card.Body>
-            <Card.Title>Resources</Card.Title>
-            <Card.Text>
-              read, listen or watch to learn more about web development
-            </Card.Text>
-          </Card.Body>
+          <Link to={"/resource"} className="home-info">
+            <Card.Img
+              variant="top"
+              src="https://res.cloudinary.com/ddieot9rc/image/upload/v1680810179/code-girlz/resources_vmpwhx.jpg"
+              id="header-card-image"
+            />
+            <Card.Body>
+              <Card.Title>Resources</Card.Title>
+              <Card.Text>
+                read, listen or watch to learn more about web development
+              </Card.Text>
+            </Card.Body>
+          </Link>
         </Card>
       </div>
       <div id="home-gallery">
@@ -59,7 +63,7 @@ function HomePage() {
               src="https://res.cloudinary.com/ddieot9rc/image/upload/v1680850360/code-girlz/meetupthumbnail1_es8cfm.jpg"
               style={{
                 width: "100%",
-                maxWidth: "20rem"
+                maxWidth: "20rem",
               }}
             />
           </Link>
@@ -72,8 +76,9 @@ function HomePage() {
               src="https://res.cloudinary.com/ddieot9rc/image/upload/v1680850360/code-girlz/meetupthumbnail3_cujvct.jpg"
               style={{
                 width: "100%",
-                maxWidth: "20rem"
-              }} />
+                maxWidth: "20rem",
+              }}
+            />
           </Link>
         </Card>
         <Card style={{ width: "20rem" }} id="card">
@@ -84,8 +89,9 @@ function HomePage() {
               src="https://res.cloudinary.com/ddieot9rc/image/upload/v1680850360/code-girlz/meetupthumbnail2_fhkgyt.jpg"
               style={{
                 width: "100%",
-                maxWidth: "20rem"
-              }} />
+                maxWidth: "20rem",
+              }}
+            />
           </Link>
         </Card>
         <Card style={{ width: "20rem" }} id="card">
@@ -96,8 +102,9 @@ function HomePage() {
               src="https://res.cloudinary.com/ddieot9rc/image/upload/v1680808122/code-girlz/meetup2_g7vfyo.jpg"
               style={{
                 width: "100%",
-                maxWidth: "20rem"
-              }} />
+                maxWidth: "20rem",
+              }}
+            />
           </Link>
         </Card>
         <Card style={{ width: "20rem" }} id="card">
@@ -109,8 +116,9 @@ function HomePage() {
               style={{
                 width: "100%",
 
-                maxWidth: "20rem"
-              }} />
+                maxWidth: "20rem",
+              }}
+            />
           </Link>
         </Card>
         <Card style={{ width: "20rem" }} id="card">
@@ -122,8 +130,9 @@ function HomePage() {
               style={{
                 width: "100%",
 
-                maxWidth: "20rem"
-              }} />
+                maxWidth: "20rem",
+              }}
+            />
           </Link>
         </Card>
         <Card style={{ width: "20rem" }} id="card">
@@ -135,8 +144,9 @@ function HomePage() {
               style={{
                 width: "100%",
 
-                maxWidth: "20rem"
-              }} />
+                maxWidth: "20rem",
+              }}
+            />
           </Link>
         </Card>
         <Card style={{ width: "20rem" }} id="card">
@@ -148,11 +158,65 @@ function HomePage() {
               style={{
                 width: "100%",
 
-                maxWidth: "20rem"
-              }} />
+                maxWidth: "20rem",
+              }}
+            />
           </Link>
         </Card>
       </div>
+
+      <div id="footer-more-info">
+        <div>
+          <ul className="footer-list">
+            <li className="footer-info">
+              Aziza Halder
+              <Link className="footer-link" to="https://github.com/AzizaHalder">
+                <img
+                  title="github"
+                  alt="github logo"
+                  id="github-logo"
+                  src="https://res.cloudinary.com/ddieot9rc/image/upload/v1680853437/code-girlz/github-mark_pus5z3.png"
+                />
+              </Link>
+            </li>
+            <li className="footer-info">
+              Nicole Bell
+              <Link className="footer-link" to="https://github.com/ozzleme">
+                <img
+                  title="github"
+                  alt="github logo"
+                  id="github-logo"
+                  src="https://res.cloudinary.com/ddieot9rc/image/upload/v1680853437/code-girlz/github-mark_pus5z3.png"
+                />
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <ul className="footer-list">
+          <li className="footer-info">
+            <Link className="footer-link" to="/auth/signup">
+              CodeGirlz Sign Up
+            </Link>
+          </li>
+          <li className="footer-info">
+            <Link className="footer-link" to="/meetup">
+              Meetup
+            </Link>
+          </li>
+          <li className="footer-info">
+            <Link className="footer-link" to="/resource">
+              Learn
+            </Link>
+          </li>
+
+          <li className="footer-info">
+            <Link className="footer-link" to="/auth/recruiter/signup">
+              Recruiterz Sign Up
+            </Link>
+          </li>
+        </ul>
+      </div>
+      {/*
       <div id="footer">
         <Card id="footer-card">
           <Card.Header>GirlCoderz</Card.Header>
@@ -222,8 +286,8 @@ function HomePage() {
           </ListGroup>
         </Card>
       </div>
+      */}
     </div>
-
   );
 }
 
