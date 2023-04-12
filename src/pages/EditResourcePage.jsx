@@ -15,6 +15,8 @@ const EditResource = () => {
   const [resourceType, setResourceType] = useState("");
   const [podcastUpload, setPodcastUpload] = useState("");
   const [videoUpload, setVideoUpload] = useState("");
+  const [errorMessage, setErrorMessage] = useState(undefined);
+
 
   const { resourceId } = useParams();
   const navigate = useNavigate("");
@@ -82,7 +84,10 @@ const EditResource = () => {
         setVideoUpload("");
         navigate("/resource");
       })
-      .catch((err) => console.log("Error while updating resource:", err));
+      .catch((error) => {
+        const errorDescription = error.response.data.errorMessage;
+        setErrorMessage(errorDescription);
+      });
   };
 
   const handleDelete = () => {
@@ -202,6 +207,13 @@ const EditResource = () => {
               </Form.Floating>
             </>
           )}
+          <div>
+            {errorMessage && (
+              <p className="error-message" style={{ color: "red" }}>
+                {errorMessage}
+              </p>
+            )}
+          </div>
 
           <Button variant="secondary" id="edit-res-btn" size="sm" type="submit">
             Submit Changes

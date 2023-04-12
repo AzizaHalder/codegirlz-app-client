@@ -110,71 +110,73 @@ function ResourceList() {
               author,
             }) => {
               return (
-                <Card
-                  key={_id}
-                  className="border-0 card-list bg-light"
-                  style={{ width: "250px" }}
-                >
-                  <div className="card-content">
-                    <Link to={`/resource/${_id}`} className="more-details">
-                      {resourceType === "Article" && (
-                        <img
-                          className="card-img"
-                          src={resourceImage}
-                          alt={resourceTitle}
-                        />
-                      )}
+                <div>
+                  <Card
+                    key={_id}
+                    className="border-0 card-list bg-light"
+                    style={{ width: "250px" }}
+                  >
+                    <div className="card-content">
+                      <Link to={`/resource/${_id}`} className="more-details">
+                        {resourceType === "Article" && (
+                          <img
+                            className="card-img"
+                            src={resourceImage}
+                            alt={resourceTitle}
+                          />
+                        )}
 
-                      {resourceType === "Podcast" && (
-                        <iframe
-                          className="podcast-thumbnail"
-                          loading="lazy"
-                          src={`https://open.spotify.com/embed/episode${podcastUpload}?utm_source=generator`}
-                          title="Spotify podcast"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                          allowfullscreen
-                        ></iframe>
-                      )}
+                        {resourceType === "Podcast" && (
+                          <iframe
+                            className="podcast-thumbnail"
+                            loading="lazy"
+                            src={`https://open.spotify.com/embed/episode${podcastUpload}?utm_source=generator`}
+                            title="Spotify podcast"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen
+                          ></iframe>
+                        )}
 
-                      {resourceType === "Video" && (
-                        <iframe
-                          src={`https://www.youtube.com/embed/${videoUpload}`}
-                          title="YouTube video player"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                          allowfullscreen
-                          className="card-video"
-                        ></iframe>
-                      )}
+                        {resourceType === "Video" && (
+                          <iframe
+                            src={`https://www.youtube.com/embed/${videoUpload}`}
+                            title="YouTube video player"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen
+                            className="card-video"
+                          ></iframe>
+                        )}
 
-                      <Card.Title>{resourceTitle}</Card.Title>
-                    </Link>
-                    <div className="resource-card-btn">
-                      <p>By: {author.name}</p>
-                      {isLoggedIn && (
-                        <Button
-                          className="bg-transparent border-0"
-                          title="save / unsave resource"
-                          onClick={() => handleSave(_id)}
-                        >
-                          {/* remove question mark once code finalised */}
-                          {!userInfo.myResource?.includes(_id) ? (
-                            <FontAwesomeIcon
-                              icon={faFileCirclePlus}
-                              size="lg"
-                              style={{ color: "#81b4a6" }}
-                            />
-                          ) : (
-                            <FontAwesomeIcon
-                              icon={faBookmark}
-                              size="lg"
-                              style={{ color: "#1a6a68" }}
-                            />
-                          )}
-                        </Button>
-                      )}
+                        <Card.Title>{resourceTitle}</Card.Title>
+                      </Link>
+                      <div className="resource-card-btn">
+                        <p>By: {author.name}</p>
+                        {isLoggedIn && (
+                          <Button
+                            className="bg-transparent border-0"
+                            title="save / unsave resource"
+                            onClick={() => handleSave(_id)}
+                          >
+                            {/* remove question mark once code finalised */}
+                            {!userInfo.myResource?.includes(_id) ? (
+                              <FontAwesomeIcon
+                                icon={faFileCirclePlus}
+                                size="lg"
+                                style={{ color: "#81b4a6" }}
+                              />
+                            ) : (
+                              <FontAwesomeIcon
+                                icon={faBookmark}
+                                size="lg"
+                                style={{ color: "#1a6a68" }}
+                              />
+                            )}
+                          </Button>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                </Card>
+                  </Card>
+                </div>
               );
             }
           )}

@@ -85,6 +85,7 @@ function MeetupList() {
       </select>
 
       <div className="all-cards">
+
         {meetupList &&
           searchResults.map(
             ({ eventImage, eventName, eventType, eventDateAndTime, _id }) => {
@@ -108,27 +109,31 @@ function MeetupList() {
                       </div>
                     </Link>
                     {isLoggedIn && (
-                      <Button
-                        className="bg-transparent border-0"
-                        title="Attend / Unattend Meetup"
-                        onClick={() => handleSave(_id)}
-                      >
-                        {/* remove --> ?  */}
-                        {!userInfo.eventsAttended?.includes(_id) ? (
-                          <FontAwesomeIcon
-                            icon={faCalendarPlus}
-                            size="lg"
-                            style={{ color: "#81b4a6" }}
-                          />
-                        ) : (
-                          <FontAwesomeIcon
-                            icon={faCalendar}
-                            size="lg"
-                            style={{ color: "#1a6a68" }}
-                          />
-                        )}
-                      </Button>
+                      <div>
+                        <Button
+                          className="bg-transparent border-0"
+                          title="Attend / Unattend Meetup"
+                          onClick={() => handleSave(_id)}
+                        >
+                          {/* remove --> ?  */}
+                          {!userInfo.eventsAttended?.includes(_id) ? (
+                            <FontAwesomeIcon
+                              icon={faCalendarPlus}
+                              size="lg"
+                              style={{ color: "#81b4a6" }}
+                            />
+                          ) : (
+                            <FontAwesomeIcon
+                              icon={faCalendar}
+                              size="lg"
+                              style={{ color: "#1a6a68" }}
+                            />
+                          )}
+                        </Button>
+                        <p className="hosted-by">Hosted by: {user.name}</p>
+                      </div>
                     )}
+
                   </div>
                 </Card>
               );

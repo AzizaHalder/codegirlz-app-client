@@ -6,7 +6,7 @@ import { Button } from "react-bootstrap";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
-function LoginPage(props) {
+function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
@@ -17,7 +17,7 @@ function LoginPage(props) {
 
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
-  console.log(API_URL);
+
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     const requestBody = { email, password };
@@ -74,7 +74,7 @@ function LoginPage(props) {
             </p>
           )}
         </div>
-        <div class="col-md-6">
+        <div className="col-md-6">
           <button className="btn btn-primary" type="submit" id="login-button">
             Login
           </button>
