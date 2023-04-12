@@ -1,4 +1,5 @@
 import axios from "axios";
+import Card from "react-bootstrap/Card";
 import { useState, useEffect } from "react";
 
 const JobCandidates = () => {
@@ -19,17 +20,41 @@ const JobCandidates = () => {
   return (
     <>
       <h1 className="page-title">JobCandidates</h1>
-      <div>
+      <div className="candidates-list">
         {jobCandidates &&
-          jobCandidates.map(({ name, level, linkedin }) => {
-            return (
-              <>
-                <p>Name: {name}</p>
-                <p>Level: {level}</p>
-                <p>LinkedIn: {linkedin}</p>
-              </>
-            );
-          })}
+          jobCandidates.map(
+            ({ _id, name, level, profileImg, description, city }) => {
+              return (
+                <Card
+                  className="candidates"
+                  key={_id}
+                  style={{ width: "14rem" }}
+                >
+                  {profileImg.length === 0 ? (
+                    <></>
+                  ) : (
+                    <img src={profileImg} alt={name} />
+                  )}
+                  <Card.Title>{name}</Card.Title>
+                  {description.length === 0 ? (
+                    <></>
+                  ) : (
+                    <Card.Text>{description}</Card.Text>
+                  )}
+
+                  {level.length === 0 ? (
+                    <></>
+                  ) : (
+                    <Card.Footer>
+                      <small className="text-muted">
+                        {city} / {level}
+                      </small>
+                    </Card.Footer>
+                  )}
+                </Card>
+              );
+            }
+          )}
       </div>
     </>
   );
