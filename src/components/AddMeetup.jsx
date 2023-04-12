@@ -107,46 +107,48 @@ const AddMeetup = () => {
             </Form.Select>
             <label htmlFor="">Type of Event</label>
           </Form.Floating>
-          {eventType === "In-Person" && (
-            <>
-              <Form.Floating className="form-margin">
-                <Form.Select
-                  id="eventTypes"
-                  name={eventType}
-                  onChange={(e) => setEventType(e.target.value)}
-                >
-                  <option value="" disabled selected>
-                    Select Event Type
-                  </option>
-                  <option value="Digital">Digital</option>
-                  <option value="In-Person">In-Person</option>
-                </Form.Select>
-                <label htmlFor="">Type of Event</label>
-              </Form.Floating>
-            </>
-          )}
           {eventType === "Digital" && (
             <>
               <Form.Floating className="form-margin">
-                <Form.Select value={countryIndex} onChange={handleCountryIndex}>
-                  <option value="0">Select Country </option>
-                  {countryKeys.map((result, index) => (
-                    <option value={index}>{result}</option>
-                  ))}
-                </Form.Select>
+                <Form.Control
+                  type="url"
+                  value={eventLink}
+                  onChange={(e) => setEventLink(e.target.value)}
+                />
+                <label htmlFor="">Link to Meetup</label>
               </Form.Floating>
-              <Form.Floating className="form-margin">
-                <Form.Select value={city} onChange={handleCity}>
-                  <option>Select City</option>
-                  {cityArrayList[countryIndex].map((result) => (
-                    <option value={result}>{result}</option>
-                  ))}
-                </Form.Select>
-              </Form.Floating>
-              <Form.Floating className="form-margin">
-                <Form.Control ref={inputRef} value={address} type="text" />
-                <label htmlFor="">Address</label>
-              </Form.Floating>
+            </>
+          )}
+          {eventType === "In-Person" && (
+            <>
+              <div>
+                <div>
+                  <Form.Floating className="form-margin">
+                    <Form.Select value={countryIndex} onChange={handleCountryIndex}>
+                      <option value="0">Select Country </option>
+                      {countryKeys.map((result, index) => (
+                        <option value={index}>{result}</option>
+                      ))}
+                    </Form.Select>
+                  </Form.Floating>
+                </div>
+                <div>
+                  <Form.Floating className="form-margin">
+                    <Form.Select value={city} onChange={handleCity}>
+                      <option>Select City</option>
+                      {cityArrayList[countryIndex].map((result) => (
+                        <option value={result}>{result}</option>
+                      ))}
+                    </Form.Select>
+                  </Form.Floating>
+                </div>
+                <div>
+                  <Form.Floating className="form-margin">
+                    <Form.Control ref={inputRef} value={address} type="text" name="currentLocation" />
+                    <label htmlFor="">Address</label>
+                  </Form.Floating>
+                </div>
+              </div>
             </>
           )}
           <Form.Floating className="form-margin">

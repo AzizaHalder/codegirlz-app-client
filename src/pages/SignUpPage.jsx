@@ -195,7 +195,7 @@ function SignupPage() {
           )}
         </div>
 
-        <div class="col-12" id="sign-up-button-div">
+        <div className="col-12" id="sign-up-button-div">
           <button class="btn btn-primary" type="submit" id="sign-up-button">
             Sign Up
           </button>
