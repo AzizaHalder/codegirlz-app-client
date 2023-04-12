@@ -129,6 +129,7 @@ function MeetupList() {
                         )}
                       </Button>
                     )}
+                    <p className="hosted-by">Hosted by: {user.name}</p>
                   </div>
                 </Card>
               );

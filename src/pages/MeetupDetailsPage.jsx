@@ -110,6 +110,7 @@ function MeetupDetails() {
               />
             )}
           </Button>
+          <p>Hosted by: {user.name}</p>
           <p>{meetupSelected.attendees}</p>
           {user._id === meetupSelected.author && (
             <Link to={`/meetup/edit/${meetupSelected._id}`}>

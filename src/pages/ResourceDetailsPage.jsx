@@ -30,7 +30,6 @@ const ResourceDetails = () => {
       })
       .then((res) => {
         setResourceDetails(res.data);
-        console.log(res.data);
       })
       .catch((err) =>
         console.log("Error while retrieving resource details:", err)

@@ -134,4 +134,8 @@
     display: flex;
     flex-direction: row;
   }
+
+  .hosted-by {
+    color: #81b4a6;
+  }
 }
