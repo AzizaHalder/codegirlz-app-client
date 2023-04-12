@@ -11,6 +11,9 @@ const LoginPageRecruiter = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [errorMessage, setErrorMessage] = useState(undefined);
+
+
   const navigate = useNavigate();
 
   const { storeToken, authenticateUser } = useContext(AuthContext);
@@ -28,7 +31,10 @@ const LoginPageRecruiter = () => {
         authenticateUser();
         navigate("/");
       })
-      .catch((err) => console.log("Error while logging in:", err));
+      .catch((error) => {
+        const errorDescription = error.response.data.errorMessage;
+        setErrorMessage(errorDescription);
+      });
   };
 
   return (
@@ -43,6 +49,13 @@ const LoginPageRecruiter = () => {
           value={password}
           onChange={handlePassword}
         />
+        <div>
+          {errorMessage && (
+            <p className="error-message" style={{ color: "red" }}>
+              {errorMessage}
+            </p>
+          )}
+        </div>
         <Button className="btn" type="submit">
           Login
         </Button>

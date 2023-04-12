@@ -12,6 +12,8 @@ const SignUpPageRecruiter = () => {
   const [company, setCompany] = useState("");
   const [city, setCity] = useState("");
   const [linkedin, setLinkedin] = useState("");
+  const [errorMessage, setErrorMessage] = useState(undefined);
+
 
   const handleRecruiterName = (e) => setRecruiterName(e.target.value);
   const handleEmail = (e) => setEmail(e.target.value);
@@ -39,8 +41,9 @@ const SignUpPageRecruiter = () => {
       .then((response) => {
         navigate("/auth/recruiter/login");
       })
-      .catch((err) => {
-        console.log("Error signing up:", err);
+      .catch((error) => {
+        const errorDescription = error.response.data.errorMessage;
+        setErrorMessage(errorDescription);
       });
   };
 
@@ -73,7 +76,14 @@ const SignUpPageRecruiter = () => {
 
         <Form.Label>linkedin:</Form.Label>
         <Form.Control type="text" value={linkedin} onChange={handleLinkedin} />
-        <Link to={"auth/recruiter/login"}>
+        <div>
+          {errorMessage && (
+            <p className="error-message" style={{ color: "red" }}>
+              {errorMessage}
+            </p>
+          )}
+        </div>
+        <Link to={`${API_URL}/auth/recruiter/signup`}>
           <Button type="submit">Sign Up</Button>
         </Link>
       </Form>
