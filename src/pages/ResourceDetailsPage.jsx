@@ -200,7 +200,7 @@ const ResourceDetails = () => {
               Comment
             </Button>
           </div>
-          <section>
+          <section id="comment-section">
             {allComments.map(({ author, createdAt, comment }) => {
               return (
                 <div className="comments-user">

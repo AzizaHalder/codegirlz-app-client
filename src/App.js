@@ -98,7 +98,7 @@ function App() {
 
         <Route path="/meetup/attend" element={<AttendMeetup />} />
       </Routes>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }

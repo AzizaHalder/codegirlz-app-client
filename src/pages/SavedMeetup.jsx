@@ -33,7 +33,7 @@ function AttendMeetup() {
         {attendEvent &&
           attendEvent.map(({ eventsAttended, _id }) => {
             return (
-              <Card key={_id} className="border-0 card-list bg-light">
+              <Card key={_id} className="border-0 card-list bg-light" id="saved-meetup-card">
                 {eventsAttended.map((value) => (
                   <div className="card-content">
                     <Link to={`/meetup/${value._id}`} className="more-details">
