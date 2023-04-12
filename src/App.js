@@ -20,8 +20,10 @@ import AttendMeetup from "./pages/SavedMeetup";
 import Profile from "./pages/Profile";
 import EditProfile from "./pages/EditProfile";
 import Footer from "./components/Footer";
+import SignUpPageRecruiter from "./pages/SignUpPageRecruiter";
 import "./styles/Forms.css";
 import "./styles/editPages.css";
+import LoginPageRecruiter from "./pages/LoginPageRecruiter";
 
 // src / styles / index.css;
 
@@ -47,6 +49,18 @@ function App() {
               <SignUpPage />
             </IsAnon>
           }
+        />
+        <Route
+          path="/auth/recruiter/login"
+          element={
+            <IsAnon>
+              <LoginPageRecruiter />
+            </IsAnon>
+          }
+        />
+        <Route
+          path="/auth/recruiter/signup"
+          element={<SignUpPageRecruiter />}
         />
         <Route path="/meetup" element={<MeetupList />} />
         <Route
@@ -92,11 +106,10 @@ function App() {
           }
         />
         <Route path="/resource/save" element={<MyResources />} />
+        <Route path="/meetup/attend" element={<AttendMeetup />} />
 
         <Route path="/profile/:profileId" element={<Profile />} />
         <Route path="profile/:profileId/edit/" element={<EditProfile />} />
-
-        <Route path="/meetup/attend" element={<AttendMeetup />} />
       </Routes>
       <Footer />
     </div>
