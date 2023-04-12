@@ -22,6 +22,8 @@ function EditMeetUp() {
   const [eventNewImage, setEventNewImage] = useState("");
   const [eventDateAndTime, setEventDateAndTime] = useState("");
   const [address, setAddress] = useState();
+  const [errorMessage, setErrorMessage] = useState(undefined);
+
 
   const { meetupId } = useParams();
   const navigate = useNavigate();
@@ -109,7 +111,10 @@ function EditMeetUp() {
         setEventDateAndTime("");
         navigate("/meetup");
       })
-      .catch((err) => console.log("Error while editing meetup: ", err));
+      .catch((error) => {
+        const errorDescription = error.response.data.errorMessage;
+        setErrorMessage(errorDescription);
+      });
   };
 
   const handleDelete = () => {
@@ -249,6 +254,13 @@ function EditMeetUp() {
               onChange={(e) => handleImageUpload(e)}
             />
           </Form.Floating>
+          <div>
+            {errorMessage && (
+              <p className="error-message" style={{ color: "red" }}>
+                {errorMessage}
+              </p>
+            )}
+          </div>
           <Button
             variant="secondary"
             size="sm"

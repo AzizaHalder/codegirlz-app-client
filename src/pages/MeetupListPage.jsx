@@ -85,6 +85,7 @@ function MeetupList() {
       </select>
 
       <div className="all-cards">
+
         {meetupList &&
           searchResults.map(
             ({ eventImage, eventName, eventType, eventDateAndTime, _id }) => {
@@ -129,6 +130,7 @@ function MeetupList() {
                         )}
                       </Button>
                     )}
+                    <p className="hosted-by">Hosted by: {user.name}</p>
                   </div>
                 </Card>
               );

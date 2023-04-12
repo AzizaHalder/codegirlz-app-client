@@ -2,6 +2,7 @@
 #SignupPage,
 #EditProfile {
   margin-top: 10%;
+  padding-bottom: 50%;
 }
 
 #form-login,
@@ -13,10 +14,13 @@
 }
 
 #sign-up-button-div,
-#login-container,
 #save-button-div {
   margin-top: 1%;
   margin-bottom: 3%;
+}
+
+#login-container {
+  margin-bottom: 10%;
 }
 
 #sign-up-button,

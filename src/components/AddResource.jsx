@@ -14,6 +14,8 @@ const AddResource = () => {
   const [videoUpload, setVideoUpload] = useState("");
   const [podcastUpload, setPodcastUpload] = useState("");
   const { user } = useContext(AuthContext);
+  const [errorMessage, setErrorMessage] = useState(undefined);
+
 
   const navigate = useNavigate();
 
@@ -54,9 +56,11 @@ const AddResource = () => {
         setResourceURL("");
         setResourceContent("");
         navigate("/resource");
-        console.log("RES from service", res);
       })
-      .catch((err) => console.log("Error while creating new resource:", err));
+      .catch((error) => {
+        const errorDescription = error.response.data.errorMessage;
+        setErrorMessage(errorDescription);
+      });
   };
 
   return (
@@ -156,6 +160,13 @@ const AddResource = () => {
               </Form.Floating>
             </>
           )}
+          <div>
+            {errorMessage && (
+              <p className="error-message" style={{ color: "red" }}>
+                {errorMessage}
+              </p>
+            )}
+          </div>
 
           <Button id="new-res-btn" variant="secondary" size="sm" type="submit">
             Upload New Resource

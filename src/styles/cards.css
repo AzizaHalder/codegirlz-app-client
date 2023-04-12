@@ -3,6 +3,8 @@
   .all-cards {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
   }
 
   .card-list {
@@ -52,6 +54,11 @@
   }
 }
 
+#saved-meetup-card {
+  width: 75%;
+  height: auto;
+}
+
 /* Large screens */
 @media only screen and (min-width: 601px) {
   /* Cards for ResourceListPage, MeetupListPage */
@@ -64,6 +71,7 @@
   }
 
   .card-list {
+    display: flex;
     max-width: 265px;
     margin: 20px;
     box-sizing: border-box;
@@ -133,5 +141,13 @@
   .location-details {
     display: flex;
     flex-direction: row;
+  }
+
+  .hosted-by {
+    color: #81b4a6;
+  }
+  #saved-meetup-card {
+    width: 75%;
+    height: auto;
   }
 }

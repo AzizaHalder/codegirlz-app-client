@@ -3,11 +3,12 @@ import { Link } from "react-router-dom";
 import ListGroup from "react-bootstrap/ListGroup";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-
+import Container from "react-bootstrap/Container";
 function HomePage() {
   return (
-    <div>
-      <Card id="title-card">
+
+    <div id="title-card" >
+      <Card id="title-card" >
         <Card.Img
           id="title-card-image"
           src="https://res.cloudinary.com/ddieot9rc/image/upload/v1680857251/code-girlz/profile_tlpyz2.jpg"
@@ -56,6 +57,10 @@ function HomePage() {
               id="card-image"
               variant="top"
               src="https://res.cloudinary.com/ddieot9rc/image/upload/v1680850360/code-girlz/meetupthumbnail1_es8cfm.jpg"
+              style={{
+                width: "100%",
+                maxWidth: "20rem"
+              }}
             />
           </Link>
         </Card>
@@ -65,7 +70,10 @@ function HomePage() {
               id="card-image"
               variant="top"
               src="https://res.cloudinary.com/ddieot9rc/image/upload/v1680850360/code-girlz/meetupthumbnail3_cujvct.jpg"
-            />
+              style={{
+                width: "100%",
+                maxWidth: "20rem"
+              }} />
           </Link>
         </Card>
         <Card style={{ width: "20rem" }} id="card">
@@ -74,7 +82,10 @@ function HomePage() {
               id="card-image"
               variant="top"
               src="https://res.cloudinary.com/ddieot9rc/image/upload/v1680850360/code-girlz/meetupthumbnail2_fhkgyt.jpg"
-            />
+              style={{
+                width: "100%",
+                maxWidth: "20rem"
+              }} />
           </Link>
         </Card>
         <Card style={{ width: "20rem" }} id="card">
@@ -83,7 +94,10 @@ function HomePage() {
               id="card-image"
               variant="top"
               src="https://res.cloudinary.com/ddieot9rc/image/upload/v1680808122/code-girlz/meetup2_g7vfyo.jpg"
-            />
+              style={{
+                width: "100%",
+                maxWidth: "20rem"
+              }} />
           </Link>
         </Card>
         <Card style={{ width: "20rem" }} id="card">
@@ -92,7 +106,11 @@ function HomePage() {
               id="card-image"
               variant="top"
               src="https://res.cloudinary.com/ddieot9rc/image/upload/v1680850361/code-girlz/meetupthumbnail9_bvcsfu.jpg"
-            />
+              style={{
+                width: "100%",
+
+                maxWidth: "20rem"
+              }} />
           </Link>
         </Card>
         <Card style={{ width: "20rem" }} id="card">
@@ -101,7 +119,11 @@ function HomePage() {
               id="card-image"
               variant="top"
               src="https://res.cloudinary.com/ddieot9rc/image/upload/v1680850362/code-girlz/meetupthumbnail8_fnkjqx.jpg"
-            />
+              style={{
+                width: "100%",
+
+                maxWidth: "20rem"
+              }} />
           </Link>
         </Card>
         <Card style={{ width: "20rem" }} id="card">
@@ -110,7 +132,11 @@ function HomePage() {
               id="card-image"
               variant="top"
               src="https://res.cloudinary.com/ddieot9rc/image/upload/v1680850362/code-girlz/meetupthumbnail5_lifpil.jpg"
-            />
+              style={{
+                width: "100%",
+
+                maxWidth: "20rem"
+              }} />
           </Link>
         </Card>
         <Card style={{ width: "20rem" }} id="card">
@@ -119,7 +145,11 @@ function HomePage() {
               id="card-image"
               variant="top"
               src="https://res.cloudinary.com/ddieot9rc/image/upload/v1680850365/code-girlz/meetupthumbnail6_m5kecv.jpg"
-            />
+              style={{
+                width: "100%",
+
+                maxWidth: "20rem"
+              }} />
           </Link>
         </Card>
       </div>
@@ -193,6 +223,7 @@ function HomePage() {
         </Card>
       </div>
     </div>
+
   );
 }
 

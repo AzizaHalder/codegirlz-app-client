@@ -12,7 +12,6 @@ const ResourceDetails = () => {
   const [resourceDetails, setResourceDetails] = useState("");
   const [oneComment, setOneComment] = useState("");
   const [allComments, setAllComments] = useState([]);
-  console.log(resourceDetails);
 
   const [saved, setSaved] = useState(false);
 
@@ -30,7 +29,6 @@ const ResourceDetails = () => {
       })
       .then((res) => {
         setResourceDetails(res.data);
-        console.log(res.data);
       })
       .catch((err) =>
         console.log("Error while retrieving resource details:", err)
@@ -202,7 +200,7 @@ const ResourceDetails = () => {
               Comment
             </Button>
           </div>
-          <section>
+          <section id="comment-section">
             {allComments.map(({ author, createdAt, comment }) => {
               return (
                 <div className="comments-user">

@@ -9,6 +9,7 @@ import {
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
+import { Card } from "react-bootstrap";
 
 function MeetupDetails() {
   const [meetupSelected, setMeetup] = useState("");
@@ -52,6 +53,7 @@ function MeetupDetails() {
   if (meetupSelected) {
     return (
       <Container className="meetup-details">
+        <h1 className="page-title">Meetup Details</h1>
         <div id="left" className="meetup">
           <img
             id="meetup-img"
@@ -62,11 +64,8 @@ function MeetupDetails() {
         <div className="meetup meetup-info" id="right">
           <h5>{meetupSelected.eventType}</h5>
           <h1 className="page-title">{meetupSelected.eventName}</h1>
+          <p>Created by: {user.name}</p>
 
-          {/*
-        - When creating a meetup, cannot retrieve author
-         <p>Created by: {meetupSelected.author?.name}</p> 
-         */}
           {meetupSelected.eventType === "Digital" && (
             <p>{meetupSelected.eventLink}</p>
           )}
@@ -110,6 +109,7 @@ function MeetupDetails() {
               />
             )}
           </Button>
+          <p>Hosted by: {user.name}</p>
           <p>{meetupSelected.attendees}</p>
           {user._id === meetupSelected.author && (
             <Link to={`/meetup/edit/${meetupSelected._id}`}>
