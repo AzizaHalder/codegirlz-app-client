@@ -12,7 +12,6 @@ const ResourceDetails = () => {
   const [resourceDetails, setResourceDetails] = useState("");
   const [oneComment, setOneComment] = useState("");
   const [allComments, setAllComments] = useState([]);
-  console.log(resourceDetails);
 
   const [saved, setSaved] = useState(false);
 

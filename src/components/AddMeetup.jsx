@@ -18,6 +18,8 @@ const AddMeetup = () => {
   const [eventDateAndTime, setEventDateAndTime] = useState("");
   const [city, setCity] = useState("");
   const [countryIndex, setCountryIndex] = useState(0);
+  const [errorMessage, setErrorMessage] = useState(undefined);
+
   const navigate = useNavigate();
   const [address, setAddress] = useState();
   const autoCompleteRef = useRef();
@@ -78,7 +80,10 @@ const AddMeetup = () => {
         console.log("RES", res);
         navigate("/meetup");
       })
-      .catch((err) => console.log("Error while adding new meetup: ", err));
+      .catch((error) => {
+        const errorDescription = error.response.data.errorMessage;
+        setErrorMessage(errorDescription);
+      });
   };
   return (
     <div className="NewMeetup">
@@ -182,6 +187,13 @@ const AddMeetup = () => {
             />
             <label>Upload Image</label>
           </Form.Floating>
+          <div>
+            {errorMessage && (
+              <p className="error-message" style={{ color: "red" }}>
+                {errorMessage}
+              </p>
+            )}
+          </div>
           <Button variant="secondary" id="submit-btn" size="sm" type="submit">
             Submit New Meetup
           </Button>
