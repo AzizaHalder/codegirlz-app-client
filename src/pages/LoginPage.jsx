@@ -82,17 +82,18 @@ function LoginPage() {
           )}
         </div>
 
-        <div className="col-md-6">
-          <button className="btn btn-primary" type="submit" id="login-button">
+        <div className="col-12" id="log-in-button-div">
+          <button className="btn btn-primary" type="submit" id="sign-up-button" >
             Login
           </button>
         </div>
+
       </Form>
 
       <div className="col-12" id="sign-up-button-div">
         <p>Don't have an account yet?</p>
         <Link to={"/auth/signup"}>
-          <Button className="btn btn-primary" type="submit" id="sign-up-button">
+          <Button className="btn btn-primary" type="submit" id="login-button">
             Sign Up
           </Button>
         </Link>
@@ -100,7 +101,7 @@ function LoginPage() {
 
       <section>
         <Link to={"/auth/recruiter/signup"}>
-          <Button id="signup-recruiter">
+          <Button id="login-button">
             Are You a Recruiter? <br /> Sign up your company!
           </Button>
         </Link>
