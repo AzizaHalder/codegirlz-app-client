@@ -30,9 +30,12 @@ function MeetupList() {
       .then((result) => {
         setMeetupList(result);
         setSearchResults(result);
-        return service.getUserInfo();
+        return service.getUserInfo(user._id);
       })
-      .then((user) => setUserInfo(user))
+      .then((user) => {
+        console.log("USER", user);
+        setUserInfo(user);
+      })
       .catch((err) => console.log("Error while retrieving meetup list:", err));
   }, []); //effect runs once after initial render
 
