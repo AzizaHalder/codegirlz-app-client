@@ -82,11 +82,12 @@ function LoginPage() {
           )}
         </div>
 
-        <div className="col-md-6">
-          <button className="btn btn-primary" type="submit" id="login-button">
+        <div className="col-12" id="log-in-button-div">
+          <button className="btn btn-primary" type="submit" id="sign-up-button" >
             Login
           </button>
         </div>
+
       </Form>
 
       <div className="col-12" id="sign-up-button-div">
