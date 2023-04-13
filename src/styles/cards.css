@@ -150,4 +150,12 @@
     width: 75%;
     height: auto;
   }
+
+  /* Display resource and display meetup filters */
+
+  #ResourceListPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }

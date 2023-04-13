@@ -11,6 +11,7 @@ import SearchBar from "../components/SearchBar";
 import axios from "axios";
 import service from "../api/service";
 
+
 function ResourceList() {
   // initial render
   const [resourceList, setResourceList] = useState([]);
@@ -82,9 +83,11 @@ function ResourceList() {
   };
 
   return (
+
     <Container className="ResourceListPage">
       <h1 className="page-title">Learn</h1>
-      <SearchBar onQuery={handleQuery} />
+
+      <SearchBar onQuery={handleQuery} className="col-md-6" />
 
       <select
         name="Filter"
@@ -96,6 +99,7 @@ function ResourceList() {
         <option value={"Video"}>Video</option>
         <option value={"Podcast"}>Podcast</option>
       </select>
+
 
       <div className="all-cards">
         {resourceList &&
@@ -150,7 +154,7 @@ function ResourceList() {
                         <Card.Title>{resourceTitle}</Card.Title>
                       </Link>
                       <div className="resource-card-btn">
-                        <p>By: {author.name}</p>
+                        {author.name && <p>By: {author.name}</p>}
                         {isLoggedIn && (
                           <Button
                             className="bg-transparent border-0"

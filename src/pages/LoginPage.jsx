@@ -90,7 +90,7 @@ function LoginPage() {
         </Link>
       </div>
 
-      <section>
+      <section >
         <Link to={"/auth/recruiter/login"}>
           <Button className="btn">Recruiter Login</Button>
         </Link>
