@@ -216,77 +216,12 @@ function HomePage() {
           </li>
         </ul>
       </div>
-      {/*
-      <div id="footer">
-        <Card id="footer-card">
-          <Card.Header>GirlCoderz</Card.Header>
-          <ListGroup id="list-group">
-            <Link to="/auth/signup">
-              <ListGroup.Item>Sign Up</ListGroup.Item>
-            </Link>
-            <Link to="/meetup">
-              <ListGroup.Item>Meetup</ListGroup.Item>
-            </Link>
-            <Link to="/resource">
-              <ListGroup.Item>Learn</ListGroup.Item>
-            </Link>
-          </ListGroup>
-        </Card>
-        <Card style={{ width: "18rem" }} id="footer-contact-us">
-          <Card.Body>
-            <Card.Title>Created by</Card.Title>
-            <div>
-              <Card.Text>
-                Aziza Halder
-                <Link to="https://github.com/AzizaHalder">
-                  <Card.Img
-                    id="github-logo"
-                    src="https://res.cloudinary.com/ddieot9rc/image/upload/v1680853437/code-girlz/github-mark_pus5z3.png"
-                  />
-                </Link>
-                <Link to="https://github.com/ozzleme">
-                  <FontAwesomeIcon
+      {/*     <FontAwesomeIcon
                     icon={faEnvelope}
                     size="2xl"
                     style={{ color: "#1A6A68" }}
                     id="email-image"
-                  />
-                </Link>
-              </Card.Text>
-            </div>
-            <div>
-              <Card.Text>
-                Nicole Bell
-                <Link to="https://github.com/ozzleme">
-                  <Card.Img
-                    id="github-logo"
-                    src="https://res.cloudinary.com/ddieot9rc/image/upload/v1680853437/code-girlz/github-mark_pus5z3.png"
-                  />
-                </Link>
-                <Link to="https://github.com/ozzleme">
-                  <FontAwesomeIcon
-                    icon={faEnvelope}
-                    size="2xl"
-                    style={{ color: "#1A6A68" }}
-                    id="email-image"
-                  />
-                </Link>
-              </Card.Text>
-            </div>
-          </Card.Body>
-        </Card>
-        <Card id="footer-card">
-          <Card.Header>Recruiters</Card.Header>
-          <ListGroup id="list-group">
-            <Link to="/auth/signup">
-              <ListGroup.Item>Register</ListGroup.Item>
-            </Link>
-            <ListGroup.Item>Hire GirlCoderz</ListGroup.Item>
-            <ListGroup.Item>GirlCoderz Circles</ListGroup.Item>
-          </ListGroup>
-        </Card>
-      </div>
-      */}
+                  /> */}
     </div>
   );
 }
