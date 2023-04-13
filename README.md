@@ -1,70 +1,146 @@
-# Getting Started with Create React App
+# Project Name
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+Describe your project in one/two lines.
 
-In the project directory, you can run:
+## User Stories
 
-### `npm start`
+- **404:** As an anon/user I can see a 404 page if I try to reach a page that does not exist so that I know it's my fault
+- **Signup:** As an anon I can sign up in the platform so that I can start saving favorite restaurants
+- **Login:** As a user I can login to the platform so that I can see my favorite restaurants
+- **Logout:** As a user I can logout from the platform so no one else can use it
+- **Add Restaurants** As a user I can add a restaurant so that I can share it with the community
+- **List Restaurants** As a user I want to see the restaurants so that I can choose one to eat
+- **Search Restaurants** As a user I want to search restaurants by name so that I know if it´s already in the platform
+- **Add to favorites** As a user I want to add a restaurant to favorite so that I can save the restaurants that I liked the most
+- **See my favorites** As a user I want to see my favorite restaurantes so that I can see the ones I liked the most
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Backlog
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+User profile:
 
-### `npm test`
+- see other users profile sand their favorites
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Geo Location:
 
-### `npm run build`
+- see restaurants in a map
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Client
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Routes
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- / - Homepage
+- /auth/signup - Signup form
+- /auth/login - Login form
+- /restaurants - restaurant list
+- /restaurants/create - create a restaurant
+- /restaurants/:id - restaurant detail
+- /profile/me - my details and favorite restaurants
+- 404
 
-### `npm run eject`
+## Pages
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Home Page (public)
+- Sign in Page (anon only)
+- Log in Page (anon only)
+- Restaurants List Page (public only)
+- Restaurant Create (user only)
+- Restaurant Detail Page (public only)
+- My Profile Page (user only)
+- 404 Page (public)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Components
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Restaurant Card component
+  - Input: restaurant: any
+  - Output: favorite(restaurantId: string, on: boolean)
+- Search component
+  - Output: change(terms: string)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## IO
 
-## Learn More
+## Services
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Auth Service
+  - auth.login(user)
+  - auth.signup(user)
+  - auth.logout()
+  - auth.me()
+  - auth.getUser() // synchronous
+- Restaurant Service
+  - restaurant.list()
+  - restaurant.create(data)
+  - restaurant.detail(id)
+  - restaurant.addFavorite(id)
+  - restaurant.removeFavorite(id)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Server
 
-### Code Splitting
+## Models
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+User model
 
-### Analyzing the Bundle Size
+```
+username - String // required
+email - String // required & unique
+password - String // required
+favorites - [ObjectID<Restaurant>]
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Restaurant model
 
-### Making a Progressive Web App
+```
+owner - ObjectID<User> // required
+name - String // required
+phone - String
+address - String
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## API Endpoints/Backend Routes
 
-### Advanced Configuration
+- GET /auth/me
+- POST /auth/signup
+  - body:
+    - username
+    - email
+    - password
+- POST /auth/login
+  - body:
+    - username
+    - password
+- POST /auth/logout
+  - body: (empty)
+- POST /user/me/favorite
+  - body:
+    - restaurantId
+- DELETE /user/me/favorite/:restaurantId
+  - body: (empty)
+- GET /restaurant
+- POST /restaurant
+  - body:
+    - name
+    - phone
+    - address
+- GET /restaurant/:id
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Links
 
-### Deployment
+### Trello/Kanban
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+[Link to your trello board](https://trello.com) or picture of your physical board
 
-### `npm run build` fails to minify
+### Git
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The url to your repository and to your deployed project
+
+[Client repository Link](http://github.com)
+[Server repository Link](http://github.com)
+
+[Deploy Link](http://heroku.com)
+
+### Slides
+
+The url to your presentation slides
+
+[Slides Link](http://slides.com)
