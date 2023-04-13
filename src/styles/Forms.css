@@ -6,7 +6,7 @@
   padding-bottom: 50%;
 }
 
-#form-login,
+/* #form-login, */
 #form-signup {
   display: flex;
   flex-direction: column;
@@ -159,6 +159,7 @@
   align-items: center;
 }
 
+#form-login,
 #rec-form-signup {
   width: 75%;
   margin: auto;
