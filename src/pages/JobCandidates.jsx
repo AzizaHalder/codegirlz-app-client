@@ -1,6 +1,8 @@
 import axios from "axios";
 import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const JobCandidates = () => {
   const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
@@ -16,7 +18,11 @@ const JobCandidates = () => {
       .then((res) => setJobCandidates(res.data))
       .catch((err) => console.log(err));
   }, []);
-  console.log(jobCandidates);
+
+  const handleContact = () => {
+    alert("Success! Message has been sent to user!");
+  };
+
   return (
     <>
       <h1 className="page-title">JobCandidates</h1>
@@ -51,6 +57,8 @@ const JobCandidates = () => {
                       </small>
                     </Card.Footer>
                   )}
+                  <Link to={`/profile/${_id}`}>See Profile</Link>
+                  <Button onClick={handleContact}>Contact User</Button>
                 </Card>
               );
             }
