@@ -135,41 +135,47 @@ function NavBar() {
                         {userId.recruiterName && (
                           <>
                             <li>
-                              <Nav.Item>
-                                <Link to={`/meetup`} title="browse meetups">
+                              <NavDropdown
+                                align="right"
+                                title={
                                   <FontAwesomeIcon
                                     icon={faUsers}
                                     size="xl"
                                     style={{ color: "#81B4A6" }}
                                   />
-                                </Link>
-                              </Nav.Item>
+                                }
+                                id="navbarScrollingDropdown"
+                                className="dropdown-menu-end"
+                              >
+                                <NavDropdown.Item>
+                                  <Link to="/meetup">Browse Meetups</Link>
+                                </NavDropdown.Item>
+                                <NavDropdown.Item>
+                                  <Link to="/meetup/create">Create Meetup</Link>
+                                </NavDropdown.Item>
+                              </NavDropdown>
                             </li>
-
                             <li>
-                              <Nav.Item>
-                                <Link to={`/resource`} title="learn">
+                              <NavDropdown
+                                title={
                                   <FontAwesomeIcon
                                     icon={faLaptopFile}
                                     size="xl"
                                     style={{ color: "#81B4A6" }}
                                   />
-                                </Link>
-                              </Nav.Item>
-                            </li>
-                            <li>
-                              <Nav.Item>
-                                <Link
-                                  to={`/recruiter/job-candidates`}
-                                  title="job candidates"
-                                >
-                                  <FontAwesomeIcon
-                                    icon={faUserTie}
-                                    size="xl"
-                                    style={{ color: "#81B4A6" }}
-                                  />
-                                </Link>
-                              </Nav.Item>
+                                }
+                                id="collasible-nav-dropdown"
+                              >
+                                <NavDropdown.Item>
+                                  <Link to="/resource">Browse Resources</Link>
+                                </NavDropdown.Item>
+
+                                <NavDropdown.Item>
+                                  <Link to="/resource/create">
+                                    Add Resource
+                                  </Link>
+                                </NavDropdown.Item>
+                              </NavDropdown>
                             </li>
                           </>
                         )}
