@@ -128,7 +128,10 @@ const AddMeetup = () => {
               <div>
                 <div>
                   <Form.Floating className="form-margin">
-                    <Form.Select value={countryIndex} onChange={handleCountryIndex}>
+                    <Form.Select
+                      value={countryIndex}
+                      onChange={handleCountryIndex}
+                    >
                       <option value="0">Select Country </option>
                       {countryKeys.map((result, index) => (
                         <option value={index}>{result}</option>
@@ -147,10 +150,14 @@ const AddMeetup = () => {
                   </Form.Floating>
                 </div>
                 <div>
-                  <Form.Floating className="form-margin">
-                    <Form.Control ref={inputRef} value={address} type="text" name="currentLocation" />
-                    <label htmlFor="">Address</label>
-                  </Form.Floating>
+                  <label htmlFor="">Address</label>
+                  <input
+                    className="form-control"
+                    ref={inputRef}
+                    value={address}
+                    type="text"
+                    name="currentLocation"
+                  />
                 </div>
               </div>
             </>
