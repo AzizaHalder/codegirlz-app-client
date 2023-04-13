@@ -29,7 +29,7 @@ function ResourceList() {
       .then((data) => {
         setResourceList(data);
         setSearchResults(data);
-        return service.getUserInfo();
+        return service.getUserInfo(user._id);
       })
       .then((user) => setUserInfo(user))
       .catch((err) =>
