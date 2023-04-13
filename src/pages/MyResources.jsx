@@ -45,43 +45,45 @@ function MyResources() {
               videoUpload,
             }) => {
               return (
-                <Card
-                  key={_id}
-                  className="border-0 card-list bg-light"
-                  style={{ width: "250px" }}
-                >
-                  <div className="card-content">
-                    <Link to={`/resource/${_id}`} className="more-details">
-                      <>
-                        <Card.Title> {resourceTitle}</Card.Title>
+                <div>
+                  <Card
+                    key={_id}
+                    className="border-0 card-list bg-light"
+                    style={{ width: "80%" }}
+                  >
+                    <div className="card-content">
+                      <Link to={`/resource/${_id}`} className="more-details">
+                        <>
+                          <Card.Title> {resourceTitle}</Card.Title>
 
-                        {resourceType === "Article" && (
-                          <img
-                            src={resourceImage}
-                            alt={resourceTitle}
-                            className="card-img"
-                          />
-                        )}
+                          {resourceType === "Article" && (
+                            <img
+                              src={resourceImage}
+                              alt={resourceTitle}
+                              className="card-img"
+                            />
+                          )}
 
-                        {resourceType === "Video" && (
-                          <iframe
-                            title="Youtube video player"
-                            src={`https://www.youtube.com/embed/${videoUpload}`}
-                            className="card-video"
-                          ></iframe>
-                        )}
-                        {resourceType === "Podcast" && (
-                          <iframe
-                            className="podcast-thumbnail"
-                            title="Spotify Podcast"
-                            src={`https://open.spotify.com/embed/episode${podcastUpload}?utm_source=generator`}
-                          ></iframe>
-                        )}
-                        <p>{resourceType}</p>
-                      </>
-                    </Link>
-                  </div>
-                </Card>
+                          {resourceType === "Video" && (
+                            <iframe
+                              title="Youtube video player"
+                              src={`https://www.youtube.com/embed/${videoUpload}`}
+                              className="card-video"
+                            ></iframe>
+                          )}
+                          {resourceType === "Podcast" && (
+                            <iframe
+                              className="podcast-thumbnail"
+                              title="Spotify Podcast"
+                              src={`https://open.spotify.com/embed/episode${podcastUpload}?utm_source=generator`}
+                            ></iframe>
+                          )}
+                          <p>{resourceType}</p>
+                        </>
+                      </Link>
+                    </div>
+                  </Card>
+                </div>
               );
             }
           )}

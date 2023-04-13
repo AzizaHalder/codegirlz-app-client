@@ -29,29 +29,35 @@ function AttendMeetup() {
   return (
     <Container className="SavedMeetup">
       <h1 className="page-title">SavedMeetup</h1>
-      <div className="all-cards">
+      <div className="meetup-list">
         {attendEvent &&
           attendEvent.map(({ eventsAttended, _id }) => {
             return (
-              <Card
-                key={_id}
-                className="border-0 bg-light card-list"
-                id="saved-meetup-card"
-                style={{ width: "250px" }}
-              >
-                {eventsAttended.map((value) => (
-                  <div className="card-content">
-                    <Link to={`/meetup/${value._id}`} className="more-details">
-                      <img
-                        src={value.eventImage}
-                        alt={value.eventName}
-                        className="card-img"
-                      />
-                      <Card.Title>{value.eventName}</Card.Title>
-                    </Link>
-                  </div>
-                ))}
-              </Card>
+              <div className="card-save">
+                <div
+                  key={_id}
+                  // className="border-0 bg-light"
+                  id="saved-meetup-card"
+                  style={{ width: "50%" }}
+                  className="card-content"
+                >
+                  {eventsAttended.map((value) => (
+                    <Card className="meetup-info border-0 bg-light">
+                      <Link
+                        to={`/meetup/${value._id}`}
+                        className="more-details"
+                      >
+                        <img
+                          src={value.eventImage}
+                          alt={value.eventName}
+                          className="card-img"
+                        />
+                        <Card.Title>{value.eventName}</Card.Title>
+                      </Link>
+                    </Card>
+                  ))}
+                </div>
+              </div>
             );
           })}
       </div>
