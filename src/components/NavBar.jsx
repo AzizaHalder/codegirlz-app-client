@@ -9,7 +9,11 @@ import Button from "react-bootstrap/Button";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
-import { faLaptopFile } from "@fortawesome/free-solid-svg-icons";
+import {
+  faLaptopFile,
+  faUserTie,
+  faRightToBracket,
+} from "@fortawesome/free-solid-svg-icons";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
@@ -21,7 +25,11 @@ function NavBar() {
 
   return (
     <Container id="external-navbar">
-      <Navbar expand="sm" className="justify-content-center" id="external-navbar">
+      <Navbar
+        expand="sm"
+        className="justify-content-center"
+        id="external-navbar"
+      >
         {isLoggedIn && (
           <>
             <Container id="nav-container-logged-in">
@@ -37,7 +45,10 @@ function NavBar() {
                     <img src={logo} alt="logo" id="logo-button"></img>
                   </Link>
                 </Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" id="nav-toggle" />
+                <Navbar.Toggle
+                  aria-controls="basic-navbar-nav"
+                  id="nav-toggle"
+                />
                 <Navbar.Collapse id="responsive-navbar-nav">
                   <Nav
                     className="justify-content-end"
@@ -46,71 +57,128 @@ function NavBar() {
                   >
                     <ButtonGroup className="mb-2">
                       <ul>
-                        <li>
-                          <NavDropdown
-                            align="right"
-                            title={
-                              <FontAwesomeIcon
-                                icon={faUsers}
-                                size="xl"
-                                style={{ color: "#81B4A6" }}
-                              />
-                            }
-                            id="navbarScrollingDropdown"
-                            className="dropdown-menu-end"
-                          >
-                            <NavDropdown.Item>
-                              <Link to="/meetup">Browse Meetups</Link>
-                            </NavDropdown.Item>
-                            <NavDropdown.Item>
-                              <Link to="/meetup/create">Create Meetup</Link>
-                            </NavDropdown.Item>
-                            <NavDropdown.Item>
-                              <Link to="/meetup/attend">Saved Meetups</Link>
-                            </NavDropdown.Item>
-                          </NavDropdown>
-                        </li>
-                        <li>
-                          <NavDropdown
-                            title={
-                              <FontAwesomeIcon
-                                icon={faLaptopFile}
-                                size="xl"
-                                style={{ color: "#81B4A6" }}
-                              />
-                            }
-                            id="collasible-nav-dropdown"
-                          >
-                            <NavDropdown.Item>
-                              <Link to="/resource">Browse Resources</Link>
-                            </NavDropdown.Item>
-                            <NavDropdown.Item>
-                              <Link to="/resource/create">Add Resource</Link>
-                            </NavDropdown.Item>
-                          </NavDropdown>
-                        </li>
-                        <li>
-                          <Nav.Item>
-                            <Link to="/resource/save">
-                              <FontAwesomeIcon
-                                icon={faBookmark}
-                                size="xl"
-                                style={{ color: "#81B4A6" }}
-                              />
-                            </Link>
-                          </Nav.Item>
-                        </li>
-                        <li>
-                          <Nav.Item>
-                            <Link to={`/profile/${userId._id}`}>
-                              <FontAwesomeIcon
-                                icon={faUser}
-                                size="xl"
-                                style={{ color: "#81B4A6" }}
-                              />
-                            </Link>
-                          </Nav.Item>
-                        </li>
+                        {userId.name && (
+                          <>
+                            <li>
+                              <NavDropdown
+                                align="right"
+                                title={
+                                  <FontAwesomeIcon
+                                    icon={faUsers}
+                                    size="xl"
+                                    style={{ color: "#81B4A6" }}
+                                  />
+                                }
+                                id="navbarScrollingDropdown"
+                                className="dropdown-menu-end"
+                              >
+                                <NavDropdown.Item>
+                                  <Link to="/meetup">Browse Meetups</Link>
+                                </NavDropdown.Item>
+                                <NavDropdown.Item>
+                                  <Link to="/meetup/create">Create Meetup</Link>
+                                </NavDropdown.Item>
+                                <NavDropdown.Item>
+                                  <Link to="/meetup/attend">Saved Meetups</Link>
+                                </NavDropdown.Item>
+                              </NavDropdown>
+                            </li>
+
+                            <li>
+                              <NavDropdown
+                                title={
+                                  <FontAwesomeIcon
+                                    icon={faLaptopFile}
+                                    size="xl"
+                                    style={{ color: "#81B4A6" }}
+                                  />
+                                }
+                                id="collasible-nav-dropdown"
+                              >
+                                <NavDropdown.Item>
+                                  <Link to="/resource">Browse Resources</Link>
+                                </NavDropdown.Item>
+
+                                <NavDropdown.Item>
+                                  <Link to="/resource/create">
+                                    Add Resource
+                                  </Link>
+                                </NavDropdown.Item>
+                              </NavDropdown>
+                            </li>
+                            <li>
+                              <Nav.Item>
+                                <Link to="/resource/save">
+                                  <FontAwesomeIcon
+                                    icon={faBookmark}
+                                    size="xl"
+                                    style={{ color: "#81B4A6" }}
+                                  />
+                                </Link>
+                              </Nav.Item>
+                            </li>
+
+                            <li>
+                              <Nav.Item>
+                                <Link to={`/profile/${userId._id}`}>
+                                  <FontAwesomeIcon
+                                    icon={faUser}
+                                    size="xl"
+                                    style={{ color: "#81B4A6" }}
+                                  />
+                                </Link>
+                              </Nav.Item>
+                            </li>
+                          </>
+                        )}
+
+                        {userId.recruiterName && (
+                          <>
+                            <li>
+                              <NavDropdown
+                                align="right"
+                                title={
+                                  <FontAwesomeIcon
+                                    icon={faUsers}
+                                    size="xl"
+                                    style={{ color: "#81B4A6" }}
+                                  />
+                                }
+                                id="navbarScrollingDropdown"
+                                className="dropdown-menu-end"
+                              >
+                                <NavDropdown.Item>
+                                  <Link to="/meetup">Browse Meetups</Link>
+                                </NavDropdown.Item>
+                                <NavDropdown.Item>
+                                  <Link to="/meetup/create">Create Meetup</Link>
+                                </NavDropdown.Item>
+                              </NavDropdown>
+                            </li>
+                            <li>
+                              <NavDropdown
+                                title={
+                                  <FontAwesomeIcon
+                                    icon={faLaptopFile}
+                                    size="xl"
+                                    style={{ color: "#81B4A6" }}
+                                  />
+                                }
+                                id="collasible-nav-dropdown"
+                              >
+                                <NavDropdown.Item>
+                                  <Link to="/resource">Browse Resources</Link>
+                                </NavDropdown.Item>
+
+                                <NavDropdown.Item>
+                                  <Link to="/resource/create">
+                                    Add Resource
+                                  </Link>
+                                </NavDropdown.Item>
+                              </NavDropdown>
+                            </li>
+                          </>
+                        )}
 
                         <li id="log-out-button-list">
                           <Button variant="outline-light" id="login-button">
@@ -141,7 +209,10 @@ function NavBar() {
                     <img src={logo} alt="logo" id="logo-button"></img>
                   </Link>
                 </Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" id="nav-toggle" />
+                <Navbar.Toggle
+                  aria-controls="basic-navbar-nav"
+                  id="nav-toggle"
+                />
                 <Navbar.Collapse id="responsive-navbar-nav">
                   <Nav
                     className="justify-content-end"
@@ -152,29 +223,75 @@ function NavBar() {
                       <ul>
                         <li>
                           <Button
-                            style={{ backgroundColor: "#1A6A68", border: "none" }}
+                            style={{
+                              backgroundColor: "#1A6A68",
+                              border: "none",
+                            }}
                           >
                             <Nav.Item>
-                              <Link to="/meetup">Meetup</Link>
+                              <Link to="/meetup">
+                                <FontAwesomeIcon
+                                  icon={faUsers}
+                                  size="xl"
+                                  style={{ color: "#81B4A6" }}
+                                />
+                              </Link>
                             </Nav.Item>
                           </Button>
                         </li>
                         <li>
                           <Button
-                            style={{ backgroundColor: "#1A6A68", border: "none" }}
+                            style={{
+                              backgroundColor: "#1A6A68",
+                              border: "none",
+                            }}
                           >
                             <Nav.Item>
-                              <Link to="/resource">Learn</Link>
+                              <Link to="/resource">
+                                {" "}
+                                <FontAwesomeIcon
+                                  icon={faLaptopFile}
+                                  size="xl"
+                                  style={{ color: "#81B4A6" }}
+                                />
+                              </Link>
                             </Nav.Item>
                           </Button>
                         </li>
                         <li>
                           <Button
-                            style={{ backgroundColor: "#1A6A68", border: "none" }}
+                            style={{
+                              backgroundColor: "#1A6A68",
+                              border: "none",
+                            }}
                           >
-                            <Nav.Item>
-                              <Link to="/auth/login">Login</Link>
-                            </Nav.Item>
+                            <NavDropdown
+                              title={
+                                <FontAwesomeIcon
+                                  title="login"
+                                  icon={faRightToBracket}
+                                  size="xl"
+                                  style={{ color: "#81B4A6" }}
+                                />
+                              }
+                            >
+                              <NavDropdown.Item>
+                                <Link
+                                  style={{ color: "black" }}
+                                  to="/auth/login"
+                                >
+                                  Login
+                                </Link>
+                              </NavDropdown.Item>
+                              <NavDropdown.Item>
+                                <Link
+                                  style={{ color: "black" }}
+                                  to="/auth/recruiter/login"
+                                >
+                                  Recruiter Login
+                                </Link>
+                              </NavDropdown.Item>
+                            </NavDropdown>
                           </Button>
                         </li>
                       </ul>

@@ -5,6 +5,8 @@ import countries from "../countries.json";
 import Card from "react-bootstrap/Card";
 import images from "../images.json";
 import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import FloatingLabel from "react-bootstrap/FloatingLabel";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
@@ -99,7 +101,7 @@ function SignupPage() {
     <div className="SignupPage">
       <h1 className="page-title">CodeGirlz Sign Up</h1>
 
-      <form className="row g-3" onSubmit={handleSignupSubmit} id="form-signup">
+      <Form className="row g-3" onSubmit={handleSignupSubmit} id="form-signup">
         <div id="profile-pic-container">
           {profileImg && (
             <Card.Img src={profileImg} style={{ width: "10rem" }} />
@@ -122,56 +124,61 @@ function SignupPage() {
         <fieldset className="col-md-6" id="personal-details-container">
           <legend>Personal Details</legend>
           <div>
-            <label className="form-label">Name:</label>
-            <input
-              type="text"
-              className="form-control"
-              name="name"
-              value={name}
-              onChange={handleName}
-              required
-            />
+            <FloatingLabel label="Name" className="form-margin">
+              <Form.Control
+                type="text"
+                name="name"
+                value={name}
+                onChange={handleName}
+                required
+              />
+            </FloatingLabel>
           </div>
-          <label className="form-label">Email:</label>
-          <input
-            className="form-control"
-            required
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleEmail}
-          />
-
-          <label className="form-label">Password:</label>
-          <input
-            className="form-control"
-            required
-            type="password"
-            name="password"
-            value={password}
-            onChange={handlePassword}
-          />
+          <FloatingLabel label="Email" className="form-margin">
+            <Form.Control
+              required
+              type="email"
+              name="email"
+              value={email}
+              onChange={handleEmail}
+            />
+          </FloatingLabel>
+          <FloatingLabel label="Password" className="form-margin">
+            <Form.Control
+              required
+              type="password"
+              name="password"
+              value={password}
+              onChange={handlePassword}
+            />
+          </FloatingLabel>
         </fieldset>
         <fieldset className="col-md-6">
           <legend>Residence Information</legend>
-          <label className="form-label">Enter Country of Residence:</label>
-          <select
-            className="form-select"
-            value={countryIndex}
-            onChange={handleCountryIndex}
-          >
-            <option value="0">Select Country </option>
-            {countryKeys.map((result, index) => (
-              <option value={index}>{result}</option>
-            ))}
-          </select>
-          <label className="form-label">Enter City of Residence:</label>
-          <select className="form-select" value={city} onChange={handleCity}>
-            <option>Select City</option>
-            {cityArrayList[countryIndex].map((result) => (
-              <option value={result}>{result}</option>
-            ))}
-          </select>
+          <FloatingLabel label="Country of Residence" className="form-margin">
+            <Form.Select
+              className="form-select"
+              value={countryIndex}
+              onChange={handleCountryIndex}
+            >
+              <option value="0">Select Country </option>
+              {countryKeys.map((result, index) => (
+                <option value={index}>{result}</option>
+              ))}
+            </Form.Select>
+          </FloatingLabel>
+          <FloatingLabel label="City of Residence" className="form-margin">
+            <Form.Select
+              className="form-select"
+              value={city}
+              onChange={handleCity}
+            >
+              <option>Select City</option>
+              {cityArrayList[countryIndex].map((result) => (
+                <option value={result}>{result}</option>
+              ))}
+            </Form.Select>
+          </FloatingLabel>
         </fieldset>
 
         <fieldset className="col-md-6">
@@ -208,7 +215,7 @@ function SignupPage() {
             </button>
           </Link>
         </div>
-      </form>
+      </Form>
     </div>
   );
 }

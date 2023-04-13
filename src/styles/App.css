@@ -66,6 +66,10 @@
     color: #1a6a68;
   }
 
+  #login-nav {
+    color: black;
+  }
+
   /* Header background color */
   .navbar-brand {
     background-color: #1a6a68;
@@ -243,6 +247,10 @@
     justify-content: center;
   }
 
+  #login-nav {
+    color: black;
+  }
+
   /* logout button */
   #login-button {
     border: 1.5px solid;
@@ -378,6 +386,17 @@
   width: 100vw;
 }
 
+.home-info {
+  text-decoration: none;
+  color: #1a6a68;
+}
+
+.home-info:hover {
+  background-color: #81b4a6;
+  color: white;
+  cursor: pointer;
+}
+
 #header-card-image {
   border-radius: 0px;
 }
@@ -405,6 +424,7 @@
 }
 
 #footer {
+  margin-bottom: 10px;
   display: flex;
   width: 100vw;
   justify-content: center;
@@ -412,6 +432,8 @@
 }
 
 #footer-card {
+  margin-top: 10px;
+  /* margin-bottom: 40px; */
   width: 31rem;
   border-radius: 0px;
   color: #1a6a68;
@@ -420,6 +442,7 @@
 #github-logo,
 #email-image {
   width: 15%;
+  padding: 4px;
 }
 
 #footer-contact-us {
@@ -428,6 +451,33 @@
   width: 15rem;
 }
 
+/* Alternate footer */
+#footer-more-info {
+  background-color: #1a6a68;
+}
+
+.footer-list {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+}
+
+.footer-info {
+  color: white;
+  margin: 10px;
+  padding: 10px;
+}
+
+.footer-link {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  color: #81b4a6;
+}
 #copyright-footer {
   display: flex;
   align-items: center;

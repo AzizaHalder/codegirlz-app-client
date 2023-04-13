@@ -1,11 +1,10 @@
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
-import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
 import countries from "../countries.json";
-import FloatingLabel from 'react-bootstrap/FloatingLabel'
-
+import FloatingLabel from "react-bootstrap/FloatingLabel";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 const SignUpPageRecruiter = () => {
@@ -20,7 +19,6 @@ const SignUpPageRecruiter = () => {
   const [linkedin, setLinkedin] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
   const [countryIndex, setCountryIndex] = useState(0);
-
 
   const handleCountryIndex = (e) => setCountryIndex(e.target.value);
   const handleRecruiterName = (e) => setRecruiterName(e.target.value);
@@ -58,15 +56,23 @@ const SignUpPageRecruiter = () => {
   return (
     <div className="RecruiterSignup">
       <h1 className="page-title"> Recruiterz Sign Up</h1>
-      <Form className="row g-3" onSubmit={handleSignupSubmit} id="rec-form-signup">
+      <Form
+        className="row g-3"
+        onSubmit={handleSignupSubmit}
+        id="rec-form-signup"
+      >
         <div>
           <FloatingLabel
             controlId="floatingInput"
             label="Name"
             className="mb-3"
           >
-            <Form.Control type="text" placeholder="Aziza" value={recruiterName}
-              onChange={handleRecruiterName} />
+            <Form.Control
+              type="text"
+              placeholder="Bridget"
+              value={recruiterName}
+              onChange={handleRecruiterName}
+            />
           </FloatingLabel>
         </div>
         <br></br>
@@ -76,14 +82,24 @@ const SignUpPageRecruiter = () => {
             label="Email"
             className="mb-3"
           >
-            <Form.Control type="email" placeholder="name@example.com" value={email} onChange={handleEmail} />
+            <Form.Control
+              type="email"
+              placeholder="name@example.com"
+              value={email}
+              onChange={handleEmail}
+            />
           </FloatingLabel>
         </div>
         <br></br>
         <div>
           <FloatingLabel controlId="floatingPassword" label="Password">
-            <Form.Control type="password" placeholder="Password" value={password}
-              onChange={handlePassword} />
+            <Form.Control
+              name="password"
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={handlePassword}
+            />
           </FloatingLabel>
         </div>
         <br></br>
@@ -93,12 +109,17 @@ const SignUpPageRecruiter = () => {
             label="Company"
             className="mb-3"
           >
-            <Form.Control type="text" placeholder="Company" value={company} onChange={handleCompany} />
+            <Form.Control
+              type="text"
+              placeholder="Company"
+              value={company}
+              onChange={handleCompany}
+            />
           </FloatingLabel>
         </div>
 
         <div>
-          <Form.Floating className="form-margin">
+          <FloatingLabel className="form-margin">
             <Form.Select value={countryIndex} onChange={handleCountryIndex}>
               <option value="0">Select Country </option>
               {countryKeys.map((result, index) => (
@@ -113,7 +134,7 @@ const SignUpPageRecruiter = () => {
                 <option value={result}>{result}</option>
               ))}
             </Form.Select>
-          </Form.Floating>
+          </FloatingLabel>
         </div>
         <div>
           <FloatingLabel
@@ -121,7 +142,12 @@ const SignUpPageRecruiter = () => {
             label="Linkedin URL"
             className="mb-3"
           >
-            <Form.Control type="url" placeholder="linkedin" value={linkedin} onChange={handleLinkedin} />
+            <Form.Control
+              type="url"
+              placeholder="linkedin"
+              value={linkedin}
+              onChange={handleLinkedin}
+            />
           </FloatingLabel>
         </div>
         <div>
@@ -132,7 +158,9 @@ const SignUpPageRecruiter = () => {
           )}
         </div>
         <Link to={`${API_URL}/auth/recruiter/signup`}>
-          <Button type="submit" id="sign-up-button">Sign Up</Button>
+          <Button type="submit" id="sign-up-button">
+            Sign Up
+          </Button>
         </Link>
       </Form>
     </div>
