@@ -64,7 +64,6 @@ function MeetupDetails() {
         <div className="meetup meetup-info" id="right">
           <h5>{meetupSelected.eventType}</h5>
           <h1 className="page-title">{meetupSelected.eventName}</h1>
-          <p>Created by: {user.name}</p>
 
           {meetupSelected.eventType === "Digital" && (
             <p>{meetupSelected.eventLink}</p>
@@ -78,7 +77,8 @@ function MeetupDetails() {
               </div>
               <div className="meetup-location">
                 <p>
-                  {meetupSelected.eventCountry} | {meetupSelected.eventCity} |
+                  {meetupSelected.eventCountry} <br />
+                  {meetupSelected.eventCity} <br />
                   {meetupSelected.eventAddress}
                 </p>
                 <p>{meetupSelected.eventDateAndTime}</p>
