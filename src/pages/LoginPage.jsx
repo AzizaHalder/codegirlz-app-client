@@ -1,8 +1,10 @@
 import { useState, useContext } from "react";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import { Button } from "react-bootstrap";
+import axios from "axios";
+import Form from "react-bootstrap/Form";
+import FloatingLabel from "react-bootstrap/FloatingLabel";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
@@ -40,33 +42,38 @@ function LoginPage() {
   return (
     <div className="LoginPage">
       <h1 className="page-title">CodeGirlz Login</h1>
-      <form className="row g-3" onSubmit={handleLoginSubmit} id="form-login">
-        <div className="col-md-4">
-          <label className="form-label">Email</label>
-
-          <div className="input-group">
-            <input
+      <Form className="row g-3" onSubmit={handleLoginSubmit} id="form-login">
+        <div>
+          <FloatingLabel
+            label="Email"
+            controlId="floatingInput"
+            className="mb-3"
+          >
+            <Form.Control
               type="email"
-              className="form-control"
               value={email}
               required
               onChange={handleEmail}
             />
-          </div>
+          </FloatingLabel>
         </div>
-        <div className="col-md-4">
-          <label className="form-label">Password</label>
-          <div className="input-group">
-            <input
+        <br />
+        <div>
+          <FloatingLabel
+            label="Password"
+            controlId="floatingPassword"
+            className="mb-3"
+          >
+            <Form.Control
               type="password"
               name="password"
-              className="form-control"
               value={password}
               onChange={handlePassword}
               required
             />
-          </div>
+          </FloatingLabel>
         </div>
+
         <div>
           {errorMessage && (
             <p className="error-message" style={{ color: "red" }}>
@@ -74,12 +81,13 @@ function LoginPage() {
             </p>
           )}
         </div>
+
         <div className="col-md-6">
           <button className="btn btn-primary" type="submit" id="login-button">
             Login
           </button>
         </div>
-      </form>
+      </Form>
 
       <div className="col-12" id="sign-up-button-div">
         <p>Don't have an account yet?</p>
