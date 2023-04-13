@@ -88,7 +88,14 @@ function MeetupList() {
       <div className="all-cards">
         {meetupList &&
           searchResults.map(
-            ({ eventImage, eventName, eventType, eventDateAndTime, _id }) => {
+            ({
+              eventImage,
+              eventName,
+              eventType,
+              eventDateAndTime,
+              _id,
+              author,
+            }) => {
               return (
                 <Card
                   key={_id}
@@ -130,7 +137,9 @@ function MeetupList() {
                             />
                           )}
                         </Button>
-                        <p className="hosted-by">Hosted by: {user.name}</p>
+                        {author && (
+                          <p className="hosted-by">Hosted by: {author.name}</p>
+                        )}
                       </div>
                     )}
                   </div>
