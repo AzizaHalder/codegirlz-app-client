@@ -20,6 +20,7 @@ function MeetupList() {
   const [userInfo, setUserInfo] = useState(false);
 
   const { user, isLoggedIn } = useContext(AuthContext);
+  console.log(user);
 
   const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
@@ -85,7 +86,6 @@ function MeetupList() {
       </select>
 
       <div className="all-cards">
-
         {meetupList &&
           searchResults.map(
             ({ eventImage, eventName, eventType, eventDateAndTime, _id }) => {
@@ -108,7 +108,7 @@ function MeetupList() {
                         <p>{eventDateAndTime}</p>
                       </div>
                     </Link>
-                    {isLoggedIn && (
+                    {isLoggedIn && user.name && (
                       <div>
                         <Button
                           className="bg-transparent border-0"
@@ -133,7 +133,6 @@ function MeetupList() {
                         <p className="hosted-by">Hosted by: {user.name}</p>
                       </div>
                     )}
-
                   </div>
                 </Card>
               );
