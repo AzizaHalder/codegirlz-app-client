@@ -50,7 +50,8 @@ const AddMeetup = () => {
       const place = await autoCompleteRef.current.getPlace();
       setAddress(place.name);
     });
-  }, []);
+  }, [eventType === "In-Person"]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const newMeetupDetails = {
@@ -149,16 +150,16 @@ const AddMeetup = () => {
                     </Form.Select>
                   </Form.Floating>
                 </div>
-                <div>
-                  <label htmlFor="">Address</label>
-                  <input
+                <Form.Floating className="form-margin">
+                  <label className="form-label">Search address: </label>
+                  <Form.Control
                     className="form-control"
                     ref={inputRef}
                     value={address}
-                    type="text"
                     name="currentLocation"
+                    type="text"
                   />
-                </div>
+                </Form.Floating>
               </div>
             </>
           )}

@@ -43,7 +43,7 @@ function EditMeetUp() {
       const place = await autoCompleteRef.current.getPlace();
       setAddress(place.name);
     });
-  }, []);
+  }, [eventType === "In-Person"]);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("authToken");
@@ -195,17 +195,16 @@ function EditMeetUp() {
                 <label htmlFor="">City</label>
               </Form.Floating>
 
-              <div>
-                <label className="form-label">Address</label>
-                <input
+              <Form.Floating className="form-margin">
+                <label className="form-label">Search address: </label>
+                <Form.Control
                   className="form-control"
                   ref={inputRef}
                   value={address}
-                  name="eventAddress"
+                  name="currentLocation"
                   type="text"
                 />
-              </div>
-              {/* </Form.Floating> */}
+              </Form.Floating>
             </>
           )}
 
