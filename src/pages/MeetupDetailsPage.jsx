@@ -63,7 +63,12 @@ function MeetupDetails() {
         </div>
         <div className="meetup meetup-info" id="right">
           <h5>{meetupSelected.eventType}</h5>
-          <h1 className="page-title">{meetupSelected.eventName}</h1>
+
+ 
+
+          <h2>{meetupSelected.eventName}</h2>
+          <p>Created by: {user.name}</p>
+
 
           {meetupSelected.eventType === "Digital" && (
             <p>{meetupSelected.eventLink}</p>

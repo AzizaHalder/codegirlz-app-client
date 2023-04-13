@@ -49,6 +49,16 @@
   }
 
   /* MeetupDetails */
+  .meetup-details {
+    display: flex;
+    padding: 30px;
+    flex-direction: column;
+  }
+
+  .meetup {
+    word-wrap: break-word;
+  }
+
   #meetup-img {
     max-width: 300px;
   }
@@ -67,10 +77,10 @@
   }
 }
 
-#saved-meetup-card {
+/* #saved-meetup-card {
   width: 75%;
   height: auto;
-}
+} */
 
 /* Large screens */
 @media only screen and (min-width: 601px) {
@@ -137,10 +147,8 @@
   /* Meetup Details Page */
   .meetup-details {
     display: flex;
-    margin-top: 50px;
-    align-items: center;
-    justify-content: center;
     padding: 30px;
+    flex-direction: column;
   }
 
   #meetup-img {
@@ -148,7 +156,7 @@
   }
 
   .meetup {
-    width: 1000px;
+    /* width: 1000px; */
   }
 
   .location-details {
@@ -159,9 +167,11 @@
   .hosted-by {
     color: #81b4a6;
   }
-  #saved-meetup-card {
+
+  /* #saved-meetup-card {
     width: 75%;
     height: auto;
+
   }
 
   /* Job Candidate Cards */
@@ -178,4 +188,12 @@
     padding: 10px 7px;
     margin: 12px;
   }
+
+    color: #1a6a68;
+  } */
+}
+
+h2 {
+  color: #1a6a68;
+
 }
