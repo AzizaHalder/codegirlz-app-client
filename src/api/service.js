@@ -8,7 +8,6 @@ const api = axios.create({
   withCredentials: true,
 });
 
-
 const errorHandler = (err) => {
   throw err;
 };
@@ -76,10 +75,10 @@ const createResource = (newResource) => {
     .catch(errorHandler);
 };
 
-const getUserInfo = () => {
+const getUserInfo = (profileId) => {
   const storedToken = localStorage.getItem("authToken");
   return api
-    .get("/profile", {
+    .get(`/profile/${profileId}`, {
       headers: { Authorization: `Bearer ${storedToken}` },
     })
     .then((res) => res.data)
