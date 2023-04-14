@@ -1,16 +1,19 @@
 import React from "react";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/auth.context";
 import Container from "react-bootstrap/Container";
 
 function Profile() {
   const [profileSelected, setProfile] = useState("");
+
+  const { isLoggedIn } = useContext(AuthContext);
 
   const { profileId } = useParams();
   const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
@@ -38,7 +41,7 @@ function Profile() {
       })
       .then(() => {
         alert("Your profile has been successfully deleted! ");
-        navigate('/');
+        navigate("/");
       })
       .catch((err) => console.log("Error while deleting profile: ", err));
   };
@@ -143,21 +146,23 @@ function Profile() {
             )}
           </div>
         </Card.Body>
-        <div id="profile-button-group">
-          <Link to={`/profile/${profileId}/edit`}>
-            <Button variant="secondary" id="update-button" size="sm">
-              Update Profile
+        {isLoggedIn && profileSelected.name && (
+          <div id="profile-button-group">
+            <Link to={`/profile/${profileId}/edit`}>
+              <Button variant="secondary" id="update-button" size="sm">
+                Update Profile
+              </Button>
+            </Link>
+            <Button
+              onClick={handleDelete}
+              variant="danger"
+              id="delete-btn"
+              size="sm"
+            >
+              Delete Profile
             </Button>
-          </Link>
-          <Button
-            onClick={handleDelete}
-            variant="danger"
-            id="delete-btn"
-            size="sm"
-          >
-            Delete Profile
-          </Button>
-        </div>
+          </div>
+        )}
       </div>
     );
   }
