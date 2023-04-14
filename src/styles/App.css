@@ -14,7 +14,7 @@
 
   /* Fixed Navbar */
   .App {
-    margin-top: 250px;
+    margin-top: 300px;
   }
 
   * {
@@ -31,10 +31,12 @@
   #external-navbar {
     width: 100vw;
     display: block;
-    max-height: 3%;
+    /* Fixed Navbar */
+    height: 10%;
     padding: 0px;
     margin: 0px;
     float: none;
+    background-color: #1a6a68;
   }
 
   #nav-drop-down-menu ul {
@@ -53,11 +55,13 @@
     width: 30%;
   }
 
+  /* Fixed Navbar */
   #nav-container-logged-in {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-left: 0;
+    background-color: #1a6a68;
   }
 
   #nav-bar li {
@@ -71,6 +75,14 @@
     display: block;
     padding: 0 2% 0 2%;
     color: #1a6a68;
+  }
+
+  /* Fixed Navbar */
+  #nav-bar ul li a {
+    text-decoration: none;
+    color: black;
+    display: block;
+    /* padding: 0 2% 0 2%; */
   }
 
   #login-nav {
@@ -94,14 +106,22 @@
     background-color: #b1d8cd !important;
   }
 
+  /* Fixed Navbar */
+  #nav-container-logged-out {
+    background-color: #1a6a68;
+  }
+
   #nav-container-logged-out li a {
     text-decoration: none;
     display: inline;
     color: white;
   }
 
+  /* Fixed Navbar */
   #nav-toggle {
-    color: white;
+    /* color: white; */
+    border: 1px solid black;
+    margin: 5px;
   }
 
   #nav-container-logged-out ul {
@@ -109,6 +129,8 @@
     justify-content: center;
     align-items: center;
     margin-top: 5%;
+    /* FixedNavbar */
+    background-color: #1a6a68;
   }
 
   #login-button {
@@ -189,10 +211,10 @@
     margin: 0px;
   }
 
-  /* Fixed Navbar */
   #external-navbar {
     width: 100vw;
     display: block;
+    /* Fixed Navbar */
     max-height: 50%;
     background-color: #1a6a68;
     padding: 0px;
