@@ -97,7 +97,14 @@ function App() {
             </IsPrivate>
           }
         />
-        <Route path="/resource/:resourceId" element={<ResourceDetails />} />
+        <Route
+          path="/resource/:resourceId"
+          element={
+            <IsPrivate>
+              <ResourceDetails />
+            </IsPrivate>
+          }
+        />
         <Route
           path="/resource/edit/:resourceId"
           element={
