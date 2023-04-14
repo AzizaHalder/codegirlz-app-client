@@ -117,6 +117,7 @@ function ResourceList() {
                     style={{ width: "250px" }}
                   >
                     <div className="card-content">
+                      {/* takes to page when logged in versus redirecting to log in  */}
                       <Link to={`/resource/${_id}`} className="more-details">
                         {resourceType === "Article" && (
                           <img

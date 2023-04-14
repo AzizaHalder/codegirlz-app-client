@@ -38,7 +38,7 @@ function Profile() {
       })
       .then(() => {
         alert("Your profile has been successfully deleted! ");
-        navigate(`${API_URL}/auth/signup`);
+        navigate('/');
       })
       .catch((err) => console.log("Error while deleting profile: ", err));
   };
