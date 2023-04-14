@@ -152,7 +152,7 @@ function ResourceList() {
                       </Link>
                       <div className="resource-card-btn">
                         <p>By: {author.name}</p>
-                        {isLoggedIn && (
+                        {isLoggedIn && user.name && (
                           <Button
                             className="bg-transparent border-0"
                             title="save / unsave resource"
