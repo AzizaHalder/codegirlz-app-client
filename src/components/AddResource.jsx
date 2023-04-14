@@ -65,7 +65,7 @@ const AddResource = () => {
 
   return (
     <div className="AddResource">
-      <h1 className="page-title">Upload a Resource</h1>
+      <h1 className="page-title">AddResource</h1>
       <Form className="add-resource" onSubmit={handleSubmit}>
         <div className="col-md-6">
           <Form.Floating className="form-margin">
@@ -169,7 +169,7 @@ const AddResource = () => {
           </div>
 
           <Button id="new-res-btn" variant="secondary" size="sm" type="submit">
-            Upload New Resource
+            Add Resource
           </Button>
         </div>
       </Form>

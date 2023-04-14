@@ -1,30 +1,49 @@
-# Project Name
+# CodeGirlz
 
 ## Description
 
-Describe your project in one/two lines.
+connecting female identifying coders
+in person and online
 
 ## User Stories
 
-- **404:** As an anon/user I can see a 404 page if I try to reach a page that does not exist so that I know it's my fault
-- **Signup:** As an anon I can sign up in the platform so that I can start saving favorite restaurants
-- **Login:** As a user I can login to the platform so that I can see my favorite restaurants
-- **Logout:** As a user I can logout from the platform so no one else can use it
-- **Add Restaurants** As a user I can add a restaurant so that I can share it with the community
-- **List Restaurants** As a user I want to see the restaurants so that I can choose one to eat
-- **Search Restaurants** As a user I want to search restaurants by name so that I know if it´s already in the platform
-- **Add to favorites** As a user I want to add a restaurant to favorite so that I can save the restaurants that I liked the most
-- **See my favorites** As a user I want to see my favorite restaurantes so that I can see the ones I liked the most
+- **Signup:** As an anon I can sign up in the platform so that I can start connecting or learning with the CodeGirlz community
+- **Login:** As a user I can login to the platform to have access to Learn and Meetup
+- **Logout:** As a user I can logout from the platform so no one else can use my account
+- **Homepage:** As an anon I can view the homepage and browse meetups and resources
+- **Add a Meetup** As a user I can add a meetup so that I can meet coderz in the community
+- **Edit your own Meetup** As a user I can edit my meetup so that I can meet coderz in the community
+- **View Meetup Details** As a user I can view a meetup details so that I can learn more
+- **Attend a Meetup** As a user I can attend a meetup so that I can meet other coderz
+- **List all Meetups** As an anon I can see general info about meetups and as a user I can interact with meetups and view users
+- **Search Meetups** As a user I want to search meetups by name so that I can find likeminded coderz
+- **View my Meetups** As a user I want to attend a meetup so that I can save the meetups that I want to go to
+- **Add a Resource** As a user I can add a resource so that I can share it with the coderz community
+- **Edit your own Resource** As a user I can edit my resources so that I can keep it up to date
+- **View Resource Details** As a user I can view a resource detail so that I can learn more
+- **Save a Resource** As a user I can save a resource so that I can read it again or share with others
+- **Search Resources** As a user I want to search resources by name so that I can learn topics of interest
+- **View Saved Resources** As a user I want to view my saved resources so that I can see only the resource of interest
+- **View my Profile** As a user I want to view the information recruiters would see
+- **Update my Profile** As a user I want to update my profile so that I can find jobs that suit my skills and location
+- **Recruiter Signup** As a recruiter I can sign up in the platform so that I can hire coderz
+- **Recruiter Login** As a recruiter I can login to the platform to have access to coderz to hire
+- **Recruiters view Job Candidates** As a recruiter I can view coderz profiles who are open to new opportunities
 
 ## Backlog
 
 User profile:
 
-- see other users profile sand their favorites
+- chat with recruiters of companies
+- chat with other users
+
+Recruiter profile:
+
+- chat with job candidates that meet requirements
 
 Geo Location:
 
-- see restaurants in a map
+- see candidates and other users in a map
 
 # Client
 
@@ -33,30 +52,56 @@ Geo Location:
 - / - Homepage
 - /auth/signup - Signup form
 - /auth/login - Login form
-- /restaurants - restaurant list
-- /restaurants/create - create a restaurant
-- /restaurants/:id - restaurant detail
+- /meetup - meetup list
+- /meetup/:id - meetup details
+- /meetup/attend - saved meetups
+- /meetup/edit/:id - meetup details
+- /meetup/attend - saved meetups
+- /resource - resource list
+- /resource/create - create a resource
+- /resource/save - saved meetups
+- /resource/:id - resource details details
+- /resource/edit/:id - saved meetups
+- /profile/:id - profile page
+- /restaurants/:id/edit - edit profile page
 - /profile/me - my details and favorite restaurants
-- 404
+- /profile/:id - profile page
+- /profile/:id/edit - edit profile page
+- / - my details and favorite restaurants
 
 ## Pages
 
 - Home Page (public)
 - Sign in Page (anon only)
 - Log in Page (anon only)
-- Restaurants List Page (public only)
-- Restaurant Create (user only)
-- Restaurant Detail Page (public only)
-- My Profile Page (user only)
-- 404 Page (public)
+- Meetups List Page (public)
+- Meetups Create (user only)
+- Meetups Edit (user only)
+- Meetups Details (user only)
+- My Meetups (user only)
+- Resource List Page (public)
+- Resource Create (user only)
+- Resource Edit (user only)
+- Resource Details (user only)
+- Resource Saved (user only)
+- Profile (user only)
+- Profile Edit (user only)
+- Recruiter Sign In Page (anon only)
+- Recruiter Log In Page (anon only)
+- Job Candidates List Page (recruiter only)
 
 ## Components
 
-- Restaurant Card component
-  - Input: restaurant: any
-  - Output: favorite(restaurantId: string, on: boolean)
+- GooglePlaces component
+  - Input: location name
+  - Output: address(currentLocation: string)
 - Search component
   - Output: change(terms: string)
+- Add Meetup
+- Add Resource
+- Footer
+- IsAnon
+- isPrivate
 
 ## IO
 
@@ -126,16 +171,16 @@ address - String
 
 ## Links
 
-### Trello/Kanban
+### Miro
 
-[Link to your trello board](https://trello.com) or picture of your physical board
+[Link to your Miro board](https://miro.com/app/board/uXjVMc7IG7U=/?share_link_id=474114558931) or picture of your physical board
 
 ### Git
 
 The url to your repository and to your deployed project
 
-[Client repository Link](http://github.com)
-[Server repository Link](http://github.com)
+[Client repository Link](https://github.com/AzizaHalder/codegirlz-app-client)
+[Server repository Link](https://github.com/AzizaHalder/codegirlz-app-server)
 
 [Deploy Link](http://heroku.com)
 

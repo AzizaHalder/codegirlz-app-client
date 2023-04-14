@@ -87,7 +87,7 @@ const AddMeetup = () => {
   };
   return (
     <div className="NewMeetup">
-      <h1 className="page-title">New Meetup</h1>
+      <h1 className="page-title">HostMeetup</h1>
       <Form className="new-meetup" onSubmit={handleSubmit}>
         <div className="col-md-6">
           <Form.Floating className="form-margin">
@@ -202,7 +202,7 @@ const AddMeetup = () => {
             )}
           </div>
           <Button variant="secondary" id="submit-btn" size="sm" type="submit">
-            Submit New Meetup
+            Add Meetup
           </Button>
         </div>
       </Form>
