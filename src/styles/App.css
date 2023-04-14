@@ -203,10 +203,10 @@
     padding: 8px;
   }
 
-  #nav-bar li a {
+  #nav-bar ul li a {
     text-decoration: none;
-    display: block;
     color: black;
+    display: block;
     padding: 0 2% 0 2%;
   }
 
