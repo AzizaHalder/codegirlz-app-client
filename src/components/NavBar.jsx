@@ -26,6 +26,7 @@ function NavBar() {
   return (
     <Container id="external-navbar">
       <Navbar
+        fixed="top"
         expand="sm"
         className="justify-content-center"
         id="external-navbar"

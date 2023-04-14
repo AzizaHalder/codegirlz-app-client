@@ -3,12 +3,19 @@
   font-family: "Lacquer", cursive;
   font-family: "Lato", sans-serif;
   padding-bottom: 50px;
+  /* Fixed Navbar */
+  margin-top: 120px;
 }
 
 /* for phones and tablets */
 
 @media only screen and (max-width: 600px) {
   /* navbar */
+
+  /* Fixed Navbar */
+  .App {
+    margin-top: 300px;
+  }
 
   * {
     box-sizing: border-box;
@@ -24,10 +31,12 @@
   #external-navbar {
     width: 100vw;
     display: block;
-    max-height: 3%;
+    /* Fixed Navbar */
+    height: 10%;
     padding: 0px;
     margin: 0px;
     float: none;
+    background-color: #1a6a68;
   }
 
   #nav-drop-down-menu ul {
@@ -46,11 +55,13 @@
     width: 30%;
   }
 
+  /* Fixed Navbar */
   #nav-container-logged-in {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-left: 0;
+    background-color: #1a6a68;
   }
 
   #nav-bar li {
@@ -66,11 +77,20 @@
     color: #1a6a68;
   }
 
+  /* Fixed Navbar */
+  #nav-bar ul li a {
+    text-decoration: none;
+    color: black;
+    display: block;
+    /* padding: 0 2% 0 2%; */
+  }
+
   #login-nav {
     color: black;
   }
 
   /* Header background color */
+
   .navbar-brand {
     background-color: #1a6a68;
     width: 100%;
@@ -82,14 +102,26 @@
     display: flex;
   }
 
+  .dropdown-item:active {
+    background-color: #b1d8cd !important;
+  }
+
+  /* Fixed Navbar */
+  #nav-container-logged-out {
+    background-color: #1a6a68;
+  }
+
   #nav-container-logged-out li a {
     text-decoration: none;
     display: inline;
     color: white;
   }
 
+  /* Fixed Navbar */
   #nav-toggle {
-    color: white;
+    /* color: white; */
+    border: 1px solid black;
+    margin: 5px;
   }
 
   #nav-container-logged-out ul {
@@ -97,6 +129,8 @@
     justify-content: center;
     align-items: center;
     margin-top: 5%;
+    /* FixedNavbar */
+    background-color: #1a6a68;
   }
 
   #login-button {
@@ -180,7 +214,8 @@
   #external-navbar {
     width: 100vw;
     display: block;
-    max-height: 3%;
+    /* Fixed Navbar */
+    max-height: 50%;
     background-color: #1a6a68;
     padding: 0px;
     margin: 0px;
@@ -203,10 +238,10 @@
     padding: 8px;
   }
 
-  #nav-bar li a {
+  #nav-bar ul li a {
     text-decoration: none;
-    display: block;
     color: black;
+    display: block;
     padding: 0 2% 0 2%;
   }
 
@@ -216,6 +251,11 @@
   }
 
   /* the dropdown of the menu */
+
+  .dropdown-item:active {
+    background-color: #b1d8cd !important;
+  }
+
   #nav-drop-down-menu {
     display: flex;
     flex-wrap: wrap;
