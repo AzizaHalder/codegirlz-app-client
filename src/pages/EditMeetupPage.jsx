@@ -133,7 +133,7 @@ function EditMeetUp() {
   return (
     // <div>
     <div className="EditMeetup">
-      <h1 className="page-title">Edit Meetup</h1>
+      <h1 className="page-title">EditMeetup</h1>
       <Form className="edit-meetup" onSubmit={handleSubmit}>
         <div className="col-md-6">
           <Form.Floating className="form-margin">

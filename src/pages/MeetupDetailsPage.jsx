@@ -53,7 +53,7 @@ function MeetupDetails() {
   if (meetupSelected) {
     return (
       <Container className="meetup-details">
-        <h1 className="page-title">Meetup Details</h1>
+        <h1 className="page-title">MeetupInfo</h1>
         <div id="left" className="meetup">
           <img
             id="meetup-img"
@@ -64,10 +64,9 @@ function MeetupDetails() {
         <div className="meetup meetup-info" id="right">
           <h5>{meetupSelected.eventType}</h5>
 
- 
+
 
           <h2>{meetupSelected.eventName}</h2>
-          <p>Created by: {user.name}</p>
 
 
           {meetupSelected.eventType === "Digital" && (

@@ -34,7 +34,7 @@ in person and online
 
 User profile:
 
-- chat with recruiters of companies 
+- chat with recruiters of companies
 - chat with other users
 
 Recruiter profile:
@@ -53,9 +53,20 @@ Geo Location:
 - /auth/signup - Signup form
 - /auth/login - Login form
 - /meetup - meetup list
+- /meetup/:id - meetup details
+- /meetup/attend - saved meetups
+- /meetup/edit/:id - meetup details
+- /meetup/attend - saved meetups
 - /resource - resource list
-- /restaurants/create - create a restaurant
-- /restaurants/:id - restaurant detail
+- /resource/create - create a resource
+- /resource/save - saved meetups
+- /resource/:id - resource details details
+- /resource/edit/:id - saved meetups
+- /profile/:id - profile page
+- /restaurants/:id/edit - edit profile page
+- /profile/me - my details and favorite restaurants
+- /profile/:id - profile page
+- /restaurants/:id/edit - edit profile page
 - /profile/me - my details and favorite restaurants
 
 ## Pages
@@ -63,8 +74,12 @@ Geo Location:
 - Home Page (public)
 - Sign in Page (anon only)
 - Log in Page (anon only)
-- Restaurants List Page (public only)
-- Restaurant Create (user only)
+- Meetups List Page (public)
+- Meetups Create (user only)
+- Meetups List Page (public)
+- Meetups Create (user only)
+- Meetups List Page (public)
+- Meetups Create (user only)
 - Restaurant Detail Page (public only)
 - My Profile Page (user only)
 - 404 Page (public)
@@ -76,9 +91,9 @@ Geo Location:
   - Output: address(currentLocation: string)
 - Search component
   - Output: change(terms: string)
-- Add Meetup 
+- Add Meetup
 - Add Resource
-- Footer 
+- Footer
 - IsAnon
 - isPrivate
 

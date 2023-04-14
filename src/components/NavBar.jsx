@@ -77,10 +77,10 @@ function NavBar() {
                                   <Link to="/meetup">Browse Meetups</Link>
                                 </NavDropdown.Item>
                                 <NavDropdown.Item>
-                                  <Link to="/meetup/create">Create Meetup</Link>
+                                  <Link to="/meetup/create">Host Meetup</Link>
                                 </NavDropdown.Item>
                                 <NavDropdown.Item>
-                                  <Link to="/meetup/attend">Saved Meetups</Link>
+                                  <Link to="/meetup/attend">My Meetups</Link>
                                 </NavDropdown.Item>
                               </NavDropdown>
                             </li>
