@@ -69,6 +69,19 @@
   color: white;
 }
 
+#profile-btn,
+#contact-user-btn {
+  background-color: #1a6a68;
+  width: 100%;
+  margin: 8px 0;
+  border: none;
+}
+
+#profile-btn:hover,
+#contact-user-btn:hover {
+  background-color: #81b4a6;
+}
+
 #profile-pic-container {
   display: flex;
   flex-direction: column;
