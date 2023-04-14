@@ -177,6 +177,20 @@ function NavBar() {
                                 </NavDropdown.Item>
                               </NavDropdown>
                             </li>
+                            <li>
+                              <Nav.Item>
+                                <Link
+                                  to={`/recruiter/job-candidates`}
+                                  title="job-candidates"
+                                >
+                                  <FontAwesomeIcon
+                                    icon={faUserTie}
+                                    size="xl"
+                                    style={{ color: "#81B4A6" }}
+                                  />
+                                </Link>
+                              </Nav.Item>
+                            </li>
                           </>
                         )}
 
