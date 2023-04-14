@@ -3,12 +3,19 @@
   font-family: "Lacquer", cursive;
   font-family: "Lato", sans-serif;
   padding-bottom: 50px;
+  /* Fixed Navbar */
+  margin-top: 120px;
 }
 
 /* for phones and tablets */
 
 @media only screen and (max-width: 600px) {
   /* navbar */
+
+  /* Fixed Navbar */
+  .App {
+    margin-top: 250px;
+  }
 
   * {
     box-sizing: border-box;
@@ -71,6 +78,7 @@
   }
 
   /* Header background color */
+
   .navbar-brand {
     background-color: #1a6a68;
     width: 100%;
@@ -80,6 +88,10 @@
   /* the dropdown of the menu */
   #nav-drop-down-menu {
     display: flex;
+  }
+
+  .dropdown-item:active {
+    background-color: #b1d8cd !important;
   }
 
   #nav-container-logged-out li a {
@@ -177,10 +189,11 @@
     margin: 0px;
   }
 
+  /* Fixed Navbar */
   #external-navbar {
     width: 100vw;
     display: block;
-    max-height: 3%;
+    max-height: 50%;
     background-color: #1a6a68;
     padding: 0px;
     margin: 0px;
