@@ -46,7 +46,7 @@ function HomePage() {
               id="header-card-image"
             />
             <Card.Body>
-              <Card.Title>Resources</Card.Title>
+              <Card.Title>Learn</Card.Title>
               <Card.Text>
                 read, listen or watch to learn more about web development
               </Card.Text>
