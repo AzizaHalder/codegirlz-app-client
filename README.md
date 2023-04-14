@@ -66,8 +66,8 @@ Geo Location:
 - /restaurants/:id/edit - edit profile page
 - /profile/me - my details and favorite restaurants
 - /profile/:id - profile page
-- /restaurants/:id/edit - edit profile page
-- /profile/me - my details and favorite restaurants
+- /profile/:id/edit - edit profile page
+- / - my details and favorite restaurants
 
 ## Pages
 
@@ -76,13 +76,19 @@ Geo Location:
 - Log in Page (anon only)
 - Meetups List Page (public)
 - Meetups Create (user only)
-- Meetups List Page (public)
-- Meetups Create (user only)
-- Meetups List Page (public)
-- Meetups Create (user only)
-- Restaurant Detail Page (public only)
-- My Profile Page (user only)
-- 404 Page (public)
+- Meetups Edit (user only)
+- Meetups Details (user only)
+- My Meetups (user only)
+- Resource List Page (public)
+- Resource Create (user only)
+- Resource Edit (user only)
+- Resource Details (user only)
+- Resource Saved (user only)
+- Profile (user only)
+- Profile Edit (user only)
+- Recruiter Sign In Page (anon only)
+- Recruiter Log In Page (anon only)
+- Job Candidates List Page (recruiter only)
 
 ## Components
 
