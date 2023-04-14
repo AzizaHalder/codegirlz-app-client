@@ -216,6 +216,11 @@
   }
 
   /* the dropdown of the menu */
+
+  .dropdown-item:active {
+    background-color: #b1d8cd !important;
+  }
+
   #nav-drop-down-menu {
     display: flex;
     flex-wrap: wrap;
