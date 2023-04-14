@@ -1,6 +1,7 @@
 import axios from "axios";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -26,13 +27,14 @@ const JobCandidates = () => {
   return (
     <>
       <h1 className="page-title">JobCandidates</h1>
+
       <div className="candidates-list">
         {jobCandidates &&
           jobCandidates.map(
             ({ _id, name, level, profileImg, description, city }) => {
               return (
                 <Card
-                  className="candidates"
+                  className="candidates border-0"
                   key={_id}
                   style={{ width: "14rem" }}
                 >
@@ -57,8 +59,17 @@ const JobCandidates = () => {
                       </small>
                     </Card.Footer>
                   )}
-                  <Link to={`/profile/${_id}`}>See Profile</Link>
-                  <Button onClick={handleContact}>Contact User</Button>
+                  {/* <Button id="profile-btn">
+                    <Link to={`/profile/${_id}`}>See Profile</Link>
+                  </Button> */}
+
+                  <Link to={`/profile/${_id}`}>
+                    <Button id="profile-btn">See Profile</Button>
+                  </Link>
+
+                  <Button id="contact-user-btn" onClick={handleContact}>
+                    Contact User
+                  </Button>
                 </Card>
               );
             }
