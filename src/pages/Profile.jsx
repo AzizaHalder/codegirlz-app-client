@@ -124,7 +124,9 @@ function Profile() {
           <div id="social-link">
             {profileSelected.github && (
               <Card.Text>
-                <Link to={profileSelected.github}>Github </Link>
+                <Link target="_blank" to={profileSelected.github}>
+                  Github{" "}
+                </Link>
               </Card.Text>
             )}
             {!profileSelected.github && (
@@ -136,7 +138,9 @@ function Profile() {
           <div id="social-link">
             {profileSelected.linkedin && (
               <Card.Text>
-                <Link to={profileSelected.linkedin}>Linkedin </Link>
+                <Link target="_blank" to={profileSelected.linkedin}>
+                  Linkedin{" "}
+                </Link>
               </Card.Text>
             )}
             {!profileSelected.linkedin && (
