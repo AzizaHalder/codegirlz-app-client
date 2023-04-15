@@ -89,18 +89,10 @@
   align-items: center;
 }
 
-#delete-meetup-btn,
-#delete-btn,
-#submit-btn,
-#edit-meetup-btn,
-#update-button,
-#edit-btn,
-#edit-meetup-btn,
-#comment-btn,
-#meetup-changes-btn {
-  /* margin-top: 3%; */
-  /* margin-right: 3%; */
-  /* margin-left: 3%; */
+#comment-btn {
+  margin-top: 3%;
+  margin-right: 3%;
+  margin-left: 3%;
 }
 
 #delete-res-btn,
