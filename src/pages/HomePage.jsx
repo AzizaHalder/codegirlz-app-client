@@ -170,7 +170,11 @@ function HomePage() {
           <ul className="footer-list">
             <li className="footer-info">
               Aziza Halder
-              <Link className="footer-link" to="https://github.com/AzizaHalder">
+              <Link
+                className="footer-link"
+                target="_blank"
+                to="https://github.com/AzizaHalder"
+              >
                 <img
                   title="github"
                   alt="github logo"
@@ -181,7 +185,11 @@ function HomePage() {
             </li>
             <li className="footer-info">
               Nicole Bell
-              <Link className="footer-link" to="https://github.com/ozzleme">
+              <Link
+                className="footer-link"
+                target="_blank"
+                to="https://github.com/ozzleme"
+              >
                 <img
                   title="github"
                   alt="github logo"
