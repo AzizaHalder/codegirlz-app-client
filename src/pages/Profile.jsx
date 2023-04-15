@@ -13,7 +13,7 @@ import Container from "react-bootstrap/Container";
 function Profile() {
   const [profileSelected, setProfile] = useState("");
 
-  const { isLoggedIn } = useContext(AuthContext);
+  const { user, isLoggedIn } = useContext(AuthContext);
 
   const { profileId } = useParams();
   const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
@@ -146,7 +146,7 @@ function Profile() {
             )}
           </div>
         </Card.Body>
-        {isLoggedIn && profileSelected.name && (
+        {isLoggedIn && user.name === profileSelected.name && (
           <div id="profile-button-group">
             <Link to={`/profile/${profileId}/edit`}>
               <Button variant="secondary" id="update-button" size="sm">
@@ -154,6 +154,7 @@ function Profile() {
               </Button>
             </Link>
             <Button
+              disabled
               onClick={handleDelete}
               variant="danger"
               id="delete-btn"
