@@ -7,25 +7,25 @@ in person and online
 
 ## User Stories
 
+- **Homepage:** As an anon I can view the homepage and browse meetups and resources
+- **List all Meetups** As an anon I can see general info about meetups and as a user I can interact with meetups and view users
 - **Signup:** As an anon I can sign up in the platform so that I can start connecting or learning with the CodeGirlz community
 - **Login:** As a user I can login to the platform to have access to Learn and Meetup
-- **Logout:** As a user I can logout from the platform so no one else can use my account
-- **Homepage:** As an anon I can view the homepage and browse meetups and resources
+- **Search Meetups** As a user I want to search meetups by name so that I can find likeminded coderz
+- **View Meetup Details** As a user I can view a meetup details so that I can learn more
 - **Add a Meetup** As a user I can add a meetup so that I can meet coderz in the community
 - **Edit your own Meetup** As a user I can edit my meetup so that I can meet coderz in the community
-- **View Meetup Details** As a user I can view a meetup details so that I can learn more
 - **Attend a Meetup** As a user I can attend a meetup so that I can meet other coderz
-- **List all Meetups** As an anon I can see general info about meetups and as a user I can interact with meetups and view users
-- **Search Meetups** As a user I want to search meetups by name so that I can find likeminded coderz
-- **View my Meetups** As a user I want to attend a meetup so that I can save the meetups that I want to go to
+- **View my Meetups** As a user I want to attend a meetup so that I can save the meetups that I want to go to -**List Resources** As a user I want to see general info about all the resources available and as a user I can view resources
+- **Search Resources** As a user I want to search resources by name so that I can learn topics of interest
+- **View Resource Details** As a user I can view a resource detail so that I can learn more -**Comment on a Resource** As a user I can leave a comment on the Resource Details page
 - **Add a Resource** As a user I can add a resource so that I can share it with the coderz community
 - **Edit your own Resource** As a user I can edit my resources so that I can keep it up to date
-- **View Resource Details** As a user I can view a resource detail so that I can learn more
 - **Save a Resource** As a user I can save a resource so that I can read it again or share with others
-- **Search Resources** As a user I want to search resources by name so that I can learn topics of interest
 - **View Saved Resources** As a user I want to view my saved resources so that I can see only the resource of interest
 - **View my Profile** As a user I want to view the information recruiters would see
 - **Update my Profile** As a user I want to update my profile so that I can find jobs that suit my skills and location
+- **Logout:** As a user I can logout from the platform so no one else can use my account
 - **Recruiter Signup** As a recruiter I can sign up in the platform so that I can hire coderz
 - **Recruiter Login** As a recruiter I can login to the platform to have access to coderz to hire
 - **Recruiters view Job Candidates** As a recruiter I can view coderz profiles who are open to new opportunities
@@ -67,7 +67,9 @@ Geo Location:
 - /profile/me - my details and favorite restaurants
 - /profile/:id - profile page
 - /profile/:id/edit - edit profile page
-- / - my details and favorite restaurants
+- /auth/recruiter/signup - recruiter signup form
+- /auth/recruiter/login - recruiter login form
+- /recruiter/job-candidates - view users open to job opportunities
 
 ## Pages
 
@@ -107,18 +109,16 @@ Geo Location:
 
 ## Services
 
-- Auth Service
-  - auth.login(user)
-  - auth.signup(user)
-  - auth.logout()
-  - auth.me()
-  - auth.getUser() // synchronous
-- Restaurant Service
-  - restaurant.list()
-  - restaurant.create(data)
-  - restaurant.detail(id)
-  - restaurant.addFavorite(id)
-  - restaurant.removeFavorite(id)
+- Meetup Service
+  - getAllMeetup()
+  - uploadEventImage(file)
+  - createMeetup(newMeetup)
+- Resource Service
+  - getAllResource()
+  - uploadResourceImage(file)
+  - createResource(newResource)
+- User Service
+  - getUserInfo(profileId)
 
 # Server
 
@@ -127,47 +127,141 @@ Geo Location:
 User model
 
 ```
-username - String // required
+name - String // required
 email - String // required & unique
 password - String // required
-favorites - [ObjectID<Restaurant>]
+currentLocation - String
+city - String
+level - String
+linkedin - String
+github - String
+newOpp - Boolean // required
+eventsAttended - [ObjectID<Meetup>]
+myResource - [ObjectID<Resource>]
+profileImg - String
+description - String
 ```
 
-Restaurant model
+Recruiter model
 
 ```
-owner - ObjectID<User> // required
-name - String // required
-phone - String
-address - String
+recruiterName - String // required
+email - String // required & unique
+password - String // required
+company - String // required
+city - String
+linkedin - String
+createEvent - [ObjectID<Meetup>]
+jobCandidates - [ObjectID<User>]
+```
+
+Resource model
+
+```
+resourceTitle - String // required
+resourceImage - String
+resourceURL - String
+resourceContent - String
+resourceType - String // required
+videoUpload - String
+podcastUpload - String
+author - [ObjectID<User>]
+comments - [ObjectID<Comment>]
+```
+
+Meetup model
+
+```
+eventName - String // required
+eventType - String // required
+eventCountry - String
+eventCity - String
+eventAddress - String
+eventLink - String
+eventDescription - String // required
+eventImage - String
+eventDateAndTime - String // required
+attendees - [ObjectID<User>]
+author - [ObjectID<User>]
+```
+
+Comments model
+
+```
+commment - String // required
+resource - [ObjectID<Resource>]
+author - [ObjectID<User>]
+```
+
 ```
 
 ## API Endpoints/Backend Routes
 
-- GET /auth/me
+- GET /auth/verify
 - POST /auth/signup
   - body:
-    - username
+    - name
     - email
     - password
+    - level
+    - newOpp
+    - city
+    - currentLocation
+    - profileImg
+    - linkedin
+    - github
+    - description
 - POST /auth/login
   - body:
-    - username
+    - email
     - password
-- POST /auth/logout
-  - body: (empty)
-- POST /user/me/favorite
+- GET /auth/recruiter/verify
+- POST /auth/recruiter/signup
   - body:
-    - restaurantId
-- DELETE /user/me/favorite/:restaurantId
-  - body: (empty)
-- GET /restaurant
-- POST /restaurant
+    - recruiterName
+    - email
+    - password
+    - company
+    - city
+    - linkedin
+- POST /auth/recruiter/login
   - body:
-    - name
-    - phone
-    - address
-- GET /restaurant/:id
+    - email
+    - password
+- POST /resource/:resourceId/comment
+  - body:
+    - comment
+    - user
+- GET /resource/:resourceId/comment-list
+- DELETE /resource/:resourceId/comment/:commentId
+- GET /meetup
+- POST /meetup/upload
+- POST /meetup/create
+  - body:
+    - eventName
+    - eventType
+    - eventCountry
+    - eventCity
+    - eventAddress
+    - eventLink
+    - eventDescription
+    - eventImage
+    - eventDateAndTime
+    - attendees
+    - author
+- GET /meetup/attend
+- GET /meetup/:meetupId
+- PUT /meetup/edit/:meetupId
+- DELETE /meetup/edit/:meetupId
+- POST /meetup/:meetupId/attend
+- GET /profile/:profileId
+- PUT /profile/:profileId/edit
+- DELETE /profile/:profileId/edit
+- GET /recruiter/job-candidates
+- PUT /recruiter/edit/:recruiterId
+- DELETE /recruiter/edit/:recruiterId
+- POST recruiter/recruiterId/job-opportunities
+- GET recruiter/recruiterId
 
 ## Links
 
@@ -182,10 +276,11 @@ The url to your repository and to your deployed project
 [Client repository Link](https://github.com/AzizaHalder/codegirlz-app-client)
 [Server repository Link](https://github.com/AzizaHalder/codegirlz-app-server)
 
-[Deploy Link](http://heroku.com)
+[Deploy Link](https://codegirlz-connect.netlify.app/)
 
 ### Slides
 
 The url to your presentation slides
 
-[Slides Link](http://slides.com)
+[Slides Link](https://docs.google.com/presentation/d/1zEzg7GA3qTNmxABsr4Yco76yuSyg5uHqtYvLNP_6AmQ/edit?usp=sharing)
+```
